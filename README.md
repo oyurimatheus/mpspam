@@ -1,4 +1,6 @@
-# Projeto para o Ministério Público do estado de São Paulo
+#Sátrapa Projeto para o Ministério Público do estado de São Paulo
+
+Os sátrapas eram os **olhos e ouvidos do rei** no império persa. Eles podem ser considerados os primeiros fiscais e eram os responsáveis por realizar a coleta de tributos, eram os juízes, garantiam a segurança das estradas e o bom convívio da população de sua satrapia, ou provincia.     
 
 ## Organização do projeto
 Dentro do diretório `crawlers/` estão os arquivos e projetos necessários para realizar o scrapping das páginas.
