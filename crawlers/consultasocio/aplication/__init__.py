@@ -1,0 +1,1 @@
+from crawlers.consultasocio.aplication.socio_scrap import SocioScrap
