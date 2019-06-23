@@ -1,0 +1,2 @@
+class ScrapPageError(Exception):
+    pass
