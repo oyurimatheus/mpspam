@@ -13,6 +13,7 @@ Cada projeto tem o necessário para o seu funcionamento
 ### Linguagens de programação
  - Java 10
  - Python 3.6
+ - Docker
 
 ### Frameworks
  - Spring Framework com Spring boot
