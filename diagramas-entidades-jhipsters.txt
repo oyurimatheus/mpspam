@@ -1,0 +1,28 @@
+entity Pessoa {
+	id UUID,
+	nome String,
+    nomeDaMae String,
+    dataDeNascimento LocalDate,
+    cpf String
+}
+
+entity ConsultaSocioEntity {
+	id UUID,
+	nome String,
+    quantidadeDeEmpresas Integer,
+  	capitalSocialDasEmpresas BigInteger,
+    primeiraSociedade LocalDate,
+}
+
+entity ConsultaSocioAssociadosEntity {
+	nome String,
+    url String
+}
+
+relationship OneToMany {
+	ConsultaSocioEntity{socios} to ConsultaSocioAssociadosEntity,
+}
+
+relationship OneToOne {
+	Pessoa{consultaSocioEntity} to ConsultaSocioEntity
+}
