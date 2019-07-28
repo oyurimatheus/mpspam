@@ -1,0 +1,301 @@
+function pesquisarPedidos() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_pesquisar').attr('disabled','disabled');
+  var num_processo = $('form[name=form_pesq_pedidos] [name=num_processo]').val();
+  var status = $('form[name=form_pesq_pedidos] [name=status]').val();
+  var data_solic_ini = $('form[name=form_pesq_pedidos] [name=data_solic_ini]').val();
+  var data_solic_fim = $('form[name=form_pesq_pedidos] [name=data_solic_fim]').val();
+  var data_emi_ini = $('form[name=form_pesq_pedidos] [name=data_emi_ini]').val();
+  var data_emi_fim = $('form[name=form_pesq_pedidos] [name=data_emi_fim]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './pedido/pedidos2aViaExecutar.cfm',
+    data: {
+      'exec': 'pesquisarPedidos',
+      'num_processo': escape(num_processo),
+      'status': escape(status),
+      'data_solic_ini': escape(data_solic_ini),
+      'data_solic_fim': escape(data_solic_fim),
+      'data_emi_ini': escape(data_emi_ini),
+      'data_emi_fim': escape(data_emi_fim)
+    },
+
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#pesq_pedidos').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_pesquisar').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+  $('body').on("ajaxStop",function(){
+    var ex = document.getElementById('pedidos');
+    if (!$.fn.DataTable.fnIsDataTable(ex)){
+      $('#pedidos').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+        "sScrollX": "100%",
+        "bScrollCollapse": true
+      });
+    }
+  });
+}
+
+function pedido2aViaBusca() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_btn_certidao').attr('disabled','disabled');
+  var tipo_registro = $('form[name=form_registro] [name=tipo_registro]').val();
+  var busca_juiz_id = $('form[name=form_registro] [name=busca_juiz_id]').val();
+  var numero_processo = $('form[name=form_registro] [name=numero_processo]').val();
+  var vara_juiz_id = $('form[name=form_registro] [name=vara_juiz_id]').val();
+  var outra_vara = $('form[name=form_registro] [name=outra_vara]').val();
+  var cartorio_id = $('form[name=form_registro] [name=cartorio_id]').val();
+  var nome_registrado = $('form[name=form_registro] [name=nome_registrado]').val();
+  var nome_registrado_1 = $('form[name=form_registro] [name=nome_registrado_1]').val();
+  var nome_registrado_2 = $('form[name=form_registro] [name=nome_registrado_2]').val();
+  var novo_nome_registrado_1 = $('form[name=form_registro] [name=novo_nome_registrado_1]').val();
+  var novo_nome_registrado_2 = $('form[name=form_registro] [name=novo_nome_registrado_2]').val();
+  var nome_pai = $('form[name=form_registro] [name=nome_pai]').val();
+  var nome_mae = $('form[name=form_registro] [name=nome_mae]').val();
+  var data_ocorrido = $('form[name=form_registro] [name=data_ocorrido]').val();
+  var data_registro = $('form[name=form_registro] [name=data_registro]').val();
+  var num_livro = $('form[name=form_registro] [name=num_livro]').val();
+  var num_folha = $('form[name=form_registro] [name=num_folha]').val();
+  var num_registro = $('form[name=form_registro] [name=num_registro]').val();
+  var matricula = $('form[name=form_registro] [name=matricula]').val();
+  var nome_requerente = $('form[name=form_registro] [name=nome_requerente]').val();
+  var documento_requerente = $('form[name=form_registro] [name=documento_requerente]').val();
+  var telefone_requerente = $('form[name=form_registro] [name=telefone_requerente]').val();
+  var obs_solicitacao = $('form[name=form_registro] [name=obs_solicitacao]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './pedido/pedidos2aViaExecutar.cfm',
+    data: {
+      'exec': 'adicionarPedidoBusca',
+      'tipo_registro': escape(tipo_registro),
+      'busca_juiz_id': escape(busca_juiz_id),
+      'numero_processo': escape(numero_processo),
+      'vara_juiz_id': escape(vara_juiz_id),
+      'outra_vara': escape(outra_vara),
+      'cartorio_id': escape(cartorio_id),
+      'nome_registrado': escape(nome_registrado),
+      'nome_pai': escape(nome_pai),
+      'nome_mae': escape(nome_mae),
+      'nome_registrado_1': escape(nome_registrado_1),
+      'nome_registrado_2': escape(nome_registrado_2),
+      'novo_nome_registrado_1': escape(novo_nome_registrado_1),
+      'novo_nome_registrado_2': escape(novo_nome_registrado_2),
+      'data_ocorrido': escape(data_ocorrido),
+      'data_registro': escape(data_registro),
+      'num_livro': escape(num_livro),
+      'num_folha': escape(num_folha),
+      'num_registro': escape(num_registro),
+      'matricula': escape(matricula),
+      'nome_requerente': escape(nome_requerente),
+      'documento_requerente': escape(documento_requerente),
+      'telefone_requerente': escape(telefone_requerente),
+      'obs_solicitacao': escape(obs_solicitacao)
+    },
+
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('includes/inicioVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_certidao').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+}
+
+function pedido2aViaFormulario() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_btn_certidao').attr('disabled','disabled');
+  var tipo_registro = getRadio('form_pedido','tipo_registro');
+  var numero_processo = $('form[name=form_pedido] [name=numero_processo]').val();
+  var vara_juiz_id = $('form[name=form_pedido] [name=vara_juiz_id]').val();
+  var outra_vara = $('form[name=form_pedido] [name=outra_vara]').val();
+  var cartorio_id = $('form[name=form_pedido] [name=cartorio_id]').val();
+  var nome_registrado = $('form[name=form_pedido] [name=nome_registrado]').val();
+  var nome_registrado_1 = $('form[name=form_pedido] [name=nome_registrado_1]').val();
+  var nome_registrado_2 = $('form[name=form_pedido] [name=nome_registrado_2]').val();
+  var novo_nome_registrado_1 = $('form[name=form_pedido] [name=novo_nome_registrado_1]').val();
+  var novo_nome_registrado_2 = $('form[name=form_pedido] [name=novo_nome_registrado_2]').val();
+  var nome_pai = $('form[name=form_pedido] [name=nome_pai]').val();
+  var nome_mae = $('form[name=form_pedido] [name=nome_mae]').val();
+  var data_ocorrido = $('form[name=form_pedido] [name=data_ocorrido]').val();
+  var data_registro = $('form[name=form_pedido] [name=data_registro]').val();
+  var num_livro = $('form[name=form_pedido] [name=num_livro]').val();
+  var num_folha = $('form[name=form_pedido] [name=num_folha]').val();
+  var num_registro = $('form[name=form_pedido] [name=num_registro]').val();
+  var matricula = $('form[name=form_pedido] [name=matricula]').val();
+  var nome_requerente = $('form[name=form_pedido] [name=nome_requerente]').val();
+  var documento_requerente = $('form[name=form_pedido] [name=documento_requerente]').val();
+  var telefone_requerente = $('form[name=form_pedido] [name=telefone_requerente]').val();
+  var obs_solicitacao = $('form[name=form_pedido] [name=obs_solicitacao]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './pedido/pedidos2aViaExecutar.cfm',
+    data: {
+      'exec': 'adicionarPedidoFormulario',
+      'tipo_registro': escape(tipo_registro),
+      'numero_processo': escape(numero_processo),
+      'vara_juiz_id': escape(vara_juiz_id),
+      'outra_vara': escape(outra_vara),
+      'cartorio_id': escape(cartorio_id),
+      'nome_registrado': escape(nome_registrado),
+      'nome_pai': escape(nome_pai),
+      'nome_mae': escape(nome_mae),
+      'nome_registrado_1': escape(nome_registrado_1),
+      'nome_registrado_2': escape(nome_registrado_2),
+      'novo_nome_registrado_1': escape(novo_nome_registrado_1),
+      'novo_nome_registrado_2': escape(novo_nome_registrado_2),
+      'data_ocorrido': escape(data_ocorrido),
+      'data_registro': escape(data_registro),
+      'num_livro': escape(num_livro),
+      'num_folha': escape(num_folha),
+      'num_registro': escape(num_registro),
+      'matricula': escape(matricula),
+      'nome_requerente': escape(nome_requerente),
+      'documento_requerente': escape(documento_requerente),
+      'telefone_requerente': escape(telefone_requerente),
+      'obs_solicitacao': escape(obs_solicitacao)
+    },
+
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('includes/inicioVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+                    alert(obj.busca_juiz_id);
+      }
+      $('#btn_certidao').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+}
+
+function pedido2aViaDevolver() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_btn_devolver').attr('disabled','disabled');
+  var pedido_certidao_id = $('form[name=form_devolve] [name=pedido_certidao_id]').val();
+  var obs_devolucao = $('form[name=form_devolve] [name=obs_devolucao]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './pedido/pedidos2aViaExecutar.cfm',
+    data: {
+      'exec': 'devolverPedido',
+      'obs_devolucao': escape(obs_devolucao),
+      'pedido_certidao_id': escape(pedido_certidao_id)
+    },
+
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('includes/inicioVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_devolver').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+}
+
+function pedido2aViaArquivar(pedido_certidao_id) {
+
+  $.ajax({
+    type: 'POST',
+    url: './pedido/pedidos2aViaExecutar.cfm',
+    data: {
+      'exec': 'arquivarPedido',
+      'pedido_certidao_id': escape(pedido_certidao_id)
+    },
+
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('includes/inicioVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+    }
+  });
+}
+
+function pedido2aViaDesarquivar(pedido_certidao_id) {
+
+  $.ajax({
+    type: 'POST',
+    url: './pedido/pedidos2aViaExecutar.cfm',
+    data: {
+      'exec': 'desarquivarPedido',
+      'pedido_certidao_id': escape(pedido_certidao_id)
+    },
+
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('includes/inicioVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+    }
+  });
+}
+
+function tirarNomeRegistradoPaiMae(){
+  $(function(){
+    $('#nome_registrado').hide();
+    $('#nome_pai').hide();
+    $('#nome_mae').hide();
+  });
+}
+
+function habilitarNomeRegistradoPaiMae(){
+  $(function(){
+    $('#nome_registrado').show();
+    $('#nome_pai').show();
+    $('#nome_mae').show();
+  });
+}
+
+function tirarConjuges(){
+  $(function(){
+    $('#nome_registrado_1').hide();
+    $('#nome_registrado_2').hide();
+    $('#novo_nome_registrado_1').hide();
+    $('#novo_nome_registrado_2').hide();
+  });
+}
+
+function habilitarConjuges(){
+  $(function(){
+    $('#nome_registrado_1').show();
+    $('#nome_registrado_2').show();
+    $('#novo_nome_registrado_1').show();
+    $('#novo_nome_registrado_2').show();
+  });
+}

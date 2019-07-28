@@ -1,0 +1,291 @@
+﻿// FUNÇÕES DO NOVO ICP BRAVO.
+
+window.installPluginMessage =	"A extensão necessária para efetuar a autenticação não foi encontrada."+
+								"<br /><br />Por favor, instale-a e tente novamente!"+
+								"<br /><br /><a href='http://icpbravoaccess.com.br/#/install?redirectUrl="+window.location.href+"' style='color:red;font-size:14px' onclick='cni.aviso.close();' target='_blank'>"+
+									"Clique aqui"+
+									"</a> para instalar a extensão."+
+								"<br /><br />Se você já instalou a extensão e ainda está recebendo esta mensagem, por favor, reinicie seu computador e tente novamente.";
+
+var ICPLoaderType = function() {
+    var ua = navigator.userAgent,
+    nv = ua.replace(/^.+(Chrome\/\d+)[^$]+$/i, "$1").split("/"),
+    nav = nv[0],
+    ver = parseInt(nv[1]);
+    if (isNaN(ver)) {
+        ver = 0;
+    };
+    if (nav == 'Chrome') { //&& ver >= 45
+        //window.open("popchrome.aspx", "Navegador Chrome", "width=850,height=500,left=60,top=40");
+        return 'Chrome';
+
+    }else if (nav == 'Mozilla') { //&& ver >= 45
+        //window.open("popchrome.aspx", "Navegador Chrome", "width=850,height=500,left=60,top=40");
+        return 'Mozilla';
+    } else return 'Java';
+};
+
+function ICPAlert(titulo, mensagem)
+{
+    $.blockUI({ message: mensagem });
+    //alert(titulo + " - " + mensagem);
+}
+
+function ICPCarregarCertificados(callback) {
+    if (ICPLoaderType() == 'Java')
+    {
+	    $('#CertificateSelect').find('option').remove();
+	    var allCerts = icpBravoApplet.loadCertificates();
+	    icpBravoApplet.setFilterICPBrasil(true);
+	    var certs = icpBravoApplet.loadCertificates();
+	    for (i = 0; i < certs.length; i++) {
+		    $('#CertificateSelect').append("<option value='" + i + "'>" + certs[i] + "</option>");
+	    }
+        for (i = 0; i < allCerts.length; i++) {
+            if (allCerts[i] == 'Ofício Eletrônico - Fake ICP')
+                $('#CertificateSelect').append("<option value='99'>" + allCerts[i] + "</option>");
+            else if (allCerts[i] == 'Testes - Ouvidoria - Cartório')
+                $('#CertificateSelect').append("<option value='101'>" + allCerts[i] + "</option>");
+            else if (allCerts[i] == 'Testes - Ouvidoria - Ouvidor')
+                $('#CertificateSelect').append("<option value='102'>" + allCerts[i] + "</option>");
+        }
+        
+        if (callback) callback();
+    }
+    else
+    {
+        icpBravoAccessExt.getCertificateList({
+		    reload: false,
+		    icpbrasil: true,
+		    type: "",
+		    valid: true,
+		    cpf: "",
+		    onSuccess : function(certificates){
+			    window.certificados = certificates;
+	            $('#CertificateSelect').find('option').remove();
+	            for (i = 0; i < certificates.certificates.length; i++) {
+		            var cert = certificates.certificates[i];
+		            $('#CertificateSelect').append("<option value='" + cert.thumbprint + "'>" + cert.subjectName + ":" + cert.cpf + "</option>");
+	            }
+        
+                if (callback) callback();
+		    },
+		    onError : function(){
+			    ICPAlert("Plugin ausente", window.installPluginMessage);
+		    },
+	    });
+    }
+}
+
+function ICPShow() {
+	var id = "#AssinaturaDigital";
+	var winH = $(window).height();
+	var winW = $(window).width();
+	$(id).css('position', 'absolute');
+	$(id).css('top', winH / 2 - $(id).height() / 2 + $("body").scrollTop() * 0.8);
+	$(id).css('left', winW / 2 - $(id).width() / 2);
+	
+	$(id).fadeIn();
+}
+
+function ICPAutenticar() {
+
+	$("#ICPBravoLogin").submit();
+
+	/*
+	var selectedCert = $("#CertificateSelect").val();
+	
+    if (selectedCert >= 99)
+    {
+        if (selectedCert == 99)
+            var jForm = $("<form name='formJQuery' action='/Home/Fake' method='post' style='display:none;'></form>");
+        else if (selectedCert == 101 || selectedCert == 102)
+            var jForm = $("<form name='formJQuery' action='/Home/Fake/" + selectedCert + "' method='post' style='display:none;'></form>");
+        
+        jForm.append("<input type='submit' value='submit' />");
+        jForm.appendTo('body').submit();
+    }
+    else if (ICPLoaderType() == 'Java')
+    {
+        var cert = icpBravoApplet.getCertificateProperties(selectedCert);
+	    var signature = icpBravoApplet.signSimpleBytes(selectedCert, $("#Challenge").val());
+	    $("#Response").val(signature);
+	    $("#Certificate").val(cert);
+	    $("#ICPBravoLogin").submit();
+	}
+	else
+	{
+	    var thumbprint = $("#CertificateSelect").val();
+	    icpBravoAccessExt.sign({
+		    toSign : $("#Challenge").val(),
+		    thumbprint : thumbprint,
+		    onSuccess : function(signature){
+			    window.signature = signature;
+			    icpBravoAccessExt.getCertificate({
+				    thumbprint : thumbprint,
+				    onSuccess : function(certificate){
+					    window.certificate = certificate;
+					    $("#Certificate").val(window.certificate.certificate);
+					    $("#Response").val(window.signature.signature);
+					    $("#ICPBravoLogin").submit();
+				    },
+				    onError : function(a, b, c, d) {
+					    console.log("getCertificate");
+					    console.log(a, b, c, d);
+				    }
+			    });
+		    },
+		    onError : function(a, b, c, d) {
+			    console.log("sign");
+			    console.log(a, b, c, d);
+		    }
+	    });
+	}
+	*/
+
+}
+
+function FecharICP()
+{
+	$('#AssinaturaDigital').hide();
+}
+
+//FUNÇÃO CHECADORA DE COMPATIBILIDADE.
+
+//jQuery.fn.checkJavaOverFirefox = function () {
+//    var elements = this;
+//    
+//	var ua = navigator.userAgent,
+//    nv = ua.replace(/^.+(Chrome\/\d+)[^$]+$/i, "$1").split("/"),
+//    nav = nv[0];
+//    
+//	if (nav == 'Mozilla' && navigator.userAgent.indexOf('Firefox') > -1)
+//	{
+//	    for (var i = 0; i < elements.length; i++) {
+//		    var el = elements[i].split('.');
+//		    var softwareVersion = el[0];
+//		    var functionalVersion = el[1];
+//		    var updateVersion = el[2].split('_')[1];
+//    		
+//		    if (functionalVersion == 8 && updateVersion >= 91)
+//			{
+//			    alert('Você usa o JAVA versão 8 update 91 ou superior.\nEsta versão no firefox não permite a autenticação com certificado digital.\nPor favor, utilize o navegador Chrome para acessar o Ofício Eletrônico.');
+//			    return false;
+//			}
+//	    }
+//	}
+//	
+//	return true;
+//};
+
+jQuery.fn.isCompatibleWithICPLastVersion = function () {
+	var elements = this;
+	
+	for (var i = 0; i < elements.length; i++) {
+		var el = elements[i].split('.');
+		var softwareVersion = el[0];
+		var functionalVersion = el[1];
+		var updateVersion = el[2].split('_')[1];
+		
+		if (functionalVersion >= 7)
+			return true;
+	}
+	
+	return false;
+};
+
+//MAIN METHOD.
+
+function CarregarPluginICP(callbackUrlJRE745, callbackUrlJREOlder, callback)
+{
+	AppendHtmlControllers(callbackUrlJRE745);
+	
+	//Adicionado em 2016-04-22 para dar aviso no Firefox quando java >= 8.91
+	//Motivo: incompatibilidade com nova versão.
+	//if (!$(deployJava.getJREs()).checkJavaOverFirefox()) return;
+	
+	var challenge;
+    var r = new Date().getTime();
+	$.get("/Home/CreateChallenge?d=" + r, function(data) {
+		challenge = data;
+		$("#Challenge").val(challenge);
+		
+        if (ICPLoaderType() == 'Java')
+        {
+		    icpBravoApplet.start({
+                appletUrl6: '/Content/ICPBravo/ICPBravoAPIMini-1.37.7-java6.jar',
+                appletUrl: '/Content/ICPBravo/ICPBravoAPIMini-1.37.7.jar',
+                appletUrl8: '/Content/ICPBravo/ICPBravoAPIMini-1.37.7-java8.jar',
+                onLoad: function() { ICPCarregarCertificados(callback); },
+                message: null
+		    });
+		}
+		else
+		{
+		    icpBravoAccessExt.connect({
+	            license : "AQQAAABab2ZpY2lvZWxldHJvbmljby5jb20uYnJ8cmVnaXN0cmFkb3Jlcy5vcmcuYnJ8aW5kaXNwb25pYmlsaWRhZGUub3JnLmJyfHBlbmhvcmFvbmxpbmUub3JnLmJyABdTmPbW3qAoF1d2OQDLk1vf/RiHw1DZT4jkA862p/lO9rZBiffl7sFsIemKNYvYI4scVuiOFV7o5xC3cw1OQ1/rmcx1ryY28HfJ2FD0Hsqw3Io0qqHIHzY01fELhlIrups/yZ+qj8p8vlkPwstsFsxLBkAl1GSirY+2PMaEzAlglYNmIgA84FtPaxxFGgkW9a6NhRrgKhz5EJVL0V1ORC1PNxP9izbw/PBZnkDTTXl1wWmVUKGZ7+hp5e67zBIcP0RCHKBRDRVPfRg3PjhH+Iij37laO6gpj08NSMecDGCm++V4emAIbNcH1rMvQpeH1tCMNnUm03rcrgie8zL3uhQ=",
+	            onSuccess: function() { ICPCarregarCertificados(callback); },
+	            onError: function() { return; },
+	            onNotInstalled: function (response) {
+	                var mensagem;
+	                var titulo;
+		            switch (response.instalationStatus) {
+			            case 0: // navegador não suportado
+			            case 4: // navegador não suportado - javascript do navegador ultrapassado
+//				            titulo =	"Navegador não suportado";
+//				            if (response.instalationStatus == 4) titulo +=	" - Javascript ultrapassado";
+//				            
+//				            mensagem =	'<p>Prezados Usuários,</p>'+
+//								            '<p>Este navegador não suporta o novo sistema de autenticação utilizado por nós.</p>'+
+//								            '<p>Para continuar, você deve instalar o Google Chrome acessando: <a style="color:red;font-weight:bold" href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">chrome.google.com</a></p>';
+//				            break;
+			            case 1: // extensão não instalada
+				            mensagem =	"<p>Não foi localizada a extensão de navegador necessária para efetuar a autenticação.</p>"+
+								            "<p>Por favor, instale a extensão antes de continuar.</p>"+
+								            "<p><a style='color:red;font-weight:bold' href='http://icpbravoaccess.com.br/#/install?redirectUrl="+window.location.href+"' target='_blank'>Clique aqui</a> para instalar a extensão necessária.</p>";
+				            titulo =	"Extensão não instalada";
+				            break;
+			            case 2: // native client não instalado
+				            mensagem =	"<p>O cliente nativo não está instalado.</p>"+
+								            "<p>Por favor, instale a versão mais atual do cliente nativo antes de continuar.</p>"+
+								            "<p><a style='color:red;font-weight:bold' href='http://icpbravoaccess.com.br/#/install2?redirectUrl="+window.location.href+"' target='_blank'>Clique aqui</a> para instalar a versão mais atual do cliente nativo.</p>";
+				            titulo =	"Cliente nativo não instalado";
+				            break;
+			            case 3: // native client desatualizado
+				            mensagem =	"<p>O cliente nativo está desatualizado.</p>"+
+								            "<p>Por favor, instale a versão mais atual do cliente nativo antes de continuar.</p>"+
+								            "<p><a style='color:red;font-weight:bold' href='http://icpbravoaccess.com.br/#/install2?redirectUrl="+window.location.href+"' target='_blank'>Clique aqui</a> para instalar a versão mais atual do cliente nativo.</p>";
+				            titulo =	"Cliente nativo desatualizado";
+				            break;
+		            };
+		            ICPAlert(titulo, mensagem);
+	            }
+            });
+		}
+	});
+}
+
+function AppendHtmlControllers(callbackUrlJRE745)
+{
+	var html = '<div id="AssinaturaDigital">';
+	html += '<div class="title">Autenticador Digital Arisp</div>';
+	html += '<form id="ICPBravoLogin" name="ICPBravoLogin" method="post" action="pagina2-escolha-estado.html">';
+	html += '<input id="Challenge" name="Challenge" type="hidden" value="" />';
+	html += '<input id="Response" name="Response" type="hidden" value="" />';
+	html += '<input id="Certificate" name="Certificate" type="hidden" value="" />';
+	html += '<input id="Method" name="Method" type="hidden" value="new" />';
+	html += '<div class="certificates">';
+	html += '<label>Certificados disponíveis:</label>';
+	html += '<select id="CertificateSelect" style="width:auto;"></select>';
+	html += '</div>';
+	html += '<div class="buttons">';
+	html += '<input type="button" value="Autenticar" onclick="ICPAutenticar();" id="btnAutenticar"  />';
+	html += '<input type="button" value="Recarregar"  onclick="ICPCarregarCertificados();" id="btnRecarregar"  />';
+	html += '<input type="button" value="Fechar" onclick="FecharICP();" id="btnFechar"  />';
+	html += '</div>';
+	html += '</form>';
+	html += '</div>';
+	html += '<div id="appletDiv"></div>';
+	
+	$("body").append(html);
+}

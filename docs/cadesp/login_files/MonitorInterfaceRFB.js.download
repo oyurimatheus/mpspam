@@ -1,0 +1,232 @@
+﻿// ============================================================================
+//
+// Arquivo de código javascript do monitor da interface com a RFB
+//
+// ============================================================================
+
+// ============================================================================
+// Validação da configuração - recepção
+// ============================================================================
+function ValidarProximaRemessaProcessamento(source, arguments)
+{
+    var nrProximaRemessa = ObterProximaRemessaTextBox();
+    var nrUltimaRemessa = ObterUltimaRemessaLabel();
+
+    if (nrProximaRemessa != '')
+    {
+        if (parseInt(nrProximaRemessa,10) < parseInt(nrUltimaRemessa,10))
+        {
+            alert ('Remessa já processada.aaa');
+            return false;
+        }
+    }
+    else
+    {
+        alert ('Parâmetro não informado.aaa');
+        return false;
+    }
+    return true;
+}
+
+function ValidarIntervaloProcRemessa(source, arguments)
+{
+    var intervalo = ObterIntervaloProcRemessaTextBox();
+    return ValidarIntervalo(intervalo);
+}
+
+function ValidarIntervaloProcSolicitacao(source, arguments)
+{
+    var intervalo = ObterIntervaloProcSolicitacaoTextBox();
+    return ValidarIntervalo(intervalo);
+}
+
+function ValidarIntervaloProcRecibo(source, arguments)
+{
+    var intervalo = ObterIntervaloProcReciboTextBox();
+    return ValidarIntervalo(intervalo);
+}
+
+function ValidarPrazoAvisoFaltaRemessa(source, arguments)
+{
+    var intervalo = ObterPrazoAvisoFaltaRemessaTextBox();
+    return ValidarIntervalo(intervalo);
+}
+
+function ValidarPrazoAvisoQuedaDB(source, arguments)
+{
+    var intervalo = ObterPrazoAvisoQuedaDBTextBox();
+    return ValidarIntervalo(intervalo);
+}
+
+function ValidarIntervalo (intervalo)
+{
+    if (intervalo != "")
+    {
+        if (parseInt(intervalo,10) > 1440 || parseInt(intervalo,10) < 10)
+        {
+            alert ('Parâmetro informado deve estar entre 10 e 1440.');
+            return false;
+        }
+    }
+    else
+    {
+        alert ('Parâmetro não informado.');
+        return false;
+    }
+    return true;    
+}
+
+function ValidarUploadArquivo()
+{
+    var arquivo = ObterNomeArquivoReprocFileUpload();
+    if (arquivo == "")
+    {
+        alert ('Nenhum arquivo informado.');
+        return false;
+    }
+    
+    return true;
+}
+// ============================================================================
+// Validação da configuração - transmissão
+// ============================================================================
+function ValidarProximaGeracaoProcessamento(source, arguments)
+{
+    var nrProximaRemessa = ObterProximaGeracaoTextBox();
+    var nrUltimaRemessa = ObterUltimaGeracaoLabel();
+    
+    if (nrProximaRemessa != '')
+    {
+        if (parseInt(nrProximaRemessa,10) < parseInt(nrUltimaRemessa,10))
+        {
+            alert ('Remessa já processada.bbb');
+            return false;
+        }
+    }
+    else
+    {
+        alert ('Parâmetro não informado.');
+        return false;
+    }
+    return true;
+}
+
+function ValidarIntervaloProcGeracao(source, arguments)
+{
+    var intervalo = ObterIntervaloProcGeracaoTextBox();
+    return ValidarIntervalo(intervalo);
+}
+
+// ============================================================================
+// Validação dos filtros - recepção
+// ============================================================================
+function ValidarFiltroRecepcaoProcessamento(source, arguments)
+{
+    var dtInicial = ObterDtProcRecInicioTextBox();
+    var dtFinal = ObterDtProcRecFimTextBox();
+    var remessaInicial = ObterRemessaProcRecInicioTextBox();
+    var remessaFinal = ObterRemessaProcRecFimTextBox();
+    var situacao = ObterStProcRecDropDownList();
+    var quantidade = ObterQtExibicaoProcDropDownList();
+    return ValidarFiltro(dtInicial, dtFinal, remessaInicial,remessaFinal,situacao,quantidade);
+}
+ 
+function ValidarFiltroRecepcaoMovProblema(source, arguments)
+{
+    var dtInicial = ObterDtMovProblemaInicioTextBox();
+    var dtFinal = ObterDtMovProblemaFimTextBox();
+    var remessaInicial = ObterRemessaMovProblemaInicioTextBox();
+    var remessaFinal = ObterRemessaMovProblemaFimTextBox();
+    var situacao = ObterStMovProblemaDropDownList();
+    var quantidade = ObterQtExibicaoMovProblemaDropDownList();
+    return ValidarFiltro(dtInicial, dtFinal, remessaInicial,remessaFinal,situacao,quantidade);
+}
+
+function ValidarFiltroAvisoPendencia(source, arguments)
+{
+    var dtInicial = ObterDtAvisoPendenciaInicioTextBox();
+    var dtFinal = ObterDtAvisoPendenciaFimTextBox();
+    var remessaInicial = ObterRemessaAvisoPendenciaInicioTextBox();
+    var remessaFinal = ObterRemessaAvisoPendenciaFimTextBox();
+    var situacao = ObterStAvisoPendenciaDropDownList();
+    var quantidade = ObterQtExibicaoAvisoPendenciaDropDownList();
+    return ValidarFiltro(dtInicial, dtFinal, remessaInicial,remessaFinal,situacao,quantidade);
+}
+
+function ValidarFiltroTransmissaoProcessamento(source, arguments)
+{
+    var dtInicial = ObterDtProcTrxInicioTextBox();
+    var dtFinal = ObterDtProcTrxFimTextBox();
+    var remessaInicial = ObterRemessaProcTrxInicioTextBox();
+    var remessaFinal = ObterRemessaProcTrxFimTextBox();
+    var situacao = ObterStProcTrxDropDownList();
+    var quantidade = ObterQtExibicaoProcDropDownList();
+    return ValidarFiltro(dtInicial, dtFinal, remessaInicial,remessaFinal,situacao,quantidade);
+}
+
+function ValidarFiltroTransmissaoMovProblema(source, arguments)
+{
+    var dtInicial = ObterDtMovProblemaInicioTextBox();
+    var dtFinal = ObterDtMovProblemaFimTextBox();
+    var remessaInicial = ObterRemessaMovProblemaInicioTextBox();
+    var remessaFinal = ObterRemessaMovProblemaFimTextBox();
+    var situacao = ObterTpRegProblemaDropDownList();
+    var quantidade = ObterQtExibicaoMovProblemaDropDownList();
+    return ValidarFiltro(dtInicial, dtFinal, remessaInicial,remessaFinal,situacao,quantidade);
+}
+
+function ValidarFiltro(dtInicial, dtFinal, remessaInicial,remessaFinal,situacao,quantidade)
+{
+    // Validação de datas
+    if ((dtInicial != "" && dtFinal == "") || (dtInicial == "" && dtFinal != ""))
+    {
+        alert ('Quando uma data é preenchida, a outra também deve ser (início ou fim do período).');
+        return false;
+    }
+
+    if ((dtInicial != "") && (dtFinal != ""))
+    {
+        if ((VerificaData(dtInicial) != 0) || (VerificaData(dtFinal) != 0))
+        {
+            alert ('Data inválida.');
+            return false;
+        }
+
+        if (!ComparaData(dtInicial,dtFinal))
+        {
+            alert ('A data de início deve ser menor ou igual à data fim');
+            return false;
+        }
+        
+        if (!ComparaDataAtual(dtFinal))
+        {
+            alert ('A data do fim do período deve ser menor ou igual à data atual');
+            return false;
+        }
+    }
+    
+    // Validação de remessas
+    if ((remessaInicial != "" && remessaFinal == "") || (remessaInicial == "" && remessaFinal != ""))
+    {
+        alert ('Quando um número de remessa é preenchido, o outro também deve ser (início ou fim do intervalo).');
+        return false;
+    }
+
+    if (remessaInicial != "" && remessaFinal != "")
+        if (parseInt(remessaInicial,10) > parseInt(remessaFinal,10))
+        {
+            alert ('A remessa final deve ser maior ou igual que a remessa inicial.');
+            return false;
+        }
+    
+    // Situação e quantidade
+    if (situacao == 0 && quantidade == 5 && remessaInicial == "" && dtInicial == "" )
+    {
+        alert ('Pelo menos um campo de filtro deve ser preenchido, com valor diferente de "Todos".');
+        return false;
+    }
+    
+    return true;
+}
+
+

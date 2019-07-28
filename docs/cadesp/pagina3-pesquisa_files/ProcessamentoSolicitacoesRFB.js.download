@@ -1,0 +1,232 @@
+// ============================================================================
+//
+// Arquivo de código javascript da consulta de processamento de solicita\u00E7ões
+//
+// ============================================================================
+
+function Substitui(str, CharOrg, CharNovo) {
+	var temp = str;
+	var i = temp.indexOf(CharOrg);
+	while (i > -1) {
+		temp = temp.replace(CharOrg, CharNovo);
+		i = temp.indexOf(CharOrg, i + CharNovo.length + 1);
+	}
+	return temp;
+}
+
+function Trim(str) {
+	return str.replace(/^\s+|\s+$/g, "");
+}
+
+function ValidarFiltroProcessamentoSolicitacao(source, arguments)
+{
+
+	var nrRecibo = Trim(ObterNumeroReciboProcSolicitacaoTextBox());
+	var nrProtocolo = Trim(ObterNumeroProtocoloProcSolicitacaoTextBox());
+	var nrAtoOficio = Trim(ObterNumeroAtoOficioProcSolicitacaoTextBox());
+	var reValidChars = /\d|[a-zA-Z]/;
+	var tmp;
+	var i;
+
+	tmp = nrRecibo;
+	for (i = 0; i < nrRecibo.length; i++) {
+		if (!reValidChars.test(nrRecibo.charAt(i))) {
+			tmp = Substitui(tmp, nrRecibo.charAt(i), '');
+		}
+	}
+	nrRecibo = tmp;
+
+   
+	// N\u00FAmero do Recibo
+	if (nrRecibo == '' && nrProtocolo == '' && nrAtoOficio == '')
+	{
+		alert ('Preencher pelo menos um dos campos de filtro de consulta.');
+		return false;
+	}
+
+	if (nrRecibo != '') {
+		if (nrRecibo.length > 10)
+		{
+			alert ('O n\u00FAmero do Recibo deve possuir no m\u00E1ximo 10 caracteres');
+			return false;
+		}
+	}
+
+	// N\u00FAmero do Protocolo
+	var existeCaracterNaoNumerico;
+	existeCaracterNaoNumerico = false;
+
+	tmp = nrProtocolo;
+	for (i = 0; i < nrProtocolo.length; i++) {			//--> Retirar pontos, tra\u00E7os, barras e espa\u00E7os
+		if (nrProtocolo.charAt(i) == ' ' || nrProtocolo.charAt(i) == '.'
+		 || nrProtocolo.charAt(i) == '/' || nrProtocolo.charAt(i) == '-') {
+			tmp = Substitui(tmp, nrProtocolo.charAt(i), '');
+		}
+	}
+	nrProtocolo = tmp;
+
+	for (i = 0; i < nrProtocolo.length; i++) {		//--> Verifica se existe ainda algum caractere alfanumérico
+		if (isNaN(nrProtocolo.charAt(i))) {
+			existeCaracterNaoNumerico = true;
+		}
+	}
+
+	if (nrProtocolo != '') {
+		if (nrProtocolo.length > 14) {
+			alert('O n\u00FAmero da identifica\u00E7\u00E3o deve possuir no m\u00E1ximo 14 caracteres');
+			return false;
+		}
+	}
+
+	if (nrProtocolo != '') {
+		if (existeCaracterNaoNumerico) {
+			alert('O n\u00FAmero da identifica\u00E7\u00E3o n\u00E3o pode ser preenchido com letras.');
+			return false;
+		}
+	}
+
+	// N\u00FAmero do Ato de Of\u00EDcio
+	existeCaracterNaoNUmerico = false;
+
+	tmp = nrAtoOficio;
+	for (i = 0; i < nrAtoOficio.length; i++) {			//--> Retirar pontos, tra\u00E7os, barras e espa\u00E7os
+		if (nrAtoOficio.charAt(i) == ' ' || nrAtoOficio.charAt(i) == '.'
+		 || nrAtoOficio.charAt(i) == '/' || nrAtoOficio.charAt(i) == '-') {
+			tmp = Substitui(tmp, nrRecibo.charAt(i), '');
+		}
+	}
+	nrAtoOficio = tmp;
+
+	for (i = 0; i < nrAtoOficio.length; i++) {			//--> Verifica se existe ainda algum caractere alfanumérico
+		if (isNaN(nrAtoOficio.charAt(i))) {
+			existeCaracterNaoNUmerico = true;
+		}
+	}
+
+	if (nrAtoOficio != '') {
+		if (nrAtoOficio.length > 25)
+		{
+			alert('O n\u00FAmero Ato de Of\u00EDcio deve possuir no m\u00E1ximo 25 caracteres');
+			return false;
+		}
+	}
+
+	if (nrAtoOficio != '') {
+		if (existeCaracterNaoNUmerico) {
+			alert('O n\u00FAmero de of\u00EDcio n\u00E3o pode ser preenchido com letras.');
+			return false;
+		}
+	}
+	return true;
+}
+
+function ValidarFiltroProcessamentoEstabelecimento(source, arguments) {
+	var tipoIdentificacao = Trim(ObterTipoIdentificacaoTextBox());
+	var valorIdentificacao = Trim(ObterValorIdentificacaoTextBox());
+	var existeCaracterNaoNUmerico = false;
+
+	var i;
+	var tmp;
+
+	tmp = valorIdentificacao;
+	for (i = 0; i < valorIdentificacao.length; i++) {				//--> Retirar pontos, tra\u00E7os, barras e espa\u00E7os
+		if (valorIdentificacao.charAt(i) == ' ' || valorIdentificacao.charAt(i) == '.'
+		 || valorIdentificacao.charAt(i) == '/' || valorIdentificacao.charAt(i) == '-') {
+			tmp = Substitui(tmp, valorIdentificacao.charAt(i), '');
+		}
+	}
+	valorIdentificacao = tmp;
+
+	for (i = 0; i < valorIdentificacao.length; i++) {		//--> Verifica se existe ainda algum caractere alfanumérico
+		if (isNaN(valorIdentificacao.charAt(i))) {
+			existeCaracterNaoNUmerico = true;
+		}
+	}
+
+	// Valida\u00E7\u00E3o de IE
+	if (tipoIdentificacao == '0') {						
+		if (existeCaracterNaoNUmerico) {
+			alert('O N\u00FAmero da IE do estabelecimento n\u00E3o pode ser preenchido com letras.');
+			return false;
+		}
+
+		if (valorIdentificacao.length != 9 && valorIdentificacao.length != 12) {
+			alert('O N\u00FAmero da IE deve possuir 9 ou 12 caracteres.');
+			return false;
+		}
+
+		return VerificaIE(valorIdentificacao);
+	}
+
+	// Valida\u00E7\u00E3o de CNPJ Base
+	if (tipoIdentificacao == '1') {
+		if (existeCaracterNaoNUmerico) {
+			alert('O N\u00FAmero do CNPJ Base do estabelecimento n\u00E3o pode ser preenchido com letras.');
+			return false;
+		}
+
+		if (valorIdentificacao.length != 8) {
+			alert('O N\u00FAmero do CNPJ Base do estabelecimento deve possuir 8 caracteres.');
+			return false;
+		}
+
+		return VerificaCNPJBase(valorIdentificacao);
+	}
+
+	// Valida\u00E7\u00E3o de CNPJ 
+	if (tipoIdentificacao == '2') {
+		if (existeCaracterNaoNUmerico) {
+			alert('O CNPJ do estabelecimento n\u00E3o pode ser preenchido com letras.');
+			return false;
+		}
+
+		if (valorIdentificacao.length != 14) {
+			alert('O CNPJ deve possuir 14 caracteres.');
+			return false;
+		}
+
+		return VerificaCNPJ(valorIdentificacao);
+	}
+
+	// Valida\u00E7\u00E3o de NIRE 
+	if (tipoIdentificacao == '3') {
+		if (existeCaracterNaoNUmerico) {
+			alert('O n\u00FAmero do NIRE do estabelecimento n\u00E3o pode ser preenchido com letras.');
+			return false;
+		}
+
+		if (valorIdentificacao.length != 11) {
+			alert('O n\u00FAmero do NIRE do estabelecimento deve possuir 11 caracteres.');
+			return false;
+		}
+
+		return VerificaNIRE(valorIdentificacao);
+	}
+
+	return true;
+}
+
+
+function ValidarFiltroProcessamentoClassificacao(source, arguments) {
+	var dtInicial = Trim(ObterDataInicialTextBox());
+	var dtFinal = Trim(ObterDataFinalTextBox());
+
+	if (VerificaData(dtInicial) != 0 || dtInicial == '') {
+		alert('Data inicial do per\u00EDodo inv\u00E1lida.');
+		return false;
+	}
+
+	if (VerificaData(dtFinal) != 0 || dtFinal== '') {
+		alert('Data final do per\u00EDodo inv\u00E1lida.');
+		return false;
+	}
+
+	if (!ComparaData(dtInicial, dtFinal)) {
+		alert('A data inicial do per\u00EDodo deve ser anterior \u00E0 data final.');
+		return false;
+	}
+
+	return true;
+}
+
+

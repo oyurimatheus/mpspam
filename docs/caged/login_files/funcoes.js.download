@@ -1,0 +1,25 @@
+function trocaValorCPF() {
+	var valor = $('#cpfUsuario').val();
+	if (valor.length < 14) {
+		alert('CPF inválido');
+		return false;
+	}
+	var arrVal = valor.split(".");
+
+	var arrFinal = arrVal[2].split("-");
+	var cpf = arrVal[0] + "" + arrVal[1] + "" + arrFinal[0] + "" + arrFinal[1];
+
+	$('#username').val(cpf);
+	return true;
+}
+
+function trocarCaptcha() {
+	var d = new Date();
+	var n = d.getMilliseconds();
+	document.getElementById("captchaImg").src='jcaptcha?p=' + n;
+	//$("#captchaImg").attr('src', 'jcaptcha?p=' + n);
+}
+
+function alertar() {
+	alert('funcao alertar');
+}

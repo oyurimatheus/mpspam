@@ -1,0 +1,344 @@
+﻿/*
+ * ============================================================================
+ *
+ * Folha de estilos da SEFAZ (SP) para sistemas Internet
+ *
+ * ============================================================================
+ */
+
+/*
+ * ============================================================================
+ * Tags de uso geral
+ * ============================================================================
+ */
+body
+{
+ font-size: 10px;
+ margin: 0px;
+ color: black;
+ font-family: Verdana;
+ background-color: white;
+}
+
+.body1 
+{
+/*
+scrollbar-face-color: #ffffff; 
+scrollbar-highlight-color: #ffffff; 
+scrollbar-shadow-color: #ffffff; 
+scrollbar-3dlight-color: #969696; 
+scrollbar-arrow-color: #969696; 
+scrollbar-track-color: #ffffff; 
+scrollbar-darkshadow-color: #969696;
+*/
+overflow: auto;
+}
+
+
+/*
+ * Links
+ */ 
+a {
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #CC0000; 
+}
+
+a:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #000000; 
+}
+
+.link2 {
+font-family: Verdana, Arial, Helvetica;
+font-size: 10px; 
+color: #000000; 
+font-weight: bold;
+}
+
+.link2:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-size: 10px; 
+color: #CC0000; 
+font-weight: bold;
+}
+
+.link3 {
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #000000; 
+}
+
+.link3:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #CC0000; 
+}
+
+.link4{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #CC0000;
+}
+
+.link4:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #000000;
+}
+
+.link5{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #CC0000; 
+text-decoration: none;
+}
+
+.link5:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #000000; 
+text-decoration: none;
+}
+
+.link6{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #000000; 
+text-decoration: none;
+}
+
+.link6:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #CC0000; 
+text-decoration: none;
+}
+
+.link7{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #CC0000; 
+text-decoration: none;
+}
+
+.link7:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #000000; 
+text-decoration: none;
+}
+
+.link8{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #000000; 
+text-decoration: none;
+}
+
+.link8:Hover{
+font-family: Verdana, Arial, Helvetica;
+font-weight: normal; 
+font-size: 10px; 
+color: #CC0000; 
+text-decoration: none;
+}
+
+
+/*
+ * Fontes
+ */
+
+input, textarea, select
+{
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10px;
+}
+
+input[disabled]
+{
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10px;
+}
+
+input.texto, textarea.texto, select.texto
+{
+	color: #000000;
+	border: #adadad 1px solid;
+}
+
+input.botao
+{
+	background-color: #cdcdcd;
+	border: solid 1px #adadad;
+	color: #000000;
+	margin: 2px;
+	height: 18px;
+}
+
+input.botao[disabled]
+{
+	background-color: #cdcdcd;
+	border: solid 1px #adadad;
+	color: #ffffff;
+	margin: 2px;
+	padding: 0px 6px 0px 6px;
+}
+
+p {
+font-family: Verdana, Arial, Helvetica;
+text-align: justify;
+font-size: 10px;
+color: #000000; 
+}
+
+strong {
+font-size: 12px; 
+color: #CC3333; 
+font-family: Verdana; 
+}
+
+li {
+font-family: Verdana, Arial, Helvetica;
+text-align:justify;
+font-size: 10px;
+color: #000000; 
+}
+
+.titulo_sistema, .titulo_pagina
+{
+font-family: Verdana, Arial, Helvetica;
+font-weight: bold;
+font-size: 18px;
+color: #000000; 
+}
+
+.titulo_sistema {
+text-align: justify;
+}
+
+.titulo_pagina
+{
+text-align: left;
+}
+
+.erro {
+font-size: 10px; 
+color: red; 
+font-family: Verdana, Arial, Helvetica; 
+font-weight: bold;
+text-align: center;
+}
+
+
+/*
+ * Tabelas
+ */
+table
+{
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10px;
+	color: #000000; 
+	border-collapse: collapse;
+	border: none;
+}
+
+/*
+ * Divs
+ */
+div 
+{
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10px;
+	color: #000000;
+}
+
+
+/*
+ * ============================================================================
+ * Tags de uso específico
+ * ============================================================================
+ */
+
+/*
+ * Cabeçalho
+ */
+h1#logo {
+	overflow: hidden;
+	width: 255px;
+	height: 65px;
+	background: url(../Images/logo.jpg) no-repeat;
+	float: left;
+	/* Evita a margem com valor dobrado no IE */
+	display: inline;
+}
+
+h1#logo a {
+	width: 400px;
+	height: 70px;
+	display: block;
+	text-indent:-5000em;
+}
+
+
+/*
+ * Rodapé
+ */
+#footer {
+	margin: 0 auto;
+	text-align: left;
+	font-weight: bold;
+	background-image: url(../Images/fundo_menutopo.jpg);
+	background-repeat: repeat-x;
+	background-color: #ffffff; 
+	clear: both;
+	padding: 3px 0;
+	color: #666666;
+	font-size: 11px;
+	text-align: center;
+	text-decoration: none;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+}
+#footer p, #footer address {
+	margin: 0;
+	text-decoration: none;
+	font-style: normal;
+	font-weight: bold;
+	color: #666666;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: center;
+}
+
+#web_version 
+{
+	text-align: right;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-weight: bold;
+	background-color: #ffffff; 
+	color: #bbbbbb;
+	font-size: 8px;
+	margin-right: 5px;
+	margin-top: 15px;
+}
+
+.web_version_label
+{
+	text-align: right;
+	width: 100%;
+}

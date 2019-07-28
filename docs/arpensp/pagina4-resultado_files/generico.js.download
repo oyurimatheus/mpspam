@@ -1,0 +1,1351 @@
+function counterUpdate(countedTextBox, countBody, maxSize) {
+  var field = document.getElementById(countedTextBox);
+  if (field && field.value.length >= maxSize) {
+    field.value = field.value.substring(0, maxSize);
+  }
+  var txtField = document.getElementById(countBody);
+  if (txtField) {
+    txtField.innerHTML = field.value.length;
+  }
+}
+
+$(function() {
+  $('.redondo').corner();
+  $('.btn_back').attr({
+    alt: 'Voltar',
+    title: 'Voltar'
+  });
+
+  $('body').on("ajaxStop",function(){
+    /*$('.dataTable').dataTable({
+       "bJQueryUI": true,
+       "sPaginationType": "full_numbers",
+       "aaSorting": []
+     });
+    $('#cartorios').dataTable({
+      "bJQueryUI": true,
+      "sPaginationType": "full_numbers",
+      "aaSorting": []
+    });
+    $('#comunicacoes').dataTable({
+      "bJQueryUI": true,
+      "sPaginationType": "full_numbers",
+      "sScrollX": "100%",
+      "bScrollCollapse": true,
+      "aaSorting": []
+    });
+    $('#semCarga10').dataTable({
+      "bJQueryUI": true,
+      "sPaginationType": "full_numbers",
+      "sScrollX": "100%",
+      "bScrollCollapse": true,
+      "aaSorting": []
+    });
+     $('#foraPrazo').dataTable({
+      "bJQueryUI": true,
+      "sPaginationType": "full_numbers",
+      "sScrollX": "100%",
+      "bScrollCollapse": true,
+      "aaSorting": []
+    });
+     $('#cartorios_restantes').dataTable({
+      "bJQueryUI": true,
+      "sPaginationType": "full_numbers",
+      "sScrollX": "100%",
+      "bScrollCollapse": true,
+      "aaSorting": []
+    });*/
+    esconderLoading();
+
+    $('.btn_back').css('left',$('#principal').width() + 130);
+    $('.layout_titulo').css('width',$('.topo').width() - $('#submenu').width() - 80);
+  });
+
+  $(window).resize(function() {
+    $('.layout_titulo').css('width',$('.topo').width() - $('#submenu').width() - 80);
+  });
+
+  $('.listras tr').mouseover(function (){
+    $(this).addClass("over");
+  });
+  $('.listras tr').mouseout(function (){
+    $(this).removeClass("over");
+  });
+
+
+   /* --- Configura��o da navega��o --- */
+  var lastAddress = '';
+
+  $.address.change(function(event) {
+    mostrarLoading();
+    /* --- Verifica se vai pro in�cio --- */
+    if(event.value!='/'){
+      var len = event.value.split('/').length;
+      var template = '';
+      var params = '';
+      for(i=1;i<len;i++) {
+        if(i<3) {
+          if(template=='') {
+            template = event.value.split('/')[i];
+          } else {
+            template = template + '/' + event.value.split('/')[i];
+          }
+        } else {
+          if(i==3) {
+            hash = event.value.split('/')[i];
+          } else {
+            if(params=='') {
+              params = event.value.split('/')[i];
+            } else {
+              params = params + '/' + event.value.split('/')[i];
+            }
+          }
+        }
+      }
+      if(params) {
+        if(params.split('/')[0]=='params') {
+          lastAddress = template;
+          var len = params.split('/').length;
+          var url_params = '';
+          for(i=1;i<len;i++) {
+            if(url_params=='') {
+              url_params = params.split('/')[i];
+            } else {
+              if(i%2) {
+                url_params = url_params + '&' + params.split('/')[i];
+              } else {
+                url_params = url_params + '=' + params.split('/')[i];
+              }
+            }
+          }
+          $('#principal').load('./' + template + '.cfm?' + url_params, function() {
+            /*esconderLoading();*/
+          });
+        } else {
+          if(template!=lastAddress) {
+            lastAddress = template;
+            if(params.split('/')[5]=='params') {
+              var len = params.split('/').length;
+              var url_params = '';
+              for(i=6;i<len;i++) {
+                if(url_params=='') {
+                  url_params = params.split('/')[i];
+                } else {
+                  if(i%2) {
+                    url_params = url_params + '=' + params.split('/')[i];
+                  } else {
+                    url_params = url_params + '&' + params.split('/')[i];
+                  }
+                }
+              }
+            } else {
+              url_params = '';
+            }
+            $('#principal').load('./' + template + '.cfm?' + url_params, function() {
+              executarPesquisa(params);
+            });
+          } else {
+            executarPesquisa(params);
+          }
+
+        }
+
+      } else {
+        lastAddress = template;
+        $('#principal').load('./' + template + '.cfm', function() {
+          /*esconderLoading();*/
+          //alert(2);
+        });
+      }
+
+    } else {
+      lastAddress = 'includes/inicioVisualizar';
+      //$('#principal').load('./includes/inicioVisualizar.cfm', function() {
+        /*esconderLoading();*/
+        //alert(3);
+      //});
+    }
+  });
+
+  /* --- L�gica dos links --- */
+  $('a[link]').live({
+    click: function() {montarURL($(this).attr('link'))}
+  });
+
+  /* --- L�gica dos bot�es de pesquisa e relat�rio --- */
+  $('input[type="submit"][link],div[class="paginacao"] a[link]').live({
+    click: function() {
+      var form_name = $('div[id="principal"] form').attr('name');
+      var param_name = '';
+      var param_value = '';
+      var link = $(this).attr('link');
+      var checkbox_anterior = '';
+      var radio_anterior = '';
+      var fields = $('div[id="principal"] form').serialize();
+      $.each(fields.split('&'), function(i, field) {
+        if(field.split('=')[1]!='') {
+          param_name = param_name + '|' + unescape(field.split('=')[0]);
+          param_value = param_value + '|' + unescape(field.split('=')[1]) + ' ';
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: './generico/principalGeralExecutar.cfm',
+        data: {
+          'exec': 'setarParametrosURL',
+          'param_name': escape(param_name),
+          'param_value': escape(param_value)
+        },
+        success: function(obj) {
+          var obj = $.parseJSON(obj);
+          switch(parseInt(obj.erro_cod)) {
+            case 0:
+              //alert(link + obj.params);
+              montarURL(link + obj.params);
+              break;
+            default:
+              alert(obj.erro_msg);
+          }
+        }
+      });
+    }
+  });
+
+
+  /* --- Submit com ENTER --- */
+  $('input').keypress(function(e) {
+    if(e.which == 13) {
+      $(this).blur();
+      $('submit').focus().click();
+    }
+  });
+
+  /* --- Configura��o de inputs de data --- */
+  $.datepicker.regional['pt-BR'];
+  $('input[name="data_ini"],input[name="data_fim"],input[name="data_limite"]').datepicker({
+    changeMonth: true,
+    changeYear: true
+  });
+
+
+
+
+
+  /* --- Configura��o de sele��o de inbox --- */
+  $('.box_listas .item a,.box_listas .item_sel a').live({
+    click: function() {
+      // alert($(this).parent().attr('class'));
+      $('.box_listas div.item_sel').attr('class','item');
+      $(this).parent().attr('class','item_sel');
+    }
+  });
+
+  /* --- Carregar o inbox assim que carrega o index --- */
+  if($.address.path() == '')
+    obterInbox();
+
+
+});
+
+function habilitarOutraVara(){
+  $(function(){
+    $('#coluna_vara').show();
+    $('#coluna_vara_valor').show();
+  });
+}
+
+function desabilitarOutraVara(){
+  $(function(){
+    $('#coluna_vara').hide();
+    $('#coluna_vara_valor').hide();
+  });
+}
+
+function mostrarLoading(){
+  $('#loading').css({
+    'width': $('html').width(),
+    'height': $(window).height()
+  });
+  $('#loading').fadeIn('fast');
+}
+
+function esconderLoading(notScroll) {
+  $('#loading').fadeOut('fast', function() {
+    $('#loading').removeClass('invisivel');
+    if(notScroll != 'notScroll'){
+      $('html, body').animate({scrollTop:0}, 500);
+    }
+  });
+}
+
+function executarPesquisa(params) {
+  var exec = params.split('/')[0];
+  var startRow = params.split('/')[1];
+  var displayRows = params.split('/')[2];
+  var paginaAtual = params.split('/')[3];
+  var paginaInicio = params.split('/')[4];
+  eval(exec + '(' + startRow + ',' + displayRows + ',' + paginaAtual + ',' + paginaInicio + ');');
+}
+
+function montarURL(link,callback) {
+  var numRand = Math.floor(Math.random() * 999999) + parseFloat(111111);
+  var template = '';
+  var params = '';
+  var len = link.split('/').length;
+  for(i=0;i<len;i++) {
+    if(i<2) {
+      if(template=='') {
+        template = link.split('/')[i];
+      } else {
+        template = template + '/' + link.split('/')[i];
+      }
+    } else {
+      if(params=='') {
+        params = link.split('/')[i];
+      } else {
+        params = params + '/' + link.split('/')[i];
+      }
+    }
+  }
+  template = template + '/' + numRand;
+  $.address.value(template + '/' + params);
+  callback?callback():null;
+}
+
+function abrirJob() {
+  var num_job = escape($('.input_job').val());
+  $.ajax({
+    type: 'POST',
+    url: './job/jobAtualizarExecutar.cfm',
+    data: {
+      'exec': 'abrirJob',
+      'num_job' : num_job
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          adicionarObjetoPilha('JOB',obj.job_id,'JOB','');
+          $('.input_job').val('');
+          $('.input_job').blur();
+          /*
+          $('#box_rel_est_aprovadas').html(obj.html);
+          esconderLoading();
+          */
+          break;
+        default:
+          alert(obj.erro_msg);
+          $('.input_job').focus();
+      }
+    }
+  });
+}
+
+function adicionarObjetoPilha(objeto,objetoId,link,urlParams) {
+  var objeto = escape(objeto);
+  var objeto_id = escape(objetoId);
+  var link = escape(link);
+  if(urlParams) {
+    var url_params = escape(urlParams);
+  } else {
+    var url_params = '';
+  }
+  $.ajax({
+    type: 'POST',
+    url: './generico/objetoProcessarExecutar.cfm',
+    data: {
+      'exec': 'adicionarObjetoPilha',
+      'objeto' : objeto,
+      'objeto_id' : objeto_id,
+      'link' : link,
+      'url_params' : url_params
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL(obj.destino);
+          obterObjetosPilha();
+          /* Atualizar div recentes com objeto novo */
+          /* Alterar URL relativo ao objeto */
+          /*
+          $('#box_rel_est_aprovadas').html(obj.html);
+          */
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+    }
+  });
+}
+
+function obterObjetosPilha() {
+  $.ajax({
+    type: 'POST',
+    url: './generico/objetoProcessarExecutar.cfm',
+    data: {
+      'exec': 'obterObjetosPilha'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          // alert(obj.html);
+          $('.box_recentes').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+    }
+  });
+}
+
+function obterInbox() {
+  //$('#principal').load('./includes/inicioVisualizar.cfm');
+}
+
+var browserY = 0;
+var mouseY = 0;
+function setarPosicaoDoMenuFlutuante() {
+  switch($('#box_menu_job').height()) {
+    case 103:
+      valorNavegador = 40;
+      valorTop1 = 66;
+      valorTop2 = 66;
+      valorTail1 = 33;
+      valorTail2 = 33;
+      break;
+    case 171:
+      valorNavegador = 80;
+      valorTop1 = 120;
+      valorTop2 = 46;
+      valorTail1 = 87;
+      valorTail2 = 20;
+      break;
+    case 235:
+      valorNavegador = 170;
+      valorTop1 = 180;
+      valorTop2 = 86;
+      valorTail1 = 147;
+      valorTail2 = 52;
+      break;
+    default:
+      valorNavegador = 170;
+      valorTop1 = 180;
+      valorTop2 = 86;
+      valorTail1 = 147;
+      valorTail2 = 52;
+  }
+
+  if((browserY-mouseY) < valorNavegador) {
+    menuTop = mouseY - valorTop1;
+    $('.menu_job div.tail').css('top', valorTail1 + 'px');
+  } else {
+    menuTop = mouseY - valorTop2;
+    $('.menu_job div.tail').css('top', valorTail2 + 'px');
+  }
+  $('#box_menu_job').css('top', menuTop + 'px');
+  var posX = mouseX + 28;
+  $('#box_menu_job').css('left', posX + 'px');
+  $('#box_menu_job').fadeIn('fast');
+}
+
+function getCheckbox(form,field) {
+  var resultado = "";
+  var len = document.forms[form].elements[field].length;
+  if (len==undefined) {
+    if (document.forms[form].elements[field].checked){
+      resultado = document.forms[form].elements[field].value;
+    }
+  } else {
+    for (var i=0; i < len; i++) {
+      if (document.forms[form].elements[field][i].checked){
+        if (resultado=="") {
+          resultado = document.forms[form].elements[field][i].value;
+        } else {
+          resultado = resultado + ',' + document.forms[form].elements[field][i].value;
+        }
+      }
+    }
+  }
+  return resultado;
+}
+
+function getRadio(form,field) {
+  resultado = '';
+  $('form[name="' + form + '"] input[name="' + field + '"]').each(function() {
+    if ($(this).is(':checked')) {
+      resultado = $(this).val();
+    }
+  });
+  return resultado;
+}
+
+function getFlag(form,field) {
+  resultado = "";
+  var len = document.forms[form].elements[field].length;
+  if (len==undefined) {
+    if(document.forms[form].elements[field].checked) {
+      resultado = 'S';
+    } else {
+      resultado = 'N';
+    }
+  } else {
+    for (var i=0; i < document.forms[form].elements[field].length; i++) {
+      if (resultado=='') {
+        if (document.forms[form].elements[field][i].checked){
+          resultado = 'S';
+        } else {
+          resultado = 'N';
+        }
+      } else {
+        if (document.forms[form].elements[field][i].checked){
+          resultado = resultado + ',S';
+        } else {
+          resultado = resultado + ',N';
+        }
+      }
+    }
+  }
+  return resultado;
+}
+
+function getArray(form,field,delim){
+  var resultado = '';
+  !delim? delim ='|' :null;
+  $('form[name=' +form +']  [name=' +field +']').each(function(i){
+    i>0? resultado +=delim +$(this).val() :resultado +=$(this).val();
+  });
+  return resultado;
+}
+
+function formataDataDigitada(campo,tammax,event) {
+  // Retira tudo que n�o � num�rico
+  var temp=campo.value;
+  var valor="";
+
+  // Permite que sejam tecladas as setas de navega��o, backspace, delete e tab
+  if ((event.keyCode < 33 || event.keyCode > 40) && (event.keyCode != 8 && event.keyCode != 9 && event.keyCode != 46)) {
+
+    for (var i=0;i<temp.length;i++) {
+      if (!isNaN(temp.substring(i,i+1)) && temp.substring(i,i+1)!=' ' && valor.length < tammax) {
+        valor+=temp.substring(i,i+1);
+      }
+    }
+
+    var j=0;
+    temp="";
+    for (var tam=0;tam<valor.length;tam++) {
+      if (j==0) {
+        temp+=valor.substring(tam,tam+1);
+        if (tam==1) { j++; temp+="/"; }
+      } else if (j==1) {
+        //if (tam==2) { temp+="/"; }
+        temp+=valor.substring(tam,tam+1);
+        if (tam==3) { j++; temp+="/"; }
+      } else if (j==2) {
+        //if (tam==4) { temp+="/"; }
+        temp+=valor.substring(tam,tam+1);
+        if (tam==3) { j++; }
+      }
+    }
+
+    if (campo.value!=temp) {
+      campo.value=temp;
+    }
+
+  } // Fim condi��o "if ((event.keyCode < 33 || event.keyCode > 40) && (event.keyCode != 8 && event.keyCode != 46))"
+}
+
+function selectAll(checkId) {
+  var checked_status = document.getElementById('seletor_' + checkId).checked;
+  $('input[id=' + checkId + '], input[name=' + checkId + ']').each(function() {
+    this.checked = checked_status;
+  });
+}
+
+function selecionarTudoEstimativa(checkId,orcamentoNum) {
+  var checked_status = document.getElementById(checkId).checked;
+  $('div#Estimativa_' + orcamentoNum + ' input[type=checkbox]').each(function() {
+    this.checked = checked_status;
+  });
+}
+
+function select_innerHTML(objeto,innerHTML) {
+/* * * * * *
+* select_innerHTML - corrige o bug do InnerHTML em selects no IE
+* Veja o problema em: http://support.microsoft.com/default.aspx?scid=kb;en-us;276228
+* Vers�o: 2.1 - 04/09/2007
+* Autor: Micox - N�iron Jos� C. Guimar�es - micoxjcg@yahoo.com.br
+* @objeto(tipo HTMLobject): o select a ser alterado
+* @innerHTML(tipo string): o novo valor do innerHTML
+* * * * * */
+    objeto.innerHTML = ""
+    var selTemp = document.createElement("micoxselect")
+    var opt;
+    selTemp.id="micoxselect1"
+    document.body.appendChild(selTemp)
+    selTemp = document.getElementById("micoxselect1")
+    selTemp.style.display="none"
+    if(innerHTML.indexOf("<option")<0){//se n�o � option eu converto
+        innerHTML = "<option>" + innerHTML + "</option>"
+    }
+    innerHTML = innerHTML.replace(/<option/g,"<span").replace(/<\/option/g,"</span")
+    selTemp.innerHTML = innerHTML
+
+
+    for(var i=0;i<selTemp.childNodes.length;i++){
+  var spantemp = selTemp.childNodes[i];
+
+        if(spantemp.tagName){
+            opt = document.createElement("OPTION")
+
+   if(document.all){ //IE
+    objeto.add(opt)
+   }else{
+    objeto.appendChild(opt)
+   }
+
+   //getting attributes
+   for(var j=0; j<spantemp.attributes.length ; j++){
+    var attrName = spantemp.attributes[j].nodeName;
+    var attrVal = spantemp.attributes[j].nodeValue;
+    if(attrVal){
+     try{
+      opt.setAttribute(attrName,attrVal);
+      opt.setAttributeNode(spantemp.attributes[j].cloneNode(true));
+     }catch(e){}
+    }
+   }
+   //getting styles
+   if(spantemp.style){
+    for(var y in spantemp.style){
+     try{opt.style[y] = spantemp.style[y];}catch(e){}
+    }
+   }
+   //value and text
+   opt.value = spantemp.getAttribute("value")
+   opt.text = spantemp.innerHTML
+   opt.text = opt.text.replace(/\&amp;/g,'&');
+   //IE
+   opt.selected = spantemp.getAttribute('selected');
+   opt.className = spantemp.className;
+  }
+ }
+ document.body.removeChild(selTemp)
+ selTemp = null
+}
+
+function obterComboMunicipios(uf,campo) {
+  document.getElementById('box_loading_municipios' +campo).innerHTML = '<img src="./estilos/imagens/icon_loading_01.gif" />';
+  var uf_sigla = uf;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboMunicipios',
+      'uf_sigla': escape(uf_sigla)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('box_municipios' +campo).innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_municipios' +campo).innerHTML = '';
+    }
+  });
+}
+
+function roundNumber(rnum) {
+  return Math.round(rnum * Math.pow(10,2)) / Math.pow(10,2);
+}
+
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function formatarMoeda(num,noSep) {
+  noSep ? sep = '' : sep = '.';
+  x = 0;
+  if(num<0) {
+    num = Math.abs(num);
+    x = 1;
+  }
+  if(isNaN(num)) num = "0";
+  cents = Math.floor((num*100+0.5)%100);
+  num = Math.floor((num*100+0.5)/100).toString();
+  if(cents < 10) cents = "0" + cents;
+  for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+    num = num.substring(0,num.length-(4*i+3))+sep+num.substring(num.length-(4*i+3));
+  ret = num + ',' + cents;
+  if (x == 1) ret = ' - ' + ret;return ret;
+}
+
+function converterMoeda(moeda) {
+  moeda = moeda.replace(".","");
+  moeda = moeda.replace(",",".");
+  return parseFloat(moeda);
+}
+
+function openWindow(url) {
+  window.open (url, "_blank", "width=1024,height=768,top=15,left=30,resizable,scrollbars,status=no");
+}
+
+function esconderHint() {
+  document.getElementById('box_hint').innerHTML="<span></span>";
+}
+function mostrarHint(descricao,event,element) {
+  if(element) {
+    var positionX = getElementPos('x',element) + 40;
+    var positionY = getElementPos('y',element) + 20;
+  } else {
+    var positionX = getMousePos('x',event) + 20;
+    var positionY = getMousePos('y',event) - 20;
+  }
+  document.getElementById('box_hint').innerHTML="<div style='z-index:500; background-color:#FFFFE1; border:1px solid #000; padding:2px; position:absolute; left:" + positionX + "px; top:" + positionY + "px'><span style='font-family:Tahoma,Arial,sans-serif; font-size:8pt;'>" + descricao + "</span></div>";
+}
+function getMousePos(pos,event) {
+  var position;
+  if (pos=='x') {
+    position = event.clientX + document.documentElement.scrollLeft;
+  } else {
+    position = event.clientY + document.documentElement.scrollTop;
+  }
+  return position;
+}
+function getElementPos(pos,element) {
+  var position = 0;
+  if (pos=='x') {
+    while(element != null) {
+      position += element.offsetLeft;
+      element = element.offsetParent;
+    }
+  } else {
+    while(element != null) {
+      position += element.offsetTop;
+      element = element.offsetParent;
+    }
+  }
+  return position;
+}
+
+function obterComboCidadesCrcJud(uf) {
+  document.getElementById('box_loading_cidades').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var uf = uf;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboCidadesCrcJud',
+      'uf': escape(uf)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cidade_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cidades').innerHTML = '';
+    }
+  });
+}
+
+
+function obterComboCidades(uf) {
+  document.getElementById('box_loading_cidades').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var uf = uf;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboCidades',
+      'uf': escape(uf)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cidade_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cidades').innerHTML = '';
+    }
+  });
+}
+
+function obterComboCartorios(cidade_id) {
+  document.getElementById('box_loading_cartorios').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var cidade_id = cidade_id;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboCartorios',
+      'cidade_id': escape(cidade_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cartorio_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cartorios').innerHTML = '';
+    }
+  });
+}
+
+function obterComboCartoriosBusca(cidade_id) {
+  document.getElementById('box_loading_cartorios').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var cidade_id = cidade_id;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboCartoriosBusca',
+      'cidade_id': escape(cidade_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cartorio_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cartorios').innerHTML = '';
+    }
+  });
+}
+
+function obterComboCartoriosCarga(cidade_id) {
+  document.getElementById('box_loading_cartorios').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var cidade_id = cidade_id;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboCartoriosCarga',
+      'cidade_id': escape(cidade_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cartorio_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cartorios').innerHTML = '';
+    }
+  });
+}
+
+function obterComboCartoriosEmitentes(cidade_id) {
+  document.getElementById('box_loading_cartorios').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var cidade_id = cidade_id;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboCartoriosEmitentes',
+      'cidade_id': escape(cidade_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cartorio_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cartorios').innerHTML = '';
+    }
+  });
+}
+
+function obterComboComarcas(comarca_id) {
+  document.getElementById('box_loading_comarcas').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var comarca_id = comarca_id;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboComarcas',
+      'comarca_id': escape(comarca_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#vara_juiz_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_comarcas').innerHTML = '';
+    }
+  });
+}
+
+
+function obterComboComarcasUsuario(comarca_id) {
+  document.getElementById('box_loading_comarcas_usuario').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var comarca_id = comarca_id;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComboComarcasUsuario',
+      'comarca_id': escape(comarca_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#vara_juiz_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_comarcas_usuario').innerHTML = '';
+    }
+  });
+}
+
+function obterCartoriosOperando() {
+  document.getElementById('box_loading_cartorios_operando').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterCartoriosOperando'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('cartorios_operando').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cartorios_operando').innerHTML = '';
+    }
+  });
+}
+
+function obterComunicacoesAbertas() {
+  document.getElementById('box_loading_comunicacoes_abertas').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComunicacoesAbertas'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('comunicacoes_abertas').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_comunicacoes_abertas').innerHTML = '';
+    }
+  });
+}
+
+function obterComunicacoesAbertas5() {
+  document.getElementById('box_loading_comunicacoes_abertas_5').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComunicacoesAbertas5'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('comunicacoes_abertas_5').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_comunicacoes_abertas_5').innerHTML = '';
+    }
+  });
+}
+
+function obterComunicacoesAbertas30() {
+  document.getElementById('box_loading_comunicacoes_abertas_30').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterComunicacoesAbertas30'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('comunicacoes_abertas_30').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_comunicacoes_abertas_30').innerHTML = '';
+    }
+  });
+}
+
+function obterCartoriosSemCarga10() {
+  document.getElementById('box_loading_sem_carga_10').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterCartoriosSemCarga10'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('sem_carga_10').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_sem_carga_10').innerHTML = '';
+    }
+  });
+}
+
+function obterRegistrosForaPrazo() {
+  document.getElementById('box_loading_fora_prazo').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterRegistrosForaPrazo'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('fora_prazo').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_fora_prazo').innerHTML = '';
+    }
+  });
+}
+
+function obterRegistrosForaPrazoSegunda() {
+  document.getElementById('box_loading_fora_prazo_segunda').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterRegistrosForaPrazoSegunda'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('fora_prazo_segunda').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_fora_prazo_segunda').innerHTML = '';
+    }
+  });
+}
+
+function obterRegistros(tipo_registro,div,span) {
+  document.getElementById(span).innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  var tipo_registro = tipo_registro;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterRegistros',
+      'tipo_registro': escape(tipo_registro)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById(div).innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById(span).innerHTML = '';
+    }
+  });
+}
+
+function obterSolicitacoesCertidoes() {
+  document.getElementById('box_loading_solicitacoes_atraso').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterSolicitacoesCertidoes'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('solicitacoes_atraso').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_solicitacoes_atraso').innerHTML = '';
+    }
+  });
+}
+
+function alterarEstado(estado) {
+  var estado = estado;
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'alterarEstado',
+      'estado': escape(estado)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('includes/inicioVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+    }
+  });
+}
+
+
+
+function obterRegistrosDataForaPrazo(dataPeriodo,dataIni,dataFim,tipo, span) {
+  document.getElementById(span).innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterRegistrosDataForaPrazo',
+      'data_periodo': escape(dataPeriodo),
+      'data_ini': escape(dataIni),
+      'data_fim': escape(dataFim),
+      'tipo': escape(tipo)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById(tipo).innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById(span).innerHTML = '';
+    }
+  });
+}
+
+/*
+
+function mostrarObservacaoMandados(){
+document.getElementById('tooltip').style.display = "block";
+if(tipo =="mostra") {
+    $('#visibilidade').show();
+ }else{(tipo =="esconde")
+
+    $('#visibilidade').hide();
+
+}  }*/
+
+
+
+
+function obterUsuariosPendentesValidacao() {
+  document.getElementById('box_loading_usuarios_pendentes_validacao').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterUsuariosPendentesValidacao'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('usuarios_pendentes_validacao').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_usuarios_pendentes_validacao').innerHTML = '';
+    }
+  });
+}
+
+function obterMandadosPendentes() {
+  document.getElementById('box_loading_mandados_pendentes').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterMandadosPendentes'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('mandados_pendentes').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_mandados_pendentes').innerHTML = '';
+    }
+  });
+}
+
+function obterMandadosCumpridos() {
+  document.getElementById('box_loading_mandados_cumpridos').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterMandadosCumpridos'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('mandados_cumpridos').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_mandados_cumpridos').innerHTML = '';
+    }
+  });
+}
+
+function obterPedidosPendentes() {
+  document.getElementById('box_loading_pedidos_pendentes').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterPedidosPendentes'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('pedidos_pendentes').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_pedidos_pendentes').innerHTML = '';
+    }
+  });
+}
+
+function obterMandadosRejeitados() {
+  document.getElementById('box_loading_mandados_rejeitados').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterMandadosRejeitados'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('mandados_rejeitados').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_mandados_rejeitados').innerHTML = '';
+    }
+  });
+}
+
+
+function obterPedidosRecebidos() {
+  document.getElementById('box_loading_pedidos_recebidos').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterPedidosRecebidos'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          document.getElementById('pedidos_recebidos').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_pedidos_recebidos').innerHTML = '';
+    }
+  });
+}
+
+function obterQuantidadeBusca(loading) {
+  if(loading)
+    document.getElementById('box_loading_qtd_busca').innerHTML = '<img src="./imagens/icon_loading_01.gif" />';
+  $.ajax({
+    type: 'POST',
+    url: './generico/principalGeralExecutar.cfm',
+    data: {
+      'exec': 'obterQuantidadeBusca'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#qtd_busca').html(obj.html);
+          //document.getElementById('qtd_busca').innerHTML = obj.html;
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      if(loading)
+        document.getElementById('box_loading_qtd_busca').innerHTML = '';
+    }
+  });
+}

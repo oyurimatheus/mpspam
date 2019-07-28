@@ -1,0 +1,783 @@
+function MatchObj(pattern, field) {
+    var re = new RegExp(pattern);
+    var obj = getElementById(field);
+    if (obj.match(re)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function ReplaceObjEx(pattern, field, replacement) {
+    // /[^\W]/
+    // ""
+    var re = new RegExp(pattern, "gi");
+    var obj = getElementById(field);
+    obj.value = obj.value.replace(re, replacement);
+}
+
+//
+// INICIO - FORMATA VALORES
+//
+function formatamoney(c) {
+    var t = this; if (c == undefined) c = 2;
+    var p, d = (t = t.split("."))[1].substr(0, c);
+    for (p = (t = t[0]).length; (p -= 3) >= 1;) {
+        t = t.substr(0, p) + "." + t.substr(p);
+    }
+    return t + "," + d + Array(c + 1 - d.length).join(0);
+}
+
+String.prototype.formatCurrency = formatamoney
+
+function demaskvalue(valor, currency) {
+    /*
+    * Se currency é false, retorna o valor sem apenas com os números. Se é true, os dois últimos caracteres são considerados as 
+    * casas decimais
+    */
+    var val2 = '';
+    var strCheck = '0123456789';
+    var len = valor.length;
+    if (len == 0) {
+        return 0.00;
+    }
+
+    if (currency == true) {
+        /* Elimina os zeros à esquerda 
+		* a variável  <i> passa a ser a localização do primeiro caractere após os zeros e 
+		* val2 contém os caracteres (descontando os zeros à esquerda)
+		*/
+
+        for (var i = 0; i < len; i++)
+            if ((valor.charAt(i) != '0') && (valor.charAt(i) != ',')) break;
+
+        for (; i < len; i++) {
+            if (strCheck.indexOf(valor.charAt(i)) != -1) val2 += valor.charAt(i);
+        }
+
+        if (val2.length == 0) return "0.00";
+        if (val2.length == 1) return "0.0" + val2;
+        if (val2.length == 2) return "0." + val2;
+
+        var parte1 = val2.substring(0, val2.length - 2);
+        var parte2 = val2.substring(val2.length - 2);
+        var returnvalue = parte1 + "." + parte2;
+        return returnvalue;
+
+    }
+    else {
+        /* currency é false: retornamos os valores COM os zeros à esquerda, 
+        * sem considerar os últimos 2 algarismos como casas decimais 
+        */
+        val3 = "";
+        for (var k = 0; k < len; k++) {
+            if (strCheck.indexOf(valor.charAt(k)) != -1) val3 += valor.charAt(k);
+        }
+        return val3;
+    }
+}
+
+function reais(obj, event) {
+    var documentall = document.all;
+    var whichCode = (window.Event) ? event.which : event.keyCode;
+    /*
+    Executa a formatação após o backspace nos navegadores !document.all
+    */
+    if (whichCode == 8 && !documentall) {
+        /*
+        Previne a ação padrão nos navegadores
+        */
+        if (event.preventDefault) { //standart browsers
+            event.preventDefault();
+        } else { // internet explorer
+            event.returnValue = false;
+        }
+        var valor = obj.value;
+        var x = valor.substring(0, valor.length - 1);
+        obj.value = demaskvalue(x, true).formatCurrency();
+        return false;
+    }
+    /*
+    Executa o Formata Reais e faz o format currency novamente após o backspace
+    */
+    FormataReais(obj, '.', ',', event);
+} // end reais
+
+
+function backspace(obj, event) {
+    /*
+    Essa função basicamente altera o  backspace nos input com máscara reais para os navegadores IE e opera.
+    O IE não detecta o keycode 8 no evento keypress, por isso, tratamos no keydown.
+    Como o opera suporta o infame document.all, tratamos dele na mesma parte do código.
+    */
+    var documentall = document.all;
+    var whichCode = (window.Event) ? event.which : event.keyCode;
+    if (whichCode == 8 && documentall) {
+        var valor = obj.value;
+        var x = valor.substring(0, valor.length - 1);
+        var y = demaskvalue(x, true).formatCurrency();
+
+        obj.value = ""; //necessário para o opera
+        obj.value += y;
+
+        if (event.preventDefault) { //standart browsers
+            event.preventDefault();
+        } else { // internet explorer
+            event.returnValue = false;
+        }
+        return false;
+
+    }// end if		
+}// end backspace
+
+function FormataReais(fld, milSep, decSep, e) {
+    var sep = 0;
+    var key = '';
+    var i = j = 0;
+    var len = len2 = 0;
+    var strCheck = '0123456789';
+    var aux = aux2 = '';
+    var whichCode = (window.Event) ? e.which : e.keyCode;
+
+    //if (whichCode == 8 ) return true; //backspace - estamos tratando disso em outra função no keydown
+    if (whichCode == 0) return true;
+    if (whichCode == 9) return true; //tecla tab
+    if (whichCode == 13) return true; //tecla enter
+    if (whichCode == 16) return true; //shift internet explorer
+    if (whichCode == 17) return true; //control no internet explorer
+    if (whichCode == 27) return true; //tecla esc
+    if (whichCode == 34) return true; //tecla end
+    if (whichCode == 35) return true;//tecla end
+    if (whichCode == 36) return true; //tecla home
+
+    /*
+    O trecho abaixo previne a ação padrão nos navegadores. Não estamos inserindo o caractere normalmente, mas via script
+    */
+
+    if (e.preventDefault) { //standart browsers
+        e.preventDefault()
+    } else { // internet explorer
+        e.returnValue = false
+    }
+
+    var key = String.fromCharCode(whichCode);  // Valor para o código da Chave
+    if (strCheck.indexOf(key) == -1) return false;  // Chave inválida
+
+    /*
+    Concatenamos ao value o keycode de key, se esse for um número
+    */
+    fld.value += key;
+
+    var len = fld.value.length;
+    var bodeaux = demaskvalue(fld.value, true).formatCurrency();
+    fld.value = bodeaux;
+
+    /*
+    Essa parte da função tão somente move o cursor para o final no opera. Atualmente não existe como movê-lo no konqueror.
+    */
+    if (fld.createTextRange) {
+        var range = fld.createTextRange();
+        range.collapse(false);
+        range.select();
+    }
+    else if (fld.setSelectionRange) {
+        fld.focus();
+        var length = fld.value.length;
+        fld.setSelectionRange(length, length);
+    }
+    return false;
+}
+//
+// FIM - FORMATA VALORES
+//
+
+function block_ctrl(e) {
+    if (!e) {
+        if (window.event) { e = window.event; }
+        else { return; }
+    }
+    if (e.ctrlKey) {
+        e.returnValue = false;
+        return false;
+    }
+}
+
+
+function SoNumeros(e) {
+    var key = 0;
+
+    if (!e) {
+        if (window.event) { e = window.event; }
+        else { return; }
+    }
+    if (typeof (e.keyCode) == 'number' && e.keyCode > 0) { key = e.keyCode; }
+    else if (typeof (e.which) == 'number') { key = e.which; }
+    else if (typeof (e.charCode) == 'number') { key = e.charCode; }
+    else { return; }
+
+    var escapeKeys = '8,9,13,35,36,37,39,46';
+
+    if (!(key >= 48 && key <= 57) && escapeKeys.indexOf(key) < 0) {
+        e.returnValue = false;
+        return false;
+    }
+}
+
+// Seta a posicao do cursor
+function textPos(textEl) {
+    try {
+        var i = textEl.value.length + 1;
+        if (textEl.createTextRange) {
+            theCaret = document.selection.createRange().duplicate();
+            while (theCaret.parentElement() == textEl && theCaret.move('character', 1) == 1) {
+                --i;
+            }
+            return i;
+        }
+        else {
+            return -1;
+        }
+    }
+    catch (msgErr) {
+        msgErr.description = "Erro na função textPos()\n" + msgErr.description;
+        throw msgErr;
+    }
+}
+
+// Valida as teclas de controle
+function TeclaDeControle(tecla) {
+    try {
+        var alt = window.event.altKey;
+        //PERMITE TECLAS DE CONTROLE
+        return (alt || tecla == 8 || tecla == 9 || tecla == 13 || tecla == 18 || tecla == 27 || tecla == 35 || tecla == 36 || tecla == 37 || tecla == 38 || tecla == 39 || tecla == 40 || tecla == 45);
+    }
+    catch (msgErr) {
+        msgErr.description = "Erro na função TeclaDeControle()\n" + msgErr.description;
+        throw msgErr;
+    }
+}
+
+// Formata numero
+function Textbox_KeyDown(e, pControle, pCasasDecimais) {
+    try {
+        var shift = window.event.shiftKey;
+        var tecla = window.event.keyCode;
+        if (!TeclaDeControle(tecla)) {
+            if (shift || (!(tecla >= 48 && tecla <= 57) && !(tecla >= 96 && tecla <= 105)) && tecla != 188 && tecla != 110 && tecla != 46) {
+                event.keyCode = 0;
+                event.returnValue = false;
+            }
+            else {
+                if (((tecla == 188) || (tecla == 110)) && (pCasasDecimais == 0)) {
+                    event.keyCode = 0;
+                    event.returnValue = false;
+                }
+                else {
+                    pos = pControle.value.indexOf(',');
+                    if (pos != -1) {
+                        if ((tecla == 188) || (tecla == 110)) {
+                            event.keyCode = 0;
+                            event.returnValue = false;
+                        }
+                        else {
+                            curPos = textPos(pControle);
+                            if (pos > -1 && pos < (curPos - pCasasDecimais - 1)) {
+                                event.keyCode = 0;
+                                event.returnValue = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    catch (msgErr) {
+        // Ignora o erro de validacao das teclas
+        if (msgErr.number != -2147024891) {
+            msgErr.description = "Erro na função Textbox_KeyDown()\n" + msgErr.description;
+            throw msgErr;
+        }
+    }
+}
+
+function desabilitarenter(e) {
+    var tecla = 0;
+
+    if (!e) {
+        if (window.event) { e = window.event; }
+        else { return; }
+    }
+
+    if (typeof (e.keyCode) == 'number' && e.keyCode > 0) { tecla = e.keyCode; }
+    else if (typeof (e.which) == 'number') { tecla = e.which; }
+    else if (typeof (e.charCode) == 'number') { tecla = e.charCode; }
+    else { return; }
+
+    if ((tecla == 13))
+        return false;
+}
+
+// Move o foco para o primeiro controle do form
+function firstFocus() {
+    try {
+        if (document.forms.length > 0) {
+            var TForm = document.forms[0];
+            for (i = 0; i < TForm.length; i++) {
+                if ((TForm.elements[i].type == "text") || (TForm.elements[i].type == "textarea") || (TForm.elements[i].type.toString().charAt(0) == "s")) {
+                    if (!document.forms[0].elements[i].disabled) {
+                        try {
+                            document.forms[0].elements[i].focus();
+                            break;
+                        }
+                        catch (err) { } // Ignora o campo e procura o proximo
+                    }
+                }
+            }
+        }
+    }
+    catch (msgErr) {
+        msgErr.description = "Erro na função firstFocus()\n" + msgErr.description;
+        throw msgErr;
+    }
+}
+
+// Move o foco para o controle indicado
+function setFocus(controle) {
+    try {
+        if (document.getElementById(controle) != null) {
+            if (!document.all(controle).disabled) {
+                try {
+                    document.all(controle).focus();
+                }
+                catch (err) { } // Ignora o campo e procura o proximo
+            }
+        }
+    }
+    catch (msgErr) {
+        msgErr.description = "Erro na função setFocus()\n" + msgErr.description;
+        throw msgErr;
+    }
+}
+
+// Valida CNPJ
+function ValidaCNPJ(source, arguments) {
+    try {
+        var cCPFCGC = source.value;
+        if (cCPFCGC.length != 0) {
+            for (aux = 0; aux < 11; aux++) {
+                cCPFCGC = cCPFCGC.replace('.', '');
+                cCPFCGC = cCPFCGC.replace('-', '');
+                cCPFCGC = cCPFCGC.replace(',', '');
+                cCPFCGC = cCPFCGC.replace('/', '');
+            }
+
+            if (cCPFCGC.length == 14) {
+                var nMult1 = '543298765432', nMult2 = '6543298765432', nDig1 = 0, nDig2 = 0, lVal = false;
+                for (i = 0; i < 12; i++) {
+                    nDig1 += parseInt(cCPFCGC.substring(i, i + 1)) * parseInt(nMult1.substring(i, i + 1));
+                }
+                for (i = 0; i < 13; i++) {
+                    nDig2 += parseInt(cCPFCGC.substring(i, i + 1)) * parseInt(nMult2.substring(i, i + 1));
+                }
+
+                nDig1 = (nDig1 * 10) % 11;
+                nDig2 = (nDig2 * 10) % 11;
+                if (nDig1 == 10) {
+                    nDig1 = 0;
+                }
+                if (nDig2 == 10) {
+                    nDig2 = 0;
+                }
+                if (nDig1 != cCPFCGC.substring(12, 13) || nDig2 != cCPFCGC.substring(13, 14)) {
+                    alert('CNPJ inválido.');
+                    source.focus();
+                }
+            }
+            else {
+                if (cCPFCGC.length > 0) {
+                    alert('CNPJ inválido.');
+                    source.focus();
+                }
+            }
+        }
+    }
+    catch (msgErr) {
+        msgErr.description = "Erro na função ValidaCNPJ()\n" + msgErr.description;
+        throw msgErr;
+    }
+}
+
+
+// Valida CPF
+function ValidaCPF(source, arguments) {
+    try {
+        var cCPFCGC = source.value;
+        for (aux = 0; aux < 11; aux++) {
+            cCPFCGC = cCPFCGC.replace('.', '');
+            cCPFCGC = cCPFCGC.replace('-', '');
+            cCPFCGC = cCPFCGC.replace(',', '');
+            cCPFCGC = cCPFCGC.replace('/', '');
+        }
+
+        if (cCPFCGC.length == 11) {
+            var nDig1 = 0, nDig2 = 0, lVal = false;
+            // verifica se não é repetição de números ( 11111111111, 22222222222, etc )
+            for (i = 0; i < 11; i++) {
+                if (cCPFCGC.substring(i, i + 1) != cCPFCGC.substring(0, 1)) {
+                    lVal = true;
+                }
+            }
+            for (i = 10; i > 1; i--) {
+                nDig1 += parseInt(cCPFCGC.substring(10 - i, 11 - i)) * i;
+            }
+            for (i = 11; i > 1; i--) {
+                nDig2 += parseInt(cCPFCGC.substring(11 - i, 12 - i)) * i;
+            }
+
+            nDig1 = (nDig1 * 10) % 11;
+            nDig2 = (nDig2 * 10) % 11;
+            if (nDig1 == 10) {
+                nDig1 = 0;
+            }
+            if (nDig2 == 10) {
+                nDig2 = 0;
+            }
+            if (nDig1 != cCPFCGC.substring(9, 10) || nDig2 != cCPFCGC.substring(10, 11) || !lVal) {
+                alert('CPF inválido.');
+                source.focus();
+            }
+        }
+        else {
+            if (cCPFCGC.length > 0) {
+                alert('CPF inválido.');
+                source.focus();
+            }
+        }
+    }
+    catch (msgErr) {
+        msgErr.description = "Erro na função ValidaCPF()\n" + msgErr.description;
+        throw msgErr;
+    }
+}
+
+//Valida Controle CaixaData
+function ValidaData(source, dt_min, dt_max, fl_required) {
+    try {
+        var cData = source.value;
+        var cDataMin = dt_min == null ? '' : dt_min;
+        var cDataMax = dt_max == null ? '' : dt_max;
+        var cRequired = fl_required == 1 ? true : false;
+        var situacao = true;
+
+        if (cData.length == 10) {
+            dia = (cData.substring(0, 2));
+            mes = (cData.substring(3, 5));
+            ano = (cData.substring(6, 10));
+
+            // Valida Data Mínima
+            if (cDataMin.length == 10) {
+                diaMin = (cDataMin.substring(0, 2));
+                mesMin = (cDataMin.substring(3, 5));
+                anoMin = (cDataMin.substring(6, 10));
+
+                if (ano < anoMin) {
+                    situacao = false;
+                }
+
+                if (ano == anoMin && mes < mesMin) {
+                    situacao = false;
+                }
+
+                if (ano == anoMin && mes == mesMin && dia < diaMin) {
+                    situacao = false;
+                }
+            }
+
+            // Valida Data Máxima
+            if (cDataMax.length == 10) {
+                diaMax = (cDataMax.substring(0, 2));
+                mesMax = (cDataMax.substring(3, 5));
+                anoMax = (cDataMax.substring(6, 10));
+
+                if (ano > anoMax) {
+                    situacao = false;
+                }
+
+                if (ano == anoMax && mes > mesMax) {
+                    situacao = false;
+                }
+
+                if (ano == anoMax && mes == mesMax && dia > diaMax) {
+                    situacao = false;
+                }
+            }
+
+            if ((dia < 1) || (dia < 1 || dia > 30) && (mes == '04' || mes == '06' || mes == '09' || mes == 11) || dia > 31) {
+                situacao = false;
+            }
+
+            if (mes < 1 || mes > 12) {
+                situacao = false;
+            }
+
+            if (mes == 2 && (dia < 1 || dia > 29 || (dia > 28 && (parseInt(ano / 4) != ano / 4)))) {
+                situacao = false;
+            }
+
+            if (parseInt(ano) < 1900) {
+                situacao = false;
+            }
+
+        }
+
+        if (cData == "" && cRequired) {
+            situacao = false;
+        }
+
+        if (situacao == false) {
+            alert("Data inválida!");
+            source.focus();
+        }
+
+    }
+    catch (msgErr) {
+        msgErr.description = "Erro na função ValidaData()\n" + msgErr.description;
+        throw msgErr;
+    }
+}
+
+// Valida a mascara
+function Textbox_Mask(e, obj, mascara) {
+    try {
+        var key = 0;
+
+        if (!e) {
+            if (window.event) { e = window.event; }
+            else { return; }
+        }
+        if (typeof (e.keyCode) == 'number' && e.keyCode > 0) { key = e.keyCode; }
+        else if (typeof (e.which) == 'number') { key = e.which; }
+        else if (typeof (e.charCode) == 'number') { key = e.charCode; }
+        else { return; }
+
+        var escapeKeys = '8,9,13,35,36,37,39,46';
+
+        if ((!(key >= 48 && key <= 57)) && (!(key >= 96 && key <= 105)) && escapeKeys.indexOf(key) < 0) {
+            e.returnValue = false;
+            return false;
+        }
+        else if (obj.value.length >= mascara.length) {
+            obj.value = obj.value.substr(0, mascara.length);
+
+            if (escapeKeys.indexOf(key) > -1) {
+                return true;
+            }
+
+            e.returnValue = false;
+            return false;
+        }
+        else if (mascara.charAt(obj.value.length) != '#' && escapeKeys.indexOf(key) < 0) {
+            obj.value = obj.value + mascara.charAt(obj.value.length);
+        }
+    }
+    catch (msgErr) {
+        // Ignora o erro de validacao das teclas
+        if (msgErr.number != -2147024891) {
+            msgErr.description = "Erro na função Textbox_Mask()\n" + msgErr.description;
+            throw msgErr;
+        }
+    }
+}
+
+// Fixes para o janela Modal
+function fixDialog() {
+    // just for dialogs, else quit
+    try {
+        if (dialogArguments == undefined) {
+            return
+        }
+    }
+    catch (e) {
+        return
+    }
+
+    // name window, so we can fix targeting
+    if (window.name == '') {
+        window.name = "winDialog";
+    }
+
+    goToURL = function (p_strURL) {
+        var oLink = document.createElement("A");
+        document.body.insertAdjacentElement('beforeEnd', oLink);
+        with (oLink) {
+            href = p_strURL;
+            target = window.name;
+            click();
+        }
+    }
+
+    // fix window.navigate()
+    window.navigate = goToURL;
+    // fix window.location.assign()
+    window.location.assign = goToURL;
+    // fix window.location.reload()
+    window.location.reload = function () { window.navigate(window.location.href) }
+    // fix window.location.replace() (SORTA!)
+    window.location.replace = goToURL;
+
+    // if window object was passed to vArguments, hook up as window.opener
+    // eg:  showModalDialog(sURL, window, sFeatures)
+    var bWasPassedWindow = false;
+    try {
+        bWasPassedWindow = dialogArguments.location != undefined;
+    }
+    catch (e) { }
+
+    if (bWasPassedWindow) {
+        // fix opener
+        window.opener = dialogArguments;
+
+        // fix cookies (make available in dialog) <--- seems to work fine without this too?
+        document.cookie = dialogArguments.document.cookie;
+    }
+
+    // fix document stuff
+    attachEvent("onload", function () {
+        // fix form submissions and link openings
+        // insert base tag with target (should be faster & work on dynamically created links)
+        var oHead = document.getElementsByTagName("HEAD")[0];
+        var oBase = document.createElement("BASE");
+        oBase.target = window.name;
+        oHead.insertAdjacentElement('AfterBegin', oBase);
+
+        // fix U accelerator
+        var colUtags = document.all.tags("U");
+        for (var u = 0; u < colUtags.length; u++) {
+            if (colUtags[u].style.accelerator) {
+                colUtags[u].style.textDecoration = 'none';
+            }
+        }
+    });
+
+    // Exibe a ampulheta enquanto processando
+    attachEvent("onbeforeunload", function () { document.body.style.cursor = 'wait'; });
+    attachEvent("onunload", function () { document.body.style.cursor = 'wait'; });
+
+    //document.attachEvent("onmouseup", function(){if (document.selection) alert(document.selection.createRange().boundingLeft);});
+    /*document.attachEvent("onmouseup", function()
+	{
+		var range
+		var x = window.event.clientX
+		var y = window.event.clientY
+
+		if (window.event.srcElement.parentTextEdit)
+		{
+			range = window.event.srcElement.parentTextEdit.createTextRange()
+			range.collapse()
+			range.moveToPoint(x, y)
+			range.expand("word")
+			range.select()
+		}
+	});*/
+
+    copiar = function (x, y, isText) {
+        if (!isText) {
+            var range = document.body.createTextRange();
+            range.collapse();
+            range.moveToPoint(x, y);
+            range.expand("word");
+            range.select();
+            range.execCommand("Copy");
+            alert('Texto copiado.');
+        }
+    }
+
+    //document.attachEvent("onMouseDrag", function() { alert('a'); });
+
+    // enable basics of normal context (right-click) menu
+    document.attachEvent("oncontextmenu", function () {
+        var strMenuHTML =
+			'<html><body>' +
+			'<style type="text/css">\r\n' +
+			'BODY {background:buttonface;  padding:2px; font:x-small Tahoma, sans-serif; font-size:80%;}\r\n' +
+			'A {padding:0 4px 0 4px; text-decoration:none; color:buttontext; WIDTH:115%; display:block; cursor:default;}\r\n' +
+			'A:hover {background:highlight; color:highlighttext;}\r\n' +
+			'</style>\r\n' +
+			'<script language="Javascript">\r\n' +
+			'function reload(){parent.location=parent.location.href}\r\n' +
+			'</script>\r\n' +
+			'<a href="#" onclick="parent.print()">Imprimir...</a>\r\n' +
+			'<a href="#" onclick="parent.location.reload()">Atualizar</a>\r\n' +
+			'<a href="#" onclick="parent.copiar(' + event.clientX + ',' + event.clientY + ',' + event.srcElement.isTextEdit + ')">Copiar</a>\r\n' +
+			'</body></html>';
+
+
+        var oPop = window.createPopup();
+        var oPopBody = oPop.document.body;
+        oPopBody.style.cssText = 'border:2px threedhighlight outset;';
+        oPopBody.innerHTML = strMenuHTML;
+        oPop.show(event.clientX, event.clientY, 100, 60, document.body);
+        return false;
+    })
+}
+
+
+
+//<![CDATA[
+
+function changeCell(el) {
+
+    cell = el.getElementsByTagName('td');
+    cor = cell[0].style.background; //Cor anterior
+    for (c = 0; c < cell.length; c++) {
+        cell[c].style.background = "#405c5c";
+    }
+    el.onmouseout = function () {
+        for (c = 0; c < cell.length; c++) {
+            cell[c].style.background = cor;
+        }
+    }
+}
+
+//]]> 
+//Hack para os radiobuttons dentro do repeater de gdvRegistros.
+function SetUniqueRadioButton(nameregex, current) {
+    re = new RegExp(nameregex);
+    for (i = 0; i < document.forms[1].elements.length; i++) {
+        elm = document.forms[1].elements[i]
+        if (elm.type == 'radio') {
+            if (re.exec(elm.name)) {
+                elm.checked = false;
+            }
+        }
+    }
+    current.checked = true;
+}
+
+// Permite o CrossPostBack para uma nova janela
+//function fixform() {
+//    if (window.opener && !window.opener.closed) {
+//        var form = opener.document.getElementById("aspnetForm");
+
+//        if (form != null && form.target != "_blank") return;
+
+//        form.target = "";
+//        form.action = window.opener.location.href;
+//    }
+//}
+
+function toogleNavigatorsSize() {
+    var arr = document.getElementsByTagName("div");
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].className == "modifierText") {
+            if (arr[i].offsetHeight > 20) {
+                if (arr[i].parentElement.className == "tag") {
+                    arr[i].parentElement.className = "tag_big";
+                }
+                else if (arr[i].parentElement.className == "tagged") {
+                    arr[i].parentElement.className = "tagged_big";
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,994 @@
+/*
+JUCESP - Junta Comercial do Estado de S„o Paulo
+VERS√O: 1.0
+*/
+
+#jo_pesquisa table
+{
+   background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    width: 100%;
+}
+#jo_pesquisa a#pesquisa_avancada
+{
+    display: block;
+    font: 11px Arial, Helvetica, Verdana, sans-serif;
+    text-align: right;
+    text-decoration: none;
+}
+#jo_pesquisa a#ctl00_cphContent_frmBuscaSimples_lnkPesquisa_Avancada
+{
+    display: block;
+    font: 11px Arial, Helvetica, Verdana, sans-serif;
+    text-align: right;
+    text-decoration: none;
+}
+#jo_pesquisa table td
+{
+    padding: 17px 0;
+    margin: 0 13px;
+}
+#jo_pesquisa table td.item01 input.input_text
+{
+    width: 445px;
+    padding: 5px 0 5px 5px;
+    color: #405c5c;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 14px;
+    border: 1px solid #f8e8c8;
+}
+#jo_pesquisa table td.item01
+{
+    width: 455px;
+    padding: 0 0 0 13px;
+}
+#jo_pesquisa table td.item02
+{
+    width: 84px;
+    padding-right: 10px;
+}
+#jo_pesquisa table td.item02 input.input_submit
+{
+    background: transparent url(../img/bt_buscar.png?20160623) no-repeat scroll 0 0;
+    border: 0 none;
+    color: #FFFFFF;
+    float: left;
+    font-size: 0.85em;
+    font-weight: bold;
+    height: 31px;
+    text-indent: -9000px;
+    text-transform: uppercase;
+    width: 84px;
+}
+
+#jo_pesquisaMapa table
+{
+  background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    width: 100%;
+    padding: 10px 0;
+}
+#jo_pesquisaMapa table td.item01
+{
+    padding: 0 13px 0 13px;
+    width: 250px;
+    margin-right: 13px;
+    border-right: 1px solid #f7a429;
+}
+#jo_pesquisaMapa table td.title1 p, #jo_pesquisaMapa table td.title2 p
+{
+    padding-left: 15px;
+}
+#jo_pesquisaMapa table td.item02
+{
+    padding: 0 0 0 10px;
+    width: 470px;
+}
+#jo_pesquisaMapa table td.item03
+{
+    padding: 0 0 0 10px;
+}
+#jo_pesquisaMapa table td.item02 label
+{
+    float: left;
+    margin-right: 3px;
+}
+#jo_pesquisaMapa table td.item02 #logradouro .input_text
+{
+    width: 210px;
+}
+#jo_pesquisaMapa table td.item02 #municipio .input_text
+{
+    width: 210px;
+}
+#jo_pesquisaMapa table td.item02 #cep .input_text
+{
+    width: 90px;
+}
+#jo_pesquisaMapa table td.item02 #bairro .input_text
+{
+    width: 90px;
+}
+#jo_pesquisaMapa table td.item02 #uf .input_text
+{
+    width: 90px;
+}
+
+#jo_pesquisaMapa table td.item02 .input_submit
+{
+	z-index: 5;
+    background: transparent url(../img/bt_buscar.png?20160623) no-repeat scroll 0 0;
+    border: 0 none;
+    color: #FFFFFF;
+    font-size: 0.85em;
+    font-weight: bold;
+    float: left;
+    height: 31px;
+    text-indent: -9000px;
+    text-transform: uppercase;
+    width: 84px;
+    padding: 0;
+    margin: 0;
+}
+
+#jo_pesquisaMapa table td.item01 .input_text
+{
+    width: 259px;
+    padding: 6px 0 6px 6px;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #405c5c;
+}
+#jo_pesquisaMapa table td.item02 .input_text
+{
+    color: #405c5c;
+    padding: 6px 0 6px 6px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* ERRO */
+#jo_erro table
+{
+  background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    width: 100%;
+}
+#jo_erro table td
+{
+    padding: 15px 15px 15px;
+    margin: 0 10px;
+}
+#jo_erro table td.item01 input.input_text
+{
+    width: 445px;
+    padding: 5px 0 5px 5px;
+    color: #405c5c;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 14px;
+    border: 1px solid #f8e8c8;
+}
+
+/* REENVIO DE SENHA */
+#jo_senha table
+{
+  background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    width: 100%;
+}
+#jo_senha table td.item01
+{
+    padding: 15px 0px 15px 15px;
+    margin: 0;
+    vertical-align: bottom;
+}
+#jo_senha table td.item02
+{
+    padding: 15px 15px 15px 0px;
+    margin: 0;
+    vertical-align: bottom;
+}
+#jo_senha table td.item01 input.input_text
+{
+    width: 445px;
+    padding: 5px 0 5px 5px;
+    color: #405c5c;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 14px;
+    border: 1px solid #f8e8c8;
+}
+#jo_senha table td .notice, #jo_senha table td .success, #jo_senha table td .loading
+{
+    margin: 15px 15px 0px 15px;
+}
+#jo_senha table td .success table, #jo_senha table td .notice table, #jo_senha table td .loading table
+{
+    margin-bottom: 0px;
+    width: 100%;
+}
+#jo_senha table td .success table td
+{
+    background: #e6efc2;
+}
+#jo_senha table td .notice table td
+{
+    background: #f8e0b8;
+}
+#jo_senha table td .loading table td
+{
+    background: #f8edb8;
+}
+#jo_senha table td .success table td.itemIcon, #jo_senha table td .notice table td.itemIcon, #jo_senha table td .loading table td.itemIcon
+{
+    width: 20px;
+}
+
+/*  FALE CONOSCO */
+
+#content #formContato
+{
+    background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    padding: 15px;
+}
+#content #formContato label
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #f7a429;
+}
+#content #formContato strong
+{
+    color: #fa9f00;
+}
+#content #formContato label span
+{
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    color: #32364d;
+    display: block;
+    font-size: 11px;
+}
+#content #formContato p.title
+{
+    border-bottom: 1px solid #ccc;
+}
+
+#formContato .inputText
+{
+    width: 450px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #363764;
+}
+#formContato .inputText2
+{
+    width: 25px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+
+#content #formContato textarea
+{
+    width: 520px;
+    height: 160px;
+}
+
+/*  COMPRAR CREDITOS */
+#content #textoComprar 
+{
+    width: 630px;
+}
+#content #formComprar
+{
+    background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    padding: 15px;
+    width: 600px;
+}
+#content #formComprar label
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #32364d;
+}
+#content #formComprar strong
+{
+    color: #ff9800;
+}
+#content #formComprar label span
+{
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    color: #32364d;
+    display: block;
+    font-size: 11px;
+}
+#content #formComprar p.title
+{
+    border-bottom: 1px solid #ccc;
+}
+
+#formComprar SELECT
+{
+    font: 12px Arial, Helvetica, Verdana, sans-serif;
+}
+#formComprar .inputText
+{
+    width: 450px;
+    padding: 6px 2px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+#formComprar .inputText2
+{
+    width: 25px;
+    padding: 6px 2px;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+
+#content #formComprar textarea
+{
+    width: 520px;
+    height: 160px;
+}
+
+/*  LISTA TICKETS */
+
+#content #formTickets
+{
+    background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    padding: 15px;
+}
+#content #formTickets label
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #32364d;
+}
+#content #formTickets strong
+{
+    color: #ff9800;
+}
+#content #formTickets label span
+{
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    color: #32364d;
+    display: block;
+    font-size: 11px;
+}
+#content #formTickets p.title
+{
+    border-bottom: 1px solid #ccc;
+}
+
+#formTickets SELECT
+{
+    font: 12px Arial, Helvetica, Verdana, sans-serif;
+}
+#formTickets .inputText
+{
+    width: 450px;
+    padding: 6px 2px;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+#formTickets .inputText2
+{
+    width: 25px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+
+#content #formTickets textarea
+{
+    width: 520px;
+    height: 160px;
+}
+
+.loading, .erro, .notice, .charge, .success
+{
+    padding: .8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+}
+
+
+.loading table, .erro table, .notice table, .charge table, .success table
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.loading
+{
+    background: #d0e8e8;
+    color: #093058;
+    border-color: #64d3ea;
+}
+.erro
+{
+    background: #FBE3E4;
+    color: #8a1f11;
+}
+.notice
+{
+    background: #FFF6BF;
+    color: #514721;
+    border-color: #FFD324;
+}
+.success
+{
+    background: #f6f8c8;
+    color: #264409;
+    border-color: #ffac00;
+}
+.charge
+{
+    background: #f6f8c8;
+    color: #264409;
+    border-color: #ffac00;
+}
+.charge .ValorReais
+{
+    font-family: Arial;
+    font-weight: bold;
+}
+.charge .itemIcon
+{
+    padding-right: 5px;
+}
+
+.error a
+{
+    color: #8a1f11;
+}
+.notice a
+{
+    color: #514721;
+}
+.success a
+{
+    color: #264409;
+}
+
+.notice table td span, .success table td span, .loading table td span
+{
+    font: 62.5% Georgia, "Times New Roman" , serif;
+    text-transform: none;
+    font-size: 1em;
+}
+
+.mapa #jo_resultado .notice TABLE, .mapa #jo_resultado .success TABLE, .mapa #jo_resultado .loading TABLE, .resultado #jo_resultado .success TABLE, .resultado #jo_resultado .loading TABLE, .resultado #jo_resultado .notice TABLE
+{
+    float: none;
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.mapa #jo_resultado .success TABLE TD.itemIcon, 
+.mapa #jo_resultado .notice TABLE TD.itemIcon, 
+.mapa #jo_resultado .loading TABLE TD.itemIcon, 
+.resultado #jo_resultado .success TABLE TD.itemIcon, 
+.resultado #jo_resultado .loading TABLE TD.itemIcon, 
+.resultado #jo_resultado .notice TABLE TD.itemIcon, 
+#content #formBuscaAvancada .notice TABLE TD.itemIcon
+{
+    width: 20px;
+    vertical-align: top;
+}
+
+#content #textoComprar .message TABLE TD.itemIcon 
+{
+	padding-top: 2px;
+    vertical-align: top;
+}
+#content #formBuscaAvancada .notice TABLE TD span
+{
+	font-family: Arial, "Times New Roman", serif;
+}
+
+#filtroSolicitacao td
+{
+    padding: 6px 6px 6px 6px;
+}
+
+/* Cadastro */
+
+.cadastro table td
+{
+    margin-bottom: 25px;
+}
+.cadastro table td.title1, .cadastro table td.title2, .cadastro table td.title4
+{
+    padding-bottom: 10px;
+}
+.cadastro table td .inputText
+{
+    width: auto !important;
+}
+.cadastro table td.item02 .inputText, .cadastro table td.item03 .inputText
+{
+    width: 540px !important;
+}
+
+.cadastro .table01 td.item01 label, .cadastro .table01 td.item02 label
+{
+    margin-right: 15px;
+}
+
+.cadastro .table01 td.item03, .cadastro .table01 td.item05
+{
+    width: 55px !important;
+}
+
+.cadastro .table01 td.item04 input, .cadastro .table01 td.item06 input
+{
+    width: 470px !important;
+}
+
+.cadastro .table02 td.item07 input, .cadastro .table02 td.item10 input, .cadastro .table02 td.item12 input, .cadastro .table02 td.item14 input
+{
+    width: 440px !important;
+    margin-right: 5px;
+}
+
+.cadastro .table02 td.item11 input, .cadastro .table02 td.item13 input, .cadastro .table02 td.item15 input
+{
+    width: 80px !important;
+}
+
+.cadastro .table03 td
+{
+    width: 280px;
+}
+
+.cadastro .table03 td.item16 select, .cadastro .table03 td.item17 select
+{
+    width: 200px;
+}
+
+/* Pesquisa Avançada */
+.pesquisa_avancada table td .inputText
+{
+    width: auto !important;
+}
+.inputtext_data
+{
+    width: 82px;
+    padding: 6px 2px !important;
+    font-size: 14px !important;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.title2, .pesquisa_avancada #ctl00_cphContent_ajaxForm table td.title3
+{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item01 input, .pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item04 input
+{
+    width: 280px !important;
+}
+
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item03 input
+{
+    width: 520px !important;
+}
+
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item05 input
+{
+    width: 90px !important;
+}
+
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item06 input, .pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item08 input
+{
+    width: 350px !important;
+    margin-right: 10px;
+}
+
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item07 input, .pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item09 input
+{
+    width: 100px !important;
+    margin-right: 10px;
+}
+
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item11 input
+{
+    width: 230px !important;
+}
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item12 input
+{
+    width: 180px !important;
+}
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item12 #ctl00_cphContent_frmBuscaAvancada_ibtSessao
+{
+    width: auto !important;
+}
+.pesquisa_avancada #ctl00_cphContent_ajaxForm table td.item14 input
+{
+    width: 520px !important;
+}
+
+#content #formBuscaAvancada
+{
+    background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    padding: 15px;
+}
+#content #formBuscaAvancada label
+{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #32364d;
+}
+#content #formBuscaAvancada span.checkBox label
+{
+    display: inline;
+}
+#content #formBuscaAvancada strong
+{
+    color: #ff9800;
+}
+#content #formBuscaAvancada label span
+{
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    color: #32364d;
+    display: block;
+    font-size: 11px;
+}
+#content #formBuscaAvancada p.title
+{
+    border-bottom: 1px solid #ccc;
+}
+#content #formBuscaAvancada .listitem LABEL
+{
+    display: inline;
+    padding-left: 5px;
+}
+
+#formBuscaAvancada .inputText
+{
+    width: 450px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+#formBuscaAvancada .inputText2
+{
+    width: 25px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+#formBuscaAvancada .inputText3
+{
+    padding: 6px 2px;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+#content #formBuscaAvancada .loading table
+{
+    margin-bottom: 0px;
+    width: 100%;
+}
+#content #formBuscaAvancada .loading table td.itemIcon
+{
+    width: 20px;
+}
+
+
+#content #formDocumento
+{
+    background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    padding: 15px;
+    margin-left: 140px;
+    width: 590px;
+    margin-bottom: 20px;
+}
+#content #formDocumento label
+{
+    display: block;
+    font-weight: bold;
+    font-size: 1em;
+    color: #32364d;
+    margin-top: 4px;
+    margin-left: 2px;
+    float: left;
+}
+#content #formDocumento INPUT
+{
+    float: left;
+    display: block;
+    vertical-align: top;
+}
+#content #formDocumento strong
+{
+    color: #ff9800;
+}
+#content #formDocumento label span
+{
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    color: #32364d;
+    display: block;
+    font-size: 11px;
+}
+#content #formDocumento p.title
+{
+    border-bottom: 1px solid #ccc;
+}
+#content #formDocumento TABLE TD A:link
+{
+    text-decoration: none;
+}
+
+#formDocumento .inputText
+{
+    width: 450px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+#formDocumento .inputText2
+{
+    width: 25px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+
+/* MEUS TICKETS */
+.meus_tickets table.table2
+{
+    font: 10px Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+.meus_tickets table.table2 th
+{
+    line-height: 20px !important;
+    background: transparent url(../img/bg_tables.png?20160623) repeat-x scroll 0 0 !important;
+    color: #FFFFFF;
+    line-height: 24px;
+}
+.meus_tickets table.table2 td
+{
+    padding: 6px;
+}
+.meus_tickets table td .inputText
+{
+    width: auto !important;
+}
+.meus_tickets table.table1 td
+{
+    padding: 6px;
+}
+.meus_tickets table.table1 td.item03
+{
+    width: 290px;
+}
+.meus_tickets table.table1 td.item02 input
+{
+    width: 250px !important;
+}
+.meus_tickets table.table1 td.item03 input
+{
+    width: 90px !important;
+}
+.meus_tickets table.table1 td.item04 input
+{
+    width: 80px !important;
+}
+.meus_tickets table.table1 td.item05 input
+{
+    width: 155px !important;
+}
+.meus_tickets table.table1 td.item06 select
+{
+    width: 190px !important;
+}
+.meus_tickets table.table1 td.item04 img
+{
+    margin: 0 5px;
+}
+
+.table2 td a
+{
+    color: #660000;
+}
+
+.meus_tickets table.table2 th
+{
+    background: #666;
+    line-height: 14px;
+    color: #fff !important;
+}
+
+/* Comprar CrÈditos */
+.comprar_creditos table.table1
+{
+    width: 100%;
+}
+.comprar_creditos table.table1 th
+{
+    line-height: 20px !important;
+    background: transparent url(../img/bg_tables.png?20160623) repeat-x scroll 0 0 !important;
+    color: #FFFFFF;
+    line-height: 24px;
+}
+
+#ficha_cadastral table
+{
+    width: 100%;
+}
+#ficha_cadastral table th
+{
+    background: #eee !important;
+}
+#ficha_cadastral table td
+{
+    border: 1px solid #ccc;
+    padding: 3px 6px;
+}
+/*
+#formContato input#bt_enviar02,
+#formContato input#bt_enviar,
+#formContato input#enviar,
+#formContato input#bt_pesquisar,
+#formContato input#fale_sub,
+#formContato input#buscar {
+	background:transparent url(../img/bg_submit.png?20160623) no-repeat scroll 0 0;
+	border:0 none;
+	color:#FFFFFF;
+	font: 11px bolder Arial, Helvetica, sans-serif;
+	height: 31px;
+	text-transform:uppercase;
+	width: 84px;
+	padding: 0;
+	margin: 0;
+}
+*/
+.btcadastro
+{
+    background: transparent url(../img/bg_submit.png?20160623) repeat scroll 0 0;
+    border: 0 none;
+    color: #FFFFFF;
+    font: 11px bolder Arial, Helvetica, sans-serif;
+    height: 31px;
+    text-transform: uppercase;
+    width: 84px;
+    padding: 0;
+    margin: 0;
+}
+
+.lnkbutton
+{
+    background: transparent url(../img/bg_submit.png?20160623) no-repeat scroll 0 0;
+    border: 0 none;
+    color: #FFFFFF;
+    font: 11px bolder Arial, Helvetica, sans-serif;
+    height: 31px;
+    text-transform: uppercase;
+    width: 84px;
+    padding: 8px 0px 0px 0px;
+    margin: 0;
+    text-align: center;
+}
+
+/* PRE VISUALIZA EMPRESA */
+.listaServicos td
+{
+    vertical-align: top;
+    padding-left: 10px;
+}
+
+
+/*Formul·rios genÈricos*/
+.formgenerico
+{
+    background: linear-gradient( 0.2turn, #f8d090, #f8e8c8 );
+    padding: 15px;
+}
+.formgenerico label
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #32364d;
+}
+.formgenerico strong
+{
+    color: #405c5c;
+}
+.formgenerico label span
+{
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    color: #32364d;
+    display: block;
+    font-size: 11px;
+}
+.formgenerico p span.arquivamento
+{
+    color: #32364d;
+    font-weight: bold;
+}
+.formgenerico p.title
+{
+    border-bottom: 1px solid #ccc;
+}
+
+.formgenerico .inputText
+{
+    width: 450px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+.formgenerico .inputText2
+{
+    width: 25px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}
+
+.formgenerico textarea
+{
+    width: 520px;
+    height: 160px;
+}
+
+.divCorrecaodeDados
+{
+    padding: 10px;
+    margin : 10px;
+    border-spacing: 10px;
+    border-color: #32364d;
+    border-width:thin;
+    border-style: solid;
+}
+
+#formComentario .inputText
+{
+    width: 450px;
+    padding: 6px 2px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: #366464;
+}

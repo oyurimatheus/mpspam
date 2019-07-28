@@ -1,0 +1,879 @@
+/* Estilos para telas padrão */
+
+html,body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #4C4436;
+	font-family: arial, 'trebuchet ms', sans-serif;
+	font-size: 12px;
+	color: #000;
+	text-align: center;
+}
+
+li.erro_aviso {  
+    background-image: url(../images/msg_vermelha.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -2px;
+    padding-left: 18px; 
+    color: red;
+    list-style: none;	
+	
+}
+
+td, th {
+	font-family: arial, 'trebuchet ms', sans-serif;
+	font-size: 10px;
+	color: #000000;
+}
+
+img {
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #906E14;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #C64A2B;
+}
+
+iframe {
+	display: block;
+	width: 778px;
+	margin: auto;
+}
+
+p, table {
+	margin:0 auto;
+	text-align:left;
+}
+
+/* Definição de estilos para Conteúdo */
+
+
+div#conteudo {
+	width: 778px;
+    height: auto; 
+	height: 100%;
+	margin: auto;
+	background-color: #FFF;
+	text-align: left;
+	float: left;
+}
+
+div#corpo {
+	height: 300px;
+}
+
+span.spanPaginaAtual {
+	color: #FC0;
+	font-weight: bold;
+}
+
+h1.h1TituloPrincipal {
+	margin: 0px 5px 10px 5px;
+	padding-top: 10px;
+	padding-bottom: 2px;
+	text-align: left;
+	border-bottom: 1px solid #E0DAC9;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.TituloPrincipal {
+	width:98%;
+	margin: 0px 5px 10px 5px;
+	padding-top: 10px;
+	padding-bottom: 2px;
+	text-align: left;
+	border-bottom: 1px solid #E0DAC9;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+div.rotulo {
+	margin: 0;
+	width: 50%;
+	height: 25px;
+	float: left;
+	text-align: right;
+	line-height: 17px;	
+}
+
+div.campo {
+	margin: 0;
+	width: 49%;
+	height: 25px;
+	float: right;
+	text-align: left;	
+}
+
+div.status {
+	background-color: #FFF;
+	color: Red;	
+	font-weight: bold;
+	width: 40%;
+	height: 80px;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+	clear: both;
+	border: 1px solid #AA977F;
+}
+
+div.observacao {
+	width: 50%;
+	height: 25px;
+	clear: both;
+	font-style: italic;
+	font-size: 10px;
+	margin: auto;
+	text-align: center;
+}
+
+
+.erro{
+	width: 95%;
+	clear: both;
+	text-align: left;	
+	color: red;
+	border-top: 1px red thin;
+	border-bottom: 1px red thin;
+	font-style: italic;
+	background-image: url(../images/msg_vermelha.gif);
+	
+}
+.erroResultadoPesquisa{
+	width: 95%;
+	clear: both;
+	text-align: center;	
+	color: red;
+	border-top: 1px red thin;
+	border-bottom: 1px red thin;
+	font-style: italic;
+}
+
+/* Estilos para mensagens */
+
+li.erro {  
+    color: red;
+    list-style: none;    
+    padding-left: 18px;
+    background-repeat: no-repeat;
+    background-position: 0px -2px;
+    background-image: url(../images/msg_vermelha.gif);
+}
+li.alerta {  
+    color: #B88A00;
+    list-style: none;	
+    padding-left: 18px; 
+    background-repeat: no-repeat;
+    background-position: 0px -2px;
+    background-image: url(../images/msg_amarela.gif);
+}
+
+li.sucesso {  
+    color: green;
+    list-style: none;  
+    padding-left: 18px; 
+    background-repeat: no-repeat;
+    background-position: 0px -2px;
+    background-image: url(../images/msg_verde.gif);
+}
+
+
+div.botoes {
+	width: 98%;
+	height: auto;
+	/*float: left;*/
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 2px;
+	padding: 10px;
+}
+	
+.botoes {
+	width: 98%;
+	height: 20px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 2px;
+}
+
+
+table.tableResultadoConsulta {
+	width: 98%;
+	border: 0;
+	border-top: 1px solid #FFF;
+	border-bottom:  1px solid #FFF;
+	border-collapse: collapse;
+	margin: 0% 5%;
+	clear: both;	
+}
+
+table.tableResultadoConsulta th {
+	color: #4C4436;
+	
+}
+
+table.tableResultadoConsulta th.thCab {
+	text-align: center;
+	color: #FFF;
+}
+
+table.tableResultadoConsulta thead th, td.vazio {
+	border: 1px solid #FFF;
+	background-color: #E9DDCE;
+	text-align: left;
+}
+
+table.tableResultadoConsulta thead th.thCentral, table.tableResultadoConsulta th.thCentral {
+	text-align: center;
+}
+table.tableResultadoConsulta thead th.thCentral25, table.tableResultadoConsulta th.thCentral25 {
+	text-align: center;
+	width: 105px;
+}
+
+
+table.tableResultadoConsulta  th.thDireita {
+	text-align: right;	
+}
+
+table.tableResultadoConsulta thead th.invisivel {
+	font-size: 10%; /* tamanho usado apenas para o leitor de tela */
+	color: #E9DDCE;
+	padding: 10px;	
+}
+
+/* A tr.grupo deve ser usada para dados que, embora não sejam cabeçalhos, merecem algum destaque. Exemplo: valores totais */
+table.tableResultadoConsulta tbody tr.grupo {
+	border: 0;
+	background-color: #E9DDCE;
+	font-weight: bold;
+}
+
+table.tableResultadoConsulta tbody tr.grupo td{
+	color: #4C4436;
+	font-size: 10px;
+}
+
+
+
+table.tableResultadoConsulta tbody tr.even {
+	border: 0;
+	background-color: #F1EEE9;
+}
+
+table.tableResultadoConsulta tbody tr.odd {
+	border: 0;
+	background-color: #F8F5F1;	
+}
+
+table.tableResultadoConsulta tbody td.tdCentral {
+	border: 0;
+	text-align: center;
+}
+
+table.tableResultadoConsulta tbody td.tdCentral25 {
+	border: 0;
+	text-align: center;
+	width: 105px;
+}
+
+table.tableResultadoConsulta tbody td.tdDireita {
+	border: 0;
+	text-align: right;
+}
+
+table.tableResultadoConsulta tbody td.tdMaior {
+	border: 0;
+	text-align: left;
+	width: 150px;
+
+}
+table.tableResultadoConsulta tbody td.tdMenor {
+	border: 0;
+	text-align: left;
+	width: 5px;
+}
+
+table.tableResultadoConsulta tbody td.tdMedia {
+	border: 0;
+	text-align: left;
+	width: 115px;
+}
+
+table.tableResultadoConsulta tbody td.tdFone {
+	border: 0;
+	text-align: left;
+	width: 85px;
+}
+
+
+input {
+	border: 1px solid #AA977F;	
+	font-size: 12px;
+}
+
+input[type=checkbox], input[type=radio] {
+	border: 0;
+	width: auto;
+}
+
+
+input[type=button], [type=reset], [type=submit]{
+	background-color: #7F735A;
+	color: #FFF;
+	border: 0;
+	padding: 2px;
+	font-weight: bold;
+	margin-right: 2px;
+}
+
+input.direita {
+  text-align: right;
+} 
+
+select {
+	font-size: 12px;
+	border: 1px solid #AA977F;	
+}
+
+textarea {
+	font-size: 12px;
+	border: 1px solid #000;
+}
+
+option {
+	font-size: 12px;
+}
+
+fieldset {
+	width: 95%;
+	border:1px solid #E9DDCE;
+	padding:5px;
+	/*position: relative;*/
+	margin: auto;
+	margin-top: 0.5cm;	
+	/*margin-left: 0.5cm;
+	margin-right: -0.5cm;*/
+	
+}
+
+legend {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000;
+}
+
+
+/* Fim Conteúdo */
+
+/* Definicao de estilos para Topo */
+
+iframe#iframeTopo {
+    height: 21px;
+	float: left;
+}
+
+div#topo {
+	position:relative;
+	width: 778px;
+	height: 21px;        
+	background-color: #FC0;	
+	display:block;
+}
+
+div#tudo {
+    width: 780px;
+	margin: auto;
+	padding: 0px;	
+}
+
+div#topo img#logo_mte {
+	position: absolute;
+	top: 1px;
+	left: 11px;
+   border: 0;
+}
+
+div#topo img#logo_brasil {
+	position: absolute;
+	right: 11px;
+   border: 0;
+}
+
+/* Fim Topo */
+
+/* Definicao de estilos para Cabecalho */
+
+div#cabecalho {
+	position:relative;
+	width:778px;
+   	height: 109px;
+   	overflow: hidden;
+   /*margin: auto;
+   background: #92866E url(../images/img_fundo.jpg) top right no-repeat;
+   display:block;*/
+}
+
+div#cabecalho div#cabecalho_img1 {
+   float: left;
+   /*background:url(../images/img_publicacoes.jpg) top left no-repeat;
+   width:232px;
+   height:109px;*/
+}
+
+div#cabecalho div#cabecalho_img2 {
+   position: absolute;
+   left: 230px;
+   top: 0px;
+   z-index: 0;
+   
+}
+
+div#cabecalho div#titulo_area, div#cabecalho div#titulo_projeto {
+	position: absolute;
+   	left:250px;
+	top:15px;
+   	width:370px;
+   	text-align: left;
+   	z-index: 2;	
+   	color:#FFF;
+	font-size: 16px;
+	font-family:'trebuchet ms', sans-serif;
+}
+
+div#cabecalho div#titulo_projeto {
+   top: 30px;
+   font-size: 16px;
+   float: right;
+   z-index: 0;   
+}
+
+div#cabecalho div#data_atual {	
+	position:absolute;
+   left:580px;
+	top:95px;
+   width:370px;
+   text-align: left;
+   z-index: 2;	
+   color:#FFF;
+	font-size: 10px;
+	font-family: arial, 'trebuchet ms', sans-serif;
+}
+
+/* Fim Cabeçalho */
+
+/* Definição de estilos para Menu */
+
+ ul#udm li {
+    padding-right: 7px;
+}
+
+div#menu {
+	width: 734px;
+	height: 19px;
+	margin: auto;
+	background-color: #92866E;
+	float: left;
+}
+div#menu2 {
+	width: 734px;
+	height: 19px;
+	margin: auto;
+	background-color: #E9DDCE;
+	float: left;
+}
+
+/* Fim Menu */
+
+/* Definição de estilos para Navegação */
+
+div#navegacao {
+	width: 778px;
+	height: 19px;
+	margin: auto;
+	background-color: #ffffff;
+	color: #000000;
+	text-align: left;
+	border-bottom: 1px solid #E9DDCE;
+}
+
+p.pNavegacao {
+	margin: 0;
+	padding: 5px;
+}
+
+/* Fim Navegação */
+
+/* Definição de estilos para Rodapé */
+
+
+div#rodape {
+	clear: both;
+	width: 778px;	
+	background-color: #92866E;	
+	font-size: 10px;
+	color: #ffffff;
+	line-height: 21px;
+	text-align: center;
+}
+
+/* Fim Rodapé */
+
+/* Linha com número variado de colunas */
+
+div.linha {
+	width: 98%;
+	height: 25px;
+	margin: auto;	
+}
+div.linha_aumentada {
+	width: 98%;
+	height: 30px;
+	margin: auto;	
+}
+div.coluna_1 {
+	float: left;
+	text-align: left;
+	width: 30%;
+	height: 25px;
+}
+
+div.coluna_2 {
+	float: right;
+	text-align: left;
+	width: 70%;
+	height: 25px;
+}
+
+div.coluna_3 {
+	float: left;
+	text-align: left;
+	width: 50%;
+	height: 25px;
+	
+}
+
+div.coluna_4 {
+	float: right;
+	text-align: left;
+	width: 49.99%;
+	height: 25px;
+	
+}
+
+div.coluna_11 {
+	float: left;
+	text-align: left;
+	width: 62%;
+	height: 25px;
+}
+
+div.coluna_21 {
+	float: right;
+	text-align: left;
+	width: 38%;
+	height: 25px;
+}
+div.coluna_11p {
+	float: left;
+	text-align: left;
+	width: 55%;
+	height: 25px;
+	margin-left: 10px;
+}
+
+div.coluna_21p {
+	float: right;
+	text-align: left;
+	width: 40%;
+	height: 25px;
+}
+.cl_014 {
+	display:none;
+}
+
+div.bddocMessagePopup {
+	display: none;
+	width: 800px;
+	height: 300px;
+	text-align: center;
+	background-color: #ffffff;
+	border-color: #000000;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 14px;
+	font-weight: bold;
+}
+div.bddocMessagePopupText {
+	height: 65%;
+}
+div.bddocMessagePopupBottom {
+	background-color: #888888;
+	text-align: center;
+	height: 35%;
+}
+
+div.bddocMessagePopupDetalhamentoText {
+	height: 73%;
+}
+
+div.bddocMessagePopupDetalhamentoBottom {
+	background-color: #888888;
+	text-align: center;
+	height: 27%;
+}
+
+/*-------------------------------------*/
+
+
+p.pVoltar {
+	margin: 0px 5px 10px 5px;
+	font-size: 10px;
+	text-align: right;
+	clear: both;
+}
+
+ /* Ícones para definir o tamanho do texto */
+
+div#diminui_texto {
+	background: #DFD2BC;	
+	margin-right: 4px;
+	float: left;
+	width: 16px;
+	height: 19px;
+}
+
+div#aumenta_texto {
+	background: #DFD2BC;
+	float: right;
+	width: 24px;
+	height: 19px;
+}
+
+div#diminui_texto a:link,
+div#diminui_texto a:visited {
+	background: url("../images/a_on.gif") no-repeat;
+	display:block;
+	width: 16px;
+	height: 15px;
+}
+
+div#diminui_texto a:hover {
+	background: url("../images/a_over.gif") no-repeat;
+}
+
+div#aumenta_texto a:link,
+div#aumenta_texto a:visited {
+	background: url("../images/a_mais_on.gif") no-repeat;
+	display:block;
+	width: 24px;
+	height: 19px;
+}
+
+div#aumenta_texto a:hover {
+	background: url("../images/a_mais_over.gif") no-repeat;
+}
+
+span.tamanho_texto {
+	display: none;
+}
+
+
+/* estilos para o datatable e datascrooler */
+	
+	#panelForm{
+		clear:both;
+		margin:auto;
+		display: table;
+	} 
+	
+	#panelDataTable{
+		width:750px;	
+	}
+	#tableConsultaAbono{
+		 text-align:left;
+		 width:100%; 
+	}
+	
+	.headerDataTable{
+		background-color: #E9DDCE;
+		text-align: left;
+		padding:2px;
+		font-weight: normal;
+	}
+	
+	.evenDataTable {
+		border: 0;
+		background-color: #F1EEE9;
+	}
+	
+	.oddDataTable {
+		border: 0;
+		background-color: #F8F5F1;	
+	}
+	
+	.active a {
+		text-decoration: none;
+		color: #000000;
+		font-weight: bold;
+		font-size:15px;
+	}
+	
+	.active a:hover {
+		color: #C64A2B;
+	}
+	
+	#panelAction{
+		width: 300px;
+		border:1px solid #000000;
+	}
+	
+	#form1:tipoPisPasep{ border:1px solid #000000; }
+
+
+.options {
+	float: left; 
+	border: 0;
+	border-style: none;
+}
+/* Fim linha com número variado de colunas */
+
+
+/* Estilos relativos ao CAPTCHA */
+
+fieldset.recibo {
+	width: 80%;
+	border:1px solid #E9DDCE;
+	padding:5px;
+	position: relative;
+	margin-left: 2.0cm;
+	margin-right: -0.5cm;
+}
+a.reload {
+	text-align: left;
+	font-size: 9px; 
+}
+/* Fim estilos CAPTCHA */
+
+table.tableResultadoConsulta {
+	width: 95%;
+	border: 0;
+	border-top: 1px solid #FFF;
+	border-bottom:  1px solid #FFF;
+	border-collapse: collapse;
+	margin: auto;
+	clear: both;
+}
+
+table.tableResultadoConsulta th {
+	color: #4C4436;
+}
+
+table.tableResultadoConsulta thead th, td.vazio {
+	border: 1px solid #FFF;
+	background-color: #E9DDCE;
+	text-align: left;
+}
+
+table.tableResultadoConsulta   th.thCentral {
+	text-align: center;
+}
+
+table.tableResultadoConsulta  th.thDireita {
+	text-align: right;
+}
+
+table.tableResultadoConsulta thead th.invisivel {
+	font-size: 10%; /* tamanho usado apenas para o leitor de tela */
+	color: #E9DDCE;
+	padding: 10px;
+}
+/* A tr.grupo deve ser usada para dados que, embora não sejam cabeçalhos, merecem algum destaque. Exemplo: valores totais */
+table.tableResultadoConsulta tbody tr.grupo {
+	border: 0;
+	background-color: #E9DDCE;
+	font-weight: bold;
+}
+
+table.tableResultadoConsulta tbody tr.grupo td{
+	color: #4C4436;
+}
+
+table.tableResultadoConsulta tbody tr.even {
+	border: 0;
+	background-color: #F1EEE9;
+}
+
+table.tableResultadoConsulta tbody tr.odd {
+	border: 0;
+	background-color: #F8F5F1;	
+}
+
+table.tableResultadoConsulta tbody td.tdCentral {
+	border: 0;
+	text-align: center;
+}
+
+table.tableResultadoConsulta tbody td.tdDireita {
+	border: 0;
+	text-align: right;
+}
+
+img.imgLink {
+	cursor:pointer;
+}
+
+#okButton {
+	width: 100px;
+	height: 30px;
+}
+div.txtPop { 
+	position: absolute;
+	text-align: center;
+}
+div.divOkBtn { 
+	position: absolute;
+	text-align: center;
+}
+
+fieldset.info {
+  padding: 1em;
+  font:80%/1 sans-serif;
+  margin: 0.1cm auto auto auto;
+  text-align: center;
+}
+
+label.info {
+float:left;
+  width:25%;
+  text-align:right;
+  font-weight:bold;
+}
+
+div.plain-text {
+	text-align: center;
+}
+
+div.bold-plain-text {
+	text-align: center;
+	font-weight:bold;
+}
+
+#idTableOpcoesAtualizaACI{
+	margin-left: 150px;
+	font-weight: bold;
+}
+
+

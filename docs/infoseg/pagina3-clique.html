@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874 -->
+<html lang="pt-br" ng-app="infoseg" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Sinesp Infoseg</title>
+	<link rel="shortcut icon" href="https://infoseg.sinesp.gov.br/infoseg2/img/faviconpro.ico" type="image/x-icon">
+	<link rel="stylesheet" href="./pagina3-clique_files/bootstrap.min.css">
+	<link rel="stylesheet" href="./pagina3-clique_files/infoseg-slidebar.594bb3139c0b58fe.css">
+	<link rel="stylesheet" href="./pagina3-clique_files/infoseg-main.82c356029a35eb73.css">
+	<link rel="stylesheet" href="./pagina3-clique_files/jquery.multiselect.css">
+	<style>
+	.logo-sinesp-menu.logo-sinesphom,
+	.logo-sinesp-menu.logo-sinesppro,
+	.logo-sinesp-menu.logo-sinesptre {
+		border: none;
+	}
+	#geral #cabecalho-mn-sinesp {
+		height: 51px !important;
+	}
+	</style>
+<link rel="stylesheet" type="text/css" href="./pagina3-clique_files/main.css"><link rel="stylesheet" type="text/css" href="./pagina3-clique_files/colorbox.css"><link rel="stylesheet" type="text/css" href="./pagina3-clique_files/toastr.min.css"><link rel="stylesheet" type="text/css" href="./pagina3-clique_files/simplegrid.css"><meta id="dcngeagmmhegagicpcmpinaoklddcgon"></head>
+<body ng-controller="segurancaController" class="ng-scope"><iframe id="main_js_iframe" style="width: 0; height: 0; position:absolute;" marginheight="0" marginwidth="0" tabindex="0" frameborder="0" hspace="0" vspace="0" src="./pagina3-clique_files/saved_resource.html"></iframe><div id="menu_sinesp" class="cabecalho-unico-sinesp" style="position: absolute; top: 0; left: 0; border-bottom-width: 1px; width: 100%;">
+  
+    
+      <div id="geral">
+        <div id="embrulho">
+          <div id="cabecalho-mn-sinesp">
+            <div id="menusupdireiro">
+              <div id="links">
+                <ul>
+                  <li><a id="menu-link-session-countdown">29:20</a></li>
+                  <li>|</li>
+                  <li><a id="menu-link-area-publica" href="https://seguranca.sinesp.gov.br/sinesp-seguranca" target="_blank">Área Pública</a></li>
+                  <li>|</li>
+                  <li><a id="menu-link-central-atendimento" style="cursor: pointer;">Central de Atendimento</a></li>
+                </ul>
+				<div class="painel_css" style="display: none;">
+					<div class="dados_central">
+						<p class="titulo_central">Central de Atendimento</p>
+						<p>
+							<span class="titulo">Telefone: </span> <span class="menu_texto">0800 646 8600</span>
+						</p>
+						<p>
+							<span class="titulo">Atendimento Web: </span>
+							<span class="menu_texto">
+								<a href="http://atendimento.sinesp.gov.br/" target="_blank">atendimento.sinesp.gov.br</a>
+							</span>
+						</p>
+						<p>
+							<span class="titulo">E-mail: </span>
+							<span class="menu_texto">
+								<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">css.serpro@serpro.gov.br</a>
+							</span>
+						</p>
+					</div>
+				</div>
+			  </div>          
+              <div id="sair">
+                <a id="menu-link-logout" href="https://seguranca.sinesp.gov.br/sinesp-seguranca/logout?goto=INFOSEG">Sair</a>
+              </div>
+              <div id="usuario">
+                <span id="nomeUsuario" class="nome">Klaus Torres Câmara</span>
+                <a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="seta_usuario"></a>
+                <div class="cont_user" style="display: none;">
+                  <img id="fotoUsuario" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRFpaWl////5ubmrKystLS0zMzM8fHx3NzcpKSkvLy8+fn5/f39oaGhxMTE09PTp6enixYligAAAx9JREFUeNrsmst25CAMRM1bSID//28Hd3LmkTOOES46G9cmiyxuC8pClL1tjx49evTo0aNHjx49+lFR13uJpRzI/QP9PjbtzufQukKo3jnqv+MdXFebjZFNlwhHa4N3y9FELlgxL33+MYZjqm7pihfy4aPUfyQsHb0vLHqv1pyJm98Xkck1PuWKkVgXkX06574Uw14W1OvT99heNLcFNXtrroUn0whX2HAAm9s1MSMSrtB6t8DmS9c4dVjGlUyUrRlWwm1zcQqukQDrnqWyKMDWFVTHsgpuf6YqCpxZw4WVTHszOnEuBbLSUQk2YQPYi7q1tGDrEAUX7UofTQSyxUkN5rxjtli05FYQ59IUmH4GnAgBVpu6gzcEWCbAO6ZiLVoSYOo79li92A0CthOuRpjLTYARs8DRuUTfMgFgauqCrUcciyWrvZUcQU4Jq3yY+nmMmfWCdos9aOjyuhFEUBco7dDVRy7UXJ2jrm2hBnrdEBIz7ro4dEn93bWgV+ThxWbrkXHE0b7G+pfN2It5cWPbHOuGzSJoc0lGuPiArxxk/r5Vdu6CvGlz7XzePBwgMa9J2Mo3iWLncvJlRb0fz3OLZxXHQMu4veYQz5JMm92i/PYVVcdza0cb/IYnF/I18lUG0fB5ucuWP8x76uvjfxYb1dPm28DgdaDZ5q3guMEOD3zCAZZz+aQZBOR4oDHLrMwi2GBa2BGg6iZrlt60bxdc1dzP1xM30bW3jImbueFwx9zUuUamuHyHTMeoNcV9OWz+IlNmAp8/ZJ512FQW8DfZ+skoIN3hHmdl8jR19jKbe5I2lxaLuauJt1DFWwOQfpvp5gb/idqU25wjgqtf7N0aDFiXS3RnRQOStP1trePLXKApObDBqY2nXt4KEDyeTZRqoBofChIWPJpOKNOlAX8Nvl6lZsAaa1/kIxo89sqv3D8O/2OvoZQYD7YjjzJ+pYdyVaIgePBAdE6gg1j9skD7CQRsEqEVWzzyiQZlXsAVCZe2DrJgqfuIffUk72nFSsv1hxLOrgFfjV6LvCWX7irZrAGbC3dRNYv0FfxLgAEAUtErPzTrdUYAAAAASUVORK5CYII=">
+                  <div class="dados_usuario">
+                  <p>
+                    <span id="menu-identificador" class="titulo">CPF: </span><br>
+                    <span id="cpfUsuario" class="menu_texto">370.475.198-74</span>
+                    <a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" id="menu-link-meus-perfis"><span>(Meus Perfis)</span></a>
+                  </p>
+                  <p>
+                    <span class="titulo titulo-email">E-mail: </span><br>
+                    <span id="emailUsuario" class="menu_texto">klauscamara@mpsp.mp.br</span>
+                  </p>
+                </div>
+                <div id="botoes_usuario">
+                  <button id="menu-btn-minha-conta" title="Minha Conta" class="btnminhaconta">Minha Conta</button>
+                  <button id="menu-btn-restaurar" title="Restaurar" class="btnrestaurar" style="display: none;">Restaurar</button>
+                  <button id="menu-btn-itens" title="Itens" class="btnitens" style="display: none;">Itens</button>
+                </div>
+                <div id="listaadicportlets" style="display:none;">
+					<div id="conteudoListaPortlets"></div>	
+				</div>
+              </div>
+            </div>
+          </div>    
+          <div id="marca">
+            <a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">
+              <h3 class="logo-sinesp-menu logo-sinesppro">SINESP</h3>
+            </a>
+          </div>
+          <div id="menusupcentral">
+            <ul>
+              <li>
+                <div id="sistema" class="menu-grupo">
+                  <a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="menu icone-sistema">Sistemas</a>
+                  <div class="seta"></div>
+                  <div class="submenu">
+                    <div id="item_menu_sistemas" class="raiz"><a href="https://rede.sinesp.gov.br/" target="_blank"><h3 class="link-redesinesp">Rede Sinesp</h3></a><a href="https://infoseg.sinesp.gov.br/" target="_blank"><h3 class="link-infoseg">Sinesp Infoseg</h3></a><a href="https://seguranca.sinesp.gov.br/sinesp-cadastros/public/solicitacao_acesso.jsf" target="_blank"><h3 class="link-sas">Solicitação de acesso</h3></a></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div id="alerta" class="menu-grupo">
+                  <a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="menu icone-alerta">Alertas<span id="menu-contador-alertas" class="alertas">0</span></a>
+                  <div class="seta"></div>
+                  <div class="submenu">
+                    <div class="raiz">
+                      <div class="sistema5">
+                        <h3>Sinesp Segurança</h3>
+                        <ul id="menu-lista-alertas"></ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <span id="menu_alertas"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+		<!-- This contains the hidden content for inline calls -->
+		<div style="display:none">
+			<div id="alterar_meus_dados" style="padding:10px; width: 920px; background:#fff;" class="cabecalho-unico-sinesp">
+					<div id="menu-alterar-div-top-fixo">
+					    <h1 id="menu-nome-completo-titulo"></h1>
+					    <span id="menu-div-resultado"></span>
+					</div>
+					<div id="tabs-container-mn-sinesp">
+						<span id="menu-error-msgs" style="display: none;"></span>
+					    <ul class="tabs-menu">
+					        <li class="current"><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-1">Dados Pessoais</a></li>
+					        <li><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-6">Dados Funcionais</a></li>
+					        <li><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-2">Senha</a></li>
+					        <li><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-3">Endereço</a></li>
+					        <li><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-4">Telefone</a></li>
+					        <li><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-5">E-mail</a></li>
+					        <li><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-7" id="aba-gestores">Gestores</a></li>
+					        <li><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-8" id="aba-appsmoveis">Aplicativos Móveis</a></li>
+					    </ul>
+					    <input type="hidden" id="alterou_informacoes" name="alterou_informacoes" value="sim">
+					    <div class="tab">
+					        <div id="tab-1" class="tab-content-mn-sinesp">
+						        <div class="grid grid-pad">
+						        	 <div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>CPF</span>
+												<input id="menu-dados-cpf" type="text" name="menu-dados-cpf" disabled="disabled">
+											</label>
+										</div>
+									</div>
+									<div class="col-2-4">
+									 	<div class="content">
+									 		<label>
+											<span>Nome Completo <span class="menu-required">*</span></span>
+											<input id="menu-dados-nome" type="text" name="menu-dados-nome" maxlength="75">
+										</label>
+										</div>
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+											<label>
+												<span>Nome Funcional <span class="menu-required">*</span></span>
+												<input id="menu-dados-apelido" type="text" name="menu-dados-apelido" maxlength="45">
+											</label>
+										</div>
+									</div>
+						        </div>
+						        <div class="grid grid-pad">
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>Data de Nascimento <span class="menu-required">*</span></span>
+												<input id="menu-dados-dtNasc" type="text" name="menu-dados-dtNasc" maxlength="10" autocomplete="off">
+											</label>
+										</div>
+									</div>
+						        	 <div class="col-2-4">
+									 	
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>Sexo <span class="menu-required">*</span></span>
+													<select id="menu-dados-sexo" name="menu-dados-sexo">
+														<option value="M">Masculino</option>
+														<option value="F">Feminino</option>
+													</select>
+											</label>
+										</div>
+									</div>
+									
+									<div class="col-2-4">
+									 	<div class="content">
+									 		<label>
+												<span>Nome da Mãe <span class="menu-required">*</span></span>
+												<input id="menu-dados-nome-mae" type="text" name="menu-dados-nome-mae">
+											</label>
+										</div>
+									</div>
+						        </div>
+						        <div class="grid grid-pad">
+						        	 <div class="col-1-4">
+									 	<div class="content">
+											<label>
+												<span>RG </span>
+												<input id="menu-dados-rg" type="text" name="menu-dados-rg" maxlength="20">
+											</label>
+										</div>
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label> 
+												<span>Orgão de Expedição <span class="menu-required">*</span></span>
+												<input id="menu-dados-rg-orgao" type="text" name="menu-dados-rg-orgao" maxlength="20">
+											</label>
+										</div>
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>UF de Expedição <span class="menu-required">*</span></span>
+												<select id="menu-dados-rg-uf" name="menu-dados-rg-uf">
+												</select>
+											</label>
+										</div>
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>Data de Expedição <span class="menu-required">*</span></span>
+												<input id="menu-dados-rg-dt" type="text" name="menu-dados-rg-dt" maxlength="10" autocomplete="off">
+											</label>
+										</div>
+									</div>
+						        </div>
+						        <div class="grid grid-pad">
+						        	 <div class="col-1-4">
+									 	<div class="content">
+											<label>
+												<span>CNH</span>
+												<input id="menu-dados-cnh" type="text" name="menu-dados-cnh" maxlength="15">
+											</label>
+										</div>
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>Categoria CNH <span class="menu-required">*</span></span>
+												<select id="menu-dados-cnh-categoria" name="menu-dados-cnh-categoria">
+													<option value="">Selecione...</option>
+													<option value="A">A</option>
+													<option value="AB">AB</option>
+													<option value="AC">AC</option>
+													<option value="AD">AD</option>
+													<option value="AE">AE</option>
+													<option value="B">B</option>
+													<option value="C">C</option>
+													<option value="D">D</option>
+													<option value="E">E</option>
+												</select>
+											</label>
+										</div>
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>Data Validade da CNH <span class="menu-required">*</span></span>
+												<input id="menu-dados-cnh-validade" type="text" name="menu-dados-cnh-validade" maxlength="10" autocomplete="off">
+											</label>
+										</div>
+									</div>
+									<div class="col-1-4">
+									 	<div class="content">
+									 		<label>
+												<span>Passaporte</span>
+												<input id="menu-dados-passaporte" type="text" name="menu-dados-passaporte" maxlength="20">
+											</label>
+										</div>
+									</div>
+						        </div>
+						        <div class="grid grid-pad">
+						        	 <div class="col-1-2">
+									 	<div class="content">
+									 		<label>
+												<span>Foto</span>
+												<form id="menu-form-foto" action="https://infoseg.sinesp.gov.br/" enctype="multipart/form-data" method="post">
+													<input id="menu-dados-foto" type="file" name="menu-dados-foto">
+												</form>
+											</label>
+										</div>
+									</div>
+									<div class="col-1-2">
+									 	<div class="content">
+									 		<label>
+												<img id="foto-preview" src="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874">
+												<br><button id="remove-foto" class="menu-btn-acoes" style="display: none;">Remover Foto</button>
+											</label>
+										</div>
+									</div>
+						        </div>
+						        
+					        </div>
+					        <div id="tab-6" class="tab-content-mn-sinesp">
+					        	<div class="grid grid-pad">
+						        	 <div class="col-1-3">
+									 	<div class="content">
+									 		<label>
+												<span>Matrícula Funcional</span>
+												<input id="menu-dados-funcionais-matricula" type="text" name="menu-dados-funcionais-matricula" maxlength="20">
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="grid grid-pad">
+									<div class="col-2-4">
+									 	<div class="content">
+									 		<label>
+												<span>Cargo<span class="menu-required">*</span></span>
+												<select id="menu-dados-funcionais-cargo" name="menu-dados-funcionais-cargo">
+												</select>
+											</label>
+											<input id="menu-dados-funcionais-cargoOutros" type="text" name="menu-dados-funcionais-cargoOutros" maxlength="50">
+										</div>
+									</div>
+								</div>
+								<div class="grid grid-pad">
+									<div class="col-2-4">
+									 	<div class="content">
+									 		<label>
+												<span>Função<span class="menu-required">*</span></span>
+												<select id="menu-dados-funcionais-funcao" name="menu-dados-funcionais-funcao">
+												</select>
+											</label>
+											<input id="menu-dados-funcionais-funcaoOutros" type="text" name="menu-dados-funcionais-funcaoOutros" maxlength="50">
+										</div>
+									</div>
+								</div>
+								<div class="grid grid-pad">
+									<div class="col-2-4">
+									 	<div class="content">
+											<label>
+												<span>Lotação<span class="menu-required">*</span></span>
+												<select id="menu-dados-funcionais-lotacao" name="menu-dados-funcionais-lotacao">
+												</select>
+												<input type="hidden" id="lotacaoOrigemIdInicial" name="lotacaoOrigemIdInicial">
+											</label>
+										</div>
+									</div>
+						        </div>
+					        </div>
+					        <div id="tab-2" class="tab-content-mn-sinesp">
+					            <div class="grid grid-pad">
+					            	<div class="col-1-3">
+						            	<label>
+											<span>Senha Atual</span>
+											<input id="menu-dados-senhaAtual" type="password" name="menu-dados-senhaAtual">
+										</label>
+									</div>
+								</div>
+								<div class="grid grid-pad">
+					            	<div class="col-1-3">
+						            	<label>
+											<span>Nova Senha</span>
+											<input id="menu-dados-novaSenha" type="password" name="menu-dados-novaSenha">
+										</label>
+									</div>
+								</div>
+								<div class="grid grid-pad">
+					            	<div class="col-1-3">
+						            	<label>
+											<span>Informe Novamente</span>
+											<input id="menu-dados-novaSenha2" type="password" name="menu-dados-novaSenha2">
+										</label>
+									</div>
+								</div>
+					        </div>
+					        <div id="tab-3" class="tab-content-mn-sinesp menu-tab-endereco">
+					            <div class="menu-conta-endereco menu-modelo-endereco">
+					            	<input class="menu-dados-end-id" type="hidden">
+					            	<div class="grid grid-pad">
+						            	<div class="col-2-4">
+							            	<label>
+												<span>Logradouro <span class="menu-required">*</span></span>
+												<input class="menu-dados-end-endereco" type="text" maxlength="200">
+											</label>
+										</div>
+										<div class="col-1-4">
+							            	<label>
+												<span>Número <span class="menu-required">*</span></span>
+												<input class="menu-dados-end-numero" type="text" maxlength="10">
+											</label>
+										</div>
+										<div class="col-1-4">
+							            	<label>
+												<span>Complemento</span>
+												<input class="menu-dados-end-complemento" type="text" maxlength="200">
+											</label>
+										</div>
+									</div>
+									<div class="grid grid-pad">
+						            	<div class="col-1-4">
+							            	<label>
+												<span>CEP <span class="menu-required">*</span></span>
+												<input class="menu-dados-end-cep" type="text" maxlength="10">
+											</label>
+										</div>
+										<div class="col-1-4">
+							            	<label>
+												<span>Bairro</span>
+												<input class="menu-dados-end-bairro" type="text" maxlength="50">
+											</label>
+										</div>
+										<div class="col-1-4">
+							            	<label>
+												<span>UF <span class="menu-required">*</span></span>
+												<select class="menu-dados-end-uf" name="menu-dados-end-uf">
+												</select>
+											</label>
+										</div>
+										<div class="col-1-4">
+							            	<label>
+												<span>Município <span class="menu-required">*</span></span>
+												<select class="menu-dados-end-municipio">
+												</select>
+											</label>
+										</div>
+									</div>
+									<div class="grid grid-pad">
+						            	<div class="col-1-1">
+							            	<div class="menu-float-right">
+												<span class="menu-icon-plus"></span>
+												<span class="menu-icon-minus"></span>
+											</div>
+										</div>
+									</div>
+						        </div>
+					        </div>
+					        <div id="tab-4" class="tab-content-mn-sinesp menu-tab-telefone">
+					            <div class="menu-conta-telefone menu-modelo-telefone">
+					            	<input class="menu-dados-tel-id" type="hidden">
+					            	<div class="grid grid-pad">
+						            	<div class="col-2-4">
+							            	<label>
+												<span>Número<span class="menu-required menu-label-telefone">*</span></span>
+												<input class="menu-dados-tel-numero" type="text">
+											</label>
+										</div>
+										<div class="col-1-4">
+							            	<label>
+												<span>Tipo</span>
+												<select class="menu-dados-tel-tipo">
+													<option value="C">Corporativo</option>
+													<option value="P">Pessoal</option>
+												</select>
+											</label>
+										</div>
+										<div class="col-1-4">
+							            	<label>
+												<span>Autorizador<span class="menu-required menu-autenticador-telefone">*</span></span>
+												<input type="checkbox" name="menu-dados-tel-autenticador" class="menu-dados-tel-autenticador">
+											</label>
+										</div>
+									</div>
+					            	<div class="grid grid-pad">
+						            	<div class="col-1-1">
+							            	<div class="menu-float-right">
+												<span class="menu-icon-plus"></span>
+												<span class="menu-icon-minus"></span>
+											</div>
+										</div>
+									</div>
+						        </div>
+					        </div>
+					        <div id="tab-5" class="tab-content-mn-sinesp menu-tab-email">
+					            <div class="menu-conta-email menu-modelo-email">
+					              <input class="menu-dados-email-id" type="hidden">
+				              		<div class="grid grid-pad">
+						            	<div class="col-1-2">
+							            	<label>
+												<span>E-mail<span class="menu-required menu-label-email">*</span></span>
+												<input class="menu-dados-email" type="text" maxlength="200">
+											</label>
+										</div>
+										<div class="col-1-2">
+							            	<label>
+												<span>Recuperação de Senha <span class="menu-required menu-autenticador-email">*</span></span>
+												<input type="checkbox" name="menu-dados-email-autenticador" class="menu-dados-email-autenticador">
+											</label>
+										</div>
+									</div>
+									<div class="grid grid-pad">
+						            	<div class="col-1-1">
+							            	<div class="menu-float-right">
+												<span class="menu-icon-plus"></span>
+												<span class="menu-icon-minus"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+					        </div>
+							<div id="tab-7" class="tab-content-mn-sinesp menu-tab-gestores">
+								<div class="grid grid-pad" id="secao-cadastradores-autorizadores">
+									<div class="col-1-1">
+										<label>
+											<h3>Cadastradores Autorizadores</h3>
+											<ul style="padding-left: 15px;">
+												<li id="menu-dados-eo-lotacao" name="menu-dados-eo-lotacao"></li>
+										    </ul>
+										</label>
+									</div>
+								</div>
+								<br>
+								<div class="grid grid-pad" id="secao-cadastradores-vinculadores">
+									<div class="col-1-1">
+										<label>
+											<h3>Cadastradores Vinculadores</h3>
+											<ul style="padding-left: 15px;">
+												<li id="menu-dados-eo-vinculos" name="menu-dados-eo-vinculos"></li>
+										    </ul>
+										</label>
+									</div>
+								</div>
+								
+								<br>
+							</div>
+							<div id="tab-8" class="tab-content-mn-sinesp menu-tab-apps-moveis">
+								<input type="hidden" id="acoes_app_moveis" name="acoes_app_moveis">
+								<input type="hidden" id="ordenacao_sistema" name="ordenacao_sistema" value="DESC">
+								<div id="divExterna" class="div-externa" style="display: none; position: fixed; z-index: 0; left: 50%; top: 50%;">
+					        	  	<div id="dadosMoveis" class="div-dados-moveis">
+					        	  		<div id="dadosMoveis-div-icone-fixo" class="menu-clear">
+						        	  		<span class="modal-close-icon">
+				    							<button id="icnFecharModal">Fechar</button>
+				    						</span>
+			    						</div>
+						        	  	<span class="titulo-detalhes">
+						        	  		<h2 id="tituloDetalhesTxt">Histórico de Status de Aplicativo Móvel</h2>
+						        	  	</span>
+						        	  	<div id="headerDadosMoveis" class="header-historico-dados">
+											<table id="header-tabela-detalhes" class="header-detalhes-dados">
+												<tbody><tr>
+													<th>Data/Hora Alteração</th><th>Situação</th>
+												</tr>
+											</tbody></table>
+										</div>
+										<div id="historicoDadosMoveis" class="historico-dados">
+											<table id="tabela-detalhes" class="detalhes-dados">
+												<tbody><tr></tr>
+											</tbody></table>
+										</div>
+										<div id="div-modal-closebtn" class="modal-closebtn">
+						        	  		<button id="btnFecharModal" type="button" class="menu-btn-acoes"> Fechar </button>
+						        	  	</div>
+					        	  	</div>
+					        	</div>
+								<div class="grid grid-pad">
+									<div class="col-1-1 div-apps-moveis">
+										<h3>Aplicativos Móveis</h3>
+										<span id="menu-alerta-revogar" style="display: none;"></span>
+										<table id="lista_aplicativos_moveis" class="tabela-apps-moveis">
+											<thead>
+												<tr> 
+													<th id="header-sistema">Sistema  </th>
+													<!-- <th>Instalação</th> -->
+													<th>Data/Hora</th>
+													<th>Dispositivo</th>
+													<th>Status</th>
+													<th>Ação</th>
+													<th>Detalhar</th> 
+												</tr>
+											</thead>
+											<tbody></tbody>
+								    	</table>
+									</div>
+								</div>
+								<br>
+							</div>
+					    </div>
+					</div>
+					    <div id="menu-alterar-div-bot-fixo" class="menu-clear">
+					    	<span class="menu-wrapper-actionbtn">
+						    	<button id="closeButton" class="menu-btn-acoes">Cancelar</button>
+						    	<button id="submitButton" class="menu-btn-acoes">Salvar</button>
+					    	</span>
+					    	<span class="menu-wrapper-closebtn">
+					    		<button id="cboxClose">Fechar</button>
+					    	</span>
+					    	<div id="msg-usuario-externo" style="display:none; width: 500px !important; font-size: 13px;">Os dados cadastrais de usuários externos não podem ser alterados neste sistema.</div>
+					    </div>
+			</div>
+		</div>
+  		<div style="display:none">
+			<div id="meus_perfis" style="padding:10px; background:#fff;" class="cabecalho-unico-sinesp">
+				<div id="menu-perfis-div-top-fixo">
+				    <h1 id="menu_meus_perfis_topo">Meus Perfis</h1>
+				</div>
+				<div id="menu_meus_perfis_resultado">
+					<table id="menu_meus_perfis_resultado_table">
+					</table>
+				</div>
+		    	<div id="menu-perfis-div-bot-fixo" class="menu-clear">
+			    	<span class="menu-wrapper-actionbtn">
+			    	</span>
+			    	<span class="menu-wrapper-closebtn">
+			    		<button id="cboxClose_perfis">Fechar</button>
+			    	</span>
+			    </div>
+			</div>
+		</div>
+		
+		<div id="modalGeralLoading" class="snp-menu-modal-loading" style="display: none; position: fixed; z-index: 0; left: 50%; top: 50%;">
+            <div></div>
+		</div>
+		
+		<div id="modalSessaoExpirar" class="snp-menu-modal-geral">
+			<div class="header">
+				<h3>Renove sua sessão</h3>
+			</div>
+			<div class="txt">
+				<p>Sua sessão vai expirar em menos de 2 minutos, utilize o botão abaixo para renová-la.</p>
+			</div>
+			<div class="btn clearfix">
+				<a id="btn_close_modal_sessao_aviso" class="close" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">Renovar Sessão</a>
+			</div>
+		</div>
+		
+	    <a id="open-modal2" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" style="display:none">.</a>
+	    
+        <div id="modalSenhaDadosUsr" class="snp-menu-modal-geral" style="width: 420px; z-index: 0; display: none; position: fixed; left: 50%; top: 50%;">
+            <div class="header">
+                <h3>Segundo Fator Autenticação</h3>
+            </div>
+            <div class="txt" style="text-align: center;">
+                <p>Por favor, para acessar as informações, entre com a sua senha.</p>
+                
+                <div style="min-height: 50px; margin-top: 25px;">
+                    <label style="float: none;">
+                        <span>Senha:<span class="menu-required">*</span></span>
+                        <input id="mnuInputSenha" type="password" style="width:150px;">
+                    </label>
+                </div>
+                
+                <p id="erroEnvioSenha" class="error-msg" style="margin: 0 0 10px 0"></p>
+            </div>
+            <div class="btn clearfix">
+                <a id="btnCancelarEnvioSenha" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="close" style="opacity: 1;">Cancelar</a>
+                <a id="btnEnviarSenha" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">Enviar</a>
+            </div>
+        </div>
+	    
+        <div id="modalAguardLigacao" class="snp-menu-modal-geral" style="display: none; position: fixed; z-index: 0; left: 50%; top: 50%;">
+            <div class="header">
+                <h3>Segundo Fator Autenticação</h3>
+            </div>
+            <div class="txt">
+                <p id="msgTelefoneLigacao"></p>
+                <p id="msgSolAterDados">Caso não possua mais o telefone autorizador, <a id="btnShowModalSolAlterDados" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" style="font-weight: bold;">clique aqui para solicitar a alteração a um gestor</a>.</p>
+                <p id="msgAlteracoesIncompativeis"><font color="red">Caso não possua mais o telefone autorizador, cancele a operação e siga os seguintes passos:<br><br>
+ <font style="padding-left:2em">a) Clique na aba <b>Telefone</b> e altere apenas o campo</font><br>
+ <font style="padding-left:2em">telefone autorizador;</font><br>
+ <font style="padding-left:2em">b) Confirme no botão salvar;</font><br>
+ <font style="padding-left:2em">c) Clique no link "<i>clique aqui para solicitar a alteração</i></font><br>
+ <font style="padding-left:2em"><i>a um gestor</i>".</font><br><br>
+Após a validação da alteração pelo gestor, tente novamente.</font></p>
+                <p id="aguardLigMsg" style="font-weight: bold;">Aguardando ligação <span id="timerAguardLig">[ ]</span>... <img class="snp-mnu-img-loading" src="./pagina3-clique_files/loading.gif" style="vertical-align: middle; margin-left: 20px;"></p>
+                <p id="ligRec" style="display:none; font-weight: bold;">Ligação recebida. Efetivando transação...</p>
+                <p id="ligNaoRec" style="display:none; font-weight: bold;">Ligação não recebida.</p>
+            </div>
+            <div class="btn btn-left clearfix">
+                <a id="btnCloseModalAguardLigacao" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">Cancelar</a>
+                <a id="btnRepeatAguardLigacao" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">Tentar Novamente</a>
+            </div>
+        </div>
+        
+        <div id="modalSolAlterDados" class="snp-menu-modal-geral" style="width: 500px; display: none; position: fixed; z-index: 0; left: 50%; top: 50%;">
+            <div class="header">
+                <h3>Solicitação de Alteração dos Dados de Autorização</h3>
+            </div>
+            <div class="txt">
+                <p>Informe os novos dados abaixo.</p>
+                
+                <div>
+	                <label>
+	                    <span>Telefone Autorizador:<span class="menu-required">*</span></span>
+	                    <input id="mnuInputNumTel" class="menu-dados-tel-numero-aut" type="text" maxlength="16" style="width:150px; font-weight: bold;">
+	                </label>
+                </div>
+                
+                <div>
+	                <label>
+	                    <span>E-mail Autorizador:<span class="menu-required">*</span></span>
+	                    <input id="mnuInputEmail" type="text" maxlength="200" style="width:350px; font-weight: bold;">
+	                </label>
+                </div>
+                
+                <p id="erroEnviarSolAlt" class="error-msg"></p>
+            </div>
+            <div class="btn btn-left clearfix">
+                <a id="btnCancelarSolicitacao" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="close">Cancelar</a>
+                <a id="btnEnviarSolicitacao" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">Enviar</a>
+            </div>
+        </div>
+    
+</div><div id="menu_sinesp_pad" style="height: 52px"></div>
+	<div id="sinesp-header" class="navbar navbar-default">
+		<div class="navbar-header">
+			<button data-target="#sinesp-navbar-collapse-menu" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+				<span class="sr-only">Alteração modo de navegação</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="https://infoseg.sinesp.gov.br/infoseg2/index.html" id="sinesp-logo">Info<span>seg</span></a>
+		</div>
+		<div class="collapse navbar-collapse" id="sinesp-navbar-collapse-menu">
+			<ul id="infoseg-top-menu" class="nav navbar-nav">
+				<li id="menu-top-search" class="active"><a href="javascript:Funcoes.showSearch()">Pesquisa</a></li>
+				<li id="menu-top-report"><a href="javascript:Report.showReport()">Relatório</a></li>	
+				<!-- ngIf: consultaLoteAutorizada -->
+				<!-- ngIf: menuGestao --><li id="menu-top-gestao" class="dropdown ng-scope" ng-if="menuGestao">
+					<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="Funcoes.toggleMenu(this.parentNode.id);">Gestão</a>
+					<ul class="dropdown-menu">
+						<!-- ngIf: gestaoServicos -->					
+						<!-- ngIf: painelIndiceNacional -->
+						<!-- ngIf: painelBasesIntegradas --><li id="menu-top-gestao-bases-integradas" ng-if="painelBasesIntegradas" class="ng-scope"><a href="https://infoseg.sinesp.gov.br/infoseg2/painel-bases-integradas.html">Painel de Bases Integradas</a></li><!-- end ngIf: painelBasesIntegradas -->
+					</ul>
+				</li><!-- end ngIf: menuGestao -->
+				<li id="menu-top-ajuda" class="dropdown"><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="Funcoes.toggleMenu(this.parentNode.id);">Ajuda <span id="newsNotification" data-toggle="tooltip" title="Existem novidades da versão que não foram lidas." class="glyphicon glyphicon-alert newsNotification" style="display: inline;"></span></a>
+					<ul class="dropdown-menu">
+						<li id="menu-top-ajuda-manual"><a href="https://infoseg.sinesp.gov.br/infoseg2/manual/MANUAL-INFOSEG.pdf" download="MANUAL-INFOSEG" target="_blank">Manual do Usuário</a></li>					
+						<li id="menu-top-ajuda-sobre"><a href="javascript:Funcoes.showSobre()">Sobre o Infoseg <span id="newsNotificationSobre" data-toggle="tooltip" title="Existem novidades da versão que não foram lidas." class="glyphicon glyphicon-alert newsNotification" style="display: inline;"></span></a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li id="help-wrapper">
+					<div id="help-message" class="alert alert-info container" role="alert" hidden="">
+						<div id="help-message-cnt">
+							<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+							<p>
+								A barra de pesquisa inteligente permite realizar consulta às bases disponíveis a partir de múltiplos dados, com limite máximo de 10 (dez) parâmetros por consulta.
+								<br>
+								Através do botão <strong>Pesquisa Avançada</strong> e indicação da base de dados desejada, poderão ser consultados outros parâmetros não informados abaixo.
+								<br>
+								Tipos e formatos de parâmetros suportados na barra de pesquisa:
+							</p>
+							<div class="row">
+								<div class="col-md-5">
+									<label>CPF</label>
+									<p>11 dígitos ou NNN.NNN.NNN-NN e suas variações.<br>(Ex.: 000.000.000-00)</p>
+								</div>
+								<div class="col-md-5 col-md-offset-1">
+									<label>CNPJ</label>
+									<p>14 dígitos ou NN.NNN.NNN/NNNN-NN e suas variações.<br>(Ex.: 00.000.000/000000)</p>
+								</div>
+								<div class="col-md-5">
+									<label>PLACA</label>
+									<p>AAANNN ou AAA-NNNN ou AAANXNN ou AAA-NXNN<br>(Ex.: AAA0000 ou AAA-0000 ou AAA0A00 ou AAA-0A00)</p>
+								</div>
+								<div class="col-md-5 col-md-offset-1">
+									<label>CHASSI</label>
+									<p>14 Números ou letras exceto I, O e Q em algumas posições seguidas de 3 números, XXXXXXXXXXXXXXNNN<br>(Ex.: 0AAAA0000AA000000)</p>
+								</div>
+								<div class="col-md-5">
+									<label>MANDADO</label>
+									<p>Segundo resolução CNJ 65/2008: NNNNNNN-NN.NNNN.N.NN.NNNN.NNNN<br>(Ex.: 0000000-00.0000.0.00.0000.0000)</p>
+								</div>
+								<div class="col-md-5 col-md-offset-1">
+									<label>PROCESSO</label>
+									<p>Segundo resolução CNJ 65/2008: NNNNNNN-NN.NNNN.N.NN.NNNN<br>(Ex.: 0000000-00.0000.0.00.0000)</p>
+								</div>
+								<div class="col-md-5">
+									<label>NOME</label>
+									<p>Sequências tratadas como nomes, separadas por vírgulas ou entre aspas.<br>(Ex.: José das Couves)</p>
+								</div>
+								<div class="col-md-5 col-md-offset-1">
+									<label>NOME DA MÃE</label>
+									<p>Sequências tratadas como nomes, separadas por vírgulas ou entre aspas, utilizando o prefixo "mãe:" ou "genitora:".<br>(Ex.: Mãe: Maria das Couves, Genitora: Maria das Couves)</p>
+								</div>
+								<div class="col-md-5">
+									<label>NOME DO PAI</label>
+									<p>Sequências tratadas como nomes, separadas por vírgulas ou entre aspas, utilizando o prefixo "pai:".<br>(Ex.: Pai: José das Couves)</p>
+								</div>
+								<div class="col-md-5 col-md-offset-1">
+									<label>EMPRESA</label>
+									<p>Sequências reconhecidas como nomes que atendem critérios adicionais, sufixos específicos tais como S/A, LTDA, EPP, MEI, etc.<br>(Ex.: Infoseg S/A ou Infoseg LTDA)</p>
+								</div>
+								<div class="col-md-5">
+									<label>Número SINARM</label>
+									<p>NNNN/NNNNNNNNN-NN Ano com 4 dígitos seguidos de 9 dígitos e um traço seguido de mais 2 dígitos verificadores.<br>(Ex.: 2016000000000-00)</p>
+								</div>
+								<div class="col-md-5 col-md-offset-1">
+									<label>Número RENACH</label>
+									<p>AANNNNNNNNN 2 Letras com UF seguidas de 9 números<br>(Ex.: DF000000000)</p>
+								</div>
+								<div class="col-md-5 col-md-offset-1">
+									<label>DATA</label>
+									<p>NN/NN/NNNN Dia com 1 ou 2 dígitos, seguido de Mês com 1 ou 2 dígitos, seguido de Ano com 2 ou 4 dígitos, separados por barra ou traço.<br>(Ex.: 15/11/1889)</p>
+								</div>
+							</div>
+							<p>Para consulta exata dos campos: Nome, Mãe e Pai, basta digitar o texto "entre aspas"<br>(Ex.: "José das Couves", mãe: "Maria das Couves" e pai: "José das Couves")</p>
+							<p>
+								Informações detalhadas sobre todas as funcionalidades do Infoseg estão disponíveis no Manual do Usuário.
+							</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<span id="toggleMenuSeguranca" class="btn btn-primary btn-xs btn-sinesp-arrow-up icon-set-extra icon-up" onclick="Funcoes.toggleMenuSeguranca();"></span>
+				</li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<div id="status-message" class="status-message" role="status" hidden="" style="display: none;">Carregando relatório...</div>
+	<div id="searchContainer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 sinesp-p0">
+					<h1>Pesquisar</h1>
+				</div>
+				<div id="box-top-report" class="col-md-4 sinesp-p0 text-right" hidden="" style="display: block;">
+					<button class="reportProcess">
+						<span class="reportCounter" id="cnt-top-report">0</span>
+						<span class="reportInfoText" id="cnt-top-report-word">itens</span>
+						<span class="reportBtnSep"></span> 
+						<span class="reportBtnText">Prosseguir para relatório</span>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 sinesp-p0">
+					<div class="row">
+					<form id="frm-search" class="form-horizontal ng-pristine ng-valid ng-submitted" novalidate="">
+						<div class="col-md-8 sinesp-pr0">
+							<div class="sinesp-question-group"> <!-- input-group -->
+								<input type="text" class="form-control" id="q" placeholder="Pesquise dados em todas as bases do Infoseg" maxlength="300" required="" pattern=".{3,}" title="Argumento deve ter no mínimo 3 caracteres">
+								<span id="q-message" class="text-danger" hidden="" style="display: none;"></span>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<button id="salvar" type="submit" class="btn btn-primary">
+								&nbsp; Pesquisar &nbsp; <span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp;
+							</button>
+							<a id="help" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#">
+								<span class="glyphicon glyphicon-question-sign gi-1p5x" aria-hidden="true"></span>
+							</a>
+						</div>
+					</form>
+						<div class="col-md-2">
+							<!-- ngInclude: 'views/advanced-search.96f505da4e4b99d2.html' --><div id="advancedSearchContainer" ng-controller="advancedSearchController" ng-include="&#39;views/advanced-search.96f505da4e4b99d2.html&#39;" class="ng-scope"><div class="sinesp-dropdown ng-scope" data-pos="right" data-pos-value="30">
+	<a role="button" id="advanced-search" ng-click="showAdvancedSearch()" ng-init="init()" class="btn btn-primary sinesp-advanced-search-ctrl"> Pesquisa
+		Avançada <span class="caret"></span>
+	</a>
+	<div class="sinesp-dropdown-menu sinesp-popover sinesp-advancedSearch">
+		<ul id="tabAdvancedSearch" class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-search-individuos">Indivíduos</a></li>
+			<li><a data-toggle="tab" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-search-veiculos">Veículos</a></li>
+			<li><a data-toggle="tab" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-search-empresas">Empresas</a></li>
+			<li><a data-toggle="tab" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#tab-search-armas">Armas</a></li>
+		</ul>
+		<div class="tab-content">
+			<!-- ngInclude: 'views/advanced-search-individuos.8a85aad1a5c4e6a2.html' --><div id="tab-search-individuos" class="tab-pane fade in active ng-scope" ng-include="&#39;views/advanced-search-individuos.8a85aad1a5c4e6a2.html&#39;" onload="individuosLoaded()"><div class="row ng-scope">
+	<div class="col-md-8">
+		<div class="form-group">
+			<label>Base</label> <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="slct-base-individuos" ng-model="serviceBase" ng-options="s.nomeResumidoServico for s in groupIndividuos.servicos track by s.idServico" ng-change="individuosChange(serviceBase)"><option value="" class="" selected="selected">Selecione</option></select>
+		</div>
+	</div>
+</div>
+
+<div id="advanced-search-mandados" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_MANDADOS&#39;">
+	<form id="frm-advanced-search-mandados" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchMandados($event)">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label>Nome</label> <input type="text" class="form-control" id="mandados-nome" maxlength="50">
+				</div>
+				<div class="form-group">
+					<div class="radio">
+						<label class="radio-inline"> <input type="radio" name="opt-tipo-pesquisa" id="pesquisa-exata" value="exata" checked=""> Exata
+						</label> <label class="radio-inline"> <input type="radio" name="opt-tipo-pesquisa" id="pesquisa-fonetica" value="fonetica"> Fonética
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome da Mãe</label> <input type="text" class="form-control" id="mandados-nomeMae" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label>Documento</label>
+					<select class="form-control" id="slct-tipo-documento"><option selected="selected" value="0">Selecione</option><option value="CARTEIRA_TRABALHO">Carteira de trabalho</option><option value="CERTIDAO_CASAMENTO">Certidão de casamento</option><option value="CERTIDAO_NASCIMENTO">Certidão de nascimento</option><option value="CNH">CNH</option><option value="CONSELHO_PROFISSIONAL">Conselhos profissionais</option><option value="CPF">CPF</option><option value="IDENTIDADE_FUNCIONAL">Identidade funcional</option><option value="NUM_ID_TRABALHO">Identificação trabalhista</option><option value="INSS">INSS</option><option value="CADASTRO_MINISTERIO_FAZENDA">Ministério da Fazenda</option><option value="PASSAPORTE">Passaporte</option><option value="PIS_PASEP">PIS PASEP</option><option value="RG">RG</option><option value="RIC">RIC</option><option value="TITULO_ELEITOR">Título eletorial</option></select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="mandados-numeroDocumento" placeholder="Número" maxlength="30" style="display: none;">
+					<span id="mandados-numeroDocumento-required" class="advanced-search-alert">
+						* Preenchimento obrigatório para o Documento.</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Tribunal</label>
+				<select class="form-control" id="slct-tribunal"><option selected="selected" value="0">Selecione</option><option value="3.00">Superior Tribunal de Justiça</option><option value="4.01">Tribunal Regional Federal da 1ª Região</option><option value="4.02">Tribunal Regional Federal da 2ª Região</option><option value="4.03">Tribunal Regional Federal da 3ª Região</option><option value="4.04">Tribunal Regional Federal da 4ª Região</option><option value="4.05">Tribunal Regional Federal da 5ª Região</option><option value="7.02">2° Circunscrição Judiciária Militar</option><option value="8.01">Tribunal de Justiça do Estado do Acre</option><option value="8.02">Tribunal de Justiça do Estado de Alagoas</option><option value="8.03">Tribunal de Justiça do Estado do Amapá</option><option value="8.04">Tribunal de Justiça do Estado do Amazonas</option><option value="8.05">Tribunal de Justiça do Estado da Bahia</option><option value="8.06">Tribunal de Justiça do Estado do Ceará</option><option value="8.07">Tribunal de Justiça do Distrito Federal e dos Territórios</option><option value="8.08">Tribunal de Justiça do Estado do Espírito Santo</option><option value="8.09">Tribunal de Justiça do Estado de Goiás</option><option value="8.10">Tribunal de Justiça do Estado do Maranhão</option><option value="8.11">Tribunal de Justiça do Estado do Mato Grosso</option><option value="8.12">Tribunal de Justiça do Estado do Mato Grosso do Sul</option><option value="8.13">Tribunal de Justiça do Estado de Minas Gerais</option><option value="8.14">Tribunal de Justiça do Estado do Pará</option><option value="8.15">Tribunal de Justiça do Estado da Paraíba</option><option value="8.16">Tribunal de Justiça do Estado do Paraná</option><option value="8.17">Tribunal de Justiça do Estado de Pernambuco</option><option value="8.18">Tribunal de Justiça do Estado do Piauí</option><option value="8.19">Tribunal de Justiça do Estado do Rio de Janeiro</option><option value="8.20">Tribunal de Justiça do Estado do Rio Grande do Norte</option><option value="8.21">Tribunal de Justiça do Estado do Rio Grande do Sul</option><option value="8.22">Tribunal de Justiça do Estado de Rondônia</option><option value="8.23">Tribunal de Justiça do Estado de Roraima</option><option value="8.24">Tribunal de Justiça do Estado de Santa Catarina</option><option value="8.25">Tribunal de Justiça do Estado de Sergipe</option><option value="8.26">Tribunal de Justiça do Estado de São Paulo</option><option value="8.27">Tribunal de Justiça do Estado do Tocantins</option><option value="9.13">Tribunal de Justiça Militar do Estado de Minas Gerais</option><option value="9.21">Tribunal de Justiça Militar do Estado do Rio Grande do Sul</option><option value="9.26">Tribunal de Justiça Militar do Estado de São Paulo</option></select>
+			</div>
+		</div>
+		<!-- ngIf: usuarioPerfilInteligencia -->
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="mandados-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos um critério.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-mandados" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-condutores" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_CONDUTORES&#39;">
+	<form id="frm-advanced-search-condutores" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchCondutores($event)">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label>Pesquisa por</label> <select class="form-control" id="slct-condutores-query">
+						<option value="Número de registro" id="tipo-pesquisa-condutores-registro" selected="">Número de registro</option>
+						<option value="Número de registro PGU" id="tipo-pesquisa-condutores-pgu">
+							Número de registro PGU</option>
+						<option value="Número RENACH" id="tipo-pesquisa-condutores-renach">
+							Número RENACH</option>
+						<option value="Número PID" id="tipo-pesquisa-condutores-pid">
+							Número PID</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="condutores-query" maxlength="50">
+					<span id="condutores-query-required" class="advanced-search-alert">* Campo obrigatório.</span>
+					<span id="condutores-pid-invalido" class="advanced-search-alert">* PID inválido. Número precisa ter de 3 a 9 caracteres.</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-condutores" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-pessoafisica" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_PESSOAFISICA&#39;">
+	<form id="frm-advanced-search-pessoafisica" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchPessoaFisica($event)" ng-init="consultaFonetica = true">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="pessoafisica-nome" maxlength="70">	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label>Nome da Mãe</label> <input type="text" class="form-control" id="pessoafisica-nomeMae" maxlength="70">
+				</div>
+				<div class="form-group">
+					<div class="radio">
+						<label class="radio-inline"> <input type="radio" name="opt-tipo-pesquisa-pessoafisica" ng-click="consultaFonetica = true" id="pessoafisica-pesquisa-fonetica" value="fonetica" checked="">
+							Fonética
+						</label> <label class="radio-inline"> <input type="radio" name="opt-tipo-pesquisa-pessoafisica" ng-click="consultaFonetica = false" id="pessoafisica-pesquisa-exata" value="exata"> Exata
+						</label> 
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CPF</label> <input type="text" class="form-control" ng-disabled="consultaFonetica" id="pessoafisica-cpf" maxlength="11" onkeypress="return Funcoes.isNumeroDigitado(event)" disabled="disabled">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Título de Eleitor</label> <input type="text" ng-disabled="consultaFonetica" class="form-control" id="pessoafisica-tituloEleitor" maxlength="13" onkeypress="return Funcoes.isNumeroDigitado(event)" disabled="disabled">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label>DDD</label> <input type="text" class="form-control" ng-disabled="consultaFonetica" id="pessoafisica-telefone-ddd" maxlength="2" onkeypress="return Funcoes.isNumeroDigitado(event)" disabled="disabled">
+			</div>
+			<div class="form-group col-md-10">
+				<label>Telefone</label> <input type="text" class="form-control" ng-disabled="consultaFonetica" id="pessoafisica-telefone-numero" maxlength="9" onkeypress="return Funcoes.isNumeroDigitado(event)" disabled="disabled">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Data de Nascimento</label> <input type="text" class="form-control" ng-disabled="consultaFonetica" onkeypress="return Funcoes.isDataDigitada(event)" id="pessoafisica-data-nascimento" maxlength="10" disabled="disabled">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="pessoafisica-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos um critério.</span>
+				<span id="pessoafisica-fonetica-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de Nome e/ou Nome da Mãe para pesquisa fonética.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()" ng-click="consultaFonetica = true">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-pessoafisica" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-indice_nacional" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_INDICE_NACIONAL&#39;">
+	<form id="frm-advanced-search-indice_nacional" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchIndiceNacional($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="indice_nacional-nome" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<input type="checkbox" name="indice_nacional-exata" id="indice_nacional-exata" ng-model="consultaExata" value="false" class="ng-pristine ng-untouched ng-valid ng-empty">&nbsp;Consulta Exata
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome da Mãe</label> <input type="text" class="form-control" id="indice_nacional-mae" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome do Pai</label> <input type="text" class="form-control" id="indice_nacional-pai" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>UF Responsável (seleção múltipla)</label>
+				<select id="slct-indice_nacional-sigla-origem" multiple="multiple" class="4colactive jqmsLoaded ms-list-1" style="display: none;"><option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option></select><div id="ms-list-1" class="ms-options-wrap"><button type="button"><span>Selecione</span></button><div class="ms-options" style="min-height: 200px; max-height: 870px;"><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" class="ms-selectall global">Marcar todos</a><ul style="column-count: 3; column-gap: 0px;"><li data-search-term="acre"><label for="ms-opt-1"><input type="checkbox" title="Acre" id="ms-opt-1" value="AC">Acre</label></li><li data-search-term="alagoas"><label for="ms-opt-2"><input type="checkbox" title="Alagoas" id="ms-opt-2" value="AL">Alagoas</label></li><li data-search-term="amapá"><label for="ms-opt-3"><input type="checkbox" title="Amapá" id="ms-opt-3" value="AP">Amapá</label></li><li data-search-term="amazonas"><label for="ms-opt-4"><input type="checkbox" title="Amazonas" id="ms-opt-4" value="AM">Amazonas</label></li><li data-search-term="bahia"><label for="ms-opt-5"><input type="checkbox" title="Bahia" id="ms-opt-5" value="BA">Bahia</label></li><li data-search-term="ceará"><label for="ms-opt-6"><input type="checkbox" title="Ceará" id="ms-opt-6" value="CE">Ceará</label></li><li data-search-term="distrito federal"><label for="ms-opt-7"><input type="checkbox" title="Distrito Federal" id="ms-opt-7" value="DF">Distrito Federal</label></li><li data-search-term="espírito santo"><label for="ms-opt-8"><input type="checkbox" title="Espírito Santo" id="ms-opt-8" value="ES">Espírito Santo</label></li><li data-search-term="goiás"><label for="ms-opt-9"><input type="checkbox" title="Goiás" id="ms-opt-9" value="GO">Goiás</label></li><li data-search-term="maranhão"><label for="ms-opt-10"><input type="checkbox" title="Maranhão" id="ms-opt-10" value="MA">Maranhão</label></li><li data-search-term="mato grosso"><label for="ms-opt-11"><input type="checkbox" title="Mato Grosso" id="ms-opt-11" value="MT">Mato Grosso</label></li><li data-search-term="mato grosso do sul"><label for="ms-opt-12"><input type="checkbox" title="Mato Grosso do Sul" id="ms-opt-12" value="MS">Mato Grosso do Sul</label></li><li data-search-term="minas gerais"><label for="ms-opt-13"><input type="checkbox" title="Minas Gerais" id="ms-opt-13" value="MG">Minas Gerais</label></li><li data-search-term="pará"><label for="ms-opt-14"><input type="checkbox" title="Pará" id="ms-opt-14" value="PA">Pará</label></li><li data-search-term="paraíba"><label for="ms-opt-15"><input type="checkbox" title="Paraíba" id="ms-opt-15" value="PB">Paraíba</label></li><li data-search-term="paraná"><label for="ms-opt-16"><input type="checkbox" title="Paraná" id="ms-opt-16" value="PR">Paraná</label></li><li data-search-term="pernambuco"><label for="ms-opt-17"><input type="checkbox" title="Pernambuco" id="ms-opt-17" value="PE">Pernambuco</label></li><li data-search-term="piauí"><label for="ms-opt-18"><input type="checkbox" title="Piauí" id="ms-opt-18" value="PI">Piauí</label></li><li data-search-term="rio de janeiro"><label for="ms-opt-19"><input type="checkbox" title="Rio de Janeiro" id="ms-opt-19" value="RJ">Rio de Janeiro</label></li><li data-search-term="rio grande do norte"><label for="ms-opt-20"><input type="checkbox" title="Rio Grande do Norte" id="ms-opt-20" value="RN">Rio Grande do Norte</label></li><li data-search-term="rio grande do sul"><label for="ms-opt-21"><input type="checkbox" title="Rio Grande do Sul" id="ms-opt-21" value="RS">Rio Grande do Sul</label></li><li data-search-term="rondônia"><label for="ms-opt-22"><input type="checkbox" title="Rondônia" id="ms-opt-22" value="RO">Rondônia</label></li><li data-search-term="roraima"><label for="ms-opt-23"><input type="checkbox" title="Roraima" id="ms-opt-23" value="RR">Roraima</label></li><li data-search-term="santa catarina"><label for="ms-opt-24"><input type="checkbox" title="Santa Catarina" id="ms-opt-24" value="SC">Santa Catarina</label></li><li data-search-term="são paulo"><label for="ms-opt-25"><input type="checkbox" title="São Paulo" id="ms-opt-25" value="SP">São Paulo</label></li><li data-search-term="sergipe"><label for="ms-opt-26"><input type="checkbox" title="Sergipe" id="ms-opt-26" value="SE">Sergipe</label></li><li data-search-term="tocantins"><label for="ms-opt-27"><input type="checkbox" title="Tocantins" id="ms-opt-27" value="TO">Tocantins</label></li></ul></div></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Alcunha</label> <input type="text" class="form-control" id="indice_nacional-alcunha" maxlength="50" ng-disabled="consultaExata">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Ano Nascimento</label> <input type="text" class="form-control" id="indice_nacional-ano-nascimento" maxlength="4" ng-disabled="consultaExata" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Data de Nascimento</label> <input type="text" class="form-control" id="indice_nacional-data-nascimento" maxlength="10" onkeypress="return Funcoes.isDataDigitada(event)" ng-disabled="consultaExata">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>RG</label> <input type="text" class="form-control" id="indice_nacional-rg" maxlength="15" ng-disabled="consultaExata">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>UF/RG</label> <select class="form-control" id="slct-indice_nacional-uf-rg" ng-disabled="consultaExata"><option selected="selected" value="0">UF</option><option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label><br>Inquérito&nbsp;</label> <input type="checkbox" class="checkbox" id="indice_nacional-inquerito" ng-disabled="consultaExata">
+			</div>
+			<div class="form-group col-md-4">
+				<label>Termo Circunstanciado&nbsp;</label> <input type="checkbox" class="checkbox" id="indice_nacional-termo" ng-disabled="consultaExata">
+			</div>
+			<div class="form-group col-md-4">
+				<label><br>Narcotráfico&nbsp;</label> <input type="checkbox" class="checkbox" id="indice_nacional-narcotrafico" ng-disabled="consultaExata">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="indice_nacional-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos Nome, Nome da Mãe, Nome do Pai, Alcunha ou RG.</span>
+				<span id="indice_nacional-exata-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de Nome, Nome da Mãe ou Nome do Pai para pesquisa exata.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()" ng-click="resetMultiselec(); consultaExata = false">
+					Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-indice_nacional" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-interpol" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_INTERPOL&#39;">
+	<form id="frm-advanced-search-interpol" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchInterpol($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="interpol-nome" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Sobrenome</label> <input type="text" class="form-control" id="interpol-sobrenome" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Data de Nascimento</label> <input type="text" class="form-control" id="interpol-data-nascimento" maxlength="10">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Número de Registros</label> <input type="text" class="form-control" id="interpol-numero-registros" maxlength="3">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset">
+					Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-interpol" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-desaparecidos" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_DESAPARECIDOS&#39;">
+	<form id="frm-advanced-search-desaparecidos" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchDesaparecidos($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="desaparecidos-nome" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome da Mãe</label> <input type="text" class="form-control" id="desaparecidos-mae" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome do Pai</label> <input type="text" class="form-control" id="desaparecidos-pai" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<input type="checkbox" name="desaparecidos-exata" id="desaparecidos-exata" ng-model="desaparecidosExata" value="" class="ng-pristine ng-untouched ng-valid ng-empty">&nbsp;Consulta Exata
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Data de Nascimento</label> <input type="text" class="form-control" id="desaparecidos-data-nascimento" maxlength="10" onkeypress="return Funcoes.isDataDigitada(event)" ng-disabled="desaparecidosExata">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-5">
+				<label>UF</label> <select class="form-control" id="slct-desaparecidos-uf" ng-disabled="desaparecidosExata"><option selected="selected" value="0">UF</option><option value="ES">Espírito Santo</option><option value="SC">Santa Catarina</option><option value="SE">Sergipe</option></select>
+			</div>
+			<div class="form-group col-md-7">
+				<div id="div-desaparecidos-municipio" style="display: none;">
+					<label>Município</label> <input type="text" class="form-control" id="desaparecidos-municipio" maxlength="50" ng-disabled="desaparecidosExata">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="desaparecidos-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos Nome, Nome da Mãe ou Nome do Pai.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()" ng-click="desaparecidosExata = false">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-desaparecidos" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-siapen" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_SIAPEN&#39;">
+	<form id="frm-advanced-search-siapen" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchSiapen($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="siapen-nome" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome da Mãe</label> <input type="text" class="form-control" id="siapen-mae" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome do Pai</label> <input type="text" class="form-control" id="siapen-pai" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<input type="checkbox" name="siapen-exata" id="siapen-exata" ng-model="siapenExata" value="" class="ng-pristine ng-untouched ng-valid ng-empty">&nbsp;Consulta Exata
+			</div>
+		</div>	
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CPF</label> <input type="text" class="form-control" id="siapen-cpf" maxlength="11" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Data de Nascimento</label> <input type="text" class="form-control" id="siapen-data-nascimento" maxlength="10" onkeypress="return Funcoes.isDataDigitada(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome do Advogado</label> <input type="text" class="form-control" id="siapen-advogado" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome do Visitante</label> <input type="text" class="form-control" id="siapen-visitante" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Unidade Penal</label> 
+				<select class="form-control" id="slct-unidade-penal"></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome da Facção</label> <input type="text" class="form-control" id="siapen-faccao" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="siapen-fonetica-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos um critério.</span>
+				<span id="siapen-exata-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos Nome, Nome da Mãe, Nome do Pai, Nome do Advogado ou Nome do Visitante.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()" ng-click="siapenExata = false">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-siapen" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>	
+
+<div id="advanced-search-rais_trab" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_RAIS_TRAB&#39;">
+	<form id="frm-advanced-search-rais_trab" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchRaisTrabalhadores($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="rais_trab-nome" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<input type="checkbox" name="rais-trab-exata" id="rais-trab-exata" ng-model="consultaExataRaisTrabalhador" value="" class="ng-pristine ng-untouched ng-valid ng-empty">&nbsp;Consulta Exata
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>PIS/PASEP</label> <input type="text" class="form-control" id="rais_trab-pis" maxlength="11" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Data de Nascimento</label> <input type="text" class="form-control" id="rais_trab-data-nascimento" maxlength="10" onkeypress="return Funcoes.isDataDigitada(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CPF do Trabalhador</label> <input type="text" class="form-control" id="rais_trab-cpf" maxlength="11" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CNPJ do Estabelecimento</label> <input type="text" class="form-control" id="rais_trab-cnpj" maxlength="14" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Razão Social</label> <input type="text" class="form-control" id="rais_trab-razaosocial" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Número do CTPS do Trabalhador</label> <input type="text" class="form-control" id="rais_trab-ctps" maxlength="8" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="rais_trab-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos um critério.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="rais_trab-exata-required" class="advanced-search-alert">
+				* Na consulta exata o Nome deve ser fornecido.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()" ng-click="consultaExataRaisTrabalhador = false">
+					Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-rais_trab" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-bos" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_BOS&#39;">
+	<form id="frm-advanced-search-bos" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchBos($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="bos-nome" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome da Mãe</label> <input type="text" class="form-control" id="bos-nomeMae" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CPF</label> <input type="text" class="form-control" id="bos-cpf" maxlength="11" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Data de Nascimento</label> <input type="text" class="form-control" onkeypress="return Funcoes.isDataDigitada(event)" id="bos-data-nascimento" maxlength="10">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="bos-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos um critério.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()">Limpar</button>
+					&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-bos" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="advanced-search-sisme-pessoas" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_SISME_PESSOAS&#39;">
+	<form id="frm-advanced-search-sisme-pessoas" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchSismePessoas($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome</label> <input type="text" class="form-control" id="sisme-nomePessoa" maxlength="40">
+			</div>
+		</div>
+		<div class="row">	
+			<div class="form-group col-md-12">
+				<label>Sobrenome</label> <input type="text" class="form-control" id="sisme-sobrenomePessoa" maxlength="40">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome da Mãe</label> <input type="text" class="form-control" id="sisme-nomeMae" maxlength="40">
+			</div>
+		</div>
+		<div class="row">	
+			<div class="form-group col-md-12">
+				<label>Sobrenome da Mãe</label> <input type="text" class="form-control" id="sisme-sobrenomeMae" maxlength="40">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>País</label>
+				<select class="form-control" id="slct-paises-mercosul-pessoas"><option selected="selected" value="0">Selecione</option><option value="ARGENTINA">ARGENTINA</option><option value="BOLIVIA">BOLÍVIA</option><option value="BRASIL">BRASIL</option><option value="CHILE">CHILE</option><option value="COLOMBIA">COLÔMBIA</option><option value="EQUADOR">EQUADOR</option><option value="PARAGUAI">PARAGUAI</option><option value="URUGUAI">URUGUAI</option><option value="VENEZUELA">VENEZUELA</option></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="sisme-pessoas-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de Nome ou Sobrenome ou Nome da Mãe ou Sobrenome da Mãe.</span>
+				<span id="sisme-pessoas-pais-required" class="advanced-search-alert">
+				* Preenchimento obrigatório do País.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-sisme-pessoas" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
+		</div>
+	</form>
+</div></div>
+
+			<!-- ngInclude: 'views/advanced-search-veiculos.ab95b7b1f9b90959.html' --><div id="tab-search-veiculos" class="tab-pane fade ng-scope" ng-include="&#39;views/advanced-search-veiculos.ab95b7b1f9b90959.html&#39;" onload="veiculosLoaded()"><div class="row ng-scope">
+	<div class="form-group col-md-8">
+		<label>Base</label> <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="slct-base-veiculos" ng-model="serviceBase" ng-options="s.nomeResumidoServico for s in groupVeiculos.servicos track by s.idServico" ng-change="updateOption(serviceBase.tipoServico)"><option value="" class="" selected="selected">Selecione</option></select>
+	</div>
+</div>
+
+<div id="advanced-search-veiculos" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_VEICULOS&#39;">
+	<form id="frm-advanced-search-veiculos" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchVeiculos($event)">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label>Pesquisa por</label> <select class="form-control" id="slct-veiculos-query">
+						<option value="Placa do Veículo" id="tipo-pesquisa-placa" selected="">Placa</option>
+						<option value="Número do Chassi" id="tipo-pesquisa-chassi">Chassi</option>
+						<option value="CPF do Proprietário" id="tipo-pesquisa-cpf">CPF</option>
+						<option value="CNPJ do Proprietário" id="tipo-pesquisa-cnpj">CNPJ</option>
+						<option value="Número de Câmbio" id="tipo-pesquisa-cambio">Câmbio</option>
+						<option value="Número do Motor" id="tipo-pesquisa-motor">Motor</option>
+						<option value="Número Renavam" id="tipo-pesquisa-renavam">Renavam</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="veiculos-query" maxlength="50">
+					<span id="veiculos-query-required" class="advanced-search-alert">* Campo obrigatório.</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-veiculos" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-sisme-veiculos" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_SISME_VEICULOS&#39;">
+	<form id="frm-advanced-search-sisme-veiculos" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchSismeVeiculos($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Placa</label> <input type="text" class="form-control" id="sisme-placa" maxlength="8">
+			</div>
+		</div>	
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Chassi</label> <input type="text" class="form-control" id="sisme-chassi" maxlength="21">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Motor</label> <input type="text" class="form-control" id="sisme-motor" maxlength="21">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>País</label>
+				<select class="form-control" id="slct-paises-mercosul-veiculos"><option selected="selected" value="0">Selecione</option><option value="ARGENTINA">ARGENTINA</option><option value="BOLIVIA">BOLÍVIA</option><option value="BRASIL">BRASIL</option><option value="CHILE">CHILE</option><option value="COLOMBIA">COLÔMBIA</option><option value="EQUADOR">EQUADOR</option><option value="PARAGUAI">PARAGUAI</option><option value="URUGUAI">URUGUAI</option><option value="VENEZUELA">VENEZUELA</option></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="sisme-veiculos-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de Placa ou Chassi ou Motor.</span>
+				<span id="sisme-veiculos-pais-required" class="advanced-search-alert">
+				* Preenchimento obrigatório do País.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-sisme-veiculos" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
+		</div>
+	</form>
+</div></div>
+
+			<!-- ngInclude: 'views/advanced-search-empresas.ed4b683b48ff7c97.html' --><div id="tab-search-empresas" class="tab-pane fade ng-scope" ng-include="&#39;views/advanced-search-empresas.ed4b683b48ff7c97.html&#39;" onload="empresasLoaded()"><div class="row ng-scope">
+	<div class="form-group col-md-8">
+		<label>Base</label> <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="slct-base-empresas" ng-model="serviceBase" ng-options="s.nomeResumidoServico for s in groupEmpresas.servicos track by s.idServico" ng-change="updateOption(serviceBase.tipoServico)"><option value="" class="" selected="selected">Selecione</option></select>
+	</div>
+</div>
+
+<div id="advanced-search-pessoajuridica" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_PESSOAJURIDICA&#39;">
+	<form id="frm-advanced-search-pessoajuridica" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchPessoaJuridica($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CNPJ</label> <input type="text" class="form-control" id="pessoajuridica-cnpj" maxlength="14" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome Empresarial</label> <input type="text" class="form-control" id="pessoajuridica-nomeEmpresarial" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome Fantasia</label> <input type="text" class="form-control" id="pessoajuridica-nomeFantasia" maxlength="50">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CPF do Responsável</label> <input type="text" class="form-control" id="pessoajuridica-cpfResponsavel" maxlength="11" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>UF</label> <select class="form-control" id="slct-pessoajuridica-uf"><option selected="selected" value="0">UF</option><option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nome do Sócio</label> <input type="text" class="form-control" id="pessoajuridica-nomeSocio" maxlength="150">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CPF/CNPJ do Sócio</label> <input type="text" class="form-control" id="pessoajuridica-cpfCnpjSocio" maxlength="14" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label>DDD</label> <input type="text" class="form-control" id="pessoajuridica-telefone-ddd" maxlength="2" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+			<div class="form-group col-md-10">
+				<label>Telefone</label> <input type="text" class="form-control" id="pessoajuridica-telefone-numero" maxlength="9" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="pessoajuridica-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de pelo menos um critério.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()">Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-pessoajuridica" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-rais_estab" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_RAIS_ESTAB&#39;">
+	<form id="frm-advanced-search-rais_estabelecimento" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchRaisEstabelecimentos($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Razão Social</label> <input type="text" class="form-control" id="rais_estab-razaosocial" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<input type="checkbox" name="rais-exata" id="rais-exata" ng-model="consultaExataRaisEstabelecimento" value="" class="ng-pristine ng-untouched ng-valid ng-empty">&nbsp;Consulta Exata
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Tipo</label> <br>
+			 	 <input type="radio" name="rais-estab-tipo-identificador" value="cnpj" checked="true"> CNPJ 
+			 	 <input type="radio" name="rais-estab-tipo-identificador" value="cei"> CEI <br>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CNPJ/CEI</label> <input type="text" class="form-control" id="rais_estab-cnpj-cei" maxlength="14" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>CEI Vinculado</label> <input type="text" class="form-control" id="rais_estab-cei-vinculado" maxlength="14" onkeypress="return Funcoes.isNumeroDigitado(event)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>UF</label> 
+				<select class="form-control" id="slct-rais-estabelecimento-uf"><option selected="selected" value="0">UF</option><option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="rais_estab-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de Razão Social ou CNPJ/CEI ou CEI Vinculado.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="rais_estab-exata-required" class="advanced-search-alert">
+				* Na consulta exata a Razão Social deve ser fornecida.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12 text-right">
+				<button class="btn btn-primary" type="reset" onclick="limpaMensagensCamposObrigatorios()" ng-click="consultaExataRaisEstabelecimento = false">
+					Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-rais_estab" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span></button>
+			</div>
+		</div>
+	</form>
+</div></div>
+
+			<!-- ngInclude: 'views/advanced-search-armas.882af44b00105971.html' --><div id="tab-search-armas" class="tab-pane fade ng-scope" ng-include="&#39;views/advanced-search-armas.882af44b00105971.html&#39;" onload="armasLoaded()"><div class="row ng-scope">
+	<div class="form-group col-md-8">
+		<label>Base</label> <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="slct-base-armas" ng-model="serviceBase" ng-options="s.nomeResumidoServico for s in groupArmas.servicos track by s.idServico" ng-change="updateOption(serviceBase.tipoServico)"><option value="" class="" selected="selected">Selecione</option></select>
+	</div>
+</div>
+
+<div id="advanced-search-armas" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_ARMAS&#39;">
+	<form id="frm-advanced-search-armas" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchArmas($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Número de série</label> <input type="text" class="form-control" id="numeroSerie" maxlength="50">
+				<span id="numeroSerie-required" class="advanced-search-alert">* Campo obrigatório.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-right">
+				<button class="btn btn-primary" onclick="limpaMensagensCamposObrigatorios()" type="reset">
+					Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-armas" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="advanced-search-sisme-armas" class="tab-advanced-search ng-scope ng-hide" ng-show="serviceBase.tipoServico==&#39;SRV_SISME_ARMAS&#39;">
+	<form id="frm-advanced-search-sisme-armas" class="form ng-pristine ng-valid" novalidate="" ng-submit="searchSismeArmas($event)">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>Nº Série</label> <input type="text" class="form-control" id="sisme-numeroSerie" maxlength="70">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label>País</label>
+				<select class="form-control" id="slct-paises-mercosul"><option selected="selected" value="0">Selecione</option><option value="ARGENTINA">ARGENTINA</option><option value="BOLIVIA">BOLÍVIA</option><option value="BRASIL">BRASIL</option><option value="CHILE">CHILE</option><option value="COLOMBIA">COLÔMBIA</option><option value="EQUADOR">EQUADOR</option><option value="PARAGUAI">PARAGUAI</option><option value="URUGUAI">URUGUAI</option><option value="VENEZUELA">VENEZUELA</option></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<span id="sisme-numeroSerie-required" class="advanced-search-alert">
+				* Preenchimento obrigatório de Nº Série</span>
+				<span id="sisme-pais-required" class="advanced-search-alert">
+				* Preenchimento obrigatório do País.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-right">
+				<button class="btn btn-primary" onclick="limpaMensagensCamposObrigatorios()" type="reset">
+					Limpar</button>
+				&nbsp;&nbsp;&nbsp;
+				<button id="btn-pesquisar-sisme-armas" class="btn btn-primary" type="submit">
+					Pesquisar &nbsp; <span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
+		</div>
+	</form>
+</div></div>
+		</div>
+	</div>
+</div></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div id="group-services-type">
+								<!-- include -->
+							<div class="pull-left sinesp-mr-2"><div class="checkbox"><label><input type="checkbox" checked="" class="checkAll checkboxBases" id="chk-todos">Todas as bases</label></div></div><div class="pull-left sinesp-mr-2"><div class="checkbox"><label><input type="checkbox" checked="" class="checkGroup checkboxBases" id="Indivíduos">Indivíduos</label><div class="dropdown search-dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="line-height: 0.33em; padding: 0.33em; border: none"><span class="caret"></span></button><ul class="dropdown-menu sinesp-popover"><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_PESSOAFISICA" class="checkItem checkboxBases Indivíduos">Receita Federal - PF</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_CONDUTORES" class="checkItem checkboxBases Indivíduos">Denatran - RENACH</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_RAIS_TRAB" class="checkItem checkboxBases Indivíduos">MTE - RAIS Trabalhador</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_MANDADOS" class="checkItem checkboxBases Indivíduos">CNJ-BNMP</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_INDICE_NACIONAL" class="checkItem checkboxBases Indivíduos">Índice Nacional</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_SIAPEN" class="checkItem checkboxBases Indivíduos">DEPEN - SIAPEN</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_DESAPARECIDOS" class="checkItem checkboxBases Indivíduos">Desaparecidos</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_BOS" class="checkItem checkboxBases Indivíduos">SINESP - Integração BO</label></div></li></ul></div></div></div><div class="pull-left sinesp-mr-2"><div class="checkbox"><label><input type="checkbox" checked="" class="checkGroup checkboxBases" id="Veículos">Veículos</label><input type="checkbox" checked="" id="SRV_VEICULOS" class="checkItem checkboxBases Veículos" hidden=""></div></div><div class="pull-left sinesp-mr-2"><div class="checkbox"><label><input type="checkbox" checked="" class="checkGroup checkboxBases" id="Empresas">Empresas</label><div class="dropdown search-dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="line-height: 0.33em; padding: 0.33em; border: none"><span class="caret"></span></button><ul class="dropdown-menu sinesp-popover"><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_PESSOAJURIDICA" class="checkItem checkboxBases Empresas">Receita Federal - PJ</label></div></li><li><div class="checkbox"><label><input type="checkbox" checked="" id="SRV_RAIS_ESTAB" class="checkItem checkboxBases Empresas">MTE - RAIS Estabelec.</label></div></li></ul></div></div></div><div class="pull-left sinesp-mr-2"><div class="checkbox"><label><input type="checkbox" checked="" class="checkGroup checkboxBases" id="Armas">Armas</label><input type="checkbox" checked="" id="SRV_ARMAS" class="checkItem checkboxBases Armas" hidden=""></div></div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="reportContainer" hidden="">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 sinesp-p0">
+					<h1>Relatório</h1>
+				</div>
+				<div class="col-md-8 text-right">
+					<span class="">
+						<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" id="btn-gerar-relatorio" name="btn-gerar-relatorio" class="btn btn-primary reportCheck">Gerar Relatório</a>
+					</span>
+					<span class="reportBtnSeparator"></span>
+					<span class="">
+						<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#" id="btn-limpar-relatorio" name="btn-limpar-relatorio" class="btn btn-primary reportClean">Limpar Relatório</a>
+					</span>
+				</div>
+ 			</div>
+			<div class="row">
+				<div class="col-md-12 sinesp-p0">
+					<span id="report-error-message"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="sobreContainer" hidden="">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 sinesp-p0">
+					<h1>Sobre o Infoseg</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 sinesp-p0">
+					<div class="row">
+						<div class="col-md-12">
+							Bem-vindo ao Infoseg.
+						</div>
+					</div>
+					<div class="row">
+						<div id="sobreVersionPlaceholder" class="col-md-12">
+						Versão: 1.1.3-prod - 06/02/2019 12:43</div>
+					</div>
+					<div class="row">
+						<div id="sobrePerfisPlaceholder" class="col-md-12 ng-binding">
+						Seg, Def, Jus, Fisc e Controle
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ngInclude: 'views/changelog.0c99405dd368b81a.html' --><div id="changeLogContainer" ng-include="&#39;views/changelog.0c99405dd368b81a.html&#39;" class="ng-scope"><div class="ng-scope">
+	<div class="row">
+		<h4>
+			<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#novidades-v11" data-toggle="collapse" class="sinesp-simple-collapse-control"><span class="icon-set icon-minus"></span>Novidades da Release 11</a>
+		</h4>
+		<div id="novidades-v11" class="list col-md-8 collapse in">
+			<ul>
+				<li><strong>Sisme - Armas:</strong></li>
+				<ul>
+					<li>Consulta a informações sobre armas constantes na base de dados do SISME (Pesquisa Avançada)</li>					
+				</ul>
+				<li><strong>Sisme - Pessoas:</strong></li>
+				<ul>
+					<li>Consulta a informações sobre pessoas constantes na base de dados do SISME (Pesquisa Avançada)</li>					
+				</ul>
+				<li><strong>Sisme - Veículos:</strong></li>
+				<ul>
+					<li>Consulta a informações sobre veículos constantes na base de dados do SISME (Pesquisa Avançada)</li>
+				</ul>
+				<li><strong>Painel de Bases de Dados Integradas:</strong></li>
+				<ul>
+					<li>Consulta a informações de Bases de Dados Integradas</li>
+				</ul>
+				<li><strong>Consulta Inteligente:</strong></li>
+				<ul>
+					<li>Adaptação ao padrão de placas Mercosul</li>
+					<li>Reconhecer outros padrões de Chassis</li>					
+				</ul>
+				<li><strong>Denatran - Renavam:</strong></li>
+				<ul>
+					<li>Adaptação ao padrão de placas Mercosul</li>
+					<li>Reconhecer outros padrões de Chassis</li>					
+				</ul>
+				<li><strong>Consulta em Lote:</strong></li>
+				<ul>
+					<li>Adaptação ao padrão de placas Mercosul</li>					
+				</ul>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<h4>
+			<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#novidades-v10" data-toggle="collapse" class="sinesp-simple-collapse-control"><span class="icon-set icon-plus"></span>Novidades da Release 10</a>
+		</h4>
+		<div id="novidades-v10" class="list col-md-8 collapse">
+			<ul>
+				<li><strong>Condutores:</strong></li>
+				<ul>
+					<li>Melhorias na apresentação do detalhamento</li>
+					<li>Pesquisa cruzada por CPF</li>
+					<li>Pesquisa cruzada por Nome do Pai</li>
+				</ul>
+				<li><strong>Consulta em Lote:</strong></li>
+				<ul>
+					<li>Tratamento de erros no momento da submissão do arquivo de Lote</li>
+					<li>Possibilidade de selecionar múltiplas abas para criar um lote a partir do resultado do processamento</li>
+				</ul>
+				<li><strong>Consulta Inteligente:</strong></li>
+				<ul>
+					<li>Novo Agrupamento de bases – Empresas</li>
+					<li>Consulta por Nome do pai nas bases</li>
+					<ul>
+						<li>Índice Nacional</li>
+						<li>DEPEN - Siapen</li>
+						<li>Desaparecidos</li>
+					</ul>
+					<li>Consulta por Data de Nascimento nas bases</li>
+					<ul>
+						<li>Receita Federal - PF</li>
+						<li>Índice Nacional</li>
+						<li>Desaparecidos</li>
+					</ul>
+				</ul>				
+				<li><strong>Desaparecidos:</strong></li>
+				<ul>
+					<li>Pesquisa cruzada por Nome do Pai</li>					
+				</ul>
+				<li><strong>Índice Nacional:</strong></li>
+				<ul>
+					<li>Pesquisa cruzada por Nome do Pai</li>
+				</ul>
+				<li><strong>Integração BO:</strong></li>
+				<ul>
+					<li>Consulta boletins de ocorrência, envolvidos, fato, pesquisa avançada e filtros dos Estados de AC, AL, AP, GO, MA, MS, PI, RN, RR, SE e TO</li>
+				</ul>
+				<li><strong>RAIS Estabelecimentos:</strong></li>
+				<ul>
+					<li>Pesquisa cruzada por CPF</li>
+					<li>Ajustes no comportamento da Pesquisa Avançada</li>
+				</ul>			
+				<li><strong>RAIS Trabalhadores:</strong></li>
+				<ul>
+					<li>Pesquisa cruzada por CPF</li>
+					<li>Ajustes no comportamento da Pesquisa Avançada</li>
+				</ul>			
+				<li><strong>Receita Federal – PF:</strong></li>
+				<ul>
+					<li>Pesquisa cruzada por CPF</li>				
+				</ul>
+				<li><strong>Receita Federal – PJ:</strong></li>
+				<ul>
+					<li>Pesquisa cruzada por CPF</li>
+					<li>Apresentação de dados de Contadores</li>
+					<li>Apresentação de dados de Sucessão Empresarial</li>
+				</ul>
+				<li><strong>Siapen:</strong></li>
+				<ul>
+					<li>Inclusão de novos campos no detalhamento e listagem</li>
+					<li>Dados dos Internos do Estado do Piauí</li>
+					<li>Pesquisa cruzada por Nome do Pai</li>
+				</ul>
+				<li><strong>Veículos:</strong></li>
+				<ul>
+					<li>Pesquisa cruzada por CPF</li>
+				</ul>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row">
+		<h4>
+			<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#novidades-v9" data-toggle="collapse" class="sinesp-simple-collapse-control"><span class="icon-set icon-plus"></span>Novidades da Release 9</a>
+		</h4>
+		<div id="novidades-v9" class="list col-md-8 collapse">
+			<ul>
+				<li><strong>Consulta em Lote:</strong></li>
+				<ul>
+					<li>Integração com MTE - RAIS - Trabalhador</li>
+					<li>Integração com Denatran – RENACH</li>
+					<li>Cancelar Lote</li>
+					<li>Melhorias na tela de edição do Lote e histórico</li>
+				</ul>
+				<li><strong>Menu Ajuda:</strong></li>
+				<ul>
+					<li>Notificação de Novidades da Release</li>
+				</ul>
+				<li><strong>Veículos:</strong></li>
+				<ul>
+					<li>Inclusão da consulta ao endereço do proprietário</li>
+					<li>Estruturação dos dados em abas</li>
+				</ul>
+				<li><strong>Condutores:</strong></li>
+				<ul>
+					<li>Inclusão de novos campos</li>
+					<li>Estruturação dos dados em abas</li>
+					<li>Consulta a condutores por PID</li>
+				</ul>
+				<li><strong>Menu Gestão (restrito à perfis específicos):</strong></li>
+				<ul>
+					<li>Inclusão da funcionalidade Gestão de Serviços</li>
+					<li>Nova funcionalidade - Painel do Índice Nacional</li>
+				</ul>			
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<h4>
+			<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#novidades-v8" data-toggle="collapse" class="sinesp-simple-collapse-control"><span class="icon-set icon-plus"></span>Novidades da Release 8</a>
+		</h4>
+		<div id="novidades-v8" class="list col-md-8 collapse">
+			<ul>
+				<li><strong>Consulta em Lote:</strong></li>
+				<ul>
+					<li>Permite a seleção de bases a serem pesquisadas</li>
+					<li>Integração com Receita Federal - PJ</li>
+					<li>Integração com DPF - SINARM</li>
+					<li>Integração com DEPEN - SIAPEN</li>
+					<li>Integração com Desaparecidos</li>
+					<li>Geração do relatório PDF por aba</li>
+					<li>Submissão de lotes com fluxo de aprovação</li>
+					<li>Edição de lote</li>
+					<li>Criação de lote a partir de lote submetido anteriormente</li>
+					<li>Baixar arquivo modelo</li>
+					<li>Obter arquivo de dados do lote</li>
+					<li>Consulta Histórico com filtro por situação do lote</li>
+					<li>Novas consultas para lotes pendendes de aprovação/liberação de resultado</li>
+					<li>Novas regras para tratamento de divergências na Receita Federal - PF</li>
+					<li>Carga de arquivo de justificativa para lotes que passam por aprovação</li>
+					<li>Melhorias na apresentação dos dados do relatório PDF</li>
+				</ul>
+				<li><strong>Consulta Veículos RENAVAM:</strong></li>
+				<ul>
+					<li>Inclusão de novas infornações no detalhe de veículos</li>
+				</ul>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<h4>
+			<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#novidades-v7" data-toggle="collapse" class="sinesp-simple-collapse-control"><span class="icon-set icon-plus"></span>Novidades da Release 7</a>
+		</h4>
+		<div id="novidades-v7" class="list col-md-8 collapse">
+			<ul>
+				<li><strong>DEPEN - SIAPEN:</strong></li>
+				<ul>
+					<li>Consulta Internos, dados detalhados, pesquisa avançada e filtros</li>
+					<li>Advogados</li>
+					<li>Visitantes</li>
+					<li>Visitas</li>
+					<li>Transferências</li>
+				</ul>
+				<li><strong>RAIS - Estabelecimentos:</strong></li>
+				<ul>
+					<li>Consulta Estabelecimentos, dados detalhados, pesquisa avançada e filtros</li>
+					<li>Consulta Trabalhadores Vinculados</li>
+				</ul>
+				<li><strong>RAIS - Trabalhadores:</strong></li>
+				<ul>
+					<li>Consulta Trabalhadores, dados detalhados, pesquisa avançada e filtros</li>
+				</ul>
+				<li><strong>CAGED:</strong></li>
+				<ul>
+					<li>Consulta Histórico de Movimentações do Estabelecimento</li>
+					<li>Consulta Histórico de Movimentações do Trabalhador</li>
+				</ul>
+				<li><strong>Pessoa Física:</strong></li>
+				<ul>
+					<li>Pesquisa avançada por Data de Nascimento, Número de Telefone</li>
+				</ul>
+				<li><strong>Pessoa Jurídica:</strong></li>
+				<ul>
+					<li>Pesquisa avançada por Número de Telefone</li>
+					<li>Reconhece nomes de empresa terminados por EPP, ME, MEI.</li>
+				</ul>
+				<li><strong>Mandados de Prisão:</strong></li>
+				<ul>
+					<li>Pesquisa avançada por Situação do Mandado (Perfil Inteligência)</li>
+				</ul>
+				<li><strong>Histórico de novidades de versões
+						anteriores na página Sobre o Infoseg.</strong></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<h4>
+			<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#novidades-v6" data-toggle="collapse" class="sinesp-simple-collapse-control collapsed"><span class="icon-set icon-plus"></span>Novidades da Release 6</a>
+		</h4>
+		<div id="novidades-v6" class="col-md-8 list collapse">
+			<ul>
+				<li><strong>Consulta a Desaparecidos.</strong></li>
+				<li><strong>Realiza consulta exata quando parâmetro do
+						tipo nome ou nome da mãe for informado entre aspas.</strong></li>
+				<li><strong>Índice Nacional:</strong></li>
+				<ul>
+					<li>Consulta a detalhamento do módulo remoto (incluindo
+						Documentos, Endereços, Características Físicas, Alcunhas e Outros
+						Nomes, Dados Criminais e Informações Adicionais)</li>
+					<li>Consulta Procedimentos</li>
+					<li>Consulta Movimentações Penitenciárias</li>
+					<li>Consulta Processos</li>
+					<li>Permite pesquisa sem limite de registros</li>
+					<li>Permite utilizar o filtro até 3.000 registros</li>
+					<li>Pesquisa avançada permite a seleção múltipla de UF
+						Responsável</li>
+				</ul>
+				<li><strong>Seção de Novidades da Release na página
+						Sobre o Infoseg.</strong></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<h4>
+			<a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#novidades-v5" data-toggle="collapse" class="sinesp-simple-collapse-control collapsed"><span class="icon-set icon-plus"></span>Novidades da Release 5</a>
+		</h4>
+		<div id="novidades-v5" class="col-md-8 list collapse">
+			<ul>
+				<li><strong>Consulta em Lote:</strong></li>
+				<ul>
+					<li>Histórico</li>
+					<li>Situação do Processamento</li>
+					<li>Novo Lote</li>
+					<ul>
+						<li>Indivíduos (Brasileiros/Estrangeiros)</li>
+						<li>Veículos</li>
+					</ul>
+				</ul>
+			</ul>
+		</div>
+	</div>
+</div></div>
+		</div>
+	</div>
+	<div id="mainContainer">
+		<div class="container">
+			<div id="serviceLoader" style="display: none;">
+				<img src="./pagina3-clique_files/loader.gif" alt="Carregando...">
+			</div>
+			<div class="row">
+				<div id="global-message" class="alert" role="alert" hidden="" style="display: none;"></div>
+			</div>
+			<div id="resultTabs" class="row sinesp-panel-top" hidden="" style="display: block;">
+				<div><div id="cnt-tabs" class="sinespt-container-affix container affix-top" data-spy="affix" data-offset-top="300"><div id="btn-tabs-p0" class="btn btn-primary"><span id="lbl-tabs-p0">37047519874 <span id="cnt-tabs-p0" class="badge badge-danger">0</span></span></div></div></div>
+			</div>
+			<div id="result" class="row sinesp-panel-body" hidden="" style="display: block;"><div id="p0"><h3><a class="sinesp-collapse-control" data-toggle="collapse" href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-content"><span class="icon-set icon-minus"></span><span class="label_c">CPF</span><span>37047519874</span><span class="label_v" id="cnt-sec-p0">0</span></a></h3><div id="p0-content" class="collapse in"><div class="sinesp-counter-bar"><div class="sinesp-counter-block" id="sld-p0"><div class="sinesp-counter-content"><span>Indivíduos<span class="glyphicon glyphicon-menu-down"></span></span><div class="sinesp-counter-tab" id="cnt-p0-1"><div id="lbl-p0-SRV_PESSOAFISICA" class="btn btn-default disabled">Receita Federal - PF<span id="cnt-p0-SRV_PESSOAFISICA">0</span></div> <div id="lbl-p0-SRV_CONDUTORES" class="btn btn-default disabled">Denatran - RENACH<span id="cnt-p0-SRV_CONDUTORES">0</span></div> <div id="lbl-p0-SRV_RAIS_TRAB" class="btn btn-default disabled">MTE - RAIS Trabalhador<span id="cnt-p0-SRV_RAIS_TRAB">0</span></div> <div id="lbl-p0-SRV_MANDADOS" class="btn btn-default disabled">CNJ - BNMP<span id="cnt-p0-SRV_MANDADOS">0</span></div> <div id="lbl-p0-SRV_BOS" class="btn btn-default disabled">Sinesp – Integração BO<span id="cnt-p0-SRV_BOS">0</span></div> </div></div><div class="sinesp-counter-content"><span>Veículos<span class="glyphicon glyphicon-menu-down"></span></span><div class="sinesp-counter-tab" id="cnt-p0-2"><div id="lbl-p0-SRV_VEICULOS" class="btn btn-default disabled">Denatran - RENAVAM<span id="cnt-p0-SRV_VEICULOS">0</span></div> </div></div><div class="sinesp-counter-content"><span>Empresas<span class="glyphicon glyphicon-menu-down"></span></span><div class="sinesp-counter-tab" id="cnt-p0-3"><div id="lbl-p0-SRV_PESSOAJURIDICA" class="btn btn-default disabled">Receita Federal - PJ<span id="cnt-p0-SRV_PESSOAJURIDICA">0</span></div> </div></div><div class="sinesp-counter-content"><span>Armas<span class="glyphicon glyphicon-menu-down"></span></span><div class="sinesp-counter-tab" id="cnt-p0-4"><div id="lbl-p0-SRV_ARMAS" class="btn btn-default disabled">DPF - SINARM<span id="cnt-p0-SRV_ARMAS">0</span></div> </div></div></div></div><div id="p0-SRV_PESSOAFISICA"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_PESSOAFISICA-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>Receita Federal - PF</a></h4><div style="margin-left: 15px;" class="alert alert-info">ATENÇÃO: Para habilitar a consulta a esta informação é necessário o segundo fator de autenticação. <a href="https://seguranca.sinesp.gov.br/sinesp-seguranca/private/escolha_segundo_fator.jsf?siglaSistema=INFOSEG&amp;siglaFunc=SRV_PESSOAFISICA&amp;goto=https%3A%2F%2Finfoseg.sinesp.gov.br%2Finfoseg2%2F%3Fq%3D37047519874" style="text-decoration: underline;">Clique aqui para acessar.</a><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div><div id="p0-SRV_CONDUTORES"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_CONDUTORES-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>Denatran - RENACH</a></h4><div style="margin-left: 15px;" class="alert alert-info">ATENÇÃO: Para habilitar a consulta a esta informação é necessário o segundo fator de autenticação. <a href="https://seguranca.sinesp.gov.br/sinesp-seguranca/private/escolha_segundo_fator.jsf?siglaSistema=INFOSEG&amp;siglaFunc=SRV_CONDUTORES&amp;goto=https%3A%2F%2Finfoseg.sinesp.gov.br%2Finfoseg2%2F%3Fq%3D37047519874" style="text-decoration: underline;">Clique aqui para acessar.</a><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div><div id="p0-SRV_RAIS_TRAB"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_RAIS_TRAB-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>MTE - RAIS Trabalhador</a></h4><div style="margin-left: 15px;" class="alert alert-info">ATENÇÃO: Para habilitar a consulta a esta informação é necessário o segundo fator de autenticação. <a href="https://seguranca.sinesp.gov.br/sinesp-seguranca/private/escolha_segundo_fator.jsf?siglaSistema=INFOSEG&amp;siglaFunc=SRV_RAIS_TRAB&amp;goto=https%3A%2F%2Finfoseg.sinesp.gov.br%2Finfoseg2%2F%3Fq%3D37047519874" style="text-decoration: underline;">Clique aqui para acessar.</a><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div><div id="p0-SRV_MANDADOS"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_MANDADOS-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>CNJ - BNMP</a></h4><div id="p0-SRV_MANDADOS-lista" class="collapse in"><div class="row"><div id="p0-SRV_MANDADOS-lista-opcoes-selecao" class="col-md-8"><div class="checkbox" id="p0-SRV_MANDADOS-div-selecionar-todos" style="display: none"><label class="addToReport"><input type="checkbox" id="p0-SRV_MANDADOS-cbx-selecionar-todos" class="sinesp-selectall-checkbox" data-div="p0-SRV_MANDADOS"><span></span></label></div></div><div class="col-md-4"><div id="p0-SRV_MANDADOS-lista-filtro" class="sinesp-dropdown text-right" data-pos="right" data-pos-value="0"></div></div></div><div id="p0-SRV_MANDADOS-lista-conteudo" class="list"><div class="alert alert-danger">Nenhum resultado encontrado.<span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div><div id="p0-SRV_MANDADOS-pag"></div></div></div><div id="p0-SRV_BOS"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_BOS-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>Sinesp – Integração BO</a></h4><div style="margin-left: 15px;" class="alert alert-info">ATENÇÃO: Para habilitar a consulta a esta informação é necessário o segundo fator de autenticação. <a href="https://seguranca.sinesp.gov.br/sinesp-seguranca/private/escolha_segundo_fator.jsf?siglaSistema=INFOSEG&amp;siglaFunc=SRV_BOS&amp;goto=https%3A%2F%2Finfoseg.sinesp.gov.br%2Finfoseg2%2F%3Fq%3D37047519874" style="text-decoration: underline;">Clique aqui para acessar.</a><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div><div id="p0-SRV_VEICULOS"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_VEICULOS-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>Denatran - RENAVAM</a></h4><div style="margin-left: 15px;" class="alert alert-info">ATENÇÃO: Para habilitar a consulta a esta informação é necessário o segundo fator de autenticação. <a href="https://seguranca.sinesp.gov.br/sinesp-seguranca/private/escolha_segundo_fator.jsf?siglaSistema=INFOSEG&amp;siglaFunc=SRV_VEICULOS&amp;goto=https%3A%2F%2Finfoseg.sinesp.gov.br%2Finfoseg2%2F%3Fq%3D37047519874" style="text-decoration: underline;">Clique aqui para acessar.</a><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div><div id="p0-SRV_PESSOAJURIDICA"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_PESSOAJURIDICA-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>Receita Federal - PJ</a></h4><div style="margin-left: 15px;" class="alert alert-info">ATENÇÃO: Para habilitar a consulta a esta informação é necessário o segundo fator de autenticação. <a href="https://seguranca.sinesp.gov.br/sinesp-seguranca/private/escolha_segundo_fator.jsf?siglaSistema=INFOSEG&amp;siglaFunc=SRV_PESSOAJURIDICA&amp;goto=https%3A%2F%2Finfoseg.sinesp.gov.br%2Finfoseg2%2F%3Fq%3D37047519874" style="text-decoration: underline;">Clique aqui para acessar.</a><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div><div id="p0-SRV_ARMAS"><h4><a href="https://infoseg.sinesp.gov.br/infoseg2/?q=37047519874#p0-SRV_ARMAS-lista" data-toggle="collapse" class="sinesp-collapse-control"><span class="icon-set icon-minus"></span>DPF - SINARM</a></h4><div style="margin-left: 15px;" class="alert alert-info">ATENÇÃO: Para habilitar a consulta a esta informação é necessário o segundo fator de autenticação. <a href="https://seguranca.sinesp.gov.br/sinesp-seguranca/private/escolha_segundo_fator.jsf?siglaSistema=INFOSEG&amp;siglaFunc=SRV_ARMAS&amp;goto=https%3A%2F%2Finfoseg.sinesp.gov.br%2Finfoseg2%2F%3Fq%3D37047519874" style="text-decoration: underline;">Clique aqui para acessar.</a><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div></div></div></div></div>
+			<div id="resultPrint">
+				<br>O conteúdo desta página não pode ser impresso.
+				<br>Utilize a funcionalidade de <strong>Relatório</strong> para impressão.
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" id="advanced-search-toolbar" hidden="">
+			<div></div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="container">
+			<div id="versionPlaceholder" style="text-align:right">1.1.3-prod - 06/02/2019 12:43</div>
+		</div>
+	</div>
+	<div id="ctrlt-backToTop">
+		<span></span>Voltar ao<br>Topo
+	</div>
+	<!-- scripts -->
+	<script src="./pagina3-clique_files/jquery-2.1.4.min.js.download"></script>
+	<script src="./pagina3-clique_files/bootstrap.min.js.download"></script>
+	<script src="./pagina3-clique_files/jquery.bootpag.min.js.download"></script>
+	<script src="./pagina3-clique_files/angular.min.js.download"></script>
+	<script src="./pagina3-clique_files/jquery.multiselect.js.download"></script>
+
+	<script src="./pagina3-clique_files/js"></script>
+	<script src="./pagina3-clique_files/sinesp-api.angular.js.download"></script>
+	<script src="./pagina3-clique_files/infoseg-run.f6d35eb5e3d60350.js.download"></script>
+
+	<script src="./pagina3-clique_files/util.c6b838c635e98aeb.js.download"></script>
+	<script src="./pagina3-clique_files/funcoes.85ea41fb2cc92d71.js.download"></script>
+	<script src="./pagina3-clique_files/counters.cb5c21a89eb6ca1a.js.download"></script>
+	<script src="./pagina3-clique_files/filtro.0d326f3bf07126fb.js.download"></script>
+
+	<script src="./pagina3-clique_files/search-proxy.d7470e54b8564bdc.js.download"></script>
+	<script src="./pagina3-clique_files/veiculos-proxy.866e3ddec4d5daa0.js.download"></script>
+	<script src="./pagina3-clique_files/mandados-proxy.b8f94c4021097f92.js.download"></script>
+	<script src="./pagina3-clique_files/armas-proxy.152d61109abef39b.js.download"></script>
+	<script src="./pagina3-clique_files/condutores-proxy.bcdd224a6fbc8435.js.download"></script>
+	<script src="./pagina3-clique_files/servicos-proxy.c7e8cf380e8542e5.js.download"></script>
+	<script src="./pagina3-clique_files/pessoafisica-proxy.96a20e510e334275.js.download"></script>
+	<script src="./pagina3-clique_files/pessoajuridica-proxy.ef9bc1c4c6e10997.js.download"></script>
+	<script src="./pagina3-clique_files/individuos-proxy.6c1c4160d89fb347.js.download"></script>
+	<script src="./pagina3-clique_files/desaparecidos-proxy.c9850dfcd5c024d0.js.download"></script>
+	<script src="./pagina3-clique_files/siapen-proxy.4541be708877a50e.js.download"></script>
+	<script src="./pagina3-clique_files/rais-proxy.46bda5087d9bc9e4.js.download"></script>
+	<script src="./pagina3-clique_files/caged-proxy.dfe41a9c72f1de44.js.download"></script>
+	<script src="./pagina3-clique_files/relatorios-proxy.5bba4a7d60a5d29a.js.download"></script>
+
+	<script src="./pagina3-clique_files/search.f17d10efdbb40444.js.download"></script>
+	<script src="./pagina3-clique_files/advanced-search.14d848fbe79c3b3f.js.download"></script>
+	<script src="./pagina3-clique_files/veiculos.fced3d7b5a568003.js.download"></script>
+	<script src="./pagina3-clique_files/mandados.c02274acb5190a36.js.download"></script>
+	<script src="./pagina3-clique_files/armas.c58ca1ebc4c79907.js.download"></script>
+	<script src="./pagina3-clique_files/condutores.57cbec5886d25cfb.js.download"></script>
+	<script src="./pagina3-clique_files/pessoafisica.2da311be92a49949.js.download"></script>
+	<script src="./pagina3-clique_files/pessoajuridica.c5d72fe8a81fcb90.js.download"></script>
+	<script src="./pagina3-clique_files/individuos.df206e0d404e67bb.js.download"></script>
+	<script src="./pagina3-clique_files/desaparecidos.f5aede1ec7bce23b.js.download"></script>
+	<script src="./pagina3-clique_files/siapen.52977ca2c6d50435.js.download"></script>
+	<script src="./pagina3-clique_files/rais.6179689f654df706.js.download"></script>
+	<script src="./pagina3-clique_files/caged.d00f19422af0648c.js.download"></script>
+	<script src="./pagina3-clique_files/bos.5b9bdc5b2a9f20ae.js.download"></script>
+	<script src="./pagina3-clique_files/sisme.52805bb376739d04.js.download"></script>
+	<script src="./pagina3-clique_files/report.3b1ffc294dc39aaf.js.download"></script>
+	<script type="text/javascript">
+		var urlSeguranca = 'https://seguranca.sinesp.gov.br/sinesp-seguranca';
+		// TODO Revisar quando eliminarmos o barramento
+		var urlServico = '';
+
+		$(function() {
+			Search.init();
+			Report.start();
+
+			SearchProxy.getVersao().done(
+				function(data) {
+					$("#versionPlaceholder").append(
+							data.version + " - " + data.dateBuild);
+					$("#sobreVersionPlaceholder").append("Versão: " +
+							data.version + " - " + data.dateBuild);
+					Funcoes.setNewsNotification(data.showNewsNotification);								
+				});			
+		});
+	</script>
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><div id="icpbravoaccess_loaded"></div><div class="lean-overlay" style="display: none; position: fixed; z-index: 0; top: 0px; left: 0px; height: 100%; width: 100%; background: rgb(0, 0, 0); opacity: 0.3; overflow: auto;"></div><div class="lean-overlay" style="display: none; position: fixed; z-index: 0; top: 0px; left: 0px; height: 100%; width: 100%; background: rgb(0, 0, 0); opacity: 0.8; overflow: auto;"></div><div class="lean-overlay" style="display: none; position: fixed; z-index: 0; top: 0px; left: 0px; height: 100%; width: 100%; background: rgb(0, 0, 0); opacity: 0.5; overflow: auto;"></div><div class="lean-overlay" style="display: none; position: fixed; z-index: 0; top: 0px; left: 0px; height: 100%; width: 100%; background: rgb(0, 0, 0); opacity: 0.5; overflow: auto;"></div></body></html>

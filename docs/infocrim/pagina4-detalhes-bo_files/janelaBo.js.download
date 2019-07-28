@@ -1,0 +1,36 @@
+// Gerais
+window.oWin = null;
+window.openRandom = function ( cUrl, cParams ){
+	var cWin = Math.ceil( Math.random() * 100000 ).toString();
+	this.oWin = window.open( cUrl, cWin, cParams );
+}
+window.openCenter = function( cUrl, pnWidth, pnHeigth){
+  	var nLeft = (screen.Width -10 - pnWidth) / 2;
+	var nTop = (screen.Height -20 -pnHeigth) / 2;
+	var cParams = "width=" + pnWidth;  	
+	cParams += ",height=" + pnHeigth;
+	cParams += ",top=" + nTop;
+	cParams += ",left=" + nLeft;
+	cParams += ",toolbar=0,location=0,directories=0,status=1,menuBar=0,scrollBars=1,resizable=1";
+	this.openRandom( cUrl, cParams ) ; 
+}
+
+window.openMax = function( cUrl ){
+  	var nLeft =  10  ;
+	var nTop =  20  ;
+	var cParams = "width=" + (screen.Width - 20);  	
+	cParams += ",height=" + (screen.Height - 40);
+	cParams += ",top=" + nTop;
+	cParams += ",left=" + nLeft;
+	cParams += ",toolbar=0,location=0,directories=0,status=1,menuBar=0,scrollBars=1,resizable=1";
+	this.openRandom( cUrl, cParams ) ; 
+}
+window.openCenterCustom = function( cUrl ){
+	this.openCenter( cUrl, 773, 400 ) ; 
+}
+//Aplicação
+window.janelaBo = function ( cPar ){
+	var cFA = 'pes.detalheBo';
+	var cUrl = 'index.cfm?fuseaction=' + cFA + '&' + cPar;
+	this.openCenterCustom( cUrl );
+}

@@ -1,0 +1,378 @@
+//BDLIGHT => Controle para gerar a lista que será repassada posteriormente para cadastrar os cartórios em tblCE_PesquisasCartorios (ou *_Convenios)
+//addCartorioPesquisaRegistro:	todas as variáveis int* do método são as usadas na procedure spr_ce_pesquisacartorio_insert (ou *_convenios)
+//														as variáveis WS_* do método são usadas para log de erros e auditoria
+var cartorioPesquisaRegistro = {};
+var listCartoriosPesquisaRegistro = new Array();
+function addCartorioPesquisaRegistro(intIDCartorio, intOcorrencias, WS_Procedencia, WS_Url, WS_Status) {
+    var idCartorios = intIDCartorio.toString().split(",");
+
+    for (var i = 0; i < idCartorios.length; i++) {
+        cartorioPesquisaRegistro = {};
+        cartorioPesquisaRegistro.intIDCartorio = idCartorios[i];
+        cartorioPesquisaRegistro.intOcorrencias = intOcorrencias;
+        cartorioPesquisaRegistro.WS_Procedencia = WS_Procedencia;
+        cartorioPesquisaRegistro.WS_Url = WS_Url;
+        cartorioPesquisaRegistro.WS_Status = WS_Status;
+
+        listCartoriosPesquisaRegistro.push(cartorioPesquisaRegistro);
+    }
+}
+
+/* BDLIGHT => VARIÁVEIS DO FRONT-END */
+var hasAtLeastOneOccur = false; //essa variável serve para forçar pedido para um cartório (grupo verde ou cinza/amarelo)
+var qtdeChamadas = 0;
+var qtdeChamadasFeitas = 0;
+
+/* BDLIGHT => CONTROLES PRINCIPAIS. */
+//addCartorioSearchBox: o servidor para cada cartório chamado monta uma chamada dessa função no client-side, que corresponde a uma linha no grid de pesquisas 
+//Importância: como há a possibilidade 'n' para 'n' de existirem chamadas assíncronas (webservice, mysql, wscentral), cada linha deve ser tratada individualmente
+function addCartorioSearchBox(id, nomeCartorio, cidade) {
+    var html = "<tr>";
+    html += "<td class='title' id='table" + id + "'>";
+    html += "<div class='flex'>";
+    html += "<label>" + nomeCartorio + "</label>";
+    html += "</div>";
+    html += "</td>";
+    html += "<td class='check'>";
+    html += "<div class='flex'>";
+    html += "<input style='visibility:hidden;' id='chk" + id + "' name='chkCidades' type='checkbox' value='" + id + "%" + nomeCartorio + "' />";
+    html += "<label id='span" + id + "' name='" + cidade + "'>Pesquisando...</label>";
+    html += "</div>";
+    html += "</td>";
+    html += "</tr>";
+
+    $("#panelBDLight").append(html);
+}
+
+//getSearchData: FUNÇÃO PRINCIPAL DO FRONT-END.
+//O servidor deve gerar no client-side uma chamada assíncrona para cada serviço de cartório (webservice, mysql, wscentral) necessário, essa função serve para isso.
+//O controle hard-core vai estar aqui.
+//A variável timeout está na configuração do cartório em TBL_CARTORIOS_BDLIGHT_CONFIG (SQL SERVER).
+function getSearchData(url, data, idCartorio, _timeout, wsurl) {
+   
+    //Preparação da tela.
+    $("#btnProssegPesquisaNome").attr('disabled', 'disabled');
+
+    var dataArray = data.split(";");
+
+    //Controle de timeout para evitar chamadas muito demoradas.
+    var r = null;
+    var timeout = setTimeout(function () { r.abort(); }, _timeout * 1000);
+
+    //Trata o tipo de chamada para posterior log de erros e auditoria.
+    var typeWS = "XML";
+    if (url.indexOf("SearchLocalData") <= -1) {
+        typeWS = "Externo";
+    }
+
+    //Identifica se a consulta é para outra central de imóveis (ex: ARIRJ / ARIPR)
+    var bCentrais = (url.indexOf("SearchARIRJ") > -1 || url.indexOf("SearchARIPR") > -1);
+
+    //Gera os parâmetros a serem passados para a chamada assíncrona (webservice, mysql ou wscentral).
+    var params = null;
+    if (wsurl != null) {
+        params = {
+            validationHash: dataArray[0],
+            searchedCpfCnpj: dataArray[1],
+            url: wsurl
+        };
+    }
+    else if (bCentrais) {
+        params = {
+            CPFCNPJ: dataArray[0],
+            CNS: dataArray[1]
+        };
+    }
+    else {
+        params = {
+            validationHash: dataArray[0],
+            searchedCpfCnpj: dataArray[1],
+            idCartorio: dataArray[2],
+            blnOficioPenhora: true
+        };
+    }
+
+    //CHAMADA ASSÍNCRONA. É atribuído à variável 'r' responsável pelo controle de timeout.
+    r = $.post(url, params,
+		function (xml) {
+		    //Limpa o controle de timeout correspondente para não cancelar a chamada assíncrona.
+		    //Se chegou aqui [trecho function(xml)] é por que a chamada assíncrona devolveu algum retorno.
+		    clearTimeout(timeout);
+
+		    //LOOP1: Inicia uma iteração node por node dos cartórios retornados no xml (WSCentral/SearchLocalData possivelmente retornará mais de um).
+		    $(xml).find('Cartorio').each(function () {		        
+
+		        var id = $(this).find('Identificacao').text();
+		        if (id.length <= 0 || isNaN(id)) { id = idCartorio; }
+
+		        var error = $(this).find('Status').find('Erro').text();
+
+		        //REGRA DE NEGÓCIO: se o node de erro existir no webservice é por que internamente ocorreu algum erro.
+		        //Nesse caso força um pedido para o cartório responder a solicitação do usuário.
+		        //Senão procede com a verificação da quantidade de ocorrências.
+		        if (error.length > 0) {
+		            if (url.indexOf("SearchLocalData") > -1) {
+		                alert("Nao foi possivel realizar a pesquisa neste momento. Tente novamente em alguns minutos!");
+                        $("#btnVoltar").click();
+		            }
+		            else {
+		                var aIDRI = id.toString().split(",");
+
+		                for (var i = 0; i < aIDRI.length; i++) {
+		                    addCartorioPesquisaRegistro(aIDRI[i], -1, typeWS, url, error.replace(myRegExp, "´"));
+		                    hasAtLeastOneOccur = true;
+		                    var myRegExp = new RegExp("'", "g");
+
+		                    var ds = $('#table' + aIDRI[i] + " label").html();
+		                    $('#table' + aIDRI[i]).html("<div class='flex'><img src='/Content/Images/bdlight_amarelo.png' alt='" + error + "' title='" + error.replace(myRegExp, "´") + "'><label>" + ds + "</label></div>");
+		                    $('#span' + aIDRI[i]).html("Erro na pesquisa: " + error);
+		                }
+		            }
+		        }
+		        else {
+		            var nome = $(this).find('NomeUsuarioPesquisado').text();
+		            var registro = $(this).find('CPFCNPJ').text();
+		            var ocur = $(this).find('Ocorrencias');
+		            var qtde = 0;
+
+		            var atualizado = 1;
+		            if (url.indexOf("SearchLocalData") > -1 || bCentrais) {
+		                try {
+		                    atualizado = eval($(this).find('Atualizado').text());
+		                }
+		                catch (err) {
+		                    atualizado = 0;
+		                }
+		            }
+
+		            //FIX DE INTEGRAÇÃO: Alguns cartórios retornam os dados de matrículas.
+		            //Nesse caso, possuem um node Qtde dentro do node Ocorrencias.
+		            //Outros devolvem direto a quantidade de ocorrências dentro do node Ocorrencias.
+		            var SHOW_GRID_MATRICULA = false;
+		            try {
+		                qtde = ocur.find('Qtde').text();
+		                if (qtde == "") { qtde = ocur.text(); }
+		                else { SHOW_GRID_MATRICULA = true; }
+		            }
+		            catch (err) {
+		                qtde = ocur.text();
+		            }
+		            if (qtde > 0 || qtde == -1) { }
+		            else qtde = 0;
+
+		            if (qtde > 0) {
+		                var aIDRI = id.toString().split(",");
+
+		                for (var i = 0; i < aIDRI.length; i++) {
+		                    addCartorioPesquisaRegistro(aIDRI[i], qtde, typeWS, url, "Pesquisa realizada corretamente.");
+		                    hasAtLeastOneOccur = true;
+
+		                    var ds = $('#table' + aIDRI[i] + " label").html();
+		                    $('#table' + aIDRI[i]).html("<div class='flex'><IMG src='/Content/Images/bdlight_verde" + (atualizado == 0 ? "_cinza" : "") + ".png'>&nbsp;" + ds + "</div>");
+		                    $('#span' + aIDRI[i]).html("Foi pesquisado, encontramos ocorr&#234;ncia(s), a base de dados est&#225;  " + (atualizado == 0 ? "desatualizada." : "atualizada."));
+
+		                    if (SHOW_GRID_MATRICULA) {
+		                        //GRID DE MATRÍCULAS
+		                        var nmatriculas = $(ocur).find('NMatriculas');
+		                        nmatriculas.find('int').each(function () {
+		                            var matricula = $(this).text();
+		                            if (matricula > 0) {
+		                                var cidade = $('#span' + aIDRI[i]).attr('name');
+		                                AppendMatricula(cidade, ds, aIDRI[i], matricula);
+		                            }
+		                        });
+		                    }
+		                }
+		            }
+		            else if (atualizado == 0) {
+		                var aIDRI = id.toString().split(",");
+
+		                for (var i = 0; i < aIDRI.length; i++) {
+		                    addCartorioPesquisaRegistro(aIDRI[i], qtde, typeWS, url, "Pesquisa realizada corretamente.");
+		                    hasAtLeastOneOccur = true;
+
+		                    var ds2 = $('#table' + aIDRI[i] + " label").html();
+		                    $('#table' + aIDRI[i]).html("<div class='flex'><img src='/Content/Images/bdlight_vermelho_cinza.png'><label>" + ds2 + "</label></div>");
+		                    $('#span' + aIDRI[i]).html("Foi pesquisado, n&#227;o encontramos ocorr&#234;ncia(s), a base de dados est&#225; desatualizada.");
+		                }
+		            }
+		        }
+		    });
+		    //FIM LOOP1.
+		    setCartoriosNotFound(idCartorio, typeWS, url, "Pesquisado sem ocorrencias localizadas");
+		    //VERIFICAR SE TODO FOI CONCLUÍDO E PROSSEGUIR PARA PRÓXIMA ETAPA.
+		    registrarPesquisas();
+		}).error(function () {
+		    hasAtLeastOneOccur = true;
+		    var cartorios = idCartorio.toString().split(",");
+
+		    if (url.indexOf("SearchLocalData") > -1) {
+		        alert("Nao foi possivel realizar a pesquisa neste momento. Tente novamente em alguns minutos!");
+                DestroyLoading();
+		        $("#btnVoltar").click();
+
+		    }
+		    else {
+		        for (var i = 0; i < cartorios.length; i++) {
+		            var id = cartorios[i];
+
+		            addCartorioPesquisaRegistro(id, -1, typeWS, url, "Error 500 Could not access the remote address.");
+
+		            var ds = $('#table' + id + " label").html();
+		            $('#table' + id).html("<div class='flex'><IMG src='/Content/Images/bdlight_amarelo.png' alt='Não foi possível acessar o endereço remoto.' title='Não foi possível acessar o endereço remoto.'>&nbsp;" + ds + "</div>");
+		            $('#span' + id).html("Erro na pesquisa");
+		        }
+		        //VERIFICAR SE TODO FOI CONCLUÍDO E PROSSEGUIR PARA PRÓXIMA ETAPA.
+		        registrarPesquisas();
+		    }
+		});
+}
+
+//BDLIGHT => Controles usados na última etapa.
+var registrado = false;
+function registrarPesquisas() {
+    //Atribui uma chamada para depois comparar com a quantidade de webservices, mysqls + o wscentral chamado.
+    //Se todos foram concluídos, a pesquisa pode prosseguir para os registros em tblCE_PesquisasCartorios
+    qtdeChamadasFeitas += 1;
+
+    if (qtdeChamadas == qtdeChamadasFeitas) {
+        if (!hasAtLeastOneOccur) { showMessageNotFound(); }
+
+        var strCPFCNPJ = $("#filterDocumento").val();
+        var intGrupo = $("#hdintGrupo").val();
+
+        //CONTROLE PARA PREVER A POSSIBILIDADE DE CHAMAR MAIS DE UMA VEZ O REGISTRO NO CALLBACK ASSÍNCRONO
+        if (!registrado) {
+            //Chama a função para registro no log de pesquisas.
+            $.post("/Cartorios/BDLight/RegistrarConsulta", {
+                strCPFCNPJ: strCPFCNPJ,
+                cartorios: listCartoriosPesquisaRegistro,
+                intGrupo: intGrupo
+            }, function (data) {
+                registrado = true;
+
+                if (data.indexOf("OK") == -1) {
+                    //SE OCORREU ALGUM ERRO, DEVE SER TRATADO NESTE CALLBACK.
+                    alert(data);
+                    debitado = true;
+                    $("#btnVoltar").click();
+                    DestroyLoading();
+                    return;
+                }
+                else {
+                    //SE RETORNOU OK, MAS COM INFORMAÇÕES EXTRAS, É POR QUE EXISTEM SOLICITAÇÕES EM ABERTO PARA CARTÓRIO/CPF/SOLICITANTE.
+                    if (data.indexOf(";") > 0) {
+                        var rIds = data.split(";");
+                        for (var i = 1; i < rIds.length; i++) {
+                            $("#chk" + rIds[i]).attr('disabled', 'disabled');
+                            $('#span' + rIds[i]).html("Existe solicitação em aberto para esse cartório e CPF.");
+                        }
+                    }
+
+                    if (typeof CallbackBDLightConcluido != "undefined" && CallbackBDLightConcluido) CallbackBDLightConcluido();
+                    else { alert("Pesquisa concluída sem erros!"); DestroyLoading(); }
+                }
+            }).error(function () {
+                alert("N&atilde;o foi poss&iacute;vel concluir com a pesquisa! Por gentileza, tente novamente, se o problema persistir comunique a Arisp!");
+                DestroyLoading();
+                $("#btnVoltar").click();
+            });
+        }
+    }
+}
+
+//BDLIGHT => Controles para exibição da pop-up de cartórios no grupo vermelho.
+//showCartoriosNotFound: monta a chamada para exibir a pop-up de cartórios no grupo vermelho.
+//											 a variável lstCartoriosNotFound server justamente para passar os nomes dos cartórios não encontrados, essa já era a lógica antiga
+//											 a variável qtdeCartoriosNotFound é usada em uma verificação posterior.
+var lstCartoriosNotFound = "";
+var qtdeCartoriosNotFound = 0;
+function showCartoriosNotFound() {
+    $("#pCartorios").html(lstCartoriosNotFound);
+    OpenPopup("#popupVermelhos");
+    $('#popupVermelhos').modal('show');
+}
+
+//setCartoriosNotFound: como 'n' chamadas assíncronas podem ser realizadas, essa função pode ser chamada 'n' vezes para gerar a lista de cartórios no grupo vermelho
+//										 a variável (interna) ds serve para obter o nome do cartório com base no grid.
+function setCartoriosNotFound(_idCartorios, type, url, status) {
+    var idCartorios = _idCartorios.toString().split(",");
+
+    for (var i = 0; i < idCartorios.length; i++) {
+        var id = idCartorios[i];
+
+        //A LÓGICA ABAIXO BUSCA OS CARTÓRIOS QUE NÃO TIVERAM OCORRÊNCIAS.
+        //Como o XML do webservice não retorna os cartórios sem ocorrência, é necessário fazer um tratamento.
+        if ($("#table" + id).find("img").length == 0) {
+            var ds = $("#table" + id + " label").html();
+            lstCartoriosNotFound += ds + "<br>";
+            qtdeCartoriosNotFound += 1;
+            $("#table" + id).parent().remove();
+
+            var hdnCartoriosBL = $("#hdnCartoriosBL").val();
+            $("#hdnCartoriosBL").val(hdnCartoriosBL + id + ";")
+
+            addCartorioPesquisaRegistro(id, 0, type, url, status);
+        }
+    }
+
+    if (qtdeCartoriosNotFound > 0) {
+        $("#lnkShowNotFound").show();
+        $("#lnkShowNotFound").find("span").html(qtdeCartoriosNotFound);
+    }
+}
+
+/* MENSAGEM DO GRID DE BUSCA SEM OCORRÊNCIAS */
+function showMessageNotFound(sistema) {
+    if (!sistema) //OFICIO ELETRÔNICO
+    {
+        $(".divPanel").append("<div align='center' class='ce nooccurrences'>Não foram localizadas ocorrências, clique em visualizar os cartórios pesquisados ou no botão 'Nova Pesquisa'.</div>");
+        $("#pnlOutraPesquisa").show();
+
+        if (!checkQSFieldValue('consultacartorio')) { $("#btnProssegPesquisaNome").removeAttr('disabled'); }
+    }
+    else //PENHORA ONLINE
+    {
+        $(".divPanel").append("<div align='center' class='ce nooccurrences'>Não foram localizadas ocorrências, visualize os cartórios pesquisados mais abaixo ou no botão 'Voltar' para efetuar nova pesquisa.</div>");
+        $("#btnProsseguir").removeAttr('disabled');
+        $("#btnProsseguirLista").removeAttr('disabled');
+        $("#pnlLoading").hide();
+    }
+}
+
+function AppendMatricula(cidade, dsCartorio, id, nmatricula) {
+    var htmlMatriculas = '<tr>';
+    htmlMatriculas += '<td>' + cidade + '</td>';
+    htmlMatriculas += '<td>' + dsCartorio + '</td>';
+    htmlMatriculas += '<td>' + nmatricula + '</td>';
+    htmlMatriculas += '<td>';
+    htmlMatriculas += '<a href="javascript:void(0);" onclick="VisualizarMatricula(' + id + ',' + nmatricula + ');" class="list listDetails" title="Visualizar matrícula">&nbsp;</a>';
+    htmlMatriculas += '</td>';
+    htmlMatriculas += '</tr>';
+
+    $("#panelMatriculas").append(htmlMatriculas);
+    $("#btnMatriculas").show();
+}
+
+function retirarAcento(objResp) {
+    var varString = objResp;
+    var stringAcentos = new String('àâêôûãõáéíóúçüÀÂÊÔÛÃÕÁÉÍÓÚÇÜº');
+    var stringSemAcento = new String('aaeouaoaeioucuAAEOUAOAEIOUCU.');
+
+    var i = new Number();
+    var j = new Number();
+    var cString = new String();
+    var varRes = '';
+
+    for (i = 0; i < varString.length; i++) {
+        cString = varString.substring(i, i + 1);
+        for (j = 0; j < stringAcentos.length; j++) {
+            if (stringAcentos.substring(j, j + 1) == cString) {
+                cString = stringSemAcento.substring(j, j + 1);
+            }
+        }
+        varRes += cString;
+    }
+
+    return varRes;
+}

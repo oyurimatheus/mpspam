@@ -1,0 +1,18 @@
+﻿@media print {
+    header,
+    .bread-crumb,
+    .btn-actions-form,
+    .side-call-button,
+    .side-nav-options,
+    .close-wrap,
+    #copyright-wrap,
+    #buttons,
+    footer{
+        display:none!important;
+    }
+    
+    .hasDatepicker{
+        background-position: 5px 50%!important;
+        background-repeat: no-repeat!important;
+    }
+}

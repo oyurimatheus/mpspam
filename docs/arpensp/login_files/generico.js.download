@@ -1,0 +1,1047 @@
+$(function() {
+  /* --- Configuração da navegação --- */
+  var lastAddress = '';
+
+  $.address.change(function(event) {
+    // mostrarLoading();
+    /* --- Verifica se vai pro início --- */
+    if(event.value!='/'){
+      var len = event.value.split('/').length;
+      var template = '';
+      var params = '';
+
+      for(i=1;i<len;i++) {
+        if(i<3) {
+          if(template=='') {
+            template = event.value.split('/')[i];
+          } else {
+            template = template + '/' + event.value.split('/')[i];
+          }
+        } else {
+          if(i==3) {
+            hash = event.value.split('/')[i];
+          } else {
+            if(params=='') {
+              params = event.value.split('/')[i];
+            } else {
+              params = params + '/' + event.value.split('/')[i];
+            }
+          }
+        }
+      }
+
+      if(params) {
+        // AQUI VAI EXECUTAR SÓ A FUNÇÃO
+
+        if(params.split('/')[0]=='params') {
+          /* página com parâmetros */
+
+          lastAddress = template;
+          var len = params.split('/').length;
+          var url_params = '';
+          for(i=1;i<len;i++) {
+            if(url_params=='') {
+              url_params = params.split('/')[i];
+            } else {
+              if(i%2) {
+                url_params = url_params + '&' + params.split('/')[i];
+              } else {
+                url_params = url_params + '=' + params.split('/')[i];
+              }
+            }
+          }
+
+          $('#conteudo').load('./' + template + '.cfm?' + url_params, function() {
+            if (/notscroll=1/i.test(url_params)) esconderLoading('notScroll') /* --- Checagem se a tela rola de volta pro topo ao carregar --- */
+            else esconderLoading();
+          });
+        } else {
+
+          if(template!=lastAddress) {
+            lastAddress = template;
+            if(params.split('/')[5]=='params') {
+              var len = params.split('/').length;
+              var url_params = '';
+              for(i=6;i<len;i++) {
+                if(url_params=='') {
+                  url_params = params.split('/')[i];
+                } else {
+                  if(i%2) {
+                    url_params = url_params + '=' + params.split('/')[i];
+                  } else {
+                    url_params = url_params + '&' + params.split('/')[i];
+                  }
+                }
+              }
+
+            } else {
+              url_params = '';
+            }
+
+            $('#conteudo').load('./' + template + '.cfm?' + url_params, function() {
+              executarPesquisa(params);
+            });
+          } else {
+            executarPesquisa(params);
+          }
+
+        }
+
+      } else {
+        lastAddress = template;
+        $('#conteudo').load('./' + template + '.cfm', function() {
+          esconderLoading();
+        });
+      }
+    } else {
+      lastAddress = 'includes/principal';
+      // montarURL(lastAddress);
+      // $('#conteudo').load('./includes/principal.cfm', function() {
+      //   esconderLoading();
+      // });
+        esconderLoading();
+    }
+  });
+
+  /* --- Lógica dos links --- */
+  $(document).on({
+    click: function() {montarURL($(this).attr('link'))}
+  },'a[link]');
+
+  /* --- Lógica dos botões de pesquisa e relatório --- */
+  $(document).on({
+    click: function() {
+      var form_name = $('div[id="conteudo"] form').attr('name');
+      var param_name = '';
+      var param_value = '';
+      var link = $(this).attr('link');
+      var checkbox_anterior = '';
+      var radio_anterior = '';
+
+      var fields = $('div[id="conteudo"] form').serialize();
+      $.each(fields.split('&'), function(i, field) {
+        if(field.split('=')[1]!='') {
+          param_name = param_name + '|' + unescape(field.split('=')[0]);
+          param_value = param_value + '|' + unescape(field.split('=')[1]) + ' ';
+        }
+      });
+      // alert(param_name);
+      // alert(param_value);
+
+      $.ajax({
+        type: 'POST',
+        url: './includes/genericoExecutar.cfm',
+        data: {
+          'exec': 'setarParametrosURL',
+          'param_name': escape(param_name),
+          'param_value': escape(param_value)
+        },
+        success: function(obj) {
+          var obj = $.parseJSON(obj);
+          switch(parseInt(obj.erro_cod)) {
+            case 0:
+              montarURL(link + obj.params);
+              break;
+            default:
+              alert(obj.erro_msg);
+          }
+        }
+      });
+    }
+  },'input[type="submit"][link], div[link], div[class="paginacao"] a[link]');
+});
+
+function formataInput(){
+  if(jQuery(".input-telefone"))
+  {
+    jQuery(".input-telefone").mask("9999-9999");
+  }
+  if(jQuery(".input-ddd"))
+  {
+    jQuery(".input-ddd").mask("99");
+  }
+  if(jQuery(".input-cpf"))
+  {
+    jQuery(".input-cpf").mask("999.999.999-99");
+  }
+  if(jQuery(".input-cnpj"))
+  {
+    jQuery(".input-cnpj").mask("99.999.999/9999-99");
+  }
+  if(jQuery(".input-cep"))
+  {
+    jQuery(".input-cep").mask("99999-999");
+  }
+  if(jQuery(".input-data-nasc"))
+  {
+    jQuery(".input-data-nasc").mask("99/99/9999");
+  }
+  if(jQuery(".input-celular"))
+  {
+    jQuery(".input-celular").focusout(function()
+    {
+      var phone, element;
+      element = jQuery(this);
+      element.unmask();
+      phone = element.val().replace(/\D/g, '');
+      if(phone.length > 8) {
+        element.mask("99999-9999");
+      } else {
+        element.mask("9999-9999");
+      }
+    }).trigger('focusout');
+  }
+}
+
+function limparFormulario(){
+  $( ".bfh-selectbox-toggle span" ).each(function( i ) {
+    this.innerHTML = "";
+  });
+  $( ".bfh-selectbox input[type=hidden]" ).each(function( i ) {;
+    this.value="";
+  });
+  $( "input[type=text]" ).each(function( i ) {
+    this.value = "";
+  });
+  $( "input[type=radio]" ).each(function( i ) {
+    $('.checked').removeClass('checked');
+    $('.radio').attr('checked',false);
+  });
+  $( "input[type=checkbox]" ).each(function( i ) {
+    $('.checked').removeClass('checked');
+    $('.checkbox').attr('checked',false);
+  });
+  $( "select" ).each(function( i ) {
+    this.selectedIndex =0;
+  });
+}
+
+function mostrarLoading(){
+
+  var width_tela = $('html').width();
+  var height_tela = $(document).height();
+
+  $('#loading').css({
+     'width': width_tela,
+    'height': height_tela,
+      'position': 'absolute',
+      'z-index':'9999',
+      'opacity': '0.5',
+      'background-color': 'white'
+  });
+  $('#loading').fadeIn('fast');
+}
+
+function esconderLoading(notScroll) {
+  $('#loading').fadeOut('fast', function() {
+    $('#loading').removeClass('invisivel');
+  });
+}
+
+function executarPesquisa(params) {
+  var exec = params.split('/')[0];
+  var startRow = params.split('/')[1];
+  var displayRows = params.split('/')[2];
+  var paginaAtual = params.split('/')[3];
+  var paginaInicio = params.split('/')[4];
+  eval(exec + '(' + startRow + ',' + displayRows + ',' + paginaAtual + ',' + paginaInicio + ');');
+}
+
+function montarURL(link,callback) {
+  mostrarLoading();
+  var numRand = Math.floor(Math.random() * 999999) + parseFloat(111111);
+  var template = '';
+  var params = '';
+  var len = link.split('/').length;
+  for(i=0;i<len;i++) {
+    if(i<2) {
+      if(template=='') {
+        template = link.split('/')[i];
+      } else {
+        template = template + '/' + link.split('/')[i];
+      }
+    } else {
+      if(params=='') {
+        params = link.split('/')[i];
+      } else {
+        params = params + '/' + link.split('/')[i];
+      }
+    }
+  }
+  template = template + '/' + numRand;
+
+  $.address.value(template + '/' + params);
+}
+
+function getCheckbox(form,field) {
+  var resultado = "";
+  var len = document.forms[form].elements[field].length;
+  if (len==undefined) {
+    if (document.forms[form].elements[field].checked){
+      resultado = document.forms[form].elements[field].value;
+    }
+  } else {
+    for (var i=0; i < len; i++) {
+      if (document.forms[form].elements[field][i].checked){
+        if (resultado=="") {
+          resultado = document.forms[form].elements[field][i].value;
+        } else {
+          resultado = resultado + ',' + document.forms[form].elements[field][i].value;
+        }
+      }
+    }
+  }
+  return resultado;
+}
+
+function getRadio(form,field) {
+  resultado = '';
+  $('form[name="' + form + '"] input[name="' + field + '"]').each(function() {
+    if ($(this).is(':checked')) {
+      resultado = $(this).val();
+    }
+  });
+  return resultado;
+}
+
+function getRadioId(id) {
+  resultado = '';
+  $('#'+id).each(function() {
+    if ($(this).is(':checked')) {
+      resultado = $(this).val();
+    }
+  });
+  return resultado;
+}
+
+function getFlag(form,field) {
+  resultado = "";
+  var len = document.forms[form].elements[field].length;
+  if (len==undefined) {
+    if(document.forms[form].elements[field].checked) {
+      resultado = 'S';
+    } else {
+      resultado = 'N';
+    }
+  } else {
+    for (var i=0; i < document.forms[form].elements[field].length; i++) {
+      if (resultado=='') {
+        if (document.forms[form].elements[field][i].checked){
+          resultado = 'S';
+        } else {
+          resultado = 'N';
+        }
+      } else {
+        if (document.forms[form].elements[field][i].checked){
+          resultado = resultado + ',S';
+        } else {
+          resultado = resultado + ',N';
+        }
+      }
+    }
+  }
+  return resultado;
+}
+
+function getArray(form,field,delim){
+  var resultado = '';
+  !delim? delim ='|' :null;
+  $('form[name=' +form +']  [name=' +field +']').each(function(i){
+    i>0? resultado +=delim +$(this).val() :resultado +=$(this).val();
+  });
+  return resultado;
+}
+
+function formataDataDigitada(campo,tammax,event) {
+  // Retira tudo que não é numérico
+  var temp=campo.value;
+  var valor="";
+
+  // Permite que sejam tecladas as setas de navegação, backspace, delete e tab
+  if ((event.keyCode < 33 || event.keyCode > 40) && (event.keyCode != 8 && event.keyCode != 9 && event.keyCode != 46)) {
+
+    for (var i=0;i<temp.length;i++) {
+      if (!isNaN(temp.substring(i,i+1)) && temp.substring(i,i+1)!=' ' && valor.length < tammax) {
+        valor+=temp.substring(i,i+1);
+      }
+    }
+
+    var j=0;
+    temp="";
+    for (var tam=0;tam<valor.length;tam++) {
+      if (j==0) {
+        temp+=valor.substring(tam,tam+1);
+        if (tam==1) { j++; temp+="/"; }
+      } else if (j==1) {
+        //if (tam==2) { temp+="/"; }
+        temp+=valor.substring(tam,tam+1);
+        if (tam==3) { j++; temp+="/"; }
+      } else if (j==2) {
+        //if (tam==4) { temp+="/"; }
+        temp+=valor.substring(tam,tam+1);
+        if (tam==3) { j++; }
+      }
+    }
+
+    if (campo.value!=temp) {
+      campo.value=temp;
+    }
+
+  } // Fim condição "if ((event.keyCode < 33 || event.keyCode > 40) && (event.keyCode != 8 && event.keyCode != 46))"
+}
+
+function selectAll(checkId) {
+  var checked_status = document.getElementById('seletor_' + checkId).checked;
+  $('input[id=' + checkId + '], input[name=' + checkId + ']').each(function() {
+    this.checked = checked_status;
+  });
+}
+
+function selecionarTudoEstimativa(checkId,orcamentoNum) {
+  var checked_status = document.getElementById(checkId).checked;
+  $('div#Estimativa_' + orcamentoNum + ' input[type=checkbox]').each(function() {
+    this.checked = checked_status;
+  });
+}
+
+function select_innerHTML(objeto,innerHTML) {
+  /* * * * * *
+  * select_innerHTML - corrige o bug do InnerHTML em selects no IE
+  * Veja o problema em: http://support.microsoft.com/default.aspx?scid=kb;en-us;276228
+  * Versão: 2.1 - 04/09/2007
+  * Autor: Micox - Náiron José C. Guimarães - micoxjcg@yahoo.com.br
+  * @objeto(tipo HTMLobject): o select a ser alterado
+  * @innerHTML(tipo string): o novo valor do innerHTML
+  * * * * * */
+    objeto.innerHTML = ""
+    var selTemp = document.createElement("micoxselect")
+    var opt;
+    selTemp.id="micoxselect1"
+    document.body.appendChild(selTemp)
+    selTemp = document.getElementById("micoxselect1")
+    selTemp.style.display="none"
+    if(innerHTML.indexOf("<option")<0){//se não é option eu converto
+        innerHTML = "<option>" + innerHTML + "</option>"
+    }
+    innerHTML = innerHTML.replace(/<option/g,"<span").replace(/<\/option/g,"</span")
+    selTemp.innerHTML = innerHTML
+
+
+    for(var i=0;i<selTemp.childNodes.length;i++){
+  var spantemp = selTemp.childNodes[i];
+
+        if(spantemp.tagName){
+            opt = document.createElement("OPTION")
+
+   if(document.all){ //IE
+    objeto.add(opt)
+   }else{
+    objeto.appendChild(opt)
+   }
+
+   //getting attributes
+   for(var j=0; j<spantemp.attributes.length ; j++){
+    var attrName = spantemp.attributes[j].nodeName;
+    var attrVal = spantemp.attributes[j].nodeValue;
+    if(attrVal){
+     try{
+      opt.setAttribute(attrName,attrVal);
+      opt.setAttributeNode(spantemp.attributes[j].cloneNode(true));
+     }catch(e){}
+    }
+   }
+   //getting styles
+   if(spantemp.style){
+    for(var y in spantemp.style){
+     try{opt.style[y] = spantemp.style[y];}catch(e){}
+    }
+   }
+   //value and text
+   opt.value = spantemp.getAttribute("value")
+   opt.text = spantemp.innerHTML
+   opt.text = opt.text.replace(/\&amp;/g,'&');
+   //IE
+   opt.selected = spantemp.getAttribute('selected');
+   opt.className = spantemp.className;
+  }
+ }
+ document.body.removeChild(selTemp)
+ selTemp = null
+}
+
+function roundNumber(rnum) {
+  return Math.round(rnum * Math.pow(10,2)) / Math.pow(10,2);
+}
+
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function formatarMoeda(num,noSep) {
+  noSep ? sep = '' : sep = '.';
+  x = 0;
+  if(num<0) {
+    num = Math.abs(num);
+    x = 1;
+  }
+  if(isNaN(num)) num = "0";
+  cents = Math.floor((num*100+0.5)%100);
+  num = Math.floor((num*100+0.5)/100).toString();
+  if(cents < 10) cents = "0" + cents;
+  for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+    num = num.substring(0,num.length-(4*i+3))+sep+num.substring(num.length-(4*i+3));
+  ret = num + ',' + cents;
+  if (x == 1) ret = ' - ' + ret;return ret;
+}
+
+function converterMoeda(moeda) {
+  moeda = moeda.replace(".","");
+  moeda = moeda.replace(",",".");
+  return parseFloat(moeda);
+}
+
+function openWindow(url) {
+  window.open (url, "_blank", "width=1024,height=768,top=15,left=30,resizable,scrollbars,status=no");
+}
+
+function esconderHint() {
+  document.getElementById('box_hint').innerHTML="<span></span>";
+}
+
+function mostrarHint(descricao,event,element) {
+  if(element) {
+    var positionX = getElementPos('x',element) + 40;
+    var positionY = getElementPos('y',element) + 20;
+  } else {
+    var positionX = getMousePos('x',event) + 20;
+    var positionY = getMousePos('y',event) - 20;
+  }
+  document.getElementById('box_hint').innerHTML="<div style='z-index:500; background-color:#FFFFE1; border:1px solid #000; padding:2px; position:absolute; left:" + positionX + "px; top:" + positionY + "px'><span style='font-family:Tahoma,Arial,sans-serif; font-size:8pt;'>" + descricao + "</span></div>";
+}
+
+function getMousePos(pos,event) {
+  var position;
+  if (pos=='x') {
+    position = event.clientX + document.documentElement.scrollLeft;
+  } else {
+    position = event.clientY + document.documentElement.scrollTop;
+  }
+  return position;
+}
+
+function getElementPos(pos,element) {
+  var position = 0;
+  if (pos=='x') {
+    while(element != null) {
+      position += element.offsetLeft;
+      element = element.offsetParent;
+    }
+  } else {
+    while(element != null) {
+      position += element.offsetTop;
+      element = element.offsetParent;
+    }
+  }
+  return position;
+}
+
+function trocaPrecoInfIndex (entidadeId) {
+  // mostrarLoading();
+
+  var entidade_id = entidadeId;
+
+  $.ajax({
+    type: 'POST',
+    url: './includes/genericoExecutar.cfm',
+    data:{
+      'exec': 'trocaPrecoInfIndex',
+      'entidade_id': escape(entidade_id)
+    },
+    success: function(obj){
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+
+          var PRECO_CERT = "-";
+          var DESP_PROC_TAXA_REMES = "-";
+          var total_cert = "-";
+          var PRECO_AVERB = "-";
+
+          if(obj.PRECO_CERT != "" && obj.PRECO_CERT != "-") {
+            var PRECO_CERT = obj.PRECO_CERT;
+            var PRECO_CERT = PRECO_CERT;
+          }
+          if(obj.DESP_PROC_TAXA_REMES != "" && obj.DESP_PROC_TAXA_REMES != "-") {
+            var DESP_PROC_TAXA_REMES = obj.DESP_PROC_TAXA_REMES;
+            var DESP_PROC_TAXA_REMES = DESP_PROC_TAXA_REMES;
+          }
+          if(obj.total_cert != "" && obj.total_cert != "-") {
+            var total_cert = obj.total_cert;
+            var total_cert = total_cert;
+          }
+          if(obj.PRECO_AVERB != "" && obj.PRECO_AVERB != "-") {
+            var PRECO_AVERB = obj.PRECO_AVERB;
+            var PRECO_AVERB = PRECO_AVERB;
+          }
+
+          $('#preco_cert_papel').val(PRECO_CERT);
+          $('#desp_proc_taxa_remes_papel').val(DESP_PROC_TAXA_REMES);
+          $('#total_cert_papel').val(total_cert);
+          $('#preco_averb_papel').val(PRECO_AVERB);
+          $('#preco_cert_papel').html(PRECO_CERT);
+          $('#desp_proc_taxa_remes_papel').html(DESP_PROC_TAXA_REMES);
+          $('#total_cert_papel').html(total_cert);
+          $('#preco_averb_papel').html(PRECO_AVERB);
+          // $('#tel_inf_papel').val(obj.tel_inf);
+
+          $('#preco_cert_ele').val(PRECO_CERT);
+          $('#total_cert_ele').val(PRECO_CERT);
+          $('#preco_averb_ele').val(PRECO_AVERB);
+          // $('#tel_inf_ele').val(obj.tel_inf);
+          $('#preco_cert_ele').html(PRECO_CERT);
+          $('#total_cert_ele').html(PRECO_CERT);
+          $('#preco_averb_ele').html(PRECO_AVERB);
+          // $('#tel_inf_ele').html(obj.tel_inf);
+
+          // esconderLoading('notScroll');
+          break;
+        default:
+          alert(obj.erro_msg);
+          // esconderLoading('notScroll');
+      }
+    }
+  });
+}
+
+function obterComboCidades(uf) {
+  document.getElementById('box_loading_cidades').innerHTML = '<img src="./css/imagens/icon_loading_01.gif" />';
+  var uf = uf;
+  $.ajax({
+    type: 'POST',
+    url: './includes/genericoExecutar.cfm',
+    data: {
+      'exec': 'obterComboCidades',
+      'uf': escape(uf)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cidade_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cidades').innerHTML = '';
+    }
+  });
+}
+
+function calculaFreteCorreiosPrincipal(cartorio_id,selectRetorno,tipoFrete) {
+  mostrarLoading();
+  var cartorio_id = cartorio_id;
+
+  $.ajax({
+    type: 'POST',
+    url: './includes/genericoExecutar.cfm',
+    data: {
+      'exec': 'calculaFreteCorreiosPrincipal',
+      'cartorio_id': escape(cartorio_id),
+      'tipoFrete': escape(tipoFrete)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      // console.dir(obj.html);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          // $('#'+selectRetorno).html(obj.html);
+          // $('#'+selectRetorno+'_total').html(obj.total);
+          // $('#'+selectRetorno+'_valor_frete').html(obj.frete);
+          $('#'+selectRetorno+'_frete').html(obj.frete);
+          $('#'+selectRetorno+'_options').html(obj.html);
+          $('#valor_cert_tela_principal').html(obj.valor_requisicao);
+          $('#valor_taxa_envio').val(obj.valor_taxa_envio);
+          esconderLoading();
+          break;
+        default:
+          alert(obj.erro_msg);
+          esconderLoading();
+      }
+    }
+  });
+}
+
+function calculaFreteCorreios(cepEnv,cepRec,divRetorno) {
+  mostrarLoading();
+  var cepEnv = cepEnv;
+  var cepRec = cepRec;
+  var divRetorno = divRetorno;
+  var preco_carta_registrada = $('#preco_carta_registrada').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './includes/genericoExecutar.cfm',
+    data: {
+      'exec': 'calculaFreteCorreios',
+      'cepEnv': escape(cepEnv),
+      'cepRec': escape(cepRec),
+      'preco_carta_registrada': escape(preco_carta_registrada)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      // console.dir(obj.html);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#'+divRetorno).html(obj.html);
+          esconderLoading();
+          break;
+        default:
+          alert(obj.erro_msg);
+          esconderLoading();
+      }
+    }
+  });
+}
+
+function gerarBotaoCalcular(endereco_id){
+  if((endereco_id != "") || (endereco_id != 0)){
+    $.ajax({
+      type: 'POST',
+      url: './includes/genericoExecutar.cfm',
+      data: {
+        'exec': 'gerarBotaoCalcular',
+        'endereco_id': escape(endereco_id)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            $('#valor_frete_retorno_'+endereco_id).html(obj.html);
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+      }
+    });
+  }
+}
+
+function obterEnderecosEntrega(){
+  $.ajax({
+    type: 'POST',
+    url: './includes/genericoExecutar.cfm',
+    data: {
+      'exec': 'obterEnderecosEntrega'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#endereco_entrega').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+    }
+  });
+}
+
+function obterComboCartoriosCarga(cidade_id) {
+  document.getElementById('box_loading_cartorios').innerHTML = '<img src="./css/imagens/icon_loading_01.gif" />';
+  var cidade_id = cidade_id;
+  $.ajax({
+    type: 'POST',
+    url: './includes/genericoExecutar.cfm',
+    data: {
+      'exec': 'obterComboCartoriosCarga',
+      'cidade_id': escape(cidade_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#cartorio_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cartorios').innerHTML = '';
+    }
+  });
+}
+
+function obterAcompanhamentoAntigas() {
+  mostrarLoading();
+  $.ajax({
+    type: 'POST',
+    url: './includes/genericoExecutar.cfm',
+    data: {
+      'exec': 'obterAcompanhamentoAntigas'
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#div_acompanhamento').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+          esconderLoading();
+    }
+  });
+}
+
+function checkaTodos(form,pai,elemento) {
+  if(document.forms[form].elements[pai].checked!=false){
+    for (var i=0;i<document.forms[form].elements.length;i++)
+    {
+      var x = document.forms[form].elements[i];
+      if (x.name == elemento)
+      x.checked = false;
+    }
+  }
+  else{
+    for (var i=0;i<document.forms[form].elements.length;i++)
+    {
+      var x = document.forms[form].elements[i];
+      if (x.name == elemento)
+      x.checked = true;
+    }
+  }
+}
+
+function loginCertificado () {
+  mostrarLoading();
+  var cpfCertificado = $('#cpfCertificado').val();
+  var txtCertificado = $('#txtCertificado').val();
+  if(cpfCertificado.length > 11){
+    var tipo = "cnpj";
+  } else {
+    var tipo = "cpf";
+  }
+  esconderLoading();
+  // $.ajax({
+  //   type: 'POST',
+  //   url: './includes/genericoExecutar.cfm',
+  //   data:{
+  //     'exec': 'loginCertificado',
+  //     'cpfCertificado': escape(cpfCertificado),
+  //     'tipo': escape(tipo)
+  //   },
+  //   success: function(obj){
+  //     var obj = $.parseJSON(obj);
+  //     switch(parseInt(obj.erro_cod)) {
+  //       case 0:
+  //         esconderLoading('notScroll');
+  //         // $('#linkNavega').click();
+  //         // console.log("oi");
+  //         // location.href('');
+  //         // window.location.href='./dashboard.cfm';
+  //         montarURL('includes/dashboard');
+  //         break;
+  //       default:
+  //         alert(obj.erro_msg);
+  //         esconderLoading('notScroll');
+  //     }
+  //   }
+  // });
+}
+
+function escurecerTelaShow(){
+
+  var screenTop = $(document).scrollTop();
+  var height = $(window).height();
+  var scrollTop = $(window).scrollTop();
+  var alturaTela = $(document).height();
+  var larguraTela = $(document).width();
+  //colocando o fundo preto
+  $('#mascara').css({'width':'100%','height':alturaTela});
+  // $('#mascara').fadeIn(700);
+  $('#mascara').fadeTo("normal",0.7);
+  $('#mascara').css({'display':'block'});
+}
+
+function escurecerTelaHide(){
+
+  $('#mascara').css({'display':'none'});
+}
+
+function openLogin (tipo) {
+  mostrarLoading();
+  escurecerTelaShow();
+  var tipo = tipo;
+  $('.login_box').html("");
+  switch(tipo) {
+      case 'crc':
+          $('.topo_login_box').height('140px');
+          $('.topo_login_box').width('490px');
+          $('.label_topo_login_box').width('470px');
+          $(".login_box").css({top: -50});
+          break;
+      case 'Jud':
+          $('.topo_login_box').height('220px');
+          $('.topo_login_box').width('530px');
+          $(".login_box").css({top: -35});
+          break;
+      case 'correicao':
+          $('.topo_login_box').width('530px');
+          $('.topo_login_box').height('160px');
+          $(".login_box").css({top: -35});
+          break;
+      case 'p13':
+          $('.topo_login_box').height('140px');
+          $('.topo_login_box').width('490px');
+          $('.label_topo_login_box').width('470px');
+          $(".login_box").css({top: -50});
+          break;
+      default:
+          break;
+  }
+  $('.topo_login_box').show();
+  $.ajax({
+    type: 'POST',
+    url: './genericoExecutar.cfm',
+    data:{
+      'exec': 'openLogin',
+      'tipo': escape(tipo)
+    },
+    success: function(obj){
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#login_box').html(obj.html);
+          $('#titulo_login_certificado').html(obj.titulo_box);
+          esconderLoading('notScroll');
+          console.log(obj.titulo_box);
+          break;
+        default:
+          alert(obj.erro_msg);
+          esconderLoading('notScroll');
+      }
+    }
+  });
+}
+
+function closeLogin () {
+  $('#login').hide();
+  esconderLoading('notScroll');
+}
+
+function enviarEmailCadastro() {
+  var nome = $('form[name=form_cadastro_usuario] [name=nome]').val();
+  var cpf = $('form[name=form_cadastro_usuario] [name=cpf]').val();
+  var telefone = $('form[name=form_cadastro_usuario] [name=telefone]').val();
+  var uf = $('form[name=form_cadastro_usuario] [name=uf]').val();
+  var comarca_id = $('form[name=form_cadastro_usuario] [name=comarca_id]').val();
+  var vara_juiz_id = $('form[name=form_cadastro_usuario] [name=vara_juiz_id]').val();
+  var nova_vara = $('form[name=form_cadastro_usuario] [name=nova_vara]').val();
+  var email = $('form[name=form_cadastro_usuario] [name=email]').val();
+  if(vara_juiz_id == -1 && nova_vara == ''){
+    alert('O preenchimento da Nova Vara é obrigatório.');
+  }
+  else{
+
+    $.ajax({
+      type: 'POST',
+      url: './genericoExecutar.cfm',
+      data: {
+        'exec': 'enviarEmailCadastro',
+        'nome': escape(nome),
+        'cpf': escape(cpf),
+        'telefone': escape(telefone),
+        'uf': escape(uf),
+        'comarca_id': escape(comarca_id),
+        'vara_juiz_id': escape(vara_juiz_id),
+        'nova_vara': escape(nova_vara),
+        'email': escape(email)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            alert('Seu cadastro foi enviado com sucesso');
+            location.reload();
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+      }
+    });
+  }
+}
+
+function habilitarOutraVara(){
+  $(function(){
+    $('#coluna_vara').show();
+    $('#coluna_vara_valor').show();
+  });
+}
+
+function desabilitarOutraVara(){
+  $(function(){
+    $('#coluna_vara').hide();
+    $('#coluna_vara_valor').hide();
+  });
+}
+
+function obterComboCidades(uf) {
+  document.getElementById('box_loading_cidades').innerHTML = '<img src="./css/imagens/icon_loading_01.gif" />';
+  var uf = uf;
+  $.ajax({
+    type: 'POST',
+    url: './generico/envioEmailCadastroExecutar.cfm',
+    data: {
+      'exec': 'obterComboCidades',
+      'uf': escape(uf)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#comarca_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_cidades').innerHTML = '';
+    }
+  });
+}
+
+function obterComboComarcasUsuarioFormulario(comarca_id) {
+  document.getElementById('box_loading_comarcas_usuario').innerHTML = '<img src="./css/imagens/icon_loading_01.gif" />';
+  var comarca_id = comarca_id;
+  $.ajax({
+    type: 'POST',
+    url: './generico/envioEmailCadastroExecutar.cfm',
+    data: {
+      'exec': 'obterComboComarcasUsuarioFormulario',
+      'comarca_id': escape(comarca_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#vara_juiz_id').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      document.getElementById('box_loading_comarcas_usuario').innerHTML = '';
+    }
+  });
+}
+
+function outroVaraDesc(varaId) {
+  var vara_id = varaId;
+  if(vara_id == -1){
+    $('#coluna_vara').show();
+    $('#coluna_vara_valor').show();
+    $('.topo_login_box').height('440px');
+  } else {
+    $('#coluna_vara').hide();
+    $('#coluna_vara_valor').hide();
+    $('.topo_login_box').height('400px');
+  }
+}

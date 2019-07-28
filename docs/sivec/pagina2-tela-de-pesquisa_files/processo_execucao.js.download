@@ -1,0 +1,753 @@
+$(function() {
+	var data = new Date();	
+	var ano = data.getFullYear();
+	
+	$('#anoAtual').val(ano);
+	$('#idValor').mask('9999999');
+	
+	$('#idValor').focus(function() {
+		$('#numSeq').val('');
+		$('#digVerif').val('');
+		$('#codUnidadeOrigem').val('');
+		$('#idNumeroRG').val('');
+	});
+	
+	$('#idNumeroRG').mask('99999999');
+	$('#idNumeroRG').focus(function() {
+		$('#numSeq').val('');
+		$('#digVerif').val('');
+		$('#codUnidadeOrigem').val('');
+		$('#idNumeroRG').val('');
+		$('#idValor').val('');
+		$('#numSeq').mask('9999999');
+		$('#digVerif').mask('99');
+		$('#anoAtual').mask('9999');
+		$('#idCodJtr').mask('999');
+		$('#anoAtual').mask('9999');
+	});
+	
+	$('#ctrlVEC').mask('99999999');
+	
+	$('#ctrlVEC').focus(function() {
+		$('#idNumSeq').mask('9999999');
+		$('#idDigVerif').mask('99');
+		$('#idAnoAtual').mask('9999');
+		$('#idCodUnidadeOrigem').mask('9999');
+	});
+});
+
+var Omitcount = 0;
+
+function incrementasubmitcount() {
+	submitcount++;
+}
+
+function seta_valor_tipo_selecionado(tipo) {
+	document.forms[0].tipo.value = tipo;
+	
+	if (tipo == 1){
+		document.forms[0].numeroRG.value = "";
+ 		document.forms[0].numSeq.value = "";
+ 		document.forms[0].digVerif.value = "";
+ 		document.forms[0].codUnidadeOrigem.value = "";
+ 		document.forms[0].incluir.disabled = true;
+ 		document.forms[0].alterar.disabled = false;
+ 		if(document.forms[0].excluir != null || document.forms[0].excluir != undefined) {
+ 			document.forms[0].excluir.disabled = false;
+		}
+	}else if (tipo == 2){
+		document.forms[0].valor.value = "";
+		document.forms[0].numeroRG.value = "";
+		document.forms[0].incluir.disabled = true;
+ 		document.forms[0].alterar.disabled = false;
+ 		if(document.forms[0].excluir != null || document.forms[0].excluir != undefined) {
+ 			document.forms[0].excluir.disabled = true;
+		}
+	}else{	
+		document.forms[0].valor.value = "";
+		document.forms[0].numSeq.value = "";
+		document.forms[0].digVerif.value = "";
+		document.forms[0].codUnidadeOrigem.value = "";
+		document.forms[0].alterar.disabled = true;
+		document.forms[0].incluir.disabled = false;
+		if(document.forms[0].excluir != null || document.forms[0].excluir != undefined) {
+			document.forms[0].excluir.disabled = true;
+		}
+	}
+}
+
+function salvarAlteracaoProcessoExecucao(token) {
+	document.processoExecucaoCadastroEfetivarForm.elements["org.apache.struts.taglib.html.TOKEN"].value = token;
+	document.processoExecucaoCadastroEfetivarForm.submit();
+}
+
+function submete_form_confirma_alteracao() {
+	document.processoExecucaoCadastroEfetivarForm.submit();
+}
+
+function seta_rgprincipal(numRgPrincipal, dvRgPrincipal, acao, nomeForm) {
+	document.forms[nomeForm].numRg.value = numRgPrincipal;
+	document.forms[nomeForm].dvNumRg.value = dvRgPrincipal;
+	document.forms[nomeForm].action = acao;		
+	document.forms[nomeForm].submit();
+}
+
+function submete_form_alteracao() {
+	var numProcesso = document.getElementById("idValor").value;
+	var numSeq = document.getElementById("numSeq").value;
+	var digVerif = document.getElementById("digVerif").value;
+	var anoAtual = document.getElementById("anoAtual").value;
+	var codUnidadeOrigem = document.getElementById("codUnidadeOrigem").value;
+	
+	$('#idNumeroRG').removeClass('ui-state-error');
+	$('#idValor').removeClass('ui-state-error');
+	$('#numSeq').removeClass('ui-state-error');
+	$('#digVerif').removeClass('ui-state-error');
+	$('#anoAtual').removeClass('ui-state-error');
+	$('#codUnidadeOrigem').removeClass('ui-state-error');
+	
+	if((numProcesso == "") && (numSeq == "" && digVerif == "" && codUnidadeOrigem == "")) {
+		$('#idValor').addClass('ui-state-error');
+		$("<div class=\"text-center\" title=\"Processos de Execução\"><br>Favor informe N° do Controle VEC</div>").dialog(
+				{width: 450,
+					modal: true,
+					buttons: {
+					Ok: function() {
+					$( this ).dialog( "close" );
+				}}}).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else if((numSeq == "" || digVerif== "" || anoAtual == "" || codUnidadeOrigem == "") && (numProcesso == "")) {
+		$('#numSeq').addClass('ui-state-error');
+		$('#digVerif').addClass('ui-state-error');
+		$('#anoAtual').addClass('ui-state-error');
+		$('#codUnidadeOrigem').addClass('ui-state-error');
+		$("<div class=\"text-center\" title=\"Processos de Execução\"><br>Favor informe Nº processo(CNJ)</div>").dialog(
+				{width: 450,
+					modal: true,
+					buttons: {
+					Ok: function() {
+					$( this ).dialog( "close" );
+				}}}).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else {
+		document.forms[0].action = './ca_pe_alterar_exibir.do';
+		document.forms[0].submit();
+	}
+}
+
+function submete_form_exclusao() {
+	document.forms[0].action = '/vec/ca_pe_excluir_exibir.do';		
+	document.forms[0].submit();   
+}
+
+function submete_form_inclusao() {
+	var numRG = document.getElementById("idNumeroRG").value;	
+	$('#idNumeroRG').removeClass('ui-state-error');
+	$('#idValor').removeClass('ui-state-error');
+	
+	if(numRG == "") {
+		$('#idNumeroRG').addClass('ui-state-error');
+		$("<div class=\"text-center\" title=\"Processos de Execução\"><br>Favor informe Nº do RG</div>").dialog(
+				{width: 450,
+					modal: true,
+					buttons: {
+					Ok: function() {
+					$( this ).dialog( "close" );
+				}}}).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else {
+		document.forms[0].action = './ca_pe_incluir_exibir.do';
+		document.forms[0].submit();
+	}
+}
+
+function submete_form_inc_vec_sem_sistema() {
+	document.forms[0].action = './ca_pe_inc_vec_sem_sistema_exibir.do';		
+	document.forms[0].submit();
+}
+
+function submete_form_salvar_inclusao(acao,acaoRg) {
+	document.processoExecucaoIncluirEfetivarForm.codigoEstadoLocal.value = $('#idcodEstadoLocal').val();
+	document.processoExecucaoIncluirEfetivarForm.codigoCidadeLocal.value = $('#idcodCidadeLocal').val();
+	document.processoExecucaoIncluirEfetivarForm.cdPenitenciaria.value = $('#idCodLocal').val();
+	document.processoExecucaoIncluirEfetivarForm.codigoEstado.value = $('#idCodEstado').val();
+	document.processoExecucaoIncluirEfetivarForm.codigoCidade.value = $('#idcodMunicipio').val();
+	document.processoExecucaoIncluirEfetivarForm.acao.value = acao;		
+	document.processoExecucaoIncluirEfetivarForm.action = acaoRg;		
+	document.processoExecucaoIncluirEfetivarForm.submit();
+}
+
+function voltarAlteracao(){
+	document.processoExecucaoVisualizarAlteracaoForm.tipo.value = document.processoExecucaoCadastroEfetivarForm.tipo.value
+	document.processoExecucaoVisualizarAlteracaoForm.valor.value = document.processoExecucaoCadastroEfetivarForm.valor.value
+	document.processoExecucaoVisualizarAlteracaoForm.submit();
+}
+
+function verificaEstadoSelecionadoPE(action) {
+	document.forms[0].action = action;
+	incrementasubmitcount();
+	
+	if (submitcount == 1) {
+		document.forms[0].submit();
+	}
+}
+
+function submit_form_altera_rg() {
+	var rgSemZero = parseInt(document.forms[0].numRg.value, 10);
+	document.forms[0].numRg.value = rgSemZero;
+	document.forms[0].submit();
+}
+
+function seleciona_assunto(nivel) {
+	document.forms[0].action = './ca_pe_incluir.do?NIVEL=nivel';		
+	document.forms[0].submit();
+}
+
+function getEstadoUm() {
+	$('#idTipoLocal').removeClass('ui-state-error');
+	$("#comboEstadoUm").html('');
+	$('#comboMunicipioUm').html('');
+	$('#comboLocalUm').html('');
+	
+	if ($("#idTipoLocal").val() != '') {
+		var url = 'ComboAninhadoServlet';
+		var valorCodTipoLocal = $("#idTipoLocal").val();
+		
+		$.ajax({
+			url: url,
+	        type: 'POST',
+	        data: {codTipoLocal : valorCodTipoLocal, action : 'listaEstado'},
+	        dataType: 'json',
+	        cache: false
+        }).done(function (source) {
+        	var estadoUm = $.map(source.estado, function (dataItem) {
+        		return { id: dataItem.id,
+        			nome: dataItem.nome
+    			};
+			});
+        	
+        	var html = "<select id='idcodEstadoLocal' property='codigoEstadoLocal'  class='form-control' onchange='getMunicipioUm()' >";
+        	html+="<option value=''>Selecione</option>";
+        	
+        	for(i=0;i<estadoUm.length;i++) {
+        		html += " <option value='"+estadoUm[i].id+"'>"+ estadoUm[i].nome + "</option>";
+    		}
+        	html += "</select>";
+        	$('#comboEstadoUm').html(html);
+    	});
+	}
+}
+
+function getMunicipioUm() {
+	$('#idcodEstadoLocal').removeClass('ui-state-error');
+	$('#comboMunicipioUm').html('');
+	$('#comboLocalUm').html('');
+	
+	if ($('#idcodEstadoLocal').val() != '') {
+		var url = 'ComboAninhadoServlet';
+        var valorCodEstado = $("#idcodEstadoLocal").val();
+        var valorCodTipoLocal= $("#idTipoLocal").val();
+        $.ajax({
+        	url: url,
+	        type: 'POST',
+	        data: {codEstado: valorCodEstado, codTipoLocal : valorCodTipoLocal, action : 'listaMunicipioOuLocal'},
+	        dataType: 'json',
+	        cache: false
+        }).done(function (source) {
+        	var municipio = $.map(source.listMunLocal, function (dataItem) {
+        		return { id: dataItem.id,
+        			nome: dataItem.nome
+    			};
+			});
+        	
+        	var condicao = source.condicao;
+        	
+        	if(condicao == 1) {
+        		var html = "<select id='idcodCidadeLocal' property='codigoCidadeLocal' class='form-control' onchange='getLocalUm()' >";
+		        html+="<option value=''>Selecione</option>";
+		        
+		        for(i=0;i<municipio.length;i++) {
+		        	html += " <option value='"+municipio[i].id+"'>"+ municipio[i].nome + "</option>";
+	        	}
+		        html += "</select>";
+		        $('#comboMunicipioUm').html(html);
+	        } else if (condicao == 2) {
+	        	var html = "<select id='idCodLocal' class='form-control' name='cdPenitenciaria' >";
+		        html+="<option value=''>Selecione</option>";
+		        
+		        for(i=0;i<municipio.length;i++) {
+		        	html += " <option value='"+municipio[i].id+"'>"+ municipio[i].nome + "</option>";				
+		        }
+		        html += "</select>";
+		        $('#comboLocalUm').html(html);
+	        }
+    	});
+    }
+}
+
+function getLocalUm() {
+	if ($("#idcodCidadeLocal").val() != '') {
+		var url = 'ComboAninhadoServlet';
+        var valorCodTipoLocal = $("#idTipoLocal").val();
+		var valorCodMunicipio = $("#idcodCidadeLocal").val();
+		var listaLocal = new Array();
+		$.ajax({
+			url: url,
+		    type: 'POST',
+		    data: {codMunicipio : valorCodMunicipio, codTipoLocal : valorCodTipoLocal, action : 'listaLocal'},
+		    dataType: 'json',
+		    cache: false
+	    }).done(function (source) {
+	    	var municipio = $.map(source.listLocal, function (dataItem) {
+	    		return { id: dataItem.id,
+	    			nome: dataItem.nome
+    			};
+			});
+	    	var html = "<select id='idCodLocal'  class='form-control' name='cdPenitenciaria'>";
+	    	html+="<option value=''>Selecione</option>";
+	    	
+	    	for(i=0;i<municipio.length;i++) {
+	    		html += " <option value='"+municipio[i].id+"'>"+ municipio[i].nome + "</option>";
+    		}
+	    	html += "</select>";
+	    	$('#comboLocalUm').html(html);
+    	});
+	}
+}
+
+function getEstadoDois() {
+	$("#comboEstadoUm").html('');
+	$('#comboMunicipioUm').html('');
+	$('#comboLocalUm').html('');
+	
+	if ($("#idTipoLocal").val() != '') {
+		var url = 'ComboAninhadoServlet';
+        var valorCodTipoLocal = $("#idTipoLocal").val(); 
+
+        $.ajax({
+	        url: url,
+	        type: 'POST',
+	        data: {codTipoLocal : valorCodTipoLocal, action : 'listaEstado'},
+	        dataType: 'json',
+	        cache: false
+	    }).done(function (source) {
+	    	var estadoUm = $.map(source.estado, function (dataItem) {
+	    		return { id: dataItem.id,
+	    			nome: dataItem.nome
+    			};
+			});
+	    	var html = "<select id='idcodEstadoLocal' property='codigoEstadoLocal' class='form-control' onchange='getMunicipioDois()' >";
+	    	html+="<option value=''>Selecione</option>";
+	    	
+	    	for(i=0;i<estadoUm.length;i++) {
+	    		html += " <option value='"+estadoUm[i].id+"'>"+ estadoUm[i].nome + "</option>";
+    		}
+	    	html += "</select>";
+	    	$('#comboEstadoUm').html(html);
+    	});
+    }
+}
+
+function getMunicipioDois() {
+	$('#comboMunicipioUm').html('');
+	$('#comboLocalUm').html('');
+	
+	if ($('#idcodEstadoLocal').val() != '') {
+		var url = 'ComboAninhadoServlet';
+        var valorCodEstado = $("#idcodEstadoLocal").val();
+        var valorCodTipoLocal= $("#idTipoLocal").val();
+        $.ajax({
+	        url: url,
+	        type: 'POST',
+	        data: {codEstado: valorCodEstado, codTipoLocal : valorCodTipoLocal, action : 'listaMunicipioOuLocal'},
+	        dataType: 'json',
+	        cache: false
+	    }).done(function (source) {
+	    	var municipio = $.map(source.listMunLocal, function (dataItem) {
+	    		return { id: dataItem.id,
+	    			nome: dataItem.nome
+    			};
+			});
+	    	var condicao = source.condicao;
+	    	
+	    	if(condicao == 1) {
+	    		var html = "<select id='idcodCidadeLocal' property='codigoCidadeLocal' class='form-control' onchange='getLocalDois()' >";
+		        html+="<option value=''>Selecione</option>";
+		        
+		        for(i=0;i<municipio.length;i++) {
+		        	html += " <option value='"+municipio[i].id+"'>"+ municipio[i].nome + "</option>";
+	        	}
+		        html += "</select>";
+		        $('#comboMunicipioUm').html(html);
+	        } else if (condicao == 2) {
+				var html = "<select id='idCodLocal' class='form-control' property='cdPenitenciaria' >";
+		        html+="<option value=''>Selecione</option>";
+
+		        for(i=0;i<municipio.length;i++) {
+		            html += " <option value='"+municipio[i].id+"'>"+ municipio[i].nome + "</option>";				
+		        }
+		        html += "</select>";
+		        $('#comboLocalUm').html(html);
+	        }
+    	});
+    }
+}
+
+function getLocalDois() {
+	if ($("#idcodCidadeLocal").val() != '') {
+		var url = 'ComboAninhadoServlet';
+        var valorCodTipoLocal = $("#idTipoLocal").val();
+		var valorCodMunicipio = $("#idcodCidadeLocal").val();
+		var listaLocal = new Array();
+		$.ajax({
+			url: url,
+		    type: 'POST',
+		    data: {codMunicipio : valorCodMunicipio, codTipoLocal : valorCodTipoLocal, action : 'listaLocal'},
+		    dataType: 'json',
+		    cache: false
+	    }).done(function (source) {
+	    	var municipio = $.map(source.listLocal, function (dataItem) {
+	    		return { id: dataItem.id,
+	    			nome: dataItem.nome
+    			};
+			});
+	    	var html = "<select id='idCodLocal' class='form-control' property='cdPenitenciaria'>";
+		    html+="<option value=''>Selecione</option>";
+		    
+		    for(i=0;i<municipio.length;i++) {
+		    	html += " <option value='"+municipio[i].id+"'>"+ municipio[i].nome + "</option>";
+	    	}
+		    html += "</select>";
+		    $('#comboLocalUm').html(html);
+	    });
+	}
+}
+
+function getMunicipios() {
+	$('#comboMunicipioDois').html('');
+	$('#comboVaras').html('');
+	
+	if ($("#idCodEstado").val() != '') {
+		var url = 'ComboAninhadoServlet';
+        var valorCodEstado= $("#idCodEstado").val();		        
+        $.ajax({
+	        url: url,
+	        type: 'POST',
+	        data: {codEstado:valorCodEstado , action : 'listaMunicipios'},
+	        dataType: 'json',
+	        cache: false
+	    }).done(function (source) {
+	    	var municipio = $.map(source.municipios, function (dataItem) {
+	    		return { id: dataItem.id,
+	    			nome: dataItem.descricao
+    			};
+			});
+	    	var html = "<select id='idcodMunicipio' name='codigoCidade' class='form-control' onchange='getVaras()'>";
+		    html+="<option value=''>Selecione</option>";
+		    
+		    for(i=0;i<municipio.length;i++) {
+		    	html += " <option value='"+municipio[i].id+"'>"+ municipio[i].nome + "</option>";
+	    	}
+		    html += "</select>";
+		    $('#comboMunicipioDois').html(html);
+	    });
+    }
+}
+
+function getVaras() {
+	if($("#idcodMunicipio").val() != ''){
+		var url = 'ComboAninhadoServlet';
+		var valorCodCidade = $("#idcodMunicipio").val();
+		$.ajax({
+			url: url,
+    		type: 'POST',
+    		data: {codMunicipio : valorCodCidade, action : 'obterListaTodasAsVarasCidade'},
+    		dataType: 'json',
+    		cache: false
+		}).done(function (source) {
+			var vara = $.map(source.listaTodasAsVaras, function (dataItem) {
+				return { id: dataItem.id,
+					nome: dataItem.nome
+				};
+			});
+			var html = "<select id='idCodVara' class='form-control' name='codVaraOrigem'>";
+    		html+="<option value=''>Selecione</option>";
+    		
+    		for(i = 0;i < vara.length;i++) {
+    			html += " <option value='"+vara[i].id+"'>"+ vara[i].nome + "</option>";
+			}
+    		html += "</select>";
+    		$('#comboVaras').html(html);
+    		if (vara.length < 1) {
+    			$('#comboVaras').html('<span class="erros">Não existe nenhuma Vara cadastrada. Favor entrar em contato com a Prodesp.</span>');
+			}
+		});
+	}
+}
+
+function mudaCodigo(cod){
+	$('#idCodLocal').val(cod.value);
+}
+
+function clearControleVEC(){
+	$('#idValor').removeClass('ui-state-error');
+	$('#idValor').val('');
+	$('#ctrlVEC').val('');
+}
+
+function clearRG(){
+	$('#idNumeroRG').removeClass('ui-state-error');
+	$('#idNumeroRG').val('');
+}
+
+function clearNumUnico(){
+	$('#numSeq').val('');
+	$('#digVerif').val('');
+	$('#anoAtual').value = new Date().getFullYear();
+	$('#codUnidadeOrigem').val('');
+}
+
+function autoTAB(input, len, next){
+	if(input.value.length == len){
+		document.getElementById(next).focus();
+		document.getElementById(next).value="";
+	}
+}
+
+function corrigeNumUnico(params){
+	for(i=0;i<params.length;i++){
+		document.getElementById(params[i]).value = "";
+	}
+}
+
+function submete_form_lotePrisao() {
+	document.forms[0].action = './processo_execucao_lote_prisao.do';		
+	document.forms[0].submit();
+}
+
+function retorna_processo_execucao() {
+	document.forms[0].action = "index.view";
+	document.forms[0].submit();
+}
+
+function desativaSelecao(obj) {
+	var selecao = $("numProcExec").checked;
+	var checkBox = obj.form.checkBox.checked;
+
+	if (selecao == false) {
+		obj.form.checkBox.checked = false;
+	}
+}
+
+function salva_lote() {
+	var num = document.getElementById("num");
+	if (num == null) {
+		$('#num').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Processo Execução!\"><br>Não existem processos relacionados !</div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+		    	$(this).dialog("close");
+		    	$('#num').removeClass('ui-state-error');
+				}
+	 		}
+	   	 }).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else {
+		document.forms[0].action = "processo_execucao_salvar_lote_prisao.do";
+		document.forms[0].submit();
+	}
+}
+
+function verificaSelecao(obj) {
+	var checkBox = obj.form.checkBox.checked;
+	
+	if (checkBox == true) {
+		for (i = 0; i < obj.form.elements.length; i++) {
+			if (obj.form.elements[i].type == "checkbox" && obj.form.elements[i].id == "caixa") {
+				obj.form.elements[i].checked = true;
+			}
+		}
+	} else {
+		for (i = 0; i < obj.form.elements.length; i++) {
+			if (obj.form.elements[i].type == "checkbox" && obj.form.elements[i].id == "caixa") {
+				obj.form.elements[i].checked = false;
+			}
+		}
+	}
+}
+
+function valida_exclusao(obj) {
+	document.forms[0].codigoEstadoLocal.value = $("#idcodEstadoLocal").val();
+	document.forms[0].codigoCidadeLocal.value = $("#idcodCidadeLocal").val();
+	
+	var i;
+	var count = 0;
+	for (i = 0; i < obj.form.elements.length; i++) {
+		if (obj.form.elements[i].id == "caixa" != null) {
+			if (obj.form.elements[i].type == "checkbox"
+					&& obj.form.elements[i].id == "caixa") {
+				if (obj.form.elements[i].checked == true) {
+					count = count + 1;
+				}
+			}
+		}
+	}
+
+	if (count >= 1) {
+		document.forms[0].action = "processo_execucao_excluir_lote_prisao.do";
+		document.forms[0].submit();
+	} else {
+		$("<div class=\"textotab2 text-center\" title=\"Processo Execução !\"><br>Selecione pelo menos uma execução para ser excluída !</div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+		    	$(this).dialog("close");
+				}
+	 		}
+	   	 }).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+}
+
+function lote_prisao_incluir() {
+	document.forms[0].codigoEstadoLocal.value = $("#idcodEstadoLocal").val();
+	document.forms[0].codigoCidadeLocal.value = $("#idcodCidadeLocal").val();
+	
+	if ($("#idTipoLocal").val() == "") {
+		$('#idTipoLocal').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Processo Execução !\"><br>Informe o Tipo Local de Prisão para Inclusão!</div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+		    	$(this).dialog("close");
+				}
+	 		}
+	   	 }).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	if ($("#idcodEstadoLocal").val() == "" && $("#idTipoLocal").val() != "") {
+		$('#idcodEstadoLocal').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Processo Execução !\"><br>Informe o Estado de Prisão para Inclusão!</div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+		    	$(this).dialog("close");
+				}
+	 		}
+	   	 }).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	if ($("#idcodEstadoLocal").val() == 27000 && $("#idcodCidadeLocal").val() == "") {
+		$('#idcodCidadeLocal').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Processo Execução !\"><br>Informe o Cidade de Prisão para Inclusão!</div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+		    	$(this).dialog("close");
+		    	$('#idcodCidadeLocal').removeClass('ui-state-error');
+				}
+	 		}
+	   	 }).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	if ($("#idCodLocal").val() == "" && $("#idTipoLocal").val() != "" && $("#idcodEstadoLocal").val() != "") {
+		$('#idCodLocal').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Processo Execução !\"><br>Informe o Local de Prisão para Inclusão!</div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+		    	$(this).dialog("close");
+		    	$('#idCodLocal').removeClass('ui-state-error');
+				}
+	 		}
+	   	 }).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else {
+		if ($("#numProcExec").val() != "" && $("#idTipoLocal").val() != "") {
+			var elemen = $('#' + $("#numProcExec").val());
+			
+			if (elemen.val() != undefined && elemen.val() != null) {
+				$( "<div>O Número de processo " + $("#numProcExec").val() + " já esta cadastrado neste lote!</div>" ).dialog({
+					width: 450,  modal: true, buttons: {
+						Ok: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				    });	
+				return false;
+			}
+			document.forms[0].action = "processo_execucao_insere_lote_prisao.do";
+			document.forms[0].submit();
+		} else {
+			$('#numProcExec').addClass('ui-state-error');
+			$("<div class=\"textotab2 text-center\" title=\"Processo Execução !\"><br>Informe o número do Processo de Execução!</div>").dialog({
+		        width: 450,
+		        modal: true,
+		        buttons: {
+			    	"Ok": function() {
+			    	$(this).dialog("close");
+			    	$('#numProcExec').removeClass('ui-state-error');
+					}
+		 		}
+		   	 }).addClass('ui-state-error ui-corner-all');
+			return false;
+		}
+	}
+}
+
+function pe_pesquisa_por_nome() {
+	
+	if($('#idNomePesq').val() == "") {
+		$('#idNomePesq').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Pesquisa por Nome!\"><br>Favor informar o nome para efetuar a pesquisa!  </div>").dialog({
+			width: 450, modal: true, buttons: {
+				"Ok": function() {
+					$(this).dialog("close");
+					$('#idNomePesq').removeClass('ui-state-error');
+				}
+			}
+		}).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else {
+		$("#idPesquisar").prop('disabled', true);
+		document.forms[0].action = "pe_pesquisa_por_nome.do";
+		document.forms[0].submit();
+	}
+}
+
+function incluirNovoRGProvisorio(numRg){
+	document.forms[0].action = "rgprovisorio_qualif_incluir.do?numRg=" + numRg;
+	document.forms[0].submit();
+}
+
+function incluir_Pessoa(){
+	var numrg = $('input[name="numRg"]').is(':checked');
+	
+	if(numrg === false){
+		$("<div class=\"textotab2 text-center\" title=\"Pesquisa por Nome!\"><br>Favor selecionar um RG na lista!  </div>").dialog({
+			width: 450, modal: true, buttons: {
+				"Ok": function() {
+					$(this).dialog("close");
+				}
+			}
+		}).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else{	
+		document.forms[0].action = "ca_pe_incluir.do";
+		document.forms[0].submit();
+	}
+}

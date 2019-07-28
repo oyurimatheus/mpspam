@@ -1,0 +1,87 @@
+/*
+ * CSS que configura a aparência do menu
+ * Aparência dos links do menu principal e submenus.
+ */
+
+#nav, #nav ul {
+   margin: 0;
+   width: auto;
+   padding: 0 1px;
+   list-style: none;
+   font: normal 12px arial, tahoma;
+}
+
+#nav li {
+   float: left;
+}
+
+#nav a {
+   color: #4C4436;
+   width: 18em;
+   height: auto;
+   display: block;
+   line-height: 1.2;
+   text-align: left;
+   padding: 4px 1px;
+   font-weight: normal;
+   text-decoration: none;
+   background-color: #fff;
+   border:1px solid #958870;
+}
+
+#nav a:hover {
+   color: #C64A2B;
+   background: #E9DDCE;
+   text-decoration: none;
+}
+#nav a.raiz {
+   width: auto;
+   color: #4C4436;
+   font-weight: bold;
+   padding-left: 5px;
+   padding-right: 22px;
+   text-align: center;
+   background: #fff url(../images/t_m_seta.gif) no-repeat scroll 95% center;
+}
+#nav a.raiz:hover {
+   font-weight: bold;
+   background: #E9DDCE url(../images/t_m_seta.gif) no-repeat scroll 95% center;
+}
+#nav a.raizSemFilhos {
+   width: auto;
+   color: #4C4436;
+   font-weight: bold;
+   padding-left: 5px;
+   padding-right: 22px;
+   text-align: center !important;
+   background: #fff;
+}
+#nav a.raizSemFilhos:hover {
+   background: #E9DDCE;
+}
+
+#nav a.menuparent {
+   background: #fff url(../images/m_seta.gif) no-repeat scroll 95% center;
+}
+#nav a.menuparent:hover {
+   background: #E9DDCE url(../images/m_seta.gif) no-repeat scroll 95% center;
+}
+#nav li ul {
+   margin: 0;
+   width: 10em;
+   left: -1000em;
+   background-color: #E9DDCE;
+   position: absolute;
+}
+
+#nav ul ul {
+   margin: -3em 0 0 18em;
+}
+
+#nav li:hover ul ul, #nav li.over ul ul {
+   left: -1000em;
+}
+
+#nav li:hover ul, #nav li li:hover ul, #nav li.over ul, #nav li li.over ul {
+   left: auto;
+}

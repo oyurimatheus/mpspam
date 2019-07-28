@@ -1,0 +1,3421 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+*
+{
+	border-style: none;
+    border-color: inherit;
+    border-width: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+body
+{
+	background-color: #999;
+}
+
+fieldset, .TextoTermoResponsabilidade
+{
+    position:relative;
+    float:left;
+    margin-top:14px;
+    font-weight:bold;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+    color:#0e4f57;
+    border: 1px solid #0e4f57;
+    padding: 0px 5px 5px 5px;
+}
+
+.TextoTermoResponsabilidade
+{
+    border: none;
+    margin-bottom: 10px;
+}
+
+legend
+{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.PopUpFundo
+{
+    background-image:url(../../imagens/bg_popup.gif);
+	width:100%;
+	height:100%;
+}
+
+.PopUpFundoCentrais {
+    background-image: url(../../imagens/bg_popup.gif);
+    width: 100%;
+    height: 100%;
+}
+
+.FundoBrancoPopUps
+{
+    background-image:none;
+    background-color: #ECECEC;
+}
+
+.Geral
+{
+	position: relative;
+	width: 100%;
+	height: 115px;
+	background-image:url('../../imagens/bg_tarja_header.gif');
+	background-position: left top;
+	background-repeat: repeat-x;
+}
+.Centraliza
+{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 990px;
+}
+.Conteudo
+{
+	float:left;
+	width: 990px;
+	min-height: 485px;
+	background-color: #678588;
+}
+.Header
+{
+	float:left;
+	width: 990px;
+	height: 106px;
+}
+.MenuTopo
+{
+	float:left;
+	width: 990px;
+	height: 45px;
+	/*background-image:url('../../imagens/sombra_quickmenu.gif');*/
+	background-position: left top;
+	background-repeat: repeat-x;
+	background-color: #678588;
+}
+
+.Login
+{
+    position:relative;
+    margin-top: 50px;
+    width: 100%;
+    height:440px;
+    text-align:center;
+    background-image:url('../../imagens/tarjalogin.gif');
+    background-position: center 129px !important; background-position: center 146px;
+	background-repeat: repeat-x;
+}
+.CaixaLogin
+{
+    position:relative;
+    width: 481px;
+    height: 435px;
+    margin-left:auto;
+    margin-right:auto;
+    background-image:url('../../imagens/Login_novo.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	top:6px;
+}
+.CaixaLoginDigital
+{
+    position:relative;
+    width: 481px;
+    height: 415px;
+    margin-left:auto;
+    margin-right:auto;
+    background-image:url('../../imagens/Login_digital.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	top:2px;
+}
+.CampoLogin
+{
+    position:relative;
+    float: left;
+    width: 200px;
+    height: 50px;
+    margin-left: 35px !important; margin-left: 17px;
+    margin-top: 200px;
+    text-align: left;
+    font-family: "Trebuchet MS";
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.CampoSenha
+{
+    position:relative;
+    float: left;
+    width: 200px;
+    height: 50px;
+    margin-left: 35px !important; margin-left: 17px;
+    margin-top: 5px;
+    text-align: left;
+    font-family: "Trebuchet MS";
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.CamposLogin
+{
+    width: 150px;
+    height:18px;
+}
+
+.BotaoLogin
+{
+    position:relative;
+    float: left;
+    width: 100px;
+    height: 50px;
+    margin-top:10px;
+    left:60px;
+}
+.BtLogin
+{
+    font-family: "Trebuchet MS";
+	font-size: 13px;
+	font-weight: bold;
+	color: #000;
+	background-color: #fEC918;
+	border: 1px solid #354400;
+	cursor: pointer;
+	height: 30px;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin: 10px;
+}
+
+
+.FlagLogin
+{
+    position:relative;
+    float:left;
+    width:245px;
+}
+
+
+.BotoesCentralizados
+{
+    position:relative;
+    float: left;
+    width:940px;
+    margin-top: 20px;
+    height: 45px;
+    text-align:center;
+}
+
+.Asterisco
+{
+    position:relative;
+    float: left;
+    width:940px;
+    margin-top: 20px;
+    height: 20px;
+    text-align:left;
+    font-family: "Trebuchet MS";
+	font-size: 11px;
+	font-weight: bold;
+	color: #666;
+}
+
+.RecuperaSenha
+{
+    position:relative;  line-height:20px;
+    float: left;
+    width: 475px;
+    height: 30px;
+    margin-top:14px; 
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: bold;
+	color: #999;
+}
+
+.RecuperaSenha a:active, a:visited, a:link
+{   
+    text-decoration:none;
+    color: #999;
+}
+.RecuperaSenha a:hover { text-decoration:underline; color:#000;}
+
+.AbaLogo
+{
+	position:relative;
+	float:left;
+	width: 252px;
+	height: 104px;
+	left: -1px;
+	background-image:url('../../imagens/aba_logo.png');
+	_background-image:url('../imagens/aba_logo.gif');
+	background-position: left bottom;
+	background-repeat: no-repeat;
+}
+.Logo
+{
+	float:left;
+	width:218px;
+	height:72px;
+	margin-top: 22px;
+	margin-left: 18px !important; margin-left:9px;
+}
+.Banner
+{
+	float:left;
+	width:328px;
+	height:67px;
+	margin-top: 25px;
+	margin-left: 38px;
+	border: 1px solid #000;
+}
+
+.CampoSimples
+{
+	float:left;
+	text-align: left;
+	height:40px;
+	margin-right: 8px !important; margin-right: 4px;
+	margin-top:6px;
+	margin-bottom:6px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color: #000;
+	white-space:nowrap;
+}
+
+.AreaTexto
+{
+	float:left;
+	text-align: left;
+	margin-right: 8px !important; margin-right: 4px;
+	margin-top:6px;
+	margin-bottom:6px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color: #000;
+}
+
+.SeparadorForm
+{
+    position:relative;
+    float:left;
+    width:915px;
+    height:24px;
+    font-family: Trebuchet MS, Sans-Serif;
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 0px 0px 25px;
+    background-image:url('../../imagens/separador_formulario.gif');
+	background-position: left top;
+	background-repeat: no-repeat; 
+}
+
+.SeparadorFormFino
+{
+    position:relative;
+    float:left;
+    width:915px;
+    height:20px;
+    font-family:Trebuchet MS, Sans-Serif;
+	color: #FFF;
+	font-size: 12px;
+	text-transform:uppercase;
+	font-weight: bold;
+	padding: 4px 0px 0px 25px;
+    background-image:url('../../imagens/separador_formulario_fino.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+.SeparadorFormFinoAbreFecha
+{
+    position:relative;
+    float:left;
+    width:915px;
+    height:20px;
+    font-family:Trebuchet MS, Sans-Serif;
+	color: #FFF;
+	font-size: 12px;
+	text-transform:uppercase;
+	font-weight: bold;
+	padding: 4px 0px 0px 25px;
+    background-image:url('../../imagens/separador_formulario_fino.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+    cursor:pointer;
+}
+.SeparadorFormFinoAbreFechaMais
+{
+    position:relative;
+    float:left;
+    width:915px;
+    height:20px;
+    font-family:Trebuchet MS, Sans-Serif;
+	color: #FFF;
+	font-size: 12px;
+	text-transform:uppercase;
+	font-weight: bold;
+	padding: 4px 0px 0px 25px;
+    background-image:url('../../imagens/barra-mais.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+    cursor:pointer;
+}
+.SeparadorFormFinoAbreFechaMenos
+{
+    position:relative;
+    float:left;
+    width:915px;
+    height:20px;
+    font-family:Trebuchet MS, Sans-Serif;
+	color: #FFF;
+	font-size: 12px;
+	text-transform:uppercase;
+	font-weight: bold;
+	padding: 4px 0px 0px 25px;
+    background-image:url('../../imagens/barra-menos.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+    cursor:pointer;
+}
+.SeparadorPopUp
+{
+    position:relative;
+    float:left;
+    width:475px;
+    height:24px;
+    font-family: "Trebuchet MS";
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 0px 0px 25px;
+    background-image:url('../../imagens/separador_popup.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+
+.SeparadorPopUp1
+{
+    position:relative;
+    float:left;
+    width:475px;
+    height:24px;
+    font-family: "Trebuchet MS";
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 0px 0px 25px;
+    background-image:url('../../imagens/separador_popup1.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+
+
+.FechaPopUp
+{
+    position:relative;
+    float:right;
+    top: 1px;
+    *top: -17px;
+    right:7px;
+    width:64px;
+    height: 16px;
+	cursor:pointer;
+}
+
+.AreaFormulario
+{
+    position:relative;
+    float:left;
+    width:925px;
+    padding: 0px 0px 5px 5px;
+    margin-left: 4px !important; margin-left: 2px;
+    margin-bottom:4px;
+    min-height:50px;
+    border: 1px solid #005357;
+}
+
+.AreaFormularioSemBorda
+{
+    position:relative;
+    float:left;
+    width:925px;
+    padding: 0px 0px 5px 5px;
+    margin-left: 4px !important; margin-left: 2px;
+    margin-bottom:4px;
+    min-height:50px;
+}
+
+.TBL_Lista_Tipo {
+	font-family: "Trebuchet MS";
+	font-size: 14px;
+	color: #81AD00;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+.TBL_Lista_TXT {
+	font-family: "Trebuchet MS";
+	color: #005357;
+	font-size: 13px;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+.TBL_Lista {
+	font-family: "Trebuchet MS";
+	color: #223307;
+	font-size: 11px;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+
+.TXT {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #223307;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+
+.Chamada_News_2 {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+}
+.Chamada_News_3 {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+}
+
+.BemVindo
+{
+	float:left;
+	width: 868px;
+	height: 25px;
+	padding-top: 5px;
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	font-weight: bold;
+	color: #000;
+	margin-top: 10px;
+	margin-left: 10px !important; margin-left: 5px;
+}
+
+.BtLogout
+{
+	float:left;
+	text-align: right;
+	width: 93px;
+	height: 30px;
+	margin-top: 10px;
+}
+
+
+.AcessoRapido
+{
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 12px;
+	color:#FFF;
+	width: 270px;
+	height: 22px;
+}
+
+/*--------- Menu Abas inicio ------------- */
+
+.MenuAbas
+{
+	float:left;
+	width: 990px;
+	height: 36px;
+	background-image:url('../../imagens/borda_miolo.gif');
+	background-position: 50% bottom;
+	background-repeat:no-repeat;
+}
+.MenuAbas ul{
+	margin-top:0px;
+	padding:0px;
+	padding-left: 10px;
+	position:absolute;
+	left:0px;
+}
+.MenuAbas li {
+	list-style: none;
+	margin: 0;
+	display: inline;
+	float: left;
+	text-align: center;
+	position: relative;
+	margin-right: 2px;
+}
+.MenuAbas li a, .MenuAbas li a:hover {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color:#FFF;
+	margin:0;
+	float:left;
+	padding-top: 13px;
+	width: 160px;
+	height: 23px;
+	border: 0px solid #FFF;
+	text-decoration: none;
+	color: #000;
+	background-image:url('../../imagens/menu/aba.gif');
+	background-repeat: no-repeat;
+}
+.MenuAbas li a:link, .MenuAbas li a:visited
+{
+	color: #FFF;
+}
+.MenuAbas li a:hover, .MenuAbas ul li .MenuAtivo
+{
+	color:#0E5159;
+	background-image:url('../../imagens/menu/aba_over.gif');
+}
+
+.MenuAbas li a:hover .MenuAbas .AbaAtiva
+{
+	color:#0E5159;
+	background-image:url('../../imagens/menu/aba_over.gif');
+}
+
+
+/*--------- Menu Abas fim ------------- */
+
+
+/*--------- SubMenu Menu Abas Inicio ------------- */
+
+.SubAbas
+{	
+	background-image:url('../../imagens/menu/fundo_sub.gif');
+	background-repeat:repeat-y;
+	background-position: bottom;
+	float:left;
+	width: 990px;
+	height: 38px;
+}
+.SubMenu
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color:#0E4F57;
+	padding: 6px 0px 0px 5px;
+	font-weight: bold;
+	float:left;
+	width: 961px;
+	height:24px;
+	background-image:url('../../imagens/menu/bg_submenu.gif');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	margin-left: 12px !important; margin-left: 6px;
+}
+.SubMenuDuasLinhas
+{	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color:#0E4F57;
+	padding: 5px 0px 0px 5px;
+	font-weight: bold;
+	float:left;
+	width: 961px;
+	height: 38px;
+	margin-left: 12px !important; margin-left: 6px;
+}
+
+.SubAbasDuasLinhas
+{	
+	background-image:url('../../imagens/menu/fundo_sub.gif');
+	background-repeat:repeat-y;
+	background-position: bottom;
+	float:left;
+	width: 990px;
+	height: 38px;
+	padding-bottom: 0px;
+}
+
+.DuasLinhas
+{
+    height:38px;
+}
+
+.SubMenu a:link, .SubMenu a:visited, .SubMenu a:active, .SubMenuDuasLinhas a:link, .SubMenuDuasLinhas a:visited, .SubMenuDuasLinhas a:active
+{
+	color:#0E4F57;
+	text-decoration:none;
+}
+
+.SubMenu a:hover
+{
+	color: #000;
+	text-decoration:none;
+
+}
+
+/*--------- SubMenu Menu Abas Fim ------------- */
+
+
+.Navegacao
+{
+	background-image:url('../../imagens/menu/fundo_sub.gif');
+	background-repeat:repeat-y;
+	float:left;
+	width: 970px;
+	height: 18px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color:#666;
+	padding: 10px 0px 10px 20px;	
+}
+
+.InternaAbas
+{
+	float:left;
+	width: 936px;
+	padding-left: 25px !important; 	padding-left: 24px;
+	padding-top: 10px;
+	padding-right: 30px;
+	padding-bottom: 8px;
+	min-height: 300px;
+	_height: 300px;
+	background-image:url('../../imagens/bg_conteudo.gif');
+	background-repeat:repeat-y;
+	background-position:left;
+}
+
+.Rotativo
+{
+	float:left;
+	width: 510px;
+	height: 315px;
+}
+.NoticiasHome
+{
+	float:left;
+	width: 410px;
+	height: 315px;
+	margin-left: 12px !important; margin-left: 6px;
+}
+.TarjaNoticiasHome
+{
+	float:left;
+	width: 400px;
+	height: 24px;
+	background-position:left top;
+	background-image:url('../../imagens/aba_destaques.gif');
+	background-repeat:no-repeat;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	padding-top:8px;
+	padding-left: 10px;
+	font-weight: bold;
+	color:#FFF;
+}
+.CamposNoticias
+{
+	float:left;
+	width: 400px;
+	height: 245px;
+	margin-left: 10px !important; margin-left: 5px;
+	margin-top: 5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#0E5159;
+}
+.NoticiasNavBar
+{
+	float:left;
+	width: 410px;
+	height: 28px;
+	background-position:left top;
+	background-image:url('../../imagens/navegacao_destaque.gif');
+	background-repeat:no-repeat;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	padding-top: 4px;
+	font-weight: bold;
+	color: #FFF;
+}
+.NavNews
+{
+	position: relative;
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-left: 2px !important; margin-left: 1px;
+}
+.NavTitulo
+{
+	position: relative;
+	margin-left:240px !important; margin-left:120px;
+	float: left;
+	width: 120px;
+	height: 20px;
+}
+.InternaRodape
+{
+	position: relative;
+	float:left;
+	width: 970px;
+	height: 20px;
+	padding: 0px 10px 0px 10px;
+	background-position:center;
+	background-image:url('../../imagens/bg_rodape.gif');
+	background-repeat:no-repeat;
+}
+
+/*-- Menu Inferior inicio ---*/
+
+.MenuRodape
+{
+	position: relative;
+	float:left;
+	margin-top:10px;
+	width: 774px;
+	height: 61px;
+	background-position:left top;
+	background-image:url('../../imagens/menu/bg_menu_inferior.gif');
+	background-repeat:no-repeat;
+}
+.MenuRodape ul{
+	margin-top:11px;
+	padding:0px;
+	padding-left: 12px;
+	position:absolute;
+	left:0px;
+}
+.MenuRodape li {
+	list-style: none;
+	margin: 0;
+	display: inline;
+	float: left;
+	text-align: center;
+	position: relative;
+	margin-right: 0px;
+}
+.MenuRodape li a, .MenuRodape li a:hover  {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color:#FFF;
+	margin:0;
+	float:left;
+	padding-top: 10px;
+	width: 150px;
+	height: 27px;
+	border: 0px solid #FFF;
+	text-decoration: none;
+	color: #000;
+	/*background-image:url(../imagens/menu/aba.gif);*/
+	background-repeat: no-repeat;
+}
+.MenuRodape li a:link, .MenuRodape li a:visited
+{
+	color:#0E5159;
+}
+.MenuRodape li a:hover
+{
+	color:#0E5159;
+	background-image:url('../../imagens/menu/over_menu_inf.gif');
+}
+
+/*-- Menu Inferior fim ---*/
+
+.SmallBanners
+{
+    position: relative;
+	float: right;
+	width: 83px;
+	height: 115px;
+	margin-top: 15px;
+	margin-right: 16px !important; margin-right: 8px;
+}
+.Endereco
+{
+	position: relative;
+	float:left;
+	margin-top:10px;
+	padding-top: 22px;
+	width: 990px;
+	height: 39px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	color:#FFF;
+	background-position:left top;
+	background-image:url('../../imagens/menu/bg_endereco.gif');
+	background-repeat:no-repeat;
+}
+.BordaConteudo
+{
+	float:left;
+	width: 990px;
+	height: 8px;
+	background-position:left top;
+	background-image:url('../../imagens/borda_conteudo.gif');
+	background-repeat:no-repeat;
+}
+
+.Assinatura
+{
+	float: left;
+	width: 990px;
+	height: 43px;
+	margin-top: 5px !important; margin-top: 0px;
+	text-align:right;
+}
+
+
+
+.ImagemBannerPequeno
+{
+	margin: 20px 0 0 25px;
+	position:relative;
+	float:left;
+	width:298px;
+	height:422px;
+}
+
+.ConteudoGeralAR
+{
+	position:relative;
+	text-align: left;
+	background-color:#FFF;
+	width:940px;
+	height:600px;
+	top: 0px;
+	left: 0px;
+}
+
+
+.ConteudoLinksAR
+{
+	float:left;
+	text-align: left;
+	width:580px;
+	height:470px;
+	margin-top: 20px;
+	margin-left: 20px !important; margin-left: 15px;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000000;
+}
+
+.TitulosLinks
+{
+	font-family: "Trebuchet MS";
+	font-size: 14px;
+	color: #000000;
+	font-weight:bold;
+
+}
+
+
+
+.TituloIT {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 16px;
+	color: #dbca00;
+	font-weight: normal;
+	padding-top: 3px;
+	padding-left: 20px;
+	height: 29px;
+}
+.BTIT {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #354400;
+	background-color: #D9E1D2;
+	cursor: hand;
+	margin-right: 10px;
+	background-image: url('../../admin/img/com-middle.jpg');
+	background-repeat: repeat-x;
+	height: 25px;
+	position:relative;
+	float:right;
+}
+
+.TXT_IT {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #FFFFFF;
+	padding:0px 10px 5px 10px;
+	height:29px;
+}
+.SubTituloIT {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 18px;
+	color: #dbca00;
+	font-weight: normal;
+	padding-top: 20px;
+	padding-right: 30px;
+	padding-bottom: 0px;
+	padding-left: 30px;
+	height:45px;
+}
+
+
+/*CSS site antigo*/
+
+.Texto11_A1A1A1 {
+	font-size: 13px;
+	color: #A1A1A1;
+}
+
+.Box_jump {
+	border: 1px solid #7c9bb7;
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	width: 215px;
+	color: #005357;
+}
+
+.TXT_jump {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #FFFFFF;
+	padding-right: 10px;
+}
+
+.TD_brandcrumbs {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 11px;
+	color: #FFFFFF;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.BG_brandcrumbs {
+	background-image: url('../../imagem/BG_brandcrumbs.jpg');
+	background-repeat: no-repeat;
+}
+
+.TXT_brandcrumbs {
+	color: #3c838b;
+	text-decoration: none;
+}
+.TXT_brandcrumbs:hover {
+	color: #00e9ff;
+	text-decoration: none;
+}
+.Texto_ffdd00 {
+	color: #ffdd00;
+	text-decoration: none;
+}
+.Texto_ffdd00:hover {
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+.Titulo {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 18px;
+	color: #2C2C2C;
+	padding: 30px 30px 10px;
+	font-weight: normal;
+}
+
+.TituloEndereco
+{
+    width: 700px;
+	padding: 30px 30px 10px;
+	font-weight: normal;
+}
+.quadradinho {
+	background-image: url('../../imagem/pontinhos.gif');
+	background-repeat: no-repeat;
+	margin-right: 30px;
+	margin-left: 30px;
+}
+.TD_Total_Records {
+	padding-right: 25px;
+	padding-left: 25px;
+	width: 910px;
+}
+.Total_Records {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 11px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	background-color: #F9F9F9;
+}
+.Paginacao {
+	padding: 10px;
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #FFDD00;
+	background-color: #F9F9F9;
+}
+.Titulo_News {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-top: 10px;
+}
+.Creditos_News {
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #888888;
+	padding-right: 30px;
+	padding-left: 30px;
+}
+.Saibamais_News {
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+	padding-top: 10px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+}
+.Texto_005357 {
+	color: #005357;
+	text-decoration: underline;
+	font-size: 11px;
+}
+
+.Texto {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #2C2C2C;
+	padding-top: 10px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+}
+
+.TextoVerde
+{
+    font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #21717B;
+	padding-top: 10px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+}
+    
+.TXT_info {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 12px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	background-color: #E0E0E0;
+}
+
+.BG_conteudo {
+	background-repeat: repeat-y;
+	background-color: #ECECEC;
+}
+
+.SubTexto {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #6D6D6D;
+	padding-top: 5px;
+	padding-right: 30px;
+	padding-bottom: 5px;
+	padding-left: 30px;
+}
+.TDTXTBOX {
+	font-family: Tahoma, "Trebuchet MS";
+	font-size: 13px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-bottom: 1px;
+	padding-right: 1px;
+	padding-left: 1px;
+}
+
+.BOXContato {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #000000;
+	background-color: #f9f9f9;
+	border: 1px solid #818382;
+	width: 300px;
+	height: 17px;
+}
+.BOXContatoTextArea {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #000000;
+	background-color: #f9f9f9;
+	border: 1px solid #818382;
+	width: 300px;
+}
+.BT {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #354400;
+	background-color: #D9E1D2;
+	border: 1px solid #354400;
+	cursor: hand;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	background-image: url('../../admin/img/com-middle.jpg');
+	background-repeat: repeat-x;
+	height: 25px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.TD_Total_Records {
+	padding-right: 25px;
+	padding-left: 25px;
+}
+.Total_Records {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 11px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	background-color: #F9F9F9;
+}
+.Texto_005357_13 {
+	color: #005357;
+	text-decoration: underline;
+	font-size: 13px;
+}
+.Texto_005357_13:hover {
+	color: #005357;
+	text-decoration: none;
+	font-size: 13px;
+}
+
+.TXT_plugin {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 11px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	background-color: #E0E0E0;
+}
+
+.IMG_plugin {
+	padding: 10px;
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #FFDD00;
+	background-color: #E0E0E0;
+}
+.TXT_Buscar {
+	color: #2C2C2C;
+	text-decoration: none;
+	font-size: 13px;
+	padding-left: 30px;
+	padding-right: 5px;
+}
+.BOX_Buscar {
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000000;
+	border: 1px solid #818382;
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	width: 250px;
+	height: 20px;
+	background-color: #E2E2E2;
+}
+
+
+.BT_Buscar 
+{
+    position:relative;
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #ccffcc;
+	font-weight: bold;
+	background-color: #586a48;
+	border-left:1px solid #354400;
+	border-top:1px solid #354400;
+	border-right:1px solid #354400;
+	border-bottom:1px solid #222b02;
+	cursor: hand;
+	background-image: url('../../imagens/fundobotao.gif');
+	background-repeat: repeat-x;
+	height: 25px;
+	padding-right: 10px;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.BT_Assinatura
+{
+    position:relative;
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #ccffcc;
+	font-weight: bold;
+	background-color: #586a48;
+	border-left:1px solid #354400;
+	border-top:1px solid #354400;
+	border-right:1px solid #354400;
+	border-bottom:1px solid #222b02;
+	cursor: hand;
+	background-image: url('../../imagens/fundobotao.gif');
+	background-repeat: repeat-x;
+	height: 25px;
+	padding-right: 10px;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.BT_Interno
+{
+    position:relative;
+	font-family: "Trebuchet MS";
+	font-size: 10px;
+	color: #ccffcc;
+	font-weight: bold;
+	background-color: #586a48;
+	border-left:1px solid #354400;
+	border-top:1px solid #354400;
+	border-right:1px solid #354400;
+	border-bottom:1px solid #222b02;
+	background-image: url('../../imagens/fundobotao.gif');
+	background-position: top;
+	background-repeat: repeat-x;
+	height: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.Texto_000000 {
+	color: #2C2C2C;
+	text-decoration: none;
+}
+.Texto_000000:hover {
+	color: #000000;
+	text-decoration: underline;
+}
+
+.Titulo_Jornal {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+	padding-right: 30px;
+	padding-left: 30px;
+}
+
+.Texto_005357_13 {
+	color: #005357;
+	text-decoration: underline;
+	font-size: 13px;
+}
+.Texto_005357_13:hover {
+	color: #005357;
+	text-decoration: none;
+	font-size: 13px;
+}
+.Descricao_Jornal {
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000000;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+.Texto13_005357 {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #005357;
+	font-weight: bold;
+}
+
+.SubTitulo {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 18px;
+	color: #dbca00;
+	font-weight: normal;
+	padding-top: 20px;
+	padding-right: 30px;
+	padding-bottom: 0px;
+	padding-left: 30px;
+}
+
+
+
+/*Clube de vantagens*/
+
+*
+{
+	padding:0px;
+	border:0;
+}
+
+.ConteudoGeral
+{
+	position:relative;
+	text-align: left;
+	background-color:#FFF;
+	width:800px;
+	height:1090px;
+	top: 0px;
+	left: 0px;
+}
+
+.ConteudoCadastro
+{
+	position:relative;
+	text-align: left;
+	background-color:#FFF;
+	width:800px;
+	height:600px;
+	top: 0px;
+	left: 0px;
+}
+
+.ConteudoCadastroImpressao
+{
+	position:relative;
+	text-align: left;
+	background-color:#FFF;
+	width:800px;
+	height:700px;
+	top: 0px;
+	left: 0px;
+}
+
+.ConteudoTextoVantagens
+{
+	float:left;
+	text-align: left;
+	width:430px !important; width: 380px;
+	height:557px;
+	margin-top: 20px;
+	margin-left: 20px !important; margin-left: 15px;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000000;
+}
+
+.TextoApresentacao
+{
+	float:left;
+	text-align:justify;
+	background-color:#FFF;
+	width:430px;
+	height:533px;
+	margin-top:15px;
+}
+
+.Carteirinha
+{
+	position:absolute;
+	top:15px;
+	left:465px;
+	z-index:9999;
+	text-align:left;
+	background-color:#FFF;
+	width:280px;
+	height:418px;
+	margin-top: 20px;
+	margin-left: 30px !important; margin-left: 15px;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000000;
+}
+
+.Conveniados
+{
+	float:left;
+	text-align:left;
+	background-color:#FFF;
+	width:750px;
+	height:120px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.NavegacaoRodape
+{
+	float:left;
+	position:relative;
+	text-align:left;
+	background-color:#FFF;
+	width:450px;
+	height:50px;
+	margin-left: 20px;
+	top: -107px;
+	left: 1px;
+}
+
+.NavegacaoRodapeImpressao
+{
+	position: absolute;
+	top: 983px;
+	left: 0px;
+	text-align:left;
+	background-color:#FFF;
+	width:200px;
+	height:74px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 0px;
+}
+
+.CadastroClube
+{
+	float:left;
+	text-align: left;
+	width:770px;
+	height:380px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 10px;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000;
+}
+
+.CadastroClubeImpressao
+{
+	float:left;
+	text-align: left;
+	width:770px;
+	height:580px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 10px;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000;
+	border: solid 1px green;
+}
+
+.TopoCadastro
+{
+	float:left;
+	text-align: left;
+	background-repeat: no-repeat;
+	width:240px;
+	height:20px;
+}
+
+.TopoCadastroImpressao
+{
+	float:left;
+	text-align: left;
+	margin-top: 20px;
+	background-image:url('../../imagem/Logo-Clube-de-Vantagens.jpg');
+	background-repeat: no-repeat;
+	width:200px;
+	height:60px;
+}
+
+.TituloCadastro
+{
+	float:left;
+	text-align: center;
+	width:370px;
+	height:50px;
+	font-family: "Trebuchet MS";
+	font-size: 18px;
+	color: #000000;
+	font-weight: bold;
+}
+
+.TituloCadastroImpressao
+{
+	float:left;
+	text-align: center;
+	margin-top: 30px;
+	width:385px;
+	height:50px;
+	font-family: "Trebuchet MS";
+	font-size: 18px;
+	color: #000000;
+	font-weight: bold;
+}
+
+.alert {
+	font-family: "Trebuchet MS", Tahoma;
+	font-size: 13px;
+	color: #FF0000;
+	padding-top: 5px;
+	padding-right: 30px;
+	padding-bottom: 5px;
+	padding-left: 30px;
+}
+
+.TDTXTBOX {
+	font-family: Tahoma, "Trebuchet MS";
+	font-size: 13px;
+	color: #6D6D6D;
+	padding-top: 10px;
+	padding-bottom: 1px;
+	padding-right: 1px;
+	padding-left: 1px;
+}
+
+.FotoCadastro
+{
+	float:left;
+	text-align: center;
+	width:100px;
+	height:135px;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #666;
+	margin-left: 60px;
+	font-weight: bold;
+	border: solid 1px #999;
+}
+
+.DivisoriaHorizontal
+{
+	float:left;
+	width: 755px;
+	height: 2px;
+	margin-top:10px;
+	background-color: #000;
+	font-size:2px;
+}
+
+.CamposSimples
+{
+	float:left;
+	height: 38px;
+	margin-right: 10px;
+	margin-top: 10px;
+	text-align:left;
+}
+
+.BotaoImprimir
+{
+	margin-top: 60px;
+	margin-left: 20px;
+	text-align:center;
+	float:left;
+	width: 380px;
+	height: 30px;
+}
+
+.CamposText
+{
+	border: solid 1px #999;
+	height: 20px !important; height:22px;
+}
+
+
+.ToolTip
+{
+	z-index: 9999;
+	display:none;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #000;
+	text-align: left;
+	width: 255px;
+	height: 138px;
+	padding-top: 12px;
+	padding-right: 15px;
+	padding-left: 30px;
+	padding-bottom: 15px;
+	background-image:url('../../imagens/tooltip.png');
+	background-repeat:no-repeat;
+}
+
+
+.BordaAmarela
+{
+    position: relative;
+    float:left;
+    text-align:left;
+    width:940px;
+    *width:930px;
+    height: 20px;
+    margin-bottom: 10px;
+    border-bottom: 4px solid Yellow;
+}
+
+
+.TabelaPatrocinados
+{
+	position:absolute;
+	z-index:9999;
+	top: 665px;
+	left: 19px;
+	width: 754px;
+	height: 312px;
+}
+
+.ConteudoGeral2
+{
+	position:relative;
+	text-align: left;
+	background-color:#FFF;
+	width:800px;
+	height:1200px;
+	top: 0px;
+	left: 0px;
+}
+
+.TopoNoticias
+{
+    position: relative;
+    float:left;
+    text-align:left;
+    width:940px;
+    *width:930px;
+    height: 38px;
+    margin-bottom: 10px;
+    border-bottom: 4px solid #0E5159;
+}
+.TopoNoticiasComSubTitulo
+{
+    position: relative;
+    float:left;
+    text-align:left;
+    width:940px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-bottom: 4px solid #0E5159;
+}
+
+
+.PaginacaoNoticias
+{
+    position: relative;
+    float: right;
+    width:328px;
+    height: 30px;
+    margin-bottom:4px !important; margin-bottom:0px;
+    margin-top: 8px;
+    background-image:url('../../imagens/aba_paginacao.gif');
+	background-repeat:no-repeat;
+	background-position: right bottom;
+}
+
+.TitulosNoticias
+{
+    position: relative;
+    float: left;
+    width:500px;
+    height: 22px;
+    font-family: "Trebuchet MS";
+	font-size: 16px;
+	color: #21717B;
+	margin-top: 12px;
+	font-weight: bold;
+}
+
+.TituloUpload {
+	font-family: "Trebuchet MS";
+	font-size: 16px;
+	color: #21717B;
+	padding: 30px 30px 10px;
+	font-weight: bold;
+}
+
+.SubTitulosNoticias
+{
+    position: relative;
+    float: left;
+    width:900px;
+    height: 26px;
+    margin-bottom:20px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #21717B;
+	margin-top: 12px;
+	font-weight: bold;
+}
+
+
+.TituloNoticiaIT {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	font-weight: bold;
+	color: #21717B;
+	padding-top: 5px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+	padding-left: 30px;
+}
+
+
+.SubTitulosArtigo
+{
+    position: relative;
+    float: left;
+    width:900px;
+    height: 50px;
+    font-family: "Trebuchet MS";
+	font-size: 14px;
+	color: #21717B;
+	margin-top: 12px;
+	font-weight: bold;
+}
+
+.NavNoticias
+{
+    position: relative;
+    float: left;
+    width: 22px;
+    height: 21px;
+    margin-top: 6px;
+    margin-left: 8px !important; margin-left: 6px;
+}
+
+.PaginacaoStatus
+{
+    position: relative;
+    float: left;
+    width: 252px;
+    height: 18px;
+    padding-top: 3px;
+    font-family: "Trebuchet MS";
+	font-size: 11px;
+	color: #FFF;
+	line-height: 18px;
+	font-weight: bold;
+	text-align: center;
+    margin-top: 6px;
+    margin-left: 8px !important; margin-left: 4px;
+}
+
+
+.BoxJornal
+{
+    position: relative;
+    float: left;
+    width: 940px;
+    height: 158px;
+    background-color: #FFF;
+    margin-top: 14px;
+    margin-right: 14px;
+    _margin-right: 18px;
+    border: 1px solid #C6C6C6;
+}
+
+
+.ImagemJornal
+{
+    position: relative;
+    float:left;
+    width:101px;
+    margin-right: 10px !important; margin-right: 5px;
+    margin-left: 10px !important; margin-left: 5px;
+    margin-top: 10px;
+    height: 135px;
+    border: 1px solid #C6C6C6;
+}
+
+
+.ImagemAlbum
+{
+    position: relative;
+    float:left;
+    width:135px;
+    margin-right: 10px !important; margin-right: 5px;
+    margin-left: 10px !important; margin-left: 5px;
+    margin-top: 10px;
+    height: 100px;
+    border: 1px solid #C6C6C6;
+}
+
+
+.BoxImagem
+{
+    position: relative;
+    float:left;
+    width:135px;
+    margin-right: 14px !important; margin-right: 7px;    
+    margin-top: 10px;
+    height: 100px;
+    border: 1px solid #C6C6C6;
+}
+
+.BordaCampo
+{
+    border: 1px solid #666;
+    height:20px;
+}
+
+.BoxSiteInteresse
+{  
+    position: relative;
+    float: left;
+    width: 800px;
+    height: 190px;
+    background-color: #FFF;
+    margin-top: 14px;
+    margin-right: 14px;
+    _margin-right: 18px;
+    border: 1px solid #C6C6C6;
+}
+
+.TitBoxAlbum
+{
+    position: relative;
+    float: left;
+    width: 770px;
+    height:36px;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-family: "Trebuchet MS";
+	font-size: 14px;
+	font-weight: bold;
+	color: #21717B;
+	float:left;
+    margin-top: 10px;
+}
+
+.SpotLightAlbum
+{
+    position: relative;
+    float: left;
+    width: 760px;
+    height:50px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	line-height: 14px;
+	color: #666;
+}
+
+.TitBoxJornal
+{
+    position: relative;
+    float: left;
+    width: 800px;
+    height:36px;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-family: "Trebuchet MS";
+	font-size: 14px;
+	font-weight: bold;
+	color: #21717B;
+	float:left;
+    margin-top: 10px;
+}
+
+.SpotLightJornal
+{
+    position: relative;
+    float: left;
+    width: 770px;
+    height:50px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	line-height: 14px;
+	color: #666;
+}
+
+.BoxLegislacao
+{
+    position: relative;
+    float: left;
+    width: 930px; 
+    *width: 850px; 
+    height: 120px;
+    background-color: #FFF;
+    margin-top: 14px;
+    margin-right: 14px;
+    _margin-right: 7px;
+    border: 1px solid #C6C6C6;
+    
+}
+
+.TitBoxLegislacao
+{
+    position: relative;
+    float: left;
+    width: 900px;
+    height:20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-family: "Trebuchet MS";
+	font-size: 14px;
+	font-weight: bold;
+	color: #21717B;
+}
+
+.SpotLightJornal
+{
+    position: relative;
+    float: left;
+    width: 800px;
+    height:50px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	line-height: 14px;
+	color: #666;
+    margin-top: 10px;
+}
+
+
+.SpotLightLegislacao
+{
+    position: relative;
+    float: left;
+    width: 900px;
+    height:50px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	line-height: 14px;
+	color: #666;
+    margin-top: 10px;
+}
+
+.TitBoxArtigo
+{
+    position: relative;
+    float: left;
+    width: 280px;
+    height:55px;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-family: "Trebuchet MS";
+	font-size: 14px;
+	font-weight: bold;
+	color: #21717B;
+}
+
+
+.SpotLightArtigo
+{
+    position: relative;
+    float: left;
+    width: 280px;
+    height:40px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	line-height: 14px;
+	color: #666;
+}
+
+
+.BoxArtigo
+{
+    position: relative;
+    float: left;
+    width: 296px;
+    height: 130px;
+    background-color: #FFF;
+    margin-top: 14px;
+    margin-right: 14px;
+    _margin-right: 18px;
+    border: 1px solid #C6C6C6;
+}
+
+
+.BoxSiteInteresse
+{
+    position: relative;
+    float: left;
+    width: 296px;
+    height: 150px;
+    background-color: #FFF;
+    margin-top: 14px;
+    margin-right: 14px;
+    _margin-right: 18px;
+    border: 1px solid #C6C6C6;
+}
+
+
+
+.BoxNoticiasAR
+{
+    position: relative;
+    float: left;
+    width: 296px;
+    height: 150px;
+    background-color: #FFF;
+    margin-top: 14px;
+    margin-right: 8px;
+    _margin-right: 4px;
+    border: 1px solid #C6C6C6;
+}
+
+
+.SaibaMaisAR
+{   
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 16px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: bold;
+	color: #21717B;
+    cursor: pointer;
+}
+
+.BoxNoticias
+{
+    position: relative;
+    float: left;
+    width: 296px;
+    height: 120px;
+    background-color: #FFF;
+    margin-top: 14px;
+    margin-right: 14px;
+    _margin-right: 18px;
+    border: 1px solid #C6C6C6;
+}
+
+.TitBoxNoticias
+{
+    position: relative;
+    float: left;
+    width: 280px;
+    height:36px;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-family: "Trebuchet MS";
+	font-size: 14px;
+	font-weight: bold;
+	color: #21717B;
+}
+
+.SpotLightNoticias
+{
+    position: relative;
+    float: left;
+    width: 280px;
+    height:50px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	line-height: 14px;
+	color: #666;
+}
+
+
+.SaibaMais
+{   
+    position: relative;
+    float: left;
+    width: 90px;
+    height: 16px;
+    padding-left: 10px;
+    font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: bold;
+	color: #21717B;
+    cursor: pointer;
+}
+
+
+
+
+.Titulo_Album {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	font-weight: bold;
+	color: #343839;
+	padding-top: 5px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+}
+.Descricao_Album {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	color: #676767;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXX TVSHOW XXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+
+
+.opc-box {
+	CLEAR: both; OVERFLOW: hidden;
+}
+.opc-box-col1 {
+	FLOAT: left;
+	WIDTH: 230px;
+	padding-top: 0px;
+	padding-right: 20px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+}
+.opc-box-col2 {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0em;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px;
+	width: 265px;
+	height:285px;
+}
+
+
+
+#mod-rotativo {
+	padding-top: 24px;
+	padding-left: 0px;
+}
+#rotCham {
+	POSITION: relative;
+	FONT-SIZE: 10px;
+	width: 227px;
+	top: 0px;
+	left: 0px;
+    height: 313px;
+}
+#rotCham UL {
+	PADDING-BOTTOM: 0px; 
+	LIST-STYLE-TYPE: none; 
+	MARGIN: 0px; 
+	PADDING-LEFT: 0px; 
+	WIDTH: 23em; 
+	PADDING-RIGHT: 0px; 
+	HEIGHT: 273px; 
+	PADDING-TOP: 0px;
+}
+#rotCham UL LI {
+	LIST-STYLE-TYPE: none;
+	MARGIN: 0px;
+	WIDTH: 23em;
+	padding: 0px;
+	height: 22em;
+}
+#rotCham UL LI {
+	Z-INDEX: 3;
+	POSITION: absolute;
+	DISPLAY: block;
+	TOP: 0px;
+	LEFT: 0px
+}
+#rotCham UL LI.desativado {
+	Z-INDEX: 1; DISPLAY: none;
+}
+#rotCham UL LI IMG {
+	margin: 0;
+	/*height: 154px;
+	width: 228px !important;
+	width: 226px;*/
+	height: 315px;
+	width: 508px !important;
+	width: 510px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+}
+#rotCham UL LI A {
+	TEXT-DECORATION: none;
+}
+#rotCham UL LI A:hover * {
+	TEXT-DECORATION: underline;
+}
+#rotCham UL LI .legenda {
+	POSITION: absolute;
+	WIDTH: 228px;
+	BOTTOM: 15px;
+	HEIGHT: 50px;
+	left: 0px;
+}
+#rotCham UL LI P {
+	POSITION: absolute;
+	MARGIN: 0px;
+	DISPLAY: block;
+	FONT-SIZE: 10px;
+	TOP: 0px;
+	CURSOR: hand;
+	LEFT: 0px;
+	padding: 0px;
+	width: 228px;
+	border: 1px solid #9b9b9b;
+	background-color: #575757;
+	height: 78px;
+}
+#rotCham UL LI P STRONG {
+	MARGIN: 0.8em 0.8em 0px;
+	DISPLAY: block;
+	COLOR: #990000;
+	font-family: "Trebuchet MS";
+	font-size: 1.1em;
+	font-weight: bolder;
+}
+#rotCham UL LI P SPAN {
+	DISPLAY: block;
+	COLOR: #FFFFFF;
+	margin-top: 0.5em;
+	margin-right: 0.6em;
+	margin-bottom: 0.6em;
+	margin-left: 0.6em;
+	font-family: Arial;
+	font-size: 1.2em;
+	font-weight: lighter;
+}
+#rotCham UL LI P .icone {
+	MARGIN-LEFT: 0.4em;
+}
+#rotCham UL LI .sombra {
+	DISPLAY: none;
+}
+#rotCham .botoesNavegacao {
+	Z-INDEX: 12;
+	POSITION: absolute;
+	BOTTOM: 2px;
+	left: 0px;
+}
+#rotCham .botoesNavegacao A {
+	TEXT-INDENT: -999em;
+	OUTLINE-STYLE: none;
+	FLOAT: left;
+	margin-top: 0px;
+	margin-right: 2px;
+	margin-bottom: 0px;
+	margin-left: 2px;
+}
+#rotCham .botoesNavegacao A.anterior {
+	WIDTH: 44px;
+	HEIGHT: 44px;
+	MARGIN-LEFT: 2.4em;
+	margin-left: 1.2em;
+	background-image: url('../../imagens/rt_volta.gif');
+	background-repeat: no-repeat;
+}
+#rotCham .botoesNavegacao A.proximo {
+	WIDTH: 44px;
+	HEIGHT: 44px;
+	background-image: url('../../imagens/rt_avanca.gif');
+	background-repeat: no-repeat;
+}
+#rotCham .botoesNavegacao A.btstop {
+	WIDTH:44px;
+	HEIGHT: 44px;
+	background-image: url('../../imagens/rt_pausa.gif');
+	background-repeat: no-repeat;
+	display:none;
+}
+#rotCham .botoesNavegacao A.btplay {
+	WIDTH: 44px;
+	HEIGHT: 44px;
+	background-image: url('../../imagens/rt_pausa.gif');
+	background-repeat: no-repeat;
+}
+#centralInfo {
+	height: 68px;
+	width: 557px;
+	position: relative;
+	z-index: 10;
+	float: left;
+	left: 0px;
+	top:-25px;
+	vertical-align:top;
+}
+#centralInfo .caixa {
+	vertical-align:top;
+	width: 542px;
+	padding-left: 15px;
+}
+#centralInfo .caixa A {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#centralInfo .caixa A:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#centralInfo H1 {
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	color: #077782;
+}
+#centralInfo SPAN {
+	color: #f6e30a;
+}
+
+
+/* HOME VIDEO PLAYER */
+
+.HomeVideo
+{
+    position:absolute; 
+    display: none; 
+    z-index: 10000;
+}
+
+.HomeVideoDiv
+{
+    position: relative;
+    background-color:Black; 
+    left: -13px;
+    top: -315px; 
+    color: White;
+    width : 540px;
+    z-index: 10000;
+}
+
+.HomeVideoDivFechar
+{
+	position: relative;
+    float: right; 
+    cursor: pointer;
+}
+
+.HomeVideoPlay
+{
+    position: absolute; 
+    border: 0px;
+    cursor: pointer;
+    opacity: 0.2; 
+    filter: alpha(opacity=20); 
+    -moz-opacity: 0.2;     
+}
+
+.HomeVideoPlay:Hover
+{
+    opacity: 0.4; 
+    filter: alpha(opacity=40); 
+    -moz-opacity: 0.4;
+}
+
+
+
+
+
+
+.opc-box-col2 {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0em;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px;
+	width: 265px;
+	height:245px;
+}
+#mod-hn-destaque {
+	CLEAR: both;
+	OVERFLOW: hidden;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-top: 0em;
+}
+#mod-hn-destaque DIV.chapeu A {
+	COLOR: #00e9ff;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	text-decoration: none;
+}
+#mod-hn-destaque DIV.chapeu A:visited {
+	COLOR: #00e9ff;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	text-decoration: none;
+}
+#mod-hn-destaque H3 {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: lighter;
+	line-height: 1.3em;
+}
+#mod-hn-destaque H3 A {
+	COLOR: #FFFFFF;
+	text-decoration: none;
+}
+#mod-hn-destaque H3 A:visited {
+	COLOR: #FFFFFF;
+	text-decoration: none;
+}
+#mod-hn-destaque UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0.3em
+}
+#mod-hn-destaque LI {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0.8em;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px;
+	LIST-STYLE-TYPE: none;
+	height: 1.5em;
+}
+#mod-hn-destaque LI A {
+	COLOR: #FFFFFF;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: lighter;
+}
+#mod-hn-destaque LI A:visited {
+	COLOR: #FFFFFF;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: lighter;
+}
+.first#mod-hn-chamada {
+	BORDER-TOP-WIDTH: 0px; 
+	MARGIN-TOP: 0px; 
+	BORDER-LEFT-WIDTH: 0px; 
+	BORDER-BOTTOM-WIDTH: 0px; 
+	PADDING-TOP: 0px; 
+	BORDER-RIGHT-WIDTH: 0px;
+}
+
+#mod-hn-chamada {
+	CLEAR: both;
+	OVERFLOW: hidden;
+	border-top-width: 1px;
+	border-top-style: dotted;
+	border-top-color: #4f8287;
+	margin-bottom: 0.5em;
+	padding-top: 0.5em;
+}
+#mod-hn-chamada DIV.chapeu A {
+	COLOR: #00e9ff;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	text-decoration: none;
+}
+#mod-hn-chamada DIV.chapeu A:visited {
+	COLOR: #00e9ff;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	text-decoration: none;
+}
+#mod-hn-chamada H3 {
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: lighter;
+	margin: 0px;
+	height:39px !important;
+	height:26px;
+}
+#mod-hn-chamada H3 A {
+	COLOR: #0E5159;
+	text-decoration: none;
+}
+#mod-hn-chamada H3 A:visited {
+	COLOR: #0E5159;
+	text-decoration: none;
+}
+#mod-hn-chamada UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0.3em;
+}
+#mod-hn-chamada LI {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0.8em;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px;
+	LIST-STYLE-TYPE: none;
+	HEIGHT: 1.3em;
+}
+#mod-hn-chamada LI A {
+	COLOR: #FFFFFF;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+}
+#mod-hn-chamada LI A:visited {
+	COLOR: #FFFFFF;
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+}
+
+
+/*----- Estilos Listview inicio ------ */
+
+.Listview
+{
+	border: solid 1px #0E4f57;
+	margin-top: 20px;
+	margin-right: 7px;
+	float:left;
+	text-align:left;
+}
+
+.Listview table a:link, .Listview table a:hover, .Listview table a:visited
+{
+    color:#000;
+    text-decoration: underline;
+}
+
+.rolagem
+{
+	overflow : auto;
+	height : 100px;
+}
+
+.titulosTabelas td, .titulosTabelas th
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#FFF;
+	padding-left: 4px;
+	background-color:#0E4f57;
+	text-align:center;
+	height: 24px;
+	border-right: 1px solid #FFF;
+}
+
+.titulosTabelas1
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:14px;
+	font-weight:bold;
+	color:#FFF;
+	padding-left: 4px;
+	background-color: #0E4f57;
+	text-align:center;
+	height: 30px;
+}
+
+.titulosTabelas2
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#FFF;
+	padding-left: 4px;
+	background-color:#578e96;
+	text-align:center;
+	height: 24px;
+}
+
+.linha1Tabela td
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:11px;
+	color:#000;
+	padding-left: 4px;
+	padding-top:4px;
+	padding-bottom: 4px;
+	background-color:#FFF;
+	border-right: solid 1px #999;
+}
+.linha2Tabela td
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:11px;
+	color:#000;
+	padding-left: 4px;
+	padding-top:4px;
+	padding-bottom: 4px;
+	background-color:#CCC !important;
+	border-right: solid 1px #FFF;
+}
+
+
+.linha1Tabela.red td { background-color: #FEE; color: red; font-weight: bold; }
+.linha2Tabela.red td { background-color: #FFE0E0; color: red; font-weight: bold; }
+
+.linha2Tabela.alerta td { background-color: #F00; color: white; font-weight: bold; }
+.linha2Tabela.alerta td a { color: white; text-decoration: none }
+
+.bordercell
+{
+	border-right: solid 1px #FFF;
+	padding-left: 4px;
+}
+ .linha2Tabela .semborda
+{
+    border-right: none;
+    padding-left: 4px;
+}
+
+ .linha1Tabela .semborda
+{
+    border-right: none;
+    padding-left: 4px;
+}
+
+.LinhaResultado td
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:12px;
+	color:#003333;
+	background-color:#FFF;
+	font-weight:bold;
+	border-right: solid 1px #999;
+	height:24px;
+}
+
+
+
+/*----- Estilos Listview Fim ------ */
+
+
+.SeguraPopUP
+{
+    position:relative;
+    float:left;
+    width: 940px;
+    min-height: 100px;
+    padding: 5px;
+    border: 1px solid #0E4f57;
+}
+.MensagemExclusao
+{
+    position:relative;
+    float:left;
+    height: 25px;
+    width: 485px;
+    font-family:Trebuchet MS;
+    text-align:center;
+    font-weight: bold;
+    padding-top:15px;
+    font-size: 16px;
+    color: #0E4f57;
+}
+.MensagemSucesso
+{
+    position:relative;
+    float:left;
+    width: 930px;
+    height: 60px;
+    margin-top: 120px;
+    font-family:Arial, Helvetica, Sans-Serif;
+	font-size:16px;
+	text-align: center;
+	color:#000;
+}
+.ListaTabelas
+{
+    list-style-position: inside;
+    list-style-type:disc;
+    padding-left: 3px;
+}
+
+.BtICP 
+{
+    position:relative;
+    float:right;
+    text-align:center;
+    width:200px; 
+    height:158px; 
+    margin-top:210px;
+    margin-right: 20px;
+}
+
+.BtICPDigital
+{
+    position:relative;
+    float:right;
+    text-align:center;
+    width:200px; 
+    height:188px; 
+    margin-top:180px;
+    margin-right: 20px;
+}
+
+.TitulosInternos
+{
+    font-family:Arial, Helvetica, Sans-Serif;
+	font-size:14px;
+    position:relative;
+    float:left;
+    font-weight: bold;
+    width: 915px;
+    height: 70px;
+    padding: 13px 0px 0px 7px;
+    /*margin-bottom: 25px;*/
+}
+
+.LinhaTabelaSelecionada td
+{
+    background-color: #FFFFCC;
+}
+
+.PrimeiroAcesso
+{
+   position:relative;
+   float:left;
+   padding:15px 10px 0px 10px;
+   height: 210px;
+   width: 320px;
+   margin-left: 290px !important; margin-left: 145px;
+   margin-top:20px;
+   font-family: Trebuchet MS;
+   font-weight: bold;
+   font-size: 14px;
+   color: #0E5159;
+   border: 1px solid #0E4f57;
+   background-color:#d9e4e5;
+}
+
+.BoxCentro
+{
+   position:relative;
+   padding:5px;
+   width: 350px;
+   margin-top: 30px;
+   margin-bottom: 20px;
+   margin-left: auto;
+   margin-right: auto;
+   font-family: Trebuchet MS;
+   font-weight: bold;
+   font-size: 14px;
+   color: #0E5159;
+   border: 1px solid #0E4f57;
+   background-color:#d9e4e5;
+}
+.BoxCentro1
+{
+   
+   padding:5px;
+   width: 350px;
+   margin-top: auto;
+   margin-bottom: auto;
+   margin-left: auto;
+   margin-right: auto;
+   font-family: Trebuchet MS;
+   font-weight: bold;
+   font-size: 14px;
+   color: #0E5159;
+   border: 1px solid #0E4f57;
+   background-color:#d9e4e5;
+}
+
+
+.BoxCentroMensagem
+{
+   position:relative;
+   padding:5px;
+   width: 400px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   margin-left: auto;
+   margin-right: auto;
+   font-family: Trebuchet MS;
+   font-weight: bold;
+   font-size: 14px;
+   color: #0E5159;
+   border: 1px solid #0E4f57;
+   background-color:#d9e4e5;
+}
+
+.ImagemEnvioOK
+{
+    position:relative;
+    float:left;
+    text-align:center;
+    width: 100%;
+    height: 58px;  
+}
+
+
+.Agrupamentos
+{
+    position:relative;
+    float:left;
+    width: 475px;
+    min-height: 30px;
+}
+
+.ok 
+{
+    color:Green;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.falha 
+{
+    color:Red;
+    font-size:14px;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+.naoVerificado 
+{
+    color:SteelBlue;
+    font-size:14px;
+    font-weight:bold;
+}
+
+/*--------------Estilos Impress�o -----------------*/
+
+
+.AreaImpressao
+{
+    position:relative;
+    float:left;
+    width: 725px;
+    margin: 10px;
+    padding: 0px 0px 7px 7px;
+    min-height:50px;
+    background-color: #FFF;
+    border: 1px solid #000;
+}
+
+.LogoImpressao
+{
+    position:relative;
+    float:left;
+    width:218px;
+    height: 72px;
+    margin-top: 10px;
+}
+
+.ListviewImpressao
+{
+    border-top: solid 2px #000;
+    border-left: solid 2px #000;
+	border-right: solid 1px #000;
+	border-bottom: solid 1px #000;
+	margin-top: 20px;
+	margin-right: 7px;
+	float:left;
+	text-align:left;
+}
+
+.titulosTabelasImpressao td
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#000;
+	padding-left: 4px;
+	background-color:#999;
+	text-align:center;
+	height: 24px;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+
+}
+
+.linha1TabelaImpressao td
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:11px;
+	color:#000;
+	padding-left:4px;
+	font-weight: bold;
+	background-color:#FFF;
+	border-bottom: solid 1px #000;
+	border-right: solid 1px #000;
+	height:24px;
+}
+.linha2TabelaImpressao td
+{
+	font-family:Arial, Helvetica, Sans-Serif;
+	font-size:11px;
+	color:#000;
+	padding-left:4px;
+	font-weight: bold;
+	background-color:#CCC;
+	border-bottom: solid 1px #000;
+	border-right: solid 1px #000;
+	height:24px;
+}
+
+.bordercellImpressao
+{
+     border-right: solid 1px #000;
+     border-bottom: solid 1px #000;
+     padding-left: 4px;
+}
+
+
+/*--------------Estilos Impress�o -----------------*/
+
+/* ------------Menu BrandCrumbs -------------*/
+
+
+.Brandcrumbs
+{
+    position:relative;
+    width: 940px;
+    height:26px;
+    text-transform:uppercase;
+    font-family:Trebuchet MS;
+	font-size:12px;
+	font-weight:bold;
+    text-align:left;
+	color:#FFF;
+	margin-bottom: 15px;
+	background-image: url('../../imagens/fundobread.gif');
+	background-repeat: no-repeat;
+	background-position: left center;  
+}
+.Brandcrumbs a:link, .Brandcrumbs a:visited
+{
+    text-decoration: none;
+    color:#FFF;
+}
+
+.Brandcrumbs a:hover
+{
+   color: #0E4f57;
+}
+.Brandcrumbs ul
+{
+    margin: 0;
+    padding: 0px;
+    list-style-type: none;
+    font-family: "Arial; Helvetica, Sans-Serif";
+    font-size: 12px;
+    color: #FFF;
+    font-weight:bold;
+    color:#FFF;
+}
+.Brandcrumbs ul li
+{
+    position: relative;
+    display: inline;
+    float: left;
+    text-align:left;
+}
+.Brandcrumbs ul li a, .Brandcrumbs ul li span
+{
+    display: block;
+    /*width: 160px; Width of top level menu link items*/
+    height: 21px;
+    padding: 5px 20px 0px 5px;
+    text-align:left;
+    text-decoration: none;
+    color: #000;
+    background-image: url('../../imagens/setabrand.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.Brandcrumbs ul li span
+{
+    color: #FFF;
+}
+
+/* ------------Menu BrandCrumbs -------------*/
+
+
+.IndicadorStatus
+{
+    position:relative;
+    float:left;
+    left:-4px;
+    width: 920px;
+    height: 40px;
+    text-align:center;
+    margin-top: 20px;
+}
+
+
+/*------------ Sistema de abas internas --------------*/
+
+
+.AbasInternas {
+	border:none;
+	font-family:Trebuchet MS;
+	font-size: 14px;
+	width: 920px;
+	float: left;
+	height: 26px;
+	font-weight: bold;
+}
+
+.AbasInternas ul{
+	margin-top:0px;
+	padding:0px;
+	position:absolute; 
+	left:30px;
+}
+
+.AbasInternas li {
+	list-style: none;
+	margin: 0;
+	display: inline;
+	float: left;
+	position: relative;
+	top: 2px;
+}
+.AbasInternas li a {
+	margin:0;
+	float:left;
+	text-align:center;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 154px;
+	border: 0px solid #FFF;
+	text-decoration: none;
+	color: #666;
+	background-image: url(../../imagens/Aba_Interna_Inativa.gif);
+	background-repeat: no-repeat;
+}
+.AbasInternas li a:link {
+	color: #666;
+}
+.AbasInternas li a:hover, .AbasInternas #AbaSelect {
+	margin:0;
+	float:left;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 154px;
+	border: 0px solid #FFF;
+	text-decoration: none;
+	color: #0E5159;
+	background-image: url(../../imagens/Aba_Interna_Ativa.gif);
+	background-repeat: no-repeat;	
+}
+
+
+/*------------ Sistema de abas internas --------------*/
+
+
+
+/* ---- Botoes para os anexos em PDF ------*/
+
+.AreaAnexos
+{
+    position:relative;
+    float:left;
+    width: 910px;
+    min-height: 32px;
+    z-index: 999;
+}
+
+.IconePDF
+{
+    position: relative;
+    float:left;
+    width:285px;
+    height:29px;
+    margin-right:10px;
+    margin-bottom:10px;
+    padding: 3px;
+    border: 1px solid #C6C6C6;
+    text-decoration: none;
+}
+
+.IconePDF:hover
+{
+
+    background-color: #D8D8D8;
+    border: 1px solid #666;
+}
+
+.IconePDF img
+{
+    float:left;
+    position:relative;
+    border:0px;
+    padding-right: 5px;
+}
+
+.IconePDF span
+{
+    position:relative;
+    float:left;
+    height: 15px;
+    margin-top:0px;
+    width: 205px;
+    color : #666;
+    font-family:Arial, Helvetica, Sans-Serif;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.NomeArquivo
+{
+    margin-top:5px;
+    color : #333;
+ }
+ 
+ .ExcluirAnexo
+ {
+     position:relative;
+     float:right;
+     margin-top:8px;
+     width: 16px;
+     height: 16px;
+     z-index: 9999;
+     cursor: pointer;
+ }
+ 
+ 
+/* ---- Botoes para os anexos em PDF ------*/
+
+
+.LinkCorreios a
+{
+    color: #0E5159;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* ---- Botoes para os anexos em EXCEL ------*/
+.IconeXLS
+{
+    position: relative;
+    float:left;
+    width:285px;
+    height:29px;
+    margin-right:10px;
+    margin-bottom:10px;
+    padding: 3px;
+    border: 1px solid #C6C6C6;
+    text-decoration: none;
+}
+
+.IconeXLS:hover
+{
+
+    background-color: #D8D8D8;
+    border: 1px solid #666;
+}
+
+.IconeXLS img
+{
+    float:left;
+    position:relative;
+    border:0px;
+    padding-right: 5px;
+}
+
+.IconeXLS span
+{
+    position:relative;
+    float:left;
+    height: 15px;
+    margin-top:0px;
+    width: 205px;
+    color : #666;
+    font-family:Arial, Helvetica, Sans-Serif;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.NomeArquivoExcel
+{
+    margin-top:5px;
+    color : #333;
+ }
+
+ /* ---- Botoes para os anexos em EXCEL ------*/
+ 
+ 
+ 
+ .ImportacaoXLS
+ {
+     position:relative;
+     float:left;
+     width: 890px;
+     height: 25px;
+     margin: 6px 10px 8px 10px;
+     padding: 10px;
+     margin-left: 4px !important; margin-left: 2px;
+     background-color: #0E5159;
+     font-family: Trebuchet MS;
+     font-size: 16px;
+     color: #FFF;
+     font-weight: bold;
+     text-align: center;
+     
+ }
+ 
+  .Erro
+ {
+     background-color: #990000;
+ } 
+ 
+ 
+ .IconePDFPop
+{
+    position: relative;
+    float:left;
+    width:450px;
+    height:29px;
+    margin-right:10px;
+    margin-bottom:10px;
+    padding: 3px;
+    border: 1px solid #C6C6C6;
+    text-decoration: none;
+}
+
+.IconePDFPop:hover
+{
+
+    background-color: #D8D8D8;
+    border: 1px solid #666;
+}
+
+.IconePDFPop img
+{
+    float:left;
+    position:relative;
+    border:0px;
+    padding-right: 5px;
+}
+
+.IconePDFPop span
+{
+    position:relative;
+    float:left;
+    height: 15px;
+    margin-top:0px;
+    width: 395px;
+    color : #666;
+    font-family:Arial, Helvetica, Sans-Serif;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.AgrupamentosServicos
+{
+    position:relative;
+    float:left;
+    width: 690px;
+}
+
+.AgrupamentosRequerente
+{
+    position:relative;
+    float:left;
+    width: 910px;
+}
+
+.SeguraBlocoConferencia
+{
+    position:relative;
+    float:left;
+    width: 940px; 
+}
+
+.IconeAnexo
+{
+	position:relative;
+	float:left;
+	width:40px;
+	height:32px;
+}
+/*.tituloTeste {
+    color: red;
+}*/
+
+@media print {
+    /*.tituloTeste {
+        color: blue;
+    }
+    .background {
+        background-color:#ccc;
+    }*/
+
+    .titulosTabelas td, .titulosTabelas th {
+        font-family: Arial, Helvetica, Sans-Serif;
+        font-size: 12px;
+        font-weight: bold;
+        color: #000;
+        padding-left: 4px;
+        background-color: #0E4f57 !important;
+        text-align: center;
+        height: 24px;
+        border-right: 1px solid #FFF;
+    }
+
+    .quebraPagina {
+        height: 50px
+    } 
+    .titulosTabelas1 {
+        font-family: Arial, Helvetica, Sans-Serif;
+        font-size: 14px;
+        font-weight: bold;
+        color: #FFF;
+        padding-left: 4px;
+        background-color: #0E4f57;
+        text-align: center;
+        height: 30px;
+    }
+
+    .titulosTabelas2 {
+        font-family: Arial, Helvetica, Sans-Serif;
+        font-size: 11px;
+        font-weight: bold;
+        color: #FFF;
+        padding-left: 4px;
+        background-color: #578e96 !important;
+        text-align: center;
+        height: 24px;
+    }
+
+    .linha1Tabela td {
+        font-family: Arial, Helvetica, Sans-Serif;
+        font-size: 11px;
+        color: #000;
+        padding-left: 4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        background-color: #FFF;
+        border-right: solid 1px #999;
+    }
+
+    .linha2Tabela td {
+        font-family: Arial, Helvetica, Sans-Serif;
+        font-size: 11px;
+        color: #666 !important;
+        padding-left: 4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        background-color: #CCC !important;
+        border-right: solid 1px #FFF;
+    }
+}

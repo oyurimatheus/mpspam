@@ -1,0 +1,28 @@
+/**
+ * Funções genéricas utilizadas pelos projetos da Dataprev.
+ * @author Comitê de interfaces (COMINT)
+ * @version 1.0
+ */
+
+$( document ).ready(
+	function()
+	{
+		// Capturando o contexto da aplicação
+		contexto = location.pathname;
+		contexto = contexto.substring(0, contexto.indexOf('/',1));
+		$.datepicker.setDefaults($.extend({
+			showMonthAfterYear: false,
+			showOn: 'button', 
+			buttonImage: contexto + '/images/ico_calendario.gif', 
+			buttonImageOnly: true, 
+			buttonText: 'Selecionar data',
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'dd/mm/yy'
+		}, $.datepicker.regional['pt-BR']));
+	
+		$('input[class*=dataCalendarioFormat]').mask( "?99/99/9999" ).datepicker();
+
+		//$('textarea[class*=textareaFormat]').limit();
+	}
+);

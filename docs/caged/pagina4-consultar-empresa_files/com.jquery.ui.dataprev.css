@@ -1,0 +1,10 @@
+/*
+* jQuery UI CSS Framework
+* Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+*/
+
+/* Datepicker----------------------------------*/
+.ui-datepicker { width: 17.6em; }
+.ui-datepicker .ui-datepicker-header { width: 17.5em; }
+.ui-datepicker-trigger { margin-left: 0.1em; vertical-align: middle; }

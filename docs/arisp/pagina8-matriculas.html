@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta -->
+<html style="" class=" no-ie8compat json audio multiplebgs cssgradients supports mediaqueries fontface cssanimations bgrepeatround bgrepeatspace backgroundsize bgsizecover borderimage borderradius boxshadow cssfilters flexbox cssmask shapes csstransforms csstransforms3d csstransitions textshadow">
+
+<head id="Head1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+
+        Oficio Eletrônico - Cartórios - Consulta CPF/CNPJ
+
+    </title>
+    <!-- You can use .htaccess and remove these lines to avoid edge case issues. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- Mobile viewport optimized -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex">
+    <link href="https://novo.oficioeletronico.com.br/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="https://novo.oficioeletronico.com.br/favicon.ico" rel="icon" type="image/ico">
+    <!--link href="/Content/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" /-->
+    <link href="./pagina9-matriculas_files/reset.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/jquery-block-ui.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/jasny-bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/datepicker.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/colorbox.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/print.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/style_tablesorter.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/style.css" rel="stylesheet" type="text/css">
+    <link href="./pagina9-matriculas_files/bootstrap4_utilities.css" rel="stylesheet" type="text/css">
+    <!--link href="/Content/css/awesome-bootstrap-checkbox.css" rel="stylesheet" type="text/css" /-->
+
+    <script async="" src="./pagina9-matriculas_files/analytics.js.download"></script>
+    <script src="./pagina9-matriculas_files/jquery-1.9.1.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.unobtrusive-ajax.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery-ui-1.10.3.custom.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery-ui.min.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.blockUI.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery-migrate-1.2.1.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.mask.min.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.maskMoney.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.validate.min.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.formatCurrency-1.4.0.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.form.min.js.download" type="text/javascript"></script>
+    <!--src="/Scripts/jquery-latest.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.metadata.js" type="text/javascript"></script-->
+    <script src="./pagina9-matriculas_files/jquery.tablesorter.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.tablesorter.min.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jquery.colorbox-min.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/Site.Master.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/Site.BaixaBradesco.js.download" type="text/javascript"></script>
+
+    <script src="./pagina9-matriculas_files/modernizr-custom.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/bootstrap.min.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/jasny-bootstrap.min.js.download" type="text/javascript"></script>
+
+    <script src="./pagina9-matriculas_files/Site.Html5.Notifier.js.download" type="text/javascript"></script>
+
+    <script src="./pagina9-matriculas_files/MicrosoftAjax.js.download" type="text/javascript"></script>
+    <script src="./pagina9-matriculas_files/MicrosoftMvcAjax.js.download" type="text/javascript"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function() {
+            VerificarComunicados(true);
+            VerificarSessaoUsuario();
+
+            $(function() {
+                $("#btnOKComunicado").click(function() {
+
+                    var modal = $('#popupComunicadoMSG');
+
+                    modal.find('.modal-body').html("Para ler o comunicado novamente, acessar na parte superior do site em Comunicados.");
+
+                    modal.modal('show');
+
+                });
+            });
+
+            $("#lboxModalPopup").colorbox({
+                inline: true,
+                width: "450px",
+                opacity: 0.5
+            });
+            SetTimerManutencao();
+        });
+
+        function SetTimerManutencao() {
+            $.ajax({
+                type: 'POST',
+                url: '../../Manutencao/VerificaAlerta.aspx?i=0',
+                success: function(r) {
+
+                    if (r.indexOf('ok;') != -1) {
+                        var intervalo = r.split(';')[1];
+                        if (intervalo != '') {
+                            var i = Number(intervalo);
+                            if (i > 0) {
+                                VerificaAlertaManutencao();
+
+                                setInterval(function() {
+                                    VerificaAlertaManutencao();
+                                }, i);
+                            }
+                        }
+                    }
+                },
+                async: false
+            });
+        }
+
+        function VerificaAlertaManutencao() {
+            var mens = '';
+            $.ajax({
+                type: 'POST',
+                url: '../../Manutencao/VerificaAlerta.aspx/',
+                success: function(r) {
+                    if (r.indexOf('ok;') != -1) {
+                        mens = r.split(';')[1];
+                        if (mens != '') {
+                            $("#divModalPopup").html(mens);
+                            $("#lboxModalPopup").click();
+                        }
+                    }
+                },
+                async: false
+            });
+        }
+    </script>
+
+    <script src="./pagina9-matriculas_files/Site.VM.Loader.js.download" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            CreatePopups();
+
+            $("#filterDocumento").onlyNumbers();
+            $("#filterTipo").change(function() {
+                var tipoPessoa = parseInt($("#filterTipo").val());
+                $("#filterDocumento").val("");
+                switch (tipoPessoa) {
+                    case 1:
+                        $("#filterDocumento").attr("maxlength", 11);
+                        break;
+                    case 2:
+                        $("#filterDocumento").attr("maxlength", 14);
+                        break;
+                }
+            });
+
+            DestroyLoading();
+
+        });
+
+        function Pesquisar() {
+            var tipoPessoa = $("#filterTipo").val();
+            var documento = $("#filterDocumento").val();
+
+            if (tipoPessoa == 1 && !ValidaCPF(documento)) {
+                alert("O CPF informado não é válido! Verifique por gentileza.");
+                return;
+            } else if (tipoPessoa == 2 && !ValidaCNPJ(documento)) {
+                alert("O CNPJ informado não é válido! Verifique por gentileza.");
+                return;
+            }
+
+            LoadPage('/Cartorios/BDLight/Consulta', [
+                ['etapaConsulta', 3],
+                ['listaCidades', $("#filterCidades").val()],
+                ['tipoPessoa', tipoPessoa],
+                ['documento', documento]
+            ]);
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-83307124-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+    <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+</head>
+
+<body class="hidden-y-overflow">
+    <nav id="offcanvas" class="navmenu navmenu-default navmenu-fixed-left offcanvas canvas-slid" role="navigation">
+        <ul>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">Política de Privacidade</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">SOBRE</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">MATERIAL DE APOIO</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">FALE CONOSCO</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Home/Disconnect">
+                Desconectar</a></li>
+        </ul>
+    </nav>
+    <div id="pesquisa-dados">
+        <div class="relative-position">
+            <a href="javascript:void(0)" class="close-bar"><i class="fa fa-times"></i></a>
+        </div>
+        <div id="dados-content">
+
+        </div>
+        <div class="alert-message" style="display:none;">
+        </div>
+        <div class="loading-form hide-load">
+            <img src="./pagina9-matriculas_files/loading.svg" alt="">
+        </div>
+    </div>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                        <div class="logo-oficio-interno">
+                            <a href="https://novo.oficioeletronico.com.br/">
+                                <img src="./pagina9-matriculas_files/img-logo-oficio-interno.png" alt="">
+                            </a>
+                        </div>
+                        <button class="c-hamburguer c-hamburguer-htla pull-right visible-xs" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+                            <span>toggle menu</span>
+                        </button>
+                    </div>
+                    <div class="col-md-9 pull-right visible-md visible-lg">
+                        <div class="logo-registradores-interno">
+                            <a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">
+                                <img src="./pagina9-matriculas_files/img-logo-registradores-white.png" alt="">
+                            </a>
+                        </div>
+                        <div class="logout-icon">
+                            <a title="Encerrar sessão" href="https://novo.oficioeletronico.com.br/Home/Disconnect">
+                                <i></i>
+                            </a>
+                        </div>
+                        <div class="home-icon">
+                            <a title="Ir para a Home" href="https://novo.oficioeletronico.com.br/">
+                                <i></i>
+                            </a>
+                        </div>
+
+                        <div class="message-status">
+
+                            <a title="Ver mensagens" href="https://novo.oficioeletronico.com.br/Servicos/Mensagens" id="info-messages" class="info-top-messages alert-txt">
+                                3  mensagens não lidas
+                                <i class="letter-icon"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--http://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/-->
+        <nav class="main-nav">
+            <div class="container" id="menu">
+
+                <ul>
+
+                    <li id="liInstituicoes" class="submenu first"><a href="https://novo.oficioeletronico.com.br/">Instituições</a>
+                        <div class="submenu-wrap item-0">
+                            <ul class="menu">
+
+                                <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Instituicoes/Consultas&#39;,[[&#39;modulo&#39;,&#39;consultasrelatorios&#39;]]);">Consultas/Relatórios</a></li>
+
+                                <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Instituicoes/Matriculas&#39;,[[&#39;modulo&#39;,&#39;matriculaonlineInstituicoes&#39;]]);">Matrícula Online</a></li>
+
+                                <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Instituicoes/Solicitacoes/Solicitacao&#39;,[[&#39;modulo&#39;,&#39;instituicoessolicitacoes&#39;]]);">Solicitações</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li id="liServicos" class="submenu"><a href="https://novo.oficioeletronico.com.br/">Serviços</a>
+                        <div class="submenu-wrap item-1">
+                            <ul class="menu">
+
+                                <li><a href="javascript:void(0);" onclick="OpenMenuPopup(&#39;/Servicos/AssinadorDigital?modulo=assinadordigital&#39;)">Assinador Digital</a></li>
+
+                                <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Servicos/Mensagens&#39;,[[&#39;modulo&#39;,&#39;sistemademensagens&#39;]]);">Mensagens</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!--li class="submenu" style="display:none;"><a href="/Home/About">Informa&#231;&#245;es</a>
+        <ul class="menu">
+            <li><a href="/">Pedidos</a></li>
+            <li><a href="/">Relat&#243;rios</a></li>
+        </ul>
+    </li-->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section class="main-section">
+        <div class="container">
+            <div class="page">
+                <div id="logindisplay">
+                    <div id="sessiondisplay">
+
+                        E-CPF: <b>ANTONIO TORRES COUTINHO</b> - 21455308005
+                    </div>
+                </div>
+                <div id="main">
+
+                    <div class="bread-crumb">
+                        <span>Você está em: </span>
+                        <ul>
+                            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta">Cartórios</a></li>
+                            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta">Consulta CPF/CNPJ</a></li>
+                        </ul>
+                    </div>
+                    <div class="header-form">
+                        <p>
+                            Consulta CPF/CNPJ</p>
+                        <a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta" class="info-icon"><i class="fa fa-question"></i></a>
+                    </div>
+                    <div class="form-default">
+                        <div class="form-group">
+                            <span class="noFilter"><strong>Tipo de Pesquisa:</strong>&nbsp;Pessoa</span>
+                        </div>
+                        <div class="contentEditor consulta-bdlight-holder grid-12">
+
+                            <div id="bdlight" class="internalFilter lineBottom">
+                                <input type="hidden" id="filterCidades" name="filterCidades" value="System.String[]">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-default">
+                                            <div class="form-group">
+                                                <label>
+                                                    Tipo</label>
+                                                <select id="filterTipo" name="filterTipo" disabled="disabled">
+                                                    <option value="1" selected="selected">Pessoa Física</option>
+                                                    <option value="2">Pessoa Jurídica</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-default">
+                                            <div class="form-group">
+                                                <label>
+                                                    CPF/CNPJ (somente números)</label>
+                                                <div class="material-input-text">
+                                                    <input type="text" name="filterDocumento" id="filterDocumento" maxlength="11" disabled="disabled">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script src="./pagina9-matriculas_files/Site.BDLight.js.download" type="text/javascript"></script>
+                                <script type="text/javascript">
+                                    var tipoConsulta = 'simples';
+
+                                    $(document).ready(function() {
+                                        //$("#btnPesquisar").hide();
+                                        //ShowLoading();
+
+                                        if (tipoConsulta == "simples") {
+                                            //$("#bdlight").append("</br> </br>");    
+                                            $("#bdlight .btn-actions-form").append("<button type='button' class='white' id='btnNovaPesquisa' onclick='NovaPesquisa();'>Nova Pesquisa</button>");
+                                            $("#bdlight .btn-actions-form").append("<button type='button' class='white' id='btnResultados' style='display:none;' onclick='MostrarPainel(0);'>Resultados</button>");
+                                            $("#bdlight .btn-actions-form").append("<button type='button' class='white' id='btnMatriculas' style='display:none;' onclick='MostrarPainel(1);'>Visualizar Matrículas</button>");
+                                        } else {
+                                            $("#bdlight .btn-actions-form").append("<button type='button' class='white' id='btnSelecionarTudo' onclick='SelecionarTudo();'>Todos</button>");
+                                            $("#bdlight .btn-actions-form").append("<button type='button' class='white' id='btnProsseguir' onclick='ProsseguirSolicitacao();' disabled='disabled'>Prosseguir</button>");
+                                        }
+
+                                        $("#filterTipo").attr("disabled", "disabled");
+                                        $("#filterTipo option[value=1]").attr('selected', true);
+                                        $("#filterDocumento").val('01036642895');
+                                        $("#filterDocumento").attr("disabled", "disabled");
+
+                                        $("#btnVoltar").click(function() {
+                                            LoadPage('/Cartorios/BDLight/Consulta', [
+                                                ['etapaConsulta', 2],
+                                                ['listaCidades', '18,453,455,19,22,23,24,25,26,27,28,13,29,30,32,33,34,35,36,37,38,39,16,40,41,42,44,45,503,508,48,49,511,51,52,515,54,55,57,58,59,60,61,62,63,64,65,66,528,68,69,70,71,533,536,538,75,541,545,78,79,80,81,82,83,14,85,86,87,88,559,90,91,92,93,94,573,96,575,98,99,100,101,582,103,104,105,106,107,108,109,110,111,605,113,610,614,619,117,118,119,120,623,122,123,124,125,126,127,128,129,130,131,132,635,134,294,135,136,137,643,292,138,139,140,141,142,143,144,656,660,147,663,149,150,151,152,153,154,155,156,157,158,159,160,161,675,163,164,165,678,680,168,169,696,171,172,173,174,175,176,177,178,179,180,181,706,183,184,186,187,188,189,190,191,192,193,194,303,196,198,199,200,201,310,203,204,205,17,206,315,319,209,210,321,212,213,214,215,216,217,218,219,220,221,222,223,224,9,226,342,228,229,231,232,234,233,235,236,237,238,242,243,2,246,245,247,256,248,249,251,252,250,253,257,381,1,258,259,255,260,261,263,389,264,265,266,267,268,397,270,271,272,273,274,275,276,277,412,278,279,280,421,283,284,285,286,426,428,289,430,291']
+                                            ]);
+                                        });
+
+                                        addCartorioSearchBox(311, '01º Cartório - Adamantina', 'Adamantina');
+                                        addCartorioSearchBox(458, '01º Cartório - Aguaí', 'Aguaí');
+                                        addCartorioSearchBox(468, '01º Cartório - Águas de Lindóia', 'Águas de Lindóia');
+                                        addCartorioSearchBox(403, '01º Cartório - Agudos', 'Agudos');
+                                        addCartorioSearchBox(119, '01º Cartório - Altinópolis', 'Altinópolis');
+                                        addCartorioSearchBox(320, '01º Cartório - Americana', 'Americana');
+                                        addCartorioSearchBox(213, '01º Cartório - Amparo', 'Amparo');
+                                        addCartorioSearchBox(124, '01º Cartório - Andradina', 'Andradina');
+                                        addCartorioSearchBox(233, '01º Cartório - Angatuba', 'Angatuba');
+                                        addCartorioSearchBox(325, '01º Cartório - Aparecida', 'Aparecida');
+                                        addCartorioSearchBox(127, '01º Cartório - Apiaí', 'Apiaí');
+                                        addCartorioSearchBox(85, '01º Cartório - Araçatuba', 'Araçatuba');
+                                        addCartorioSearchBox(244, '02º Cartório - Araraquara', 'Araraquara');
+                                        addCartorioSearchBox(249, '01º Cartório - Araraquara', 'Araraquara');
+                                        addCartorioSearchBox(274, '01º Cartório - Araras', 'Araras');
+                                        addCartorioSearchBox(132, '01º Cartório - Assis', 'Assis');
+                                        addCartorioSearchBox(217, '01º Cartório - Atibaia', 'Atibaia');
+                                        addCartorioSearchBox(429, '01º Cartório - Auriflama', 'Auriflama');
+                                        addCartorioSearchBox(296, '01º Cartório - Avaré', 'Avaré');
+                                        addCartorioSearchBox(137, '01º Cartório - Bananal', 'Bananal');
+                                        addCartorioSearchBox(138, '01º Cartório - Bariri', 'Bariri');
+                                        addCartorioSearchBox(266, '01º Cartório - Barra Bonita', 'Barra Bonita');
+                                        addCartorioSearchBox(389, '01º Cartório - Barretos', 'Barretos');
+                                        addCartorioSearchBox(100, '01º Cartório - Barueri', 'Barueri');
+                                        addCartorioSearchBox(206, '01º Cartório - Batatais', 'Batatais');
+                                        addCartorioSearchBox(212, '02º Cartório - Bauru', 'Bauru');
+                                        addCartorioSearchBox(239, '01º Cartório - Bauru', 'Bauru');
+                                        addCartorioSearchBox(417, '01º Cartório - Bebedouro', 'Bebedouro');
+                                        addCartorioSearchBox(227, '01º Cartório - Bilac', 'Bilac');
+                                        addCartorioSearchBox(146, '01º Cartório - Birigui', 'Birigui');
+                                        addCartorioSearchBox(488, '01º Cartório - Boituva', 'Boituva');
+                                        addCartorioSearchBox(471, '01º Cartório - Borborema', 'Borborema');
+                                        addCartorioSearchBox(148, '02º Cartório - Botucatu', 'Botucatu');
+                                        addCartorioSearchBox(255, '01º Cartório - Botucatu', 'Botucatu');
+                                        addCartorioSearchBox(149, '01º Cartório - Bragança Paulista', 'Bragança Paulista');
+                                        addCartorioSearchBox(543, '01º Cartório - Brodowski', 'Brodowski');
+                                        addCartorioSearchBox(402, '01º Cartório - Brotas', 'Brotas');
+                                        addCartorioSearchBox(418, '01º Cartório - Buritama', 'Buritama');
+                                        addCartorioSearchBox(455, '01º Cartório - Cabreúva', 'Cabreúva');
+                                        addCartorioSearchBox(407, '01º Cartório - Caçapava', 'Caçapava');
+                                        addCartorioSearchBox(413, '01º Cartório - Cachoeira Paulista', 'Cachoeira Paulista');
+                                        addCartorioSearchBox(425, '01º Cartório - Caconde', 'Caconde');
+                                        addCartorioSearchBox(155, '01º Cartório - Cafelândia', 'Cafelândia');
+                                        addCartorioSearchBox(276, '01º Cartório - Cajuru', 'Cajuru');
+                                        addCartorioSearchBox(158, '02º Cartório - Campinas', 'Campinas');
+                                        addCartorioSearchBox(246, '04º Cartório - Campinas', 'Campinas');
+                                        addCartorioSearchBox(322, '01º Cartório - Campinas', 'Campinas');
+                                        addCartorioSearchBox(394, '03º Cartório - Campinas', 'Campinas');
+                                        addCartorioSearchBox(159, '01º Cartório - Campos Do Jordão', 'Campos Do Jordão');
+                                        addCartorioSearchBox(243, '01º Cartório - Cananéia', 'Cananéia');
+                                        addCartorioSearchBox(161, '01º Cartório - Cândido Mota', 'Cândido Mota');
+                                        addCartorioSearchBox(261, '01º Cartório - Capão Bonito', 'Capão Bonito');
+                                        addCartorioSearchBox(385, '01º Cartório - Capivari', 'Capivari');
+                                        addCartorioSearchBox(271, '01º Cartório - Caraguatatuba', 'Caraguatatuba');
+                                        addCartorioSearchBox(512, '01º Cartório - Carapicuíba', 'Carapicuíba');
+                                        addCartorioSearchBox(390, '01º Cartório - Cardoso', 'Cardoso');
+                                        addCartorioSearchBox(302, '01º Cartório - Casa Branca', 'Casa Branca');
+                                        addCartorioSearchBox(167, '01º Cartório - Catanduva', 'Catanduva');
+                                        addCartorioSearchBox(168, '02º Cartório - Catanduva', 'Catanduva');
+                                        addCartorioSearchBox(388, '01º Cartório - Cerqueira César', 'Cerqueira César');
+                                        addCartorioSearchBox(507, '01º Cartório - Cerquilho', 'Cerquilho');
+                                        addCartorioSearchBox(475, '01º Cartório - Chavantes', 'Chavantes');
+                                        addCartorioSearchBox(501, '01º Cartório - Colina', 'Colina');
+                                        addCartorioSearchBox(414, '01º Cartório - Conchas', 'Conchas');
+                                        addCartorioSearchBox(489, '01º Cartório - Cordeirópolis', 'Cordeirópolis');
+                                        addCartorioSearchBox(494, '01º Cartório - Cosmópolis', 'Cosmópolis');
+                                        addCartorioSearchBox(278, '01º Cartório - Cotia', 'Cotia');
+                                        addCartorioSearchBox(321, '01º Cartório - Cravinhos', 'Cravinhos');
+                                        addCartorioSearchBox(174, '01º Cartório - Cruzeiro', 'Cruzeiro');
+                                        addCartorioSearchBox(248, '01º Cartório - Cubatão', 'Cubatão');
+                                        addCartorioSearchBox(240, '01º Cartório - Cunha', 'Cunha');
+                                        addCartorioSearchBox(314, '01º Cartório - Descalvado', 'Descalvado');
+                                        addCartorioSearchBox(89, '01º Cartório - Diadema', 'Diadema');
+                                        addCartorioSearchBox(179, '01º Cartório - Dois Córregos', 'Dois Córregos');
+                                        addCartorioSearchBox(387, '01º Cartório - Dracena', 'Dracena');
+                                        addCartorioSearchBox(415, '01º Cartório - Duartina', 'Duartina');
+                                        addCartorioSearchBox(386, '01º Cartório - Eldorado', 'Eldorado');
+                                        addCartorioSearchBox(499, '01º Cartório - Embu das Artes', 'Embu das Artes');
+                                        addCartorioSearchBox(351, '01º Cartório - Espírito Santo Do Pinhal', 'Espírito Santo Do Pinhal');
+                                        addCartorioSearchBox(277, '01º Cartório - Estrela D Oeste', 'Estrela D Oeste');
+                                        addCartorioSearchBox(287, '01º Cartório - Fartura', 'Fartura');
+                                        addCartorioSearchBox(185, '01º Cartório - Fernandópolis', 'Fernandópolis');
+                                        addCartorioSearchBox(232, '01º Cartório - Franca', 'Franca');
+                                        addCartorioSearchBox(267, '02º Cartório - Franca', 'Franca');
+                                        addCartorioSearchBox(473, '01º Cartório - Francisco Morato', 'Francisco Morato');
+                                        addCartorioSearchBox(190, '01º Cartório - Franco Da Rocha', 'Franco Da Rocha');
+                                        addCartorioSearchBox(520, '01º Cartório - Gália', 'Gália');
+                                        addCartorioSearchBox(358, '01º Cartório - Garça', 'Garça');
+                                        addCartorioSearchBox(391, '01º Cartório - General Salgado', 'General Salgado');
+                                        addCartorioSearchBox(421, '01º Cartório - Getulina', 'Getulina');
+                                        addCartorioSearchBox(298, '01º Cartório - Guaíra', 'Guaíra');
+                                        addCartorioSearchBox(503, '01º Cartório - Guará', 'Guará');
+                                        addCartorioSearchBox(195, '01º Cartório - Guararapes', 'Guararapes');
+                                        addCartorioSearchBox(224, '01º Cartório - Guaratinguetá', 'Guaratinguetá');
+                                        addCartorioSearchBox(308, '01º Cartório - Guariba', 'Guariba');
+                                        addCartorioSearchBox(198, '01º Cartório - Guarujá', 'Guarujá');
+                                        addCartorioSearchBox(115, '01º Cartório - Guarulhos', 'Guarulhos');
+                                        addCartorioSearchBox(116, '02º Cartório - Guarulhos', 'Guarulhos');
+                                        addCartorioSearchBox(199, '01º Cartório - Ibitinga', 'Ibitinga');
+                                        addCartorioSearchBox(256, '01º Cartório - Ibiúna', 'Ibiúna');
+                                        addCartorioSearchBox(201, '01º Cartório - Igarapava', 'Igarapava');
+                                        addCartorioSearchBox(203, '01º Cartório - Iguape', 'Iguape');
+                                        addCartorioSearchBox(483, '01º Cartório - Ilha Solteira', 'Ilha Solteira');
+                                        addCartorioSearchBox(396, '01º Cartório - Indaiatuba', 'Indaiatuba');
+                                        addCartorioSearchBox(509, '01º Cartório - Ipaussu', 'Ipaussu');
+                                        addCartorioSearchBox(518, '01º Cartório - Ipuã', 'Ipuã');
+                                        addCartorioSearchBox(519, '01º Cartório - Itaí', 'Itaí');
+                                        addCartorioSearchBox(265, '01º Cartório - Itanhaém', 'Itanhaém');
+                                        addCartorioSearchBox(364, '01º Cartório - Itapecerica Da Serra', 'Itapecerica Da Serra');
+                                        addCartorioSearchBox(382, '01º Cartório - Itapetininga', 'Itapetininga');
+                                        addCartorioSearchBox(207, '01º Cartório - Itapeva', 'Itapeva');
+                                        addCartorioSearchBox(463, '01º Cartório - Itapevi', 'Itapevi');
+                                        addCartorioSearchBox(301, '01º Cartório - Itapira', 'Itapira');
+                                        addCartorioSearchBox(335, '01º Cartório - Itápolis', 'Itápolis');
+                                        addCartorioSearchBox(365, '01º Cartório - Itaporanga', 'Itaporanga');
+                                        addCartorioSearchBox(260, '01º Cartório - Itaquaquecetuba', 'Itaquaquecetuba');
+                                        addCartorioSearchBox(357, '01º Cartório - Itararé', 'Itararé');
+                                        addCartorioSearchBox(328, '01º Cartório - Itatiba', 'Itatiba');
+                                        addCartorioSearchBox(282, '01º Cartório - Itú', 'Itú');
+                                        addCartorioSearchBox(295, '01º Cartório - Ituverava', 'Ituverava');
+                                        addCartorioSearchBox(234, '01º Cartório - Jaboticabal', 'Jaboticabal');
+                                        addCartorioSearchBox(219, '01º Cartório - Jacareí', 'Jacareí');
+                                        addCartorioSearchBox(259, '01º Cartório - Jacupiranga', 'Jacupiranga');
+                                        addCartorioSearchBox(484, '01º Cartório - Jaguariúna', 'Jaguariúna');
+                                        addCartorioSearchBox(272, '01º Cartório - Jales', 'Jales');
+                                        addCartorioSearchBox(341, '01º Cartório - jardinópolis', 'jardinópolis');
+                                        addCartorioSearchBox(280, '01º Cartório - Jaú', 'Jaú');
+                                        addCartorioSearchBox(315, '02º Cartório - Jaú', 'Jaú');
+                                        addCartorioSearchBox(340, '01º Cartório - José Bonifácio', 'José Bonifácio');
+                                        addCartorioSearchBox(205, '02º Cartório - Jundiaí', 'Jundiaí');
+                                        addCartorioSearchBox(306, '01º Cartório - Jundiaí', 'Jundiaí');
+                                        addCartorioSearchBox(490, '01º Cartório - Junqueirópolis', 'Junqueirópolis');
+                                        addCartorioSearchBox(292, '01º Cartório - Juquiá', 'Juquiá');
+                                        addCartorioSearchBox(236, '01º Cartório - Laranjal Paulista', 'Laranjal Paulista');
+                                        addCartorioSearchBox(409, '01º Cartório - Leme', 'Leme');
+                                        addCartorioSearchBox(372, '01º Cartório - Lençóis Paulista', 'Lençóis Paulista');
+                                        addCartorioSearchBox(229, '02º Cartório - Limeira', 'Limeira');
+                                        addCartorioSearchBox(366, '01º Cartório - Limeira', 'Limeira');
+                                        addCartorioSearchBox(342, '01º Cartório - Lins', 'Lins');
+                                        addCartorioSearchBox(428, '01º Cartório - Lorena', 'Lorena');
+                                        addCartorioSearchBox(299, '01º Cartório - Lucélia', 'Lucélia');
+                                        addCartorioSearchBox(517, '01º Cartório - Macatuba', 'Macatuba');
+                                        addCartorioSearchBox(515, '01º Cartório - Mairinque', 'Mairinque');
+                                        addCartorioSearchBox(378, '01º Cartório - Mairiporã', 'Mairiporã');
+                                        addCartorioSearchBox(522, '01º Cartório - Maracaí', 'Maracaí');
+                                        addCartorioSearchBox(258, '01º Cartório - Marília', 'Marília');
+                                        addCartorioSearchBox(290, '02º Cartório - Marília', 'Marília');
+                                        addCartorioSearchBox(427, '01º Cartório - Martinópolis', 'Martinópolis');
+                                        addCartorioSearchBox(215, '01º Cartório - Matão', 'Matão');
+                                        addCartorioSearchBox(288, '01º Cartório - Mauá', 'Mauá');
+                                        addCartorioSearchBox(416, '01º Cartório - Miguelópolis', 'Miguelópolis');
+                                        addCartorioSearchBox(368, '01º Cartório - Miracatu', 'Miracatu');
+                                        addCartorioSearchBox(404, '01º Cartório - Mirandópolis', 'Mirandópolis');
+                                        addCartorioSearchBox(420, '01º Cartório - Mirante do Paranapanema', 'Mirante do Paranapanema');
+                                        addCartorioSearchBox(223, '01º Cartório - Mirassol', 'Mirassol');
+                                        addCartorioSearchBox(275, '01º Cartório - Mococa', 'Mococa');
+                                        addCartorioSearchBox(327, '01º Cartório - Mogi Das Cruzes', 'Mogi Das Cruzes');
+                                        addCartorioSearchBox(352, '02º Cartório - Mogi Das Cruzes', 'Mogi Das Cruzes');
+                                        addCartorioSearchBox(346, '01º Cartório - Mogi Guaçú', 'Mogi Guaçú');
+                                        addCartorioSearchBox(324, '01º Cartório - Mogi Mirim', 'Mogi Mirim');
+                                        addCartorioSearchBox(451, '01º Cartório - Mongaguá', 'Mongaguá');
+                                        addCartorioSearchBox(237, '01º Cartório - Monte Alto', 'Monte Alto');
+                                        addCartorioSearchBox(408, '01º Cartório - Monte Aprazível', 'Monte Aprazível');
+                                        addCartorioSearchBox(333, '01º Cartório - Monte Azul Paulista', 'Monte Azul Paulista');
+                                        addCartorioSearchBox(492, '01º Cartório - Monte Mor', 'Monte Mor');
+                                        addCartorioSearchBox(508, '01º Cartório - Morro Agudo', 'Morro Agudo');
+                                        addCartorioSearchBox(348, '01º Cartório - Nhandeara', 'Nhandeara');
+                                        addCartorioSearchBox(307, '01º Cartório - Nova Granada', 'Nova Granada');
+                                        addCartorioSearchBox(486, '01º Cartório - Nova Odessa', 'Nova Odessa');
+                                        addCartorioSearchBox(222, '01º Cartório - Novo Horizonte', 'Novo Horizonte');
+                                        addCartorioSearchBox(330, '1º Cartório - Nuporanga', 'Nuporanga');
+                                        addCartorioSearchBox(270, '01º Cartório - Olímpia', 'Olímpia');
+                                        addCartorioSearchBox(343, '01º Cartório - Orlândia', 'Orlândia');
+                                        addCartorioSearchBox(339, '01º Cartório - Osasco', 'Osasco');
+                                        addCartorioSearchBox(363, '02º Cartório - Osasco', 'Osasco');
+                                        addCartorioSearchBox(381, '01º Cartório - Osvaldo Cruz', 'Osvaldo Cruz');
+                                        addCartorioSearchBox(347, '01º Cartório - Ourinhos', 'Ourinhos');
+                                        addCartorioSearchBox(355, '01º Cartório - Pacaembu', 'Pacaembu');
+                                        addCartorioSearchBox(281, '01º Cartório - Palestina', 'Palestina');
+                                        addCartorioSearchBox(312, '01º Cartório - Palmeira D Oeste', 'Palmeira D Oeste');
+                                        addCartorioSearchBox(257, '01º Cartório - Palmital', 'Palmital');
+                                        addCartorioSearchBox(523, '01º Cartório - Panorama', 'Panorama');
+                                        addCartorioSearchBox(406, '01º Cartório - Paraguaçu Paulista', 'Paraguaçu Paulista');
+                                        addCartorioSearchBox(216, '01º Cartório - Paraibuna', 'Paraibuna');
+                                        addCartorioSearchBox(350, '01º Cartório - Patrocínio Paulista', 'Patrocínio Paulista');
+                                        addCartorioSearchBox(410, '01º Cartório - Paulo De Faria', 'Paulo De Faria');
+                                        addCartorioSearchBox(309, '01º Cartório - Pederneiras', 'Pederneiras');
+                                        addCartorioSearchBox(419, '01º Cartório - Pedregulho', 'Pedregulho');
+                                        addCartorioSearchBox(289, '01º Cartório - Pedreira', 'Pedreira');
+                                        addCartorioSearchBox(310, '01º Cartório - Penápolis', 'Penápolis');
+                                        addCartorioSearchBox(399, '01º Cartório - Pereira Barreto', 'Pereira Barreto');
+                                        addCartorioSearchBox(284, '01º Cartório - Peruíbe', 'Peruíbe');
+                                        addCartorioSearchBox(411, '01º Cartório - Piedade', 'Piedade');
+                                        addCartorioSearchBox(506, '01º Cartório - Pilar do Sul', 'Pilar do Sul');
+                                        addCartorioSearchBox(231, '01º Cartório - Pindamonhangaba', 'Pindamonhangaba');
+                                        addCartorioSearchBox(376, '01º Cartório - Piracaia', 'Piracaia');
+                                        addCartorioSearchBox(283, '02º Cartório - Piracicaba', 'Piracicaba');
+                                        addCartorioSearchBox(291, '01º Cartório - Piracicaba', 'Piracicaba');
+                                        addCartorioSearchBox(305, '01º Cartório - Piraju', 'Piraju');
+                                        addCartorioSearchBox(401, '01º Cartório - Pirajuí', 'Pirajuí');
+                                        addCartorioSearchBox(510, '01º Cartório - Pirapozinho', 'Pirapozinho');
+                                        addCartorioSearchBox(374, '01º Cartório - Pirassununga', 'Pirassununga');
+                                        addCartorioSearchBox(300, '01º Cartório - Piratininga', 'Piratininga');
+                                        addCartorioSearchBox(242, '01º Cartório - Pitangueiras', 'Pitangueiras');
+                                        addCartorioSearchBox(101, '01º Cartório - Poá', 'Poá');
+                                        addCartorioSearchBox(210, '01º Cartório - Pompéia', 'Pompéia');
+                                        addCartorioSearchBox(516, '01º Cartório - Pontal', 'Pontal');
+                                        addCartorioSearchBox(521, '01º Cartório - Porangaba', 'Porangaba');
+                                        addCartorioSearchBox(338, '01º Cartório - Porto Feliz', 'Porto Feliz');
+                                        addCartorioSearchBox(264, '01º Cartório - Porto Ferreira', 'Porto Ferreira');
+                                        addCartorioSearchBox(462, '01º Cartório - Potirendaba', 'Potirendaba');
+                                        addCartorioSearchBox(405, '01º Cartório - Praia Grande', 'Praia Grande');
+                                        addCartorioSearchBox(304, '01º Cartório - Presidente Bernardes', 'Presidente Bernardes');
+                                        addCartorioSearchBox(379, '01º Cartório - Presidente Epitácio', 'Presidente Epitácio');
+                                        addCartorioSearchBox(380, '01º Cartório - Presidente Prudente', 'Presidente Prudente');
+                                        addCartorioSearchBox(384, '02º Cartório - Presidente Prudente', 'Presidente Prudente');
+                                        addCartorioSearchBox(329, '01º Cartório - Presidente Venceslau', 'Presidente Venceslau');
+                                        addCartorioSearchBox(422, '01º Cartório - Promissão', 'Promissão');
+                                        addCartorioSearchBox(253, '01º Cartório - Quatá', 'Quatá');
+                                        addCartorioSearchBox(254, '01º Cartório - Queluz', 'Queluz');
+                                        addCartorioSearchBox(359, '01º Cartório - Rancharia', 'Rancharia');
+                                        addCartorioSearchBox(230, '01º Cartório - Regente Feijó', 'Regente Feijó');
+                                        addCartorioSearchBox(349, '01º Cartório - Registro', 'Registro');
+                                        addCartorioSearchBox(337, '01º Cartório - Ribeirão Bonito', 'Ribeirão Bonito');
+                                        addCartorioSearchBox(398, '01º Cartório - Ribeirão Pires', 'Ribeirão Pires');
+                                        addCartorioSearchBox(77, '02º Cartório - Ribeirão Preto', 'Ribeirão Preto');
+                                        addCartorioSearchBox(241, '01º Cartório - Ribeirão Preto', 'Ribeirão Preto');
+                                        addCartorioSearchBox(303, '01º Cartório - Rio Claro', 'Rio Claro');
+                                        addCartorioSearchBox(326, '02º Cartório - Rio Claro', 'Rio Claro');
+                                        addCartorioSearchBox(505, '01º Cartório - Rosana', 'Rosana');
+                                        addCartorioSearchBox(235, '01º Cartório - Salto', 'Salto');
+                                        addCartorioSearchBox(354, '01º Cartório - Santa Adélia', 'Santa Adélia');
+                                        addCartorioSearchBox(369, '01º Cartório - Santa Bárbara Doeste', 'Santa Bárbara Doeste');
+                                        addCartorioSearchBox(362, '01º Cartório - Santa Branca', 'Santa Branca');
+                                        addCartorioSearchBox(371, '01º Cartório - Santa Cruz das Palmeiras', 'Santa Cruz das Palmeiras');
+                                        addCartorioSearchBox(373, '01º Cartório - Santa Cruz do Rio Pardo', 'Santa Cruz do Rio Pardo');
+                                        addCartorioSearchBox(313, '01º Cartório - Santa Fé do Sul', 'Santa Fé do Sul');
+                                        addCartorioSearchBox(211, '01º Cartório - Santa Isabel', 'Santa Isabel');
+                                        addCartorioSearchBox(377, '01º Cartório - Santa Rita do Passa Quatro', 'Santa Rita do Passa Quatro');
+                                        addCartorioSearchBox(268, '01º Cartório - Santa Rosa de Viterbo', 'Santa Rosa de Viterbo');
+                                        addCartorioSearchBox(319, '01º Cartório - Santo Anastácio', 'Santo Anastácio');
+                                        addCartorioSearchBox(238, '01º Cartório - Santo André', 'Santo André');
+                                        addCartorioSearchBox(262, '02º Cartório - Santo André', 'Santo André');
+                                        addCartorioSearchBox(218, '01º Cartório - Santos', 'Santos');
+                                        addCartorioSearchBox(375, '03º Cartório - Santos', 'Santos');
+                                        addCartorioSearchBox(383, '02º Cartório - Santos', 'Santos');
+                                        addCartorioSearchBox(431, '01º Cartório - São Bento do Sapucaí', 'São Bento do Sapucaí');
+                                        addCartorioSearchBox(252, '02º Cartório - São Bernardo do Campo', 'São Bernardo do Campo');
+                                        addCartorioSearchBox(356, '01º Cartório - São Bernardo do Campo', 'São Bernardo do Campo');
+                                        addCartorioSearchBox(345, '01º Cartório - São Caetano do Sul', 'São Caetano do Sul');
+                                        addCartorioSearchBox(395, '02º Cartório - São Caetano do Sul', 'São Caetano do Sul');
+                                        addCartorioSearchBox(221, '01º Cartório - São Carlos', 'São Carlos');
+                                        addCartorioSearchBox(286, '01º Cartório - São João da Boa Vista', 'São João da Boa Vista');
+                                        addCartorioSearchBox(316, '01º Cartório - São Joaquim da Barra', 'São Joaquim da Barra');
+                                        addCartorioSearchBox(297, '01º Cartório - São José do Rio Pardo', 'São José do Rio Pardo');
+                                        addCartorioSearchBox(228, '02º Cartório - São José do Rio Preto', 'São José do Rio Preto');
+                                        addCartorioSearchBox(245, '01º Cartório - São José do Rio Preto', 'São José do Rio Preto');
+                                        addCartorioSearchBox(226, '01º Cartório - São José dos Campos', 'São José dos Campos');
+                                        addCartorioSearchBox(367, '02º Cartório - São José dos Campos', 'São José dos Campos');
+                                        addCartorioSearchBox(225, '01º Cartório - São Luís do Paraitinga', 'São Luís do Paraitinga');
+                                        addCartorioSearchBox(370, '01º Cartório - São Manuel', 'São Manuel');
+                                        addCartorioSearchBox(511, '01º Cartório - São Miguel Arcanjo', 'São Miguel Arcanjo');
+                                        addCartorioSearchBox(1, '01º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(2, '02º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(3, '03º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(4, '04º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(5, '05º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(6, '06º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(7, '07º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(8, '08º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(9, '09º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(10, '10º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(11, '11º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(12, '12º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(13, '13º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(14, '14º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(15, '15º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(16, '16º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(17, '17º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(18, '18º Cartório - São Paulo - Capital', 'São Paulo - Capital');
+                                        addCartorioSearchBox(294, '01º Cartório - São Pedro', 'São Pedro');
+                                        addCartorioSearchBox(247, '01º Cartório - São Roque', 'São Roque');
+                                        addCartorioSearchBox(393, '01º Cartório - São Sebastião', 'São Sebastião');
+                                        addCartorioSearchBox(269, '01º Cartório - São Simão', 'São Simão');
+                                        addCartorioSearchBox(214, '01º Cartório - São Vicente', 'São Vicente');
+                                        addCartorioSearchBox(220, '01º Cartório - Serra Negra', 'Serra Negra');
+                                        addCartorioSearchBox(466, '01º Cartório - Serrana', 'Serrana');
+                                        addCartorioSearchBox(317, '01º Cartório - Sertãozinho', 'Sertãozinho');
+                                        addCartorioSearchBox(360, '01º Cartório - Socorro', 'Socorro');
+                                        addCartorioSearchBox(251, '01º Cartório - Sorocaba', 'Sorocaba');
+                                        addCartorioSearchBox(344, '02º Cartório - Sorocaba', 'Sorocaba');
+                                        addCartorioSearchBox(108, '01º Cartório - Sumaré', 'Sumaré');
+                                        addCartorioSearchBox(361, '01º Cartório - Suzano', 'Suzano');
+                                        addCartorioSearchBox(491, '01º Cartório - Taboão da Serra', 'Taboão da Serra');
+                                        addCartorioSearchBox(334, '01º Cartório - Tambaú', 'Tambaú');
+                                        addCartorioSearchBox(412, '01º Cartório - Tanabi', 'Tanabi');
+                                        addCartorioSearchBox(336, '01º Cartório - Taquaritinga', 'Taquaritinga');
+                                        addCartorioSearchBox(273, '01º Cartório - Taquarituba', 'Taquarituba');
+                                        addCartorioSearchBox(353, '01º Cartório - Tatuí', 'Tatuí');
+                                        addCartorioSearchBox(332, '01º Cartório - Taubaté', 'Taubaté');
+                                        addCartorioSearchBox(293, '01º Cartório - Teodoro Sampaio', 'Teodoro Sampaio');
+                                        addCartorioSearchBox(400, '01º Cartório - Tietê', 'Tietê');
+                                        addCartorioSearchBox(504, '01º Cartório - Tremembé', 'Tremembé');
+                                        addCartorioSearchBox(285, '01º Cartório - Tupã', 'Tupã');
+                                        addCartorioSearchBox(423, '01º Cartório - Tupi Paulista', 'Tupi Paulista');
+                                        addCartorioSearchBox(263, '01º Cartório - Ubatuba', 'Ubatuba');
+                                        addCartorioSearchBox(485, '01º Cartório - Urânia', 'Urânia');
+                                        addCartorioSearchBox(392, '01º Cartório - Urupês', 'Urupês');
+                                        addCartorioSearchBox(208, '01º Cartório - Valinhos', 'Valinhos');
+                                        addCartorioSearchBox(424, '01º Cartório - Valparaíso', 'Valparaíso');
+                                        addCartorioSearchBox(331, '01º Cartório - Vargem Grande Do Sul', 'Vargem Grande Do Sul');
+                                        addCartorioSearchBox(495, '01º Cartório - Várzea Paulista', 'Várzea Paulista');
+                                        addCartorioSearchBox(514, '01º Cartório - Vinhedo', 'Vinhedo');
+                                        addCartorioSearchBox(250, '01º Cartório - Viradouro', 'Viradouro');
+                                        addCartorioSearchBox(460, '01º Cartório - Votorantim', 'Votorantim');
+                                        addCartorioSearchBox(397, '01º Cartório - Votuporanga', 'Votuporanga');
+
+                                        /*
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','131D2A5973F745228447AD68062F6D85C2C203E0;01036642895;320', 320, 60, 'http://10.0.10.188:8080/WSConector/WSBDLightSystem?wsdl');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','639FF417CAFC021D10D66E36D635AA65B2F80D33;01036642895;488', 488, 60, 'http://lightboituva.portaldecartorios.com.br/WSBDLightSystem.asmx ');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','4EA6F06C56819C2B45E1857492C970EA9CB3BFF9;01036642895;363', 363, 60, 'http://189.2.153.114:8080/WSCartRI_Osasco/WSBDLightSystem/WSBDLight');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','07F85A399BB31BAB0C938235319B5464F2D24E2E;01036642895;77', 77, 60, 'http://10.0.10.173:8080/WSConector/WSBDLightSystem');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','7857E6EECB130928899193984301A0262145D9EB;01036642895;241', 241, 60, 'http://10.0.10.175:8080/WSConector/WSBDLightSystem');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/SearchAlternative','380414C31CF635F25A095BF2E53248EA90B68259;01036642895;3', 3, 60, null);
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','86508FACE803B6A7ED212A1E25EABE4E789C73FF;01036642895;8', 8, 60, 'http://177.8.169.18:8080/WSConector/WSBDLightSystem?wsdl');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','FAD6ABDD4B47FC92C04759EC25B2CC010C2805B1;01036642895;10', 10, 60, 'http://10.0.10.168:8080/WSConector/WSBDLightSystem?wsdl');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','EBE147E6C42D1FE386D6B343C3980783EE597A81;01036642895;17', 17, 60, 'http://10.0.10.177:8080/WSConector/WSBDLightSystem');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/CallWSExternal','F2C37A5E7E7AEF6492181C24402D959171317C1B;01036642895;460', 460, 60, 'http://10.0.10.183:8080/WSConector/WSBDLightSystem?wsdl');
+                                        getSearchData('https://novo.oficioeletronico.com.br/ws_prod_bdlight/wscentral.asmx/SearchLocalDataV2','380414C31CF635F25A095BF2E53248EA90B68259;01036642895;311,458,468,403,119,213,124,233,325,127,85,244,249,274,132,217,429,296,137,138,266,389,100,206,212,239,417,227,146,471,148,255,149,543,402,418,455,407,413,425,155,276,158,246,322,394,159,243,161,261,385,271,512,390,302,167,168,388,507,475,501,414,489,494,278,321,174,248,240,314,89,179,387,415,386,499,351,277,287,185,232,267,473,190,520,358,391,421,298,503,195,224,308,198,115,116,199,256,201,203,483,396,509,518,519,265,364,382,207,463,301,335,365,260,357,328,282,295,234,219,259,484,272,341,280,315,340,205,306,490,292,236,409,372,229,366,342,428,299,517,515,378,522,258,290,427,215,288,416,368,404,420,223,275,327,352,346,324,451,237,408,333,492,508,348,307,486,222,330,270,343,339,381,347,355,281,312,257,523,406,216,350,410,309,419,289,310,399,284,411,506,231,376,283,291,305,401,510,374,300,242,101,210,516,521,338,264,462,405,304,379,380,384,329,422,253,254,359,230,349,337,398,303,326,505,235,354,369,362,371,373,313,211,377,268,319,238,262,218,375,383,431,252,356,345,395,221,286,316,297,228,245,226,367,225,370,511,1,2,4,5,6,7,9,11,12,13,14,15,16,18,294,247,393,269,214,220,466,317,360,251,344,108,361,491,334,412,336,273,353,332,293,400,504,285,423,263,485,392,208,424,331,495,514,250,397', '311,458,468,403,119,213,124,233,325,127,85,244,249,274,132,217,429,296,137,138,266,389,100,206,212,239,417,227,146,471,148,255,149,543,402,418,455,407,413,425,155,276,158,246,322,394,159,243,161,261,385,271,512,390,302,167,168,388,507,475,501,414,489,494,278,321,174,248,240,314,89,179,387,415,386,499,351,277,287,185,232,267,473,190,520,358,391,421,298,503,195,224,308,198,115,116,199,256,201,203,483,396,509,518,519,265,364,382,207,463,301,335,365,260,357,328,282,295,234,219,259,484,272,341,280,315,340,205,306,490,292,236,409,372,229,366,342,428,299,517,515,378,522,258,290,427,215,288,416,368,404,420,223,275,327,352,346,324,451,237,408,333,492,508,348,307,486,222,330,270,343,339,381,347,355,281,312,257,523,406,216,350,410,309,419,289,310,399,284,411,506,231,376,283,291,305,401,510,374,300,242,101,210,516,521,338,264,462,405,304,379,380,384,329,422,253,254,359,230,349,337,398,303,326,505,235,354,369,362,371,373,313,211,377,268,319,238,262,218,375,383,431,252,356,345,395,221,286,316,297,228,245,226,367,225,370,511,1,2,4,5,6,7,9,11,12,13,14,15,16,18,294,247,393,269,214,220,466,317,360,251,344,108,361,491,334,412,336,273,353,332,293,400,504,285,423,263,485,392,208,424,331,495,514,250,397',60, null);
+                                        */
+
+                                        qtdeChamadas = 11;
+                                    });
+
+                                    var checkedAll = false;
+
+                                    function SelecionarTudo() {
+                                        if (!checkedAll) {
+                                            checkedAll = true;
+                                            $('input[name=chkCidades]').attr('checked', true);
+                                        } else {
+                                            checkedAll = false;
+                                            $('input[name=chkCidades]').removeAttr("checked");
+                                        }
+                                    }
+
+                                    function CallbackBDLightConcluido() {
+                                        $("#btnProsseguir").removeAttr('disabled');
+                                        if (tipoConsulta == "solicitacao") $("input[name=chkCidades]").css("visibility", "visible");
+                                        DestroyLoading();
+                                        if ($("#resultados tbody tr").length == 0) {
+                                            $("#resultadoSemRetorno").show();
+
+                                        } else {
+                                            $("#resultadoSemRetorno").hide();
+                                        }
+                                        alert("Pesquisa concluída sem erros!");
+                                    }
+
+                                    function NovaPesquisa() {
+                                        LoadPage('/Cartorios/BDLight/Consulta');
+                                    }
+
+                                    //0 -> painel de resultados;
+                                    //1 -> painel de matrículas;
+                                    function MostrarPainel(id) {
+                                        switch (id) {
+                                            case 0:
+                                                $("#resultados").show();
+                                                $("#matriculas").hide();
+
+                                                $("#btnResultados").hide();
+                                                $("#btnMatriculas").show();
+                                                break;
+                                            case 1:
+                                                $("#matriculas").show();
+                                                $("#resultados").hide();
+
+                                                $("#btnMatriculas").hide();
+                                                $("#btnResultados").show();
+                                                break;
+                                        }
+                                    }
+
+                                    function ProsseguirSolicitacao() {
+                                        //RTS-20151218-ADD VALIDAÇÃO
+                                        if ($('input[name=chkCidades]:not([value=]):checked').map(function() {
+                                                return this.value;
+                                            }).get().join(',') == "") {
+                                            alert("Selecione pelo menos um cartório para solicitação!");
+                                        } else {
+                                            //Encaminha para módulo de solicitações de ofícios
+                                            //Local destinatário nesta chamada: Areas\Instituicoes\Controllers\SolicitacoesController.cs
+                                            LoadPage('/Instituicoes/Solicitacoes/Solicitacao', [
+                                                ['etapaSolicitacao', 3], //EtapaSolicitacao.InformarDadosPesquisa
+                                                ['IDTipoPesquisa', 6],
+                                                ['TipoDocumento', $("#filterTipo option:selected").val()],
+                                                ['DocumentoPesquisado', $("#filterDocumento").val()],
+                                                ['idsSemOcorrencia', $("#hdnCartoriosBL").val()],
+                                                ['cartoriosSolicitados', $('input[name=chkCidades]:not([value=]):checked').map(function() {
+                                                    return this.value;
+                                                }).get().join(',')]
+                                            ]);
+                                        }
+                                    }
+                                </script>
+                                <div class="middle">
+                                    <div class="list-wrap">
+                                        <div class="selector">
+                                            <input type="hidden" id="hdnCartoriosBL" name="hdnCartoriosBL" value="363;488;3;8;77;320;241;17;311;458;468;403;119;213;124;233;325;127;85;244;249;274;132;217;429;296;137;138;266;389;100;206;212;239;417;227;146;471;148;255;149;543;402;418;455;407;413;425;155;276;158;246;322;394;159;243;161;261;385;271;512;390;302;167;168;388;507;475;501;414;489;494;278;321;174;248;240;314;89;179;387;415;386;499;351;277;287;185;232;267;473;190;520;358;391;421;298;503;195;224;308;198;115;116;199;256;201;203;483;396;509;518;519;265;364;382;207;463;301;335;365;260;357;328;282;295;234;219;259;484;272;341;280;315;340;205;306;490;292;236;409;372;229;366;342;428;299;517;515;378;522;258;290;427;215;288;416;368;404;420;223;275;327;352;346;324;451;237;408;333;492;508;348;307;486;222;330;270;343;381;347;355;281;312;257;523;406;216;350;410;309;419;289;310;399;284;411;506;231;376;283;291;305;401;510;374;300;242;101;210;516;521;338;264;462;405;304;379;380;384;329;422;253;254;359;230;349;337;398;303;326;505;235;354;369;362;371;373;313;211;377;268;319;238;262;218;375;383;431;252;356;345;395;221;286;316;297;228;245;226;367;225;370;511;1;2;4;5;6;9;11;12;13;14;15;16;294;247;393;269;214;220;466;317;360;251;344;108;361;491;334;412;336;273;353;332;293;400;504;285;423;263;485;392;208;424;331;495;514;250;397;">
+                                            <div id="resultadoSemRetorno" style="display:none">
+                                                <label style="color:Red">NÃO FORAM LOCALIZADAS OCORRÊNCIAS, CLIQUE EM VISUALIZAR OS CARTÓRIOS PESQUISADOS OU NO BOTÃO 'NOVA PESQUISA'</label>
+                                            </div>
+                                            <table id="resultados" style="display: none;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                        </th>
+                                                        <th>
+                                                            Estado: São Paulo
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="panelBDLight">
+
+                                                    <tr>
+                                                        <td class="title" id="table339">
+                                                            <div class="flex"><img src="./pagina9-matriculas_files/bdlight_verde.png">&nbsp;01º Cartório - Osasco</div>
+                                                        </td>
+                                                        <td class="check">
+                                                            <div class="flex">
+                                                                <input style="visibility:hidden;" id="chk339" name="chkCidades" type="checkbox" value="339%01º Cartório - Osasco">
+                                                                <label id="span339" name="Osasco">Foi pesquisado, encontramos ocorrência(s), a base de dados está atualizada.</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="title" id="table7">
+                                                            <div class="flex"><img src="./pagina9-matriculas_files/bdlight_verde.png">&nbsp;07º Cartório - São Paulo - Capital</div>
+                                                        </td>
+                                                        <td class="check">
+                                                            <div class="flex">
+                                                                <input style="visibility:hidden;" id="chk7" name="chkCidades" type="checkbox" value="7%07º Cartório - São Paulo - Capital">
+                                                                <label id="span7" name="São Paulo - Capital">Foi pesquisado, encontramos ocorrência(s), a base de dados está atualizada.</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="title" id="table10">
+                                                            <div class="flex"><img src="./pagina9-matriculas_files/bdlight_verde.png">&nbsp;10º Cartório - São Paulo - Capital</div>
+                                                        </td>
+                                                        <td class="check">
+                                                            <div class="flex">
+                                                                <input style="visibility:hidden;" id="chk10" name="chkCidades" type="checkbox" value="10%10º Cartório - São Paulo - Capital">
+                                                                <label id="span10" name="São Paulo - Capital">Foi pesquisado, encontramos ocorrência(s), a base de dados está atualizada.</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="title" id="table18">
+                                                            <div class="flex"><img src="./pagina9-matriculas_files/bdlight_verde.png">&nbsp;18º Cartório - São Paulo - Capital</div>
+                                                        </td>
+                                                        <td class="check">
+                                                            <div class="flex">
+                                                                <input style="visibility:hidden;" id="chk18" name="chkCidades" type="checkbox" value="18%18º Cartório - São Paulo - Capital">
+                                                                <label id="span18" name="São Paulo - Capital">Foi pesquisado, encontramos ocorrência(s), a base de dados está atualizada.</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="title" id="table460">
+                                                            <div class="flex"><img src="./pagina9-matriculas_files/bdlight_amarelo.png" alt="Hash inválido" title="Hash inválido">
+                                                                <label>01º Cartório - Votorantim</label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="check">
+                                                            <div class="flex">
+                                                                <input style="visibility:hidden;" id="chk460" name="chkCidades" type="checkbox" value="460%01º Cartório - Votorantim">
+                                                                <label id="span460" name="Votorantim">Erro na pesquisa: Hash inválido</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table id="matriculas" style="">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Cidade
+                                                        </th>
+                                                        <th>
+                                                            Cartório
+                                                        </th>
+                                                        <th>
+                                                            Matrícula
+                                                        </th>
+                                                        <th style="text-align: center;">
+                                                            Visualizar
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="panelMatriculas">
+                                                    <!-- EXEMPLO DE LINHA DE MATRÍCULA -->
+                                                    <tr style="display: none;">
+                                                        <td>
+                                                            &nbsp;
+                                                        </td>
+                                                        <td>
+                                                            &nbsp;
+                                                        </td>
+                                                        <td>
+                                                            &nbsp;
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" onclick="VisualizarMatricula();" class="list listDetails" title="Visualizar matrícula">&nbsp;</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>São Paulo - Capital</td>
+                                                        <td>10º Cartório - São Paulo - Capital</td>
+                                                        <td>30098</td>
+                                                        <td><a href="#" onclick="VisualizarMatricula(10,30098);" class="list listDetails" title="Visualizar matrícula">matrícula</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>São Paulo - Capital</td>
+                                                        <td>10º Cartório - São Paulo - Capital</td>
+                                                        <td>63134</td>
+                                                        <td><a href="#" onclick="VisualizarMatricula(10,63134);" class="list listDetails" title="Visualizar matrícula">matrícula</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>São Paulo - Capital</td>
+                                                        <td>07º Cartório - São Paulo - Capital</td>
+                                                        <td>18907</td>
+                                                        <td><a href="#" onclick="VisualizarMatricula(7,18907);" class="list listDetails" title="Visualizar matrícula">matrícula</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>São Paulo - Capital</td>
+                                                        <td>18º Cartório - São Paulo - Capital</td>
+                                                        <td>101044</td>
+                                                        <td><a href="javascript:void(0);" onclick="VisualizarMatricula(18,101044);" class="list listDetails" title="Visualizar matrícula>matrícula</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>São Paulo - Capital</td>
+                                                        <td>18º Cartório - São Paulo - Capital</td>
+                                                        <td>107399</td>
+                                                        <td><a href="javascript:void(0);" onclick="VisualizarMatricula(18,107399);" class="list listDetails" title="Visualizar matrícula">matrícula</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>São Paulo - Capital</td>
+                                                        <td>18º Cartório - São Paulo - Capital</td>
+                                                        <td>164833</td>
+                                                        <td><a href="javascript:void(0);" onclick="VisualizarMatricula(18,164833);" class="list listDetails" title="Visualizar matrícula">matrícula</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>São Paulo - Capital</td>
+                                                        <td>18º Cartório - São Paulo - Capital</td>
+                                                        <td>49790</td>
+                                                        <td><a href="javascript:void(0);" onclick="VisualizarMatricula(18,49790);" class="list listDetails" title="Visualizar matrícula">matrícula</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Osasco</td>
+                                                        <td>01º Cartório - Osasco</td>
+                                                        <td>35964</td>
+                                                        <td><a href="javascript:void(0);" onclick="VisualizarMatricula(339,35964);" class="list listDetails" title="Visualizar matrícula">matrícula</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="index-info">
+                                    <h4>
+        Descrição</h4>
+                                    <ul>
+                                        <li>
+                                            <img src="./pagina9-matriculas_files/bdlight_verde.png" alt="Pesquisou na base de dados desatualizada e foram encontradas ocorrências no cartório">&nbsp;Pesquisou e foram encontradas ocorrências no cartório (base atualizada).</li>
+                                        <li>
+                                            <img src="./pagina9-matriculas_files/bdlight_verde_cinza.png" alt="Pesquisou na base de dados desatualizada e foram encontradas ocorrências no cartório">&nbsp;Pesquisou na base de dados desatualizada e foram encontradas ocorrências no cartório.
+                                        </li>
+                                        <li>
+                                            <img src="./pagina9-matriculas_files/bdlight_vermelho_cinza.png" alt="Pesquisou na base de dados desatualizada e não foram encontradas ocorrências no cartório.">&nbsp;Pesquisou na base de dados desatualizada e não foram encontradas ocorrências no cartório.
+                                        </li>
+                                        <li>
+                                            <img src="./pagina9-matriculas_files/bdlight_amarelo.png" alt="Não pesquisou (o servidor está indisponível no momento).">&nbsp;Não pesquisou (o servidor está indisponível no momento). </li>
+                                        <li>
+                                            <a id="lnkShowNotFound" href="javascript:showCartoriosNotFound()" style="color: rgb(105, 105, 105);">
+                                                <br>
+                                                <img src="./pagina9-matriculas_files/bdlight_vermelho.png" alt="Não foram encontradas ocorrências">&nbsp;Não foram encontradas ocorrências em <span>311</span>&nbsp;cartórios pesquisados, com base atualizada. Para uma lista dos cartórios, <strong>clique aqui</strong>. </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="btn-actions-form">
+                                    <button type="button" class="btn-with-icon back-btn" id="btnVoltar">
+                                        Voltar</button>
+                                    <button type="button" class="white" id="btnPesquisar" onclick="Pesquisar();" style="display: none;">
+                                        Pesquisar</button>
+                                    <button type="button" class="white" id="btnNovaPesquisa" onclick="NovaPesquisa();">Nova Pesquisa</button>
+                                    <button type="button" class="white" id="btnResultados" style="" onclick="MostrarPainel(0);">Resultados</button>
+                                    <button type="button" class="white" id="btnMatriculas" style="display: none;" onclick="MostrarPainel(1);">Visualizar Matrículas</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="boxes">
+                <div id="popupComunicado" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="./pagina9-matriculas_files/img-logo-oficio-interno.png" alt="">
+                                <span id="modal-title"></span>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="popupComunicadoMSG" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header mybck">
+                                <img src="./pagina9-matriculas_files/img-logo-oficio-interno.png" alt="">
+                                <span id="Span1"></span>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" value="OK" data-dismiss="modal" class="btn default-btn" onclick="">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="popupVermelhos" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Pesquisa - Cartórios Sem Ocorrências
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="contentPopup">
+                                    <div class="form-default">
+                                        <div class="form-default">
+                                            <p>
+                                                Não foram encontradas ocorrências nos cartórios abaixo:</p>
+                                        </div>
+                                    </div>
+                                    <div id="divCartorios" class="form-default">
+                                        <div class="form-default">
+                                            <p id="pCartorios" style="margin-bottom: 10px;">
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="side-call-button">
+            <div class="relative-position">
+                <a href="javascript:void(0)" class="title">Precisa de ajuda ?</a>
+            </div>
+            <div class="side-call-wrap">
+                <p>
+                    Estamos aqui para te ajudar !
+                </p>
+                <ul>
+                    <li id="chat-popup-acess">
+                        <a href="javascript: void open(&#39;http://chat.movidesk.com/ChatWidget/Index/E58B7603783C401F9B2A9BCDF9875A66&#39;,&#39;Chat&#39;,&#39;height=385,width=460&#39;)">
+                            <i class="fa fa-comments fa-2x" aria-hidden="true"></i> Chat
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://novo.oficioeletronico.com.br/Home/ContatoArisp" class="link-side-access">
+                            <i class="fa fa-envelope fa-2x" aria-hidden="true"></i> E-mail
+                        </a>
+                    </li>
+                </ul>
+                <a href="javascript:void(0)" class="close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+    </section>
+    <footer>
+        <div id="contact">
+            <p>Av. Paulista, 1776 – 15º andar –Bela Vista, São Paulo – SP – CEP 01310-921. - Telefone : (11) 4130-7979</p>
+            <p>
+                E-mail: servicedesk@registradores.org.br | Horário de Atendimento - 2ª a 6ª feira, das 8:30h às 17:00h
+            </p>
+        </div>
+        <div class="container">
+            <div id="logos-footer" class="text-center">
+                <div>
+                    <div class="highlights-logos">
+
+                        <div>
+                            <a href="http://arisp.com.br/" target="_blank" class="logo-arisp"></a>
+                        </div>
+                        <div>
+                            <a href="http://registradores.org.br/" target="_blank" class="logo-registradores-footer">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="http://cnj.jus.br/" target="_blank" class="logo-cnj"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="copyright-wrap">
+        <div class="container">
+            <small class="padlock-icon">V 1.5.0</small>
+            <p>
+                Copyright © 2002-2019 Todos os direitos reservados</p>
+            <a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta">Política de privacidade</a>
+        </div>
+    </div>
+
+    <div style=" display: none;">
+        <div id="divModalPopup" class="colbox" style="padding: 10px; background: #fff;"></div>
+    </div>
+    <a id="lboxModalPopup" href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#divModalPopup" style="display: none;" class="cboxElement"></a>
+
+    <div id="cboxOverlay" style="display: none;"></div>
+    <div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;">
+        <div id="cboxWrapper">
+            <div>
+                <div id="cboxTopLeft" style="float: left;"></div>
+                <div id="cboxTopCenter" style="float: left;"></div>
+                <div id="cboxTopRight" style="float: left;"></div>
+            </div>
+            <div style="clear: left;">
+                <div id="cboxMiddleLeft" style="float: left;"></div>
+                <div id="cboxContent" style="float: left;">
+                    <div id="cboxTitle" style="float: left;"></div>
+                    <div id="cboxCurrent" style="float: left;"></div>
+                    <button type="button" id="cboxPrevious"></button>
+                    <button type="button" id="cboxNext"></button>
+                    <button type="button" id="cboxSlideshow"></button>
+                    <div id="cboxLoadingOverlay" style="float: left;"></div>
+                    <div id="cboxLoadingGraphic" style="float: left;"></div>
+                </div>
+                <div id="cboxMiddleRight" style="float: left;"></div>
+            </div>
+            <div style="clear: left;">
+                <div id="cboxBottomLeft" style="float: left;"></div>
+                <div id="cboxBottomCenter" style="float: left;"></div>
+                <div id="cboxBottomRight" style="float: left;"></div>
+            </div>
+        </div>
+        <div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div>
+    </div>
+    <div id="icpbravoaccess_loaded"></div>
+    <div id="loading" style="top: 0px; left: 0px;"><img src="./pagina9-matriculas_files/loading.svg"></div>
+</body>
+
+</html>

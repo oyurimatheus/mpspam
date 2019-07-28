@@ -1,0 +1,1076 @@
+/* CSS Document */
+
+/*************************** 
+Criado por: Leandro Yamasaki 
+***************************/
+
+/* Inicio - CSS usado na homepage do site */
+body {
+	background-color: #f2f2f2;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-family: Arial;
+	font-size: 12px;
+	text-align: left;
+}
+
+#divTopo {
+	position: ;
+	margin-top: 0px;
+	clear: both;
+	height: 25px;
+	background-image: url("../images/img_topo.gif");
+	z-index: 1;
+	margin: 0px;
+	padding: 0px;
+}
+
+#divMenuTopo {
+	background-image: url("../images/menu_background.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+	top: 0px;
+	left: 0px;
+	width: 892px;
+	height: 44px;
+}
+
+#divLogin {
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -180px;
+	margin-top: -85px;
+	width: 487px;
+	height: 36px;
+	z-index: 1;
+}
+
+#divMenu {
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -185px;
+	margin-top: -125px;
+	padding: 10px;
+	width: 600px;
+	height: 80px;
+}
+
+#divRodape {
+	position: absolute;
+	height: 18px;
+	width: 100%;
+	clear: both;
+	background-color: #CCC;
+	bottom: 0;
+	text-align: center;
+	font-family: Arial;
+	font-size: 11px;
+	color: #666;
+	margin-bottom: 0px;
+	vertical-align: middle !important;
+}
+
+#geral {
+	min-height: 100%;
+	position: relative;
+}
+
+#divVende {
+	position: relative;
+	width: 350px;
+	height: 36px;
+	z-index: 1;
+	left: 65px;
+	top: -370px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 32px;
+	color: #FFF;
+}
+
+.imagem_top {
+	background: url(../images/logoSIM3.png) left;
+	background-repeat: no-repeat;
+	top: 60px;
+	width: 234px;
+}
+
+.imagem_top2 {
+	background: url(../images/logo_Detran3.png) right;
+	background-repeat: no-repeat;
+	top: 25px;
+	width: 250px;
+	padding-right: 50px;
+}
+
+#divImagemDetran {
+	background: url(../images/img-SIM.jpg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 768px;
+}
+
+#divLabelSim {
+	width: 320px;
+	height: 400px;
+	vertical-align: middle;
+	position: absolute;
+	top: 180px;
+	padding-left: 300px;
+}
+
+.acesso_negado1 {
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ff0000;
+	text-align: center;
+}
+
+.imagem_menu_left {
+	background: url(../images/img_menu_left.gif);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 12px;
+}
+
+.imagem_menu_middle {
+	background: url(../images/img_menu_middle.gif);
+	background-repeat: repeat-x;
+	height: 35px;
+}
+
+.imagem_menu_right {
+	background: url(../images/img_menu_right.gif);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 12px;
+}
+
+a.link_delete:link {
+	font-family: Arial !important;
+	font-size: 11px !important;
+	font-weight: normal !important;
+	color: #c30303 !important;
+	text-align: left !important;
+	padding-left: 5px !important;
+	text-decoration: none !important;
+}
+
+a.link_delete:visited {
+	font-family: Arial !important;
+	font-size: 11px !important;
+	font-weight: normal !important;
+	color: #c30303 !important;
+	text-align: left !important;
+	padding-left: 5px !important;
+	text-decoration: none !important;
+}
+
+a.link_delete:hover {
+	font-family: Arial !important;
+	font-size: 11px !important;
+	font-weight: normal !important;
+	color: #c30303 !important;
+	text-align: left !important;
+	padding-left: 5px !important;
+	text-decoration: underline !important;
+}
+
+a.link_delete:active {
+	font-family: Arial !important;
+	font-size: 11px !important;
+	font-weight: normal !important;
+	color: #c30303 !important;
+	text-align: left !important;
+	padding-left: 5px !important;
+	text-decoration: none !important;
+}
+
+a.link_menu:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #000000;
+	text-decoration: none;
+}
+
+a.link_menu:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #000000;
+	text-decoration: none;
+}
+
+a.link_menu:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #42c1e4;
+	text-decoration: none;
+}
+
+a.link_menu:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #000000;
+	text-decoration: none;
+}
+
+.link_menu_selected {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #FFF;
+	text-decoration: none;
+}
+
+a.link_rodape:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	color: #999999;
+	text-decoration: none;
+}
+
+a.link_rodape:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	color: #999999;
+	text-decoration: none;
+}
+
+a.link_rodape:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	color: #999999;
+	text-decoration: underline;
+}
+
+a.link_rodape:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	color: #999999;
+	text-decoration: underline;
+}
+
+/* Fim - CSS usado na homepage do site */
+
+/* Inicio - CSS usado na pagina de erro inesperado*/
+.erroLabel {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: normal;
+	color: #666666 !important;
+	text-align: right;
+	padding-left: 5px;
+}
+
+.resposta {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #666666 !important;
+	text-align: left;
+	padding-left: 5px;
+}
+
+.titulo_erro {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: normal;
+	color: #ffffff !important;
+	background-color: #025b95 !important;
+	text-align: left;
+	padding-left: 10px;
+}
+/* Fim - CSS usado na tela de erro inesperado */
+
+/* Inicio - CSS usado nas paginas internas */
+.bordaBox {
+	bbackground: ttransparent;
+	width: 98%;
+	position: relative;
+	margin-bottom: 80px;
+	display: block;
+	margin-top: 0px;
+}
+
+.bordaBox .b1,.bordaBox .b2,.bordaBox .b3,.bordaBox .b4,.bordaBox .b1b,.bordaBox .b2b,.bordaBox .b3b,.bordaBox .b4b
+	{
+	display: block;
+	overflow: hidden;
+	font-size: 1px;
+}
+
+.bordaBox .b1,.bordaBox .b2,.bordaBox .b3,.bordaBox .b1b,.bordaBox .b2b,.bordaBox .b3b
+	{
+	height: 1px;
+}
+
+.bordaBox .b2,.bordaBox .b3,.bordaBox .b4 {
+	background: #FFF;
+	border-left: 1px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
+}
+
+.bordaBox .b1 {
+	margin: 0 5px;
+	background: #eaeaea;
+}
+
+.bordaBox .b2 {
+	margin: 0 3px;
+	border-width: 0 2px;
+}
+
+.bordaBox .b3 {
+	margin: 0 2px;
+}
+
+.bordaBox .b4 {
+	height: 2px;
+	margin: 0 1px;
+}
+
+.bordaBox .conteudo {
+	height:100%;
+	min-height: 550px;
+	tepadding: 5px;
+	display: block;
+	background: #FFFFFF;
+	border-left: 1px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
+}
+/* Fim - CSS usado nas paginas internas */
+
+/* Inicio - CSS usado nos formularios */
+.bold {
+	font-weight: bold;
+}
+
+.campoObrigatorio {
+	background-color: #fbfadd !important;
+}
+
+.ui-breadcrumb {
+	background-color: #f2f2f2;
+	border: 0;
+	padding-left: 20px;
+}
+
+.ui-breadcrumb-chevron {
+	margin-top: 4px !important;
+}
+
+.ui-breadcrumb ul li a.ui-icon-home {
+	margin-top: 3px;
+	height: 15px;
+}
+
+.ui-breadcrumb ul li a {
+	display: block;
+	position: relative;
+	height: 21px;
+	line-height: 21px;
+	overflow: hidden;
+	float: left;
+	font-family: Arial;
+	font-size: 13px;
+	font-weight: bold;
+	color: #1679bf !important;
+	text-decoration: none;
+	*cursor: none
+}
+
+.texto_barra_top {
+	font-family: Arial;
+	font-size: 11px;
+	font-weight: normal;
+	color: #666666 !important;
+	text-align: left;
+	padding-left: 5px;
+}
+
+.sistema_multas {
+	font-family: Arial;
+	font-size: 26px;
+	font-weight: bold;
+	color: #6987b0;
+}
+
+.simLabel01 {
+	font-family: Acens;
+	font-size: 90px;
+	font-weight: bold;
+	color: #999999;
+}
+
+.simLabel02 {
+	font-family: Acens;
+	font-size: 90px;
+	font-weight: bold;
+	color: #025b95;
+}
+
+.titulo_topo1 {
+	font-family: Arial;
+	font-size: 15px;
+	color: #999;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: top;
+	margin-left: 85px;
+}
+
+.versao {
+	font-family: Arial;
+	font-size: 11px;
+	color: #999;
+	text-align: right;
+	font-weight: normal;
+	vertical-align: top;
+	margin-left: 85px;
+}
+
+.titulo_topo2 {
+	font-family: Eurofurence light;
+	font-size: 24px;
+	color: #6987b0;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: bottom;
+}
+
+.Titulo {
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #666666;
+	text-align: left;
+	padding-left: 20px;
+	vertical-align: bottom;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.SubTitulo {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+	color: #999999;
+	text-align: left;
+	padding-left: 20px;
+}
+
+.subTitulo01 {
+	color: #999999;
+}
+
+.subTitulo02 {
+	color: #000000;
+	font-weight: bold;
+}
+
+.subTitulo03 {
+	color: #000000;
+	font-weight: bold;
+}
+
+.tenhocadastro {
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: bold;
+	color: #41c2e7;
+	text-align: center;
+	padding-left: 20px;
+}
+
+.naotenhocadastro {
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: bold;
+	color: #666666;
+	text-align: center;
+	padding-left: 20px;
+}
+
+.texto_esqueci {
+	font-family: Arial;
+	font-size: 10px;
+	font-style: italic;
+	color: #777777;
+	padding-left: 180px;
+}
+
+.texto_exemplo {
+	font-family: Arial;
+	font-size: 11px;
+	font-style: italic;
+	color: #777777;
+	padding-left: 10px;
+}
+
+.texto_email {
+	font-family: Arial;
+	font-size: 10px;
+	font-style: italic;
+	color: #777777;
+	padding-left: 195px;
+}
+
+.texto_resposta {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	padding-left: 2px;
+}
+
+.texto_resposta_compativel {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: green;
+	padding-left: 2px;
+}
+
+.texto_resposta_nao_compativel {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: red;
+	padding-left: 2px;
+}
+
+.texto_SubItem {
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	color: #41c2e7;
+	text-align: left;
+}
+
+.texto_identificador {
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	text-align: left;
+	padding-left: 2px;
+}
+
+.texto_delete {
+	font-family: Arial;
+	font-size: 11px;
+	font-weight: normal;
+	color: #c30303 !important;
+	text-align: left;
+	padding-left: 5px;
+	text-decoration: none;
+}
+
+.label_porcentagem {
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	color: green;
+	text-align: right;
+	padding-left: 2px;
+}
+
+.label_selecionado {
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FF0000;
+	text-align: right;
+	padding-left: 2px;
+}
+
+.label_comparativo {
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+	padding-left: 5px;
+}
+
+.label {
+	text-align: right; /* Alinha a direita */
+}
+
+.value {
+	text-align: left; /* Alinha a esquerda */
+}
+
+/* Fim - CSS usado nos formularios */
+.botao {
+	background: none !important;
+	color: #FFFFFF !important;
+	font-weight: normal;
+	box-shadow: 0 !important;
+	text-shadow: none !important;
+	background-color: #025b95 !important;
+}
+
+.colunaLEFT {
+	text-align: left !important;
+}
+
+.colunaRIGHT {
+	text-align: right !important;
+}
+
+.texto_barra_top_esqueci_senha {
+	font-family: Arial;
+	font-size: 11px;
+	font-weight: normal;
+	color: #666666 !important;
+	text-align: left;
+	padding-left: 5px;
+	text-decoration: underline;
+}
+
+.texto_barra_top_esqueci_senha_inativo {
+	font-family: Arial;
+	font-size: 11px;
+	font-weight: normal;
+	color: #B5B5B5 !important;
+	text-align: left;
+	padding-left: 5px;
+	text-decoration: underline;
+}
+
+.imagem_menu_left {
+	background: url(../images/img_menu_left.gif);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 12px;
+}
+
+.imagem_menu_middle {
+	background: url(../images/img_menu_middle.gif);
+	background-repeat: repeat-x;
+	height: 35px;
+}
+
+.imagem_menu_right {
+	background: url(../images/img_menu_right.gif);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 12px;
+}
+
+.coluna1 {
+	text-align: right !important;
+}
+
+.coluna2 {
+	text-align: left !important;
+}
+
+.coluna3 {
+	text-align: right !important;
+}
+
+.coluna4 {
+	text-align: left !important;
+}
+
+.coluna5 {
+	text-align: right !important;
+}
+
+.coluna6 {
+	text-align: left !important;
+}
+
+.coluna7 {
+	text-align: right !important;
+}
+
+.coluna8 {
+	text-align: left !important;
+}
+
+.coluna9 {
+	text-align: right !important;
+}
+
+.coluna10 {
+	text-align: left !important;
+}
+
+
+
+.colunaA {
+	text-align: right !important;
+	width: 50%;
+}
+
+.colunaB {
+	text-align: left !important;
+}
+
+.colunaC {
+	text-align: right !important;
+	width: 40%;
+}
+
+.colunaD {
+	text-align: left !important;
+}
+
+.coluna1b {
+	text-align: right !important;
+	width: 16%;
+}
+
+.coluna2b {
+	text-align: left !important;
+	width: 16%;
+}
+
+.coluna3b {
+	text-align: right !important;
+	width: 16%;
+}
+
+.coluna4b {
+	text-align: left !important;
+	width: 16%;
+}
+
+.coluna5b {
+	text-align: right !important;
+	width: 16%;
+}
+
+.coluna6b {
+	text-align: left !important;
+	width: 16%;
+}
+
+.coluna20 {
+	text-align: right !important;
+	width: 20%;
+}
+
+.coluna80 {
+	text-align: left !important;
+	width: 80%;
+}
+
+.coluna5percR {
+	text-align: right !important;
+	width: 5%;
+}
+
+.coluna40Left {
+	text-align: left !important;
+	width: 40%;
+}
+
+.coluna40Right {
+	text-align: right !important;
+	width: 40%;
+}
+
+.actions td {
+	border: 0px none !important;
+	padding: 0px !important;
+	text-align: center;
+}
+
+.actions2 td {
+	border: 0px none !important;
+	text-align: center;
+}
+
+.exemplo {
+	color: #888888 !important;
+	font-style: italic;
+}
+
+.coluna1_dados {
+	background-color: #FFFF00 !important;
+}
+
+.coluna2_dados {
+	font-weight: bold;
+	background-color: #FFFF00 !important;
+}
+
+.aviso {
+	background-color: #FF6666 !important;
+}
+
+.inativo {
+	background-color: #CCCCCC !important;
+}
+
+.coluna70 {
+	text-align: right !important;
+	width: 70%;
+}
+
+.coluna30 {
+	text-align: left !important;
+}
+
+.coluna212 {
+	text-align: right;
+	width: 212px;
+}
+
+.wrap-column-content {
+	/*width: 550px;*/
+	white-space: pre-wrap !important;
+}
+
+.red_bold {
+	color: #ff0000;
+	font-weight: bold;
+}
+
+.white_bold {
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.subtitle {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.coluna1A {
+	text-align: right !important;
+	width: 50px;
+}
+
+.coluna2A {
+	text-align: left !important;
+	width: 50px;
+}
+
+.coluna3A {
+	text-align: right !important;
+	width: 50px;
+}
+
+.coluna4A {
+	text-align: left !important;
+	width: 50px;
+}
+
+.coluna5A {
+	text-align: right !important;
+	width: 50px;
+}
+
+.coluna6A {
+	text-align: left !important;
+	width: 50px;
+}
+
+.coluna1a {
+	text-align: right !important;
+	width: 25%;
+}
+
+.coluna2a {
+	text-align: left !important;
+	width: 25%;
+}
+
+.coluna3a {
+	text-align: right !important;
+	width: 25%;
+}
+
+.coluna4a {
+	text-align: left !important;
+	width: 25%;
+}
+
+.transparente {
+	background: url(../images/imgTransparente.gif) !important;
+}
+
+.ui-tree {
+    width: 300px;
+    padding: 0.5em;
+    background-color: #FFFFFF !important;
+}
+
+.enabledComplemento {
+	background-color: #fff !important;
+	color: #000000;
+}
+
+.disabledComplemento {
+	background-color: #BEBEBE !important;
+}
+
+.colunaLT {
+	text-align: left !important;
+	vertical-align: top !important;
+}
+
+.ui-icon.fa {
+     text-indent:0px!important;
+     background-image:none!important;
+}
+
+
+/*************************************************************************************
+* Definição das colunas dos datatables por meio da porcentagem e alinhamento do texto. 
+**************************************************************************************/
+.coluna15R {
+	text-align: right !important;
+	width: 15%;
+}
+
+.coluna16R {
+	text-align: right !important;
+	vertical-align: top;
+	width: 16%;
+}
+
+.coluna25L {
+	text-align: left !important;
+	width: 25%;
+	vertical-align: top;
+}
+
+.coluna25R {
+	text-align: right !important;
+	vertical-align: top;
+	width: 25%;
+}
+
+.coluna27R {
+	text-align: right !important;
+	vertical-align: top !important;
+	width: 27%;
+}
+
+.coluna30L {
+	text-align: left !important;
+	width: 30%;
+	vertical-align: top;
+}
+
+.coluna30R {
+	text-align: right !important;
+	vertical-align: top;
+	width: 20%;
+}
+
+.coluna35R {
+	text-align: right !important;
+	width: 35%;
+}
+
+.coluna40L {
+	text-align: left !important;
+	width: 40%;
+}
+
+.coluna40R {
+	text-align: right !important;
+	width: 40%;
+}
+
+.coluna50L {
+	text-align: left !important;
+	width: 50%;
+	vertical-align: top;
+}
+
+.coluna50R {
+	text-align: right !important;
+	width: 50%;
+	vertical-align: top;
+}
+
+
+.coluna60L {
+	text-align: left !important;
+	width: 60%;
+}
+
+.coluna60R {
+	text-align: right !important;
+	width: 60%;
+}
+
+.coluna70L {
+	text-align: left !important;
+	width: 80%;
+}
+
+.coluna73L {
+	text-align: left !important;
+	width: 73%;
+}
+
+.coluna75L {
+	text-align: left !important;
+	width: 75%;
+}
+
+.coluna84L {
+	text-align: left !important;
+	width: 84%;
+}
+
+.coluna85L {
+	text-align: left !important;
+	width: 95%;
+}
+
+.coluna90L {
+	text-align: right !important;
+	width: 10%;
+}
+
+.coluna90R {
+	text-align: right !important;
+	width: 90%;
+}
+
+.coluna97L {
+	width: 97%; 
+	text-align: right !important;
+}
+
+.coluna97R {
+	width: 3%; 
+	text-align: center !important;
+}

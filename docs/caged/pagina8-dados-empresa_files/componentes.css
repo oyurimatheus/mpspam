@@ -1,0 +1,25 @@
+
+.tabela-header {
+	
+	background-color: #92866E;	
+	font-size: 12px;
+	color: #FFF;
+	text-align: center;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tabela {
+	border-bottom: 1px #000 solid;
+	border-top: 1px #000 solid;
+	border-right: 1px solid #000;
+	border-left: 1px solid #000; 
+	background: #E9DDCE;
+}
+.tabela-footer {
+	border-bottom: 1px #000 solid;
+	border-top: 1px #000 solid;
+	border-right: 1px solid #000;
+	border-left: 1px solid #000; 
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+

@@ -1,0 +1,18 @@
+﻿div#AssinaturaDigital { z-index:99999; display:none; width: 338px; padding: 20px; border: 1px solid #003365; background-color: white; font-family: Arial; font-size: 13px; }
+		
+div#AssinaturaDigital .title { background-image:url('../../Content/Images/icon_key.png'); background-repeat: no-repeat; background-position: 4px 3px; font-weight: bold; cursor: default; width: 337px; margin: -20px 0 15px -20px; padding: 5px 5px 5px 40px; background-color: #003365; color:white }
+div#AssinaturaDigital .certificates { margin-bottom: 10px; }
+div#AssinaturaDigital .certificates label { display: block; }
+div#AssinaturaDigital .certificates select { width:290px !important; }
+
+div#AssinaturaDigital .buttons input { 
+	background-color: #003365;
+	border: 1px solid #E7E7E7;
+	width: 95px;
+	font-size: 11px;
+	padding: 4px;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	margin-right: 2px; 
+}

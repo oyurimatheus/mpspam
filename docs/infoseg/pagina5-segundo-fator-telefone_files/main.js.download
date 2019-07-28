@@ -1,0 +1,1207 @@
+/*! 2018-12-03 02:24 */
+function capitalize(a) {
+    function b(a) {
+        return a.charAt(0).toLocaleUpperCase() + a.slice(1).toLocaleLowerCase();
+    }
+    var c = [ "a", "o", "e", "da", "do", "de", "em", "ou" ], d = /^[\wáéíóúÁÉÍÓÚãẽĩõũÃẼĨÕŨâêîôûÂÊÎÔÛäëïöüÄËÏÖÜàèìòùÀÈÌÒÙçÇñÑ]+/g, e = /^[^\wáéíóúÁÉÍÓÚãẽĩõũÃẼĨÕŨâêîôûÂÊÎÔÛäëïöüÄËÏÖÜàèìòùÀÈÌÒÙçÇñÑ]+/g;
+    if (void 0 === a || "" === a) return "";
+    for (var f = !0, g = "", h = a; h.length > 0; ) {
+        var i = h.match(d);
+        if (i) {
+            var j = $.inArray(i[0].toLowerCase(), c) >= 0;
+            f ? (f = !1, g += b(i[0])) : g += j ? i[0].toLowerCase() : b(i[0]);
+        } else i = h.match(e), g += i[0];
+        h = h.substr(i[0].length);
+    }
+    return g = g.replace("S/a", "S/A");
+}
+
+function capitalizeInput(a) {
+    if (!(a.ctrlKey || a.keyCode >= 37 && a.keyCode <= 40 || 17 == a.keyCode)) {
+        var b = $(this);
+        b.val(capitalize(b.val()));
+    }
+}
+
+!function(a, b, c) {
+    "use strict";
+    function d() {
+        $("#alterar_meus_dados :input", a).prop("disabled", !0), $("#alterar_meus_dados :input", a).css("background-color", "#eee"), 
+        $("#remove-foto, #submitButton, .menu-icon-plus, .menu-icon-minus", a).hide(), $("#cboxClose, #closeButton", a).prop("disabled", !1), 
+        $("#alterar_meus_dados span.menu-wrapper-closebtn", a).css("right", "-628px");
+    }
+    function e() {
+        var c, d, g, i, j = JSON.stringify(E()), m = !1;
+        if ($("#menu-error-msgs", a).css("display", "none"), qa && (c = ra.filter(function(a) {
+            return a.autenticador;
+        })[0], c.numero = "" + l(c.numero), d = sa.filter(function(a) {
+            return a.autenticador;
+        })[0], $(".menu-conta-telefone", a).not(".menu-modelo-telefone").each(function(b) {
+            "" !== $.trim($(this, a).find(".menu-dados-tel-numero").val()) && $(this, a).find(".menu-dados-tel-autenticador").is(":checked") && (g = l($(this, a).find(".menu-dados-tel-numero").val()));
+        }), $(".menu-conta-email", a).not(".menu-modelo-email").each(function(b) {
+            "" !== $.trim($(this, a).find(".menu-dados-email").val()) && $(this, a).find(".menu-dados-email-autenticador").is(":checked") && (i = $(this, a).find(".menu-dados-email").val());
+        }), 0 === c.numero.localeCompare(g) && 0 === d.email.localeCompare(i, "pt", {
+            sensitivity: "base"
+        }) || (m = !0)), qa && (m || "" !== $("#acoes_app_moveis", a).val())) {
+            if ($("#msgAlteracoesIncompativeis", a).hide(), $("#msgSolAterDados", a).hide(), 
+            !J(j)) return;
+            b.SERVER.send({
+                url: b.URLS.initEsperaLigacao,
+                success: function(c) {
+                    var d = b.URLS.verificarLigacaoTelefonica, l = b.SERVER.longPolling(d + "?timeout=15", 60), n = $(".cabecalho-unico-sinesp #modalAguardLigacao", a), o = n.find("span#timerAguardLig");
+                    c.iniciado ? (n.find("a#btnCloseModalAguardLigacao").click(function(a) {
+                        l.stop(), n.trigger("closeModal");
+                    }), n.find("a#btnShowModalSolAlterDados").off("click.showSolAlterDados").on("click.showSolAlterDados", function(a) {
+                        l.stop(), n.trigger("closeModal"), h(g, i);
+                    }), m && ("sim" === $("#alterou_informacoes", a).val() || "" !== $("#acoes_app_moveis", a).val() ? $("#msgAlteracoesIncompativeis", a).show() : $("#msgSolAterDados", a).show()), 
+                    n.find("a#btnRepeatAguardLigacao").off("click.repeatAguardLigacao").on("click.repeatAguardLigacao", function(a) {
+                        n.trigger("closeModal"), e();
+                    }), n.find("p#msgTelefoneLigacao").html("Ligue para a central telefônica " + b.PARAMS.telSegFator + " utilizando seu telefone autorizador atual para efetivar a transação."), 
+                    n.find("p#aguardLigMsg").show(), n.find("p#ligNaoRec").hide(), n.find("p#ligRec").hide(), 
+                    n.find("a#btnRepeatAguardLigacao").hide(), n.trigger("openModal"), l.each(function(a) {
+                        return !!a.ligacao_recebida && (setTimeout(function() {
+                            n.trigger("closeModal");
+                        }, 2e3), n.find("p#aguardLigMsg").hide(), n.find("p#ligRec").show(), k(j), !0);
+                    }).eachSecond(function(a) {
+                        o.text("[" + a + "]");
+                    }).end(function(a) {
+                        a || (n.find("p#aguardLigMsg").hide(), n.find("p#ligNaoRec").show(), n.find("a#btnRepeatAguardLigacao").show());
+                    }).start()) : f(c.msg);
+                }
+            });
+        } else k(j);
+    }
+    function f(b) {
+        $("#menu-error-msgs", a).children().remove(), $("#menu-error-msgs", a).addClass("erro").removeClass("sucesso"), 
+        $("<ul>").appendTo($("#menu-error-msgs", a)).append($("<li>", a).html(b).addClass("proibido")), 
+        $("#menu-error-msgs", a).css("display", "block");
+    }
+    function g(b) {
+        $("#menu-error-msgs", a).children().remove(), $("#menu-error-msgs", a).addClass("sucesso").removeClass("erro"), 
+        $("<ul>").appendTo($("#menu-error-msgs", a)).append($("<li>", a).html(b).addClass("sucesso")), 
+        $("#menu-error-msgs", a).css("display", "block");
+    }
+    function h(b, c) {
+        var d = $(".cabecalho-unico-sinesp #modalSolAlterDados", a);
+        d.find("p#erroEnviarSolAlt").hide(), d.trigger("openModal"), d.find("input#mnuInputNumTel").val(b).blur().focus(), 
+        d.find("input#mnuInputEmail").val(c), d.find("a#btnEnviarSolicitacao").off("click.enviarSolicit").on("click.enviarSolicit", function(a) {
+            var b = d.find("input#mnuInputNumTel").val(), c = d.find("input#mnuInputEmail").val();
+            d.find("p#erroEnviarSolAlt").hide(), i(b, c, function(a) {
+                a ? d.find("p#erroEnviarSolAlt").text(a.msg).show() : (d.trigger("closeModal"), 
+                j(), g("A solicitação de alteração de telefone autorizador e/ou e-mail para recuperação de senha foi enviada com sucesso. <br /><strong>ATENÇÃO: Alterações em outras abas não foram salvas. Confirme novamente no botão Salvar.</strong>"));
+            });
+        });
+    }
+    function i(a, c, d) {
+        if (!a || !c) return void setTimeout(function() {
+            d({
+                msg: "Informe o Telefone e o E-mail."
+            });
+        }, 10);
+        b.SERVER.sendPost({
+            url: b.URLS.solicitarAlteracaoDadosAut,
+            contentType: "application/x-www-form-urlencoded",
+            data: "telefone=" + a + "&email=" + c,
+            useLoadingModal: !0,
+            success: function(a) {
+                var b;
+                a.cadastrado || (b = {
+                    msg: a.msg
+                }), d(b);
+            }
+        });
+    }
+    function j() {
+        U(sa), T(ra);
+    }
+    function k(c) {
+        J(c) && b.SERVER.sendPost({
+            url: b.URLS.alterarDadosUsuario,
+            data: c,
+            useLoadingModal: !0,
+            success: function(d) {
+                var e;
+                if (!0 === d.temErro) {
+                    if ($("#menu-error-msgs", a).addClass("erro").removeClass("sucesso"), d.msgs.length > 0) {
+                        for (var f = $("<ul>").appendTo($("#menu-error-msgs", a)), g = 0; g < d.msgs.length; g++) f.append($("<li>", a).html(d.msgs[g]).addClass("proibido"));
+                        $("#menu-error-msgs", a).css("display", "block");
+                    }
+                } else {
+                    var h = $("<ul>").appendTo($("#menu-error-msgs", a));
+                    $("#menu-error-msgs", a).addClass("sucesso").removeClass("erro");
+                    for (var i = 0; i < d.msgs.length; i++) h.append($("<li>", a).html(d.msgs[i]).addClass("sucesso"));
+                    $("#menu-error-msgs", a).css("display", "block"), $("#menu-nome-completo-titulo", a).html($("#menu-dados-nome", a).val()), 
+                    $("#nomeUsuario", a).html($("#menu-dados-nome", a).val()), $("#emailUsuario", a).html($("#menu-dados-emailP", a).val()), 
+                    $("#fotoUsuario", a).attr("src", "" !== $("#foto-preview", a).attr("src") ? $("#foto-preview", a).attr("src") : ea(ua)), 
+                    e = JSON.parse(c), ra = e.telefones, sa = e.emails;
+                }
+                b.SERVER.sendPost({
+                    url: b.URLS.atualizarAbaAppsMoveis,
+                    useLoadingModal: !0,
+                    success: function(a) {
+                        P(a);
+                    }
+                }), $("#acoes_app_moveis", a).val(""), $("#alterou_informacoes", a).val("nao"), 
+                $("#header-sistema img", a).remove(), $("#ordenacao_sistema", a).val("DESC"), $("#menu-alerta-revogar", a).css("display", "none"), 
+                $("#tabs-container-mn-sinesp", a).scrollTop(0);
+            }
+        });
+    }
+    function l(a) {
+        var b = a.replace(/[^0-9]/g, "");
+        return parseInt(b);
+    }
+    function m(b) {
+        var c = "#menu_perfil_indice_" + b;
+        return function() {
+            $("#menu_meus_perfis_resultado", a).animate({
+                scrollTop: $(c, a).offset().top - 170
+            }, 500);
+        };
+    }
+    function n() {
+        return function() {
+            $("#menu_meus_perfis_resultado", a).animate({
+                scrollTop: $("#menu_meus_perfis_resultado", a).offset().top - 200
+            }, 500);
+        };
+    }
+    function o() {
+        b.SERVER.send({
+            url: b.URLS.consultarPerfisUsuario,
+            useLoadingModal: !0,
+            success: function(b) {
+                if (b.length > 0) {
+                    $("<h3>").html("Níveis Administrativos").attr("class", "menu_meus_perfis_h3_niveis_adm").appendTo($("#menu_meus_perfis_resultado", a));
+                    for (var c = $("<ul>").attr("id", "menu_meus_perfis_resultado_ul_indice_sistemas").appendTo($("#menu_meus_perfis_resultado", a)), d = 0; d < b.length; d++) {
+                        var e = $("<li>"), f = $("<span>").html(b[d].nomePerfil);
+                        p(b[d]) && f.append($("<img>").click(m(d)).addClass("menu_meus_perfis_img_sistema_descer").attr("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAACH1BMVEUAAAAQEBAYGBgbGxsODg4REREXFxcTExMjIyMnJycMDAxgYGB0dHQWFhZHR0dSUlI6Ojo/Pz8NDQ0LCwsJCQkKCgoICAgUFBQGBgYSEhJJSUlCQkJZWVlRUVE0NDQyMjIPDw8RERESEhISEhISEhISEhISEhIPDw8TExMUFBQWFhYXFxcZGRkWFhYUFBQTExMTExMWFhYZGRkcHBwdHR0kJCQkJCQdHR0WFhYTExMTExMWFhYaGhoeHh4iIiI0NDQ4ODgjIyMMDAwUFBQZGRkdHR0hISEvLy8wMDAhISEUFBQNDQ0REREVFRUaGhoeHh4qKiorKysfHx8aGhoVFRUREREREREVFRUZGRkcHBwlJSUmJiYcHBwZGRkVFRURERERERETExMYGBghISFUVFRycnIiIiIYGBgTExMQEBAQEBAREREUFBQUFBQODg4MDAwNDQ0TExMUFBQPDw8QEBAODg4QEBAPDw8NDQ0KCgoMDAwNDQ0ODg4QEBATExMMDAwMDAwMDAwKCgoJCQkLCwsLCwsMDAwUFBRAQEAODg4JCQkJCQkJCQkICAgJCQkJCQkODg40NDQZGRkLCwsHBwcHBwcGBgYHBwcHBwcLCwsYGBgXFxcJCQkEBAQDAwMCAgICAgIEBAQJCQkXFxcdHR0NDQ0GBgYDAwMCAgIGBgYNDQ0dHR1GRkYfHx8TExMPDw8PDw8TExMeHh5CQkL///88+eKFAAAAtHRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUvZ4eIaDAGJpHa8PLblCg4yPb085eP8ss9Jcf29a8WEaYDjvX1xigiv5MFK9f02T820/PaMGDu8+ZZUOL072aC8+11AwJr6/SHgvTln5Q6OZ3ihl/u8/b3YF7272Yr1/Ty815c8tovA4318vNeXPaSBCPG9vNeXPLJJznH9nwrLnvJOiSOzt/jz5EmBS5kh4hmLwVu69FcAAAAAWJLR0S0RAlq3QAAAAlwSFlzAAALEgAACxIB0t1+/AAAARVJREFUGNNjYGBgYFRQVFJWUVVTZ2QAAUYmDU0tbR0dbV09fWYWBgZWNgNDI2MTUzNzYyMLSzZWBnYraxtzWzt7B0dbcxsLfXYGJ2cXc1c3dw5OD09XcyMvbwYfXz9j/wAubh7ewCDj4JBQhrDwiMgoBj4GBn6G6JjYuHiGhMSk5BQBkHWCqWnpGZkMWdk5uXn5XAwMQgV5hUXZxQwlpWXlFZXCDAzCVdXlZTW1DHX1DY1NzSIMDKItrY0Nbe0MHZ1d3T29YgwMIn3d3f0TJjKIT5o8Zeo0CQYGiekzpsycJckgxTB7ztx58xcsmL9w7qLFDNIMDDIMS5YuW75ixfKVq1YzyIL9K7dm7br1GzZu2iwP5AAA1TlKPexmIlkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTQtMDItMDFUMTg6MDk6MzkrMDg6MDAZviihAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE0LTAyLTAxVDE4OjA5OjM5KzA4OjAwaOOQHQAAAABJRU5ErkJggg==")), 
+                        e.append(f), e.appendTo(c);
+                    }
+                    for (var g = $("<div>").attr("class", "menu_meus_perfis_div_topo_resultado").appendTo($("#menu_meus_perfis_resultado", a)), h = 0; h < b.length; h++) {
+                        if (p(b[h])) {
+                            $("<h3>").html(b[h].nomePerfil).attr("class", "menu_meus_perfis_h1_titulo").attr("id", "menu_perfil_indice_" + h).append($("<img>").addClass("menu_meus_perfis_img_sistema_subir").attr("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAACH1BMVEUAAAAQEBAYGBgbGxsODg4REREXFxcTExMjIyMnJycMDAxgYGB0dHQWFhZHR0dSUlI6Ojo/Pz8NDQ0LCwsJCQkKCgoICAgUFBQGBgYSEhJJSUlCQkJZWVlRUVE0NDQyMjIPDw8RERESEhISEhISEhISEhISEhIPDw8TExMUFBQWFhYXFxcZGRkWFhYUFBQTExMTExMWFhYZGRkcHBwdHR0kJCQkJCQdHR0WFhYTExMTExMWFhYaGhoeHh4iIiI0NDQ4ODgjIyMMDAwUFBQZGRkdHR0hISEvLy8wMDAhISEUFBQNDQ0REREVFRUaGhoeHh4qKiorKysfHx8aGhoVFRUREREREREVFRUZGRkcHBwlJSUmJiYcHBwZGRkVFRURERERERETExMYGBghISFUVFRycnIiIiIYGBgTExMQEBAQEBAREREUFBQUFBQODg4MDAwNDQ0TExMUFBQPDw8QEBAODg4QEBAPDw8NDQ0KCgoMDAwNDQ0ODg4QEBATExMMDAwMDAwMDAwKCgoJCQkLCwsLCwsMDAwUFBRAQEAODg4JCQkJCQkJCQkICAgJCQkJCQkODg40NDQZGRkLCwsHBwcHBwcGBgYHBwcHBwcLCwsYGBgXFxcJCQkEBAQDAwMCAgICAgIEBAQJCQkXFxcdHR0NDQ0GBgYDAwMCAgIGBgYNDQ0dHR1GRkYfHx8TExMPDw8PDw8TExMeHh5CQkL///88+eKFAAAAtHRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUvZ4eIaDAGJpHa8PLblCg4yPb085eP8ss9Jcf29a8WEaYDjvX1xigiv5MFK9f02T820/PaMGDu8+ZZUOL072aC8+11AwJr6/SHgvTln5Q6OZ3ihl/u8/b3YF7272Yr1/Ty815c8tovA4318vNeXPaSBCPG9vNeXPLJJznH9nwrLnvJOiSOzt/jz5EmBS5kh4hmLwVu69FcAAAAAWJLR0S0RAlq3QAAAAlwSFlzAAALEgAACxIB0t1+/AAAARVJREFUGNNjYGBgYFRQVFJWUVVTZ2QAAUYmDU0tbR0dbV09fWYWBgZWNgNDI2MTUzNzYyMLSzZWBnYraxtzWzt7B0dbcxsLfXYGJ2cXc1c3dw5OD09XcyMvbwYfXz9j/wAubh7ewCDj4JBQhrDwiMgoBj4GBn6G6JjYuHiGhMSk5BQBkHWCqWnpGZkMWdk5uXn5XAwMQgV5hUXZxQwlpWXlFZXCDAzCVdXlZTW1DHX1DY1NzSIMDKItrY0Nbe0MHZ1d3T29YgwMIn3d3f0TJjKIT5o8Zeo0CQYGiekzpsycJckgxTB7ztx58xcsmL9w7qLFDNIMDDIMS5YuW75ixfKVq1YzyIL9K7dm7br1GzZu2iwP5AAA1TlKPexmIlkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTQtMDItMDFUMTg6MDk6MzkrMDg6MDAZviihAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE0LTAyLTAxVDE4OjA5OjM5KzA4OjAwaOOQHQAAAABJRU5ErkJggg==").click(n())).appendTo(g);
+                        }
+                        if (q(b[h])) {
+                            $("<table>").append($("<thead>", a).attr("id", "menu_meus_perfis_resultado_table_thead").append($("<tr>", a).append($("<th>", a).html("Sistema")))).append($("<tbody>", a).attr("id", "menu_meus_perfis_resultado_table_tbody_" + h)).appendTo(g);
+                            for (var i = 0; i < b[h].sistemasDoPerfil.length; i++) {
+                                $("<tr>", a).attr("id", "menu_meus_perfis_resultado_table_tr" + i).append($("<td>", a).html(b[h].sistemasDoPerfil[i])).appendTo($("#menu_meus_perfis_resultado_table_tbody_" + h, a));
+                            }
+                        }
+                        if (t(b[h])) {
+                            $("<table>").append($("<thead>", a).attr("id", "menu_meus_perfis_resultado_table_thead").append($("<tr>", a).append($("<th>", a).html("Estrutura Organizacional")).append($("<th>", a).html("Area Interesse")))).append($("<tbody>", a).attr("id", "menu_meus_perfis_resultado_table_tbody_" + h)).appendTo(g);
+                            for (var j = 0; j < b[h].estruturaOrganizacional.length; j++) {
+                                $("<tr>", a).attr("id", "menu_meus_perfis_resultado_table_tr" + j).append($("<td>", a).html(b[h].estruturaOrganizacional[j])).append($("<td>", a).html(b[h].areaInteresse[j])).appendTo($("#menu_meus_perfis_resultado_table_tbody_" + h, a));
+                            }
+                        }
+                        if (s(b[h])) for (var k = $("<table>").append($("<thead>", a).attr("id", "menu_meus_perfis_resultado_table_thead_go").append($("<tr>", a).append($("<th>", a).html("Sistema")).append($("<th>", a).html("Estrutura Organizacional")))).append($("<tbody>", a).attr("id", "menu_meus_perfis_resultado_table_tbody_" + h)).appendTo(g), l = 0; l < b[h].mus.length; l++) for (var o = 0; o < b[h].mus[l].eos.length; o++) $("<tr>", a).attr("id", "menu_meus_perfis_resultado_table_tr_go" + l).append($("<td>", a).html(b[h].mus[l].nomeSistema)).append($("<td>", a).html(b[h].mus[l].eos[o].nomeEO)).appendTo(k);
+                        if (r(b[h])) for (var u = $("<table>").append($("<thead>", a).attr("id", "menu_meus_perfis_resultado_table_thead").append($("<tr>", a).append($("<th>", a).html("Sistema")).append($("<th>", a).html("Estrutura Organizacional")).append($("<th>", a).html("Perfis")).append($("<th>", a).html("Situação")))).append($("<tbody>", a).attr("id", "menu_meus_perfis_resultado_table_tbody_" + h)).appendTo(g), v = 0; v < b[h].mus.length; v++) for (var w = 0; w < b[h].mus[v].eos.length; w++) {
+                            for (var x = $("<ul>"), y = 0; y < b[h].mus[v].eos[w].listaPerfisVinculo.length; y++) $("<li>").html("- " + b[h].mus[v].eos[w].listaPerfisVinculo[y]).appendTo(x);
+                            $("<tr>", a).attr("id", "menu_meus_perfis_resultado_table_tr" + v).append($("<td>", a).html(b[h].mus[v].nomeSistema)).append($("<td>", a).html(b[h].mus[v].eos[w].nomeEO)).append($("<td>", a).html(x)).append($("<td>", a).html(b[h].mus[v].eos[w].ativo ? "Ativo" : "Inativo")).appendTo(u);
+                        }
+                    }
+                } else $("<span>", a).html("Usuário sem acesso.").appendTo($("#menu_meus_perfis_resultado_table", a));
+            }
+        });
+    }
+    function p(a) {
+        return q(a) || r(a) || t(a) || s(a);
+    }
+    function q(a) {
+        return a.sistemasDoPerfil !== c && a.sistemasDoPerfil.length > 0;
+    }
+    function r(a) {
+        return a.mus !== c && a.mus.length > 0 && !s(a);
+    }
+    function s(a) {
+        return "Gestor Organizacional" === a.nomePerfil;
+    }
+    function t(a) {
+        return a.estruturaOrganizacional !== c && a.estruturaOrganizacional.length > 0;
+    }
+    function u() {
+        var b = $("body", a).outerHeight(!0) - $("body", a).height(), c = $("#menu_sinesp", a).outerHeight(!0);
+        $("#menu_sinesp_pad", a).height(c - b);
+    }
+    function v(a) {
+        return a = a.replace(/(\d{3})(\d)/, "$1.$2"), a = a.replace(/(\d{3})(\d)/, "$1.$2"), 
+        a = a.replace(/(\d{3})(\d)/, "$1-$2");
+    }
+    function w(a) {
+        return a = a.replace(/\D/g, ""), a = a.replace(/^(\d{2})(\d)/g, "($1) $2"), a = 11 === a.length ? a.replace(/(\d)(\d{5})$/, "$1-$2") : a.replace(/(\d)(\d{4})$/, "$1-$2");
+    }
+    function x(a) {
+        return a = a.replace(/\D/g, ""), a = a.replace(/^(\d{2})(\d)/g, "$1.$2"), a = a.replace(/(\d)(\d{3})$/, "$1-$2");
+    }
+    function y(a) {
+        return a = a.replace(/\D/g, "");
+    }
+    function z() {
+        return B();
+    }
+    function A() {
+        return B();
+    }
+    function B() {
+        return !(!C() || !D(ta));
+    }
+    function C() {
+        var a = la ? la.split("/") : c;
+        return a && D(a[2]);
+    }
+    function D(a) {
+        return window.location.href.indexOf(a) >= 0;
+    }
+    function E() {
+        return {
+            identificacao: $("#menu-dados-cpf", a).val(),
+            nome: $("#menu-dados-nome", a).val(),
+            nomeMae: $("#menu-dados-nome-mae", a).val(),
+            foto: $("#foto-preview", a).attr("src").replace("data:image/png;base64,", ""),
+            dataNascimento: $("#menu-dados-dtNasc", a).val(),
+            apelido: $("#menu-dados-apelido", a).val(),
+            sexo: $("#menu-dados-sexo", a).val(),
+            senhaAtual: $("#menu-dados-senhaAtual", a).val(),
+            novaSenha: $("#menu-dados-novaSenha", a).val(),
+            enderecos: G(),
+            telefones: H(),
+            emails: I(),
+            passaporte: $("#menu-dados-passaporte", a).val(),
+            cnh: $("#menu-dados-cnh", a).val(),
+            cnhCategoria: $("#menu-dados-cnh-categoria", a).val(),
+            cnhValidade: $("#menu-dados-cnh-validade", a).val(),
+            matricula: $("#menu-dados-funcionais-matricula", a).val(),
+            cargoId: $("#menu-dados-funcionais-cargo", a).val(),
+            cargoOutros: $("#menu-dados-funcionais-cargoOutros", a).val(),
+            funcaoId: $("#menu-dados-funcionais-funcao", a).val(),
+            funcaoOutros: $("#menu-dados-funcionais-funcaoOutros", a).val(),
+            rgNumero: $("#menu-dados-rg", a).val(),
+            rgOrgaoExpedicao: $("#menu-dados-rg-orgao", a).val(),
+            rgUfExpedicao: $("#menu-dados-rg-uf", a).val(),
+            rgDataExpedicao: $("#menu-dados-rg-dt", a).val(),
+            lotacaoId: F(),
+            acoesAppMoveis: $("#acoes_app_moveis", a).val()
+        };
+    }
+    function F() {
+        return N("select#menu-dados-funcionais-lotacao") ? N("input#lotacaoOrigemIdInicial") ? "" : $("input#lotacaoOrigemIdInicial", a).val() : $("select#menu-dados-funcionais-lotacao", a).val();
+    }
+    function G() {
+        var b = [];
+        return $(".menu-conta-endereco", a).not(".menu-modelo-endereco").each(function(c) {
+            var d = {
+                logradouro: $(this, a).find(".menu-dados-end-endereco").val(),
+                complemento: $(this, a).find(".menu-dados-end-complemento").val(),
+                uf: $(this, a).find(".menu-dados-end-uf").val(),
+                municipio: $(this, a).find(".menu-dados-end-municipio").val(),
+                numero: $(this, a).find(".menu-dados-end-numero").val(),
+                bairro: $(this, a).find(".menu-dados-end-bairro").val(),
+                cep: y($(this, a).find(".menu-dados-end-cep").val()),
+                id: $(this, a).find(".menu-dados-end-id").val()
+            };
+            b.push(d);
+        }), b;
+    }
+    function H() {
+        var b = [];
+        return $(".menu-conta-telefone", a).not(".menu-modelo-telefone").each(function(c) {
+            if ("" !== $.trim($(this, a).find(".menu-dados-tel-numero").val())) {
+                var d = {
+                    numero: $(this, a).find(".menu-dados-tel-numero").val(),
+                    tipo: $(this, a).find(".menu-dados-tel-tipo").val(),
+                    id: $(this, a).find(".menu-dados-tel-id").val(),
+                    autenticador: $(this, a).find(".menu-dados-tel-autenticador").is(":checked")
+                };
+                b.push(d);
+            }
+        }), b;
+    }
+    function I() {
+        var b = [];
+        return $(".menu-conta-email", a).not(".menu-modelo-email").each(function(c) {
+            if ("" !== $.trim($(this, a).find(".menu-dados-email").val())) {
+                var d = {
+                    email: $(this, a).find(".menu-dados-email").val(),
+                    id: $(this, a).find(".menu-dados-email-id").val(),
+                    autenticador: $(this, a).find(".menu-dados-email-autenticador").is(":checked")
+                };
+                b.push(d);
+            }
+        }), b;
+    }
+    function J(b) {
+        $("#menu-error-msgs", a).children().remove();
+        var c = [], d = [];
+        $(".tabs-menu li", a).each(function(a) {
+            d.push($(this).text()), c[$(this).text()] = [];
+        }), N("#menu-dados-nome") && c[d[0]].push("'Nome Completo' obrigatório."), N("#menu-dados-nome-mae") && c[d[0]].push("'Nome da mãe' obrigatório."), 
+        N("#menu-dados-apelido") && c[d[0]].push("'Nome Funcional' obrigatório."), N("#menu-dados-dtNasc") ? c[d[0]].push("'Data de Nascimento' obrigatório.") : aa($("#menu-dados-dtNasc", a).val()) || c[d[0]].push("'Data de nascimento' inválido."), 
+        N("#menu-dados-sexo") && c[d[0]].push("'Sexo' obrigatório."), N("#menu-dados-rg") || ("" === $.trim($("#menu-dados-rg-orgao", a).val()) && c[d[0]].push("'Órgão de Expedição' obrigatório."), 
+        "" === $.trim($("#menu-dados-rg-uf", a).val()) && c[d[0]].push("'UF de Expedição' obrigatório."), 
+        "" === $.trim($("#menu-dados-rg-dt", a).val()) ? c[d[0]].push("'Data de Expedição' obrigatório.") : (aa($("#menu-dados-rg-dt", a).val()) || c[d[0]].push("'Data de Expedição' inválido."), 
+        ba($("#menu-dados-rg-dt", a).val()) && c[d[0]].push("'Data de expedição' anterior a data de nascimento."))), 
+        N("#menu-dados-cnh") || ("" === $.trim($("#menu-dados-cnh-categoria", a).val()) && c[d[0]].push("'Categoria da CNH' obrigatório."), 
+        "" === $.trim($("#menu-dados-cnh-validade", a).val()) ? c[d[0]].push("'Data de Validade da CNH' obrigatório.") : ba($("#menu-dados-cnh-validade", a).val()) && c[d[0]].push("'Data de validade da CNH' anterior a data de nascimento."), 
+        $("#menu-dados-cnh-validade", a).val().length > 0 && !ca($("#menu-dados-cnh-validade", a).val()) && c[d[0]].push("'Data de validade da CNH' inválido.")), 
+        N("select#menu-dados-funcionais-cargo") && c[d[1]].push("Informe o cargo."), "999" === $("#menu-dados-funcionais-cargo", a).val() && N("#menu-dados-funcionais-cargoOutros") && c[d[1]].push("Informe o cargo."), 
+        N("select#menu-dados-funcionais-funcao") && c[d[1]].push("Informe a função."), "999" === $("#menu-dados-funcionais-funcao", a).val() && N("#menu-dados-funcionais-funcaoOutros") && c[d[1]].push("Informe a função."), 
+        N("select#menu-dados-funcionais-lotacao") && N("input#lotacaoOrigemIdInicial") && c[d[1]].push("Informe a lotação."), 
+        N("#menu-dados-senhaAtual") || (N("#menu-dados-novaSenha") ? c[d[2]].push("'Nova Senha' obrigatório.") : (($("#menu-dados-novaSenha", a).val().length < 8 || $("#menu-dados-novaSenha", a).val().length > 20) && c[d[2]].push("A senha deve conter no mínimo 8 e no máximo 20 caracteres."), 
+        N("#menu-dados-novaSenha2") ? c[d[2]].push("Repita sua nova senha.") : $("#menu-dados-novaSenha2", a).val() != $("#menu-dados-novaSenha", a).val() && c[d[2]].push("Senhas diferentes.")));
+        var e = !1, f = !1, g = !1, h = !1, i = !1;
+        $(".menu-conta-endereco", a).not(".menu-modelo-endereco").each(function(b) {
+            if (da($(this, a))) c[d[3]].push("'Endereço' é obrigatório."); else {
+                var j = $(this, a);
+                e = !("" !== $.trim(j.find(".menu-dados-end-endereco").val()) && !e), f = !("" !== $.trim(j.find(".menu-dados-end-municipio").val()) && !f), 
+                g = !("" !== $.trim(j.find(".menu-dados-end-uf").val()) && !g), h = !("" !== $.trim(j.find(".menu-dados-end-numero").val()) && !h), 
+                i = !("" !== $.trim(j.find(".menu-dados-end-cep").val()) && !i);
+            }
+        }), e && c[d[3]].push("'Logradouro' inválido."), h && c[d[3]].push("'Número' inválido."), 
+        i && c[d[3]].push("'CEP' inválido."), g && c[d[3]].push("'UF' inválido."), f && c[d[3]].push("'Município' inválido.");
+        var j = !1, k = !1;
+        $(".menu-dados-tel-numero", a).each(function(b) {
+            var c = $(this, a).val();
+            "" !== $.trim(c) && ($(".menu-dados-tel-numero", a).not($(this, a)).each(function(b) {
+                $.trim($(this, a).val()) === $.trim(c) && (j = !0);
+            }), 14 !== $.trim(c).length && 15 !== $.trim(c).length && (k = !0));
+        }), j && c[d[4]].push("'Telefone' não pode ser repetido"), k && c[d[4]].push("'Número de telefone' inválido.");
+        var l = !1;
+        $(".menu-dados-tel-numero", a).each(function(b) {
+            0 !== b && "" === $.trim($(this, a).parent().parent().parent().not(".menu-modelo-telefone").find(".menu-dados-tel-numero").val()) && (l = !0);
+        }), l && c[d[4]].push("'Telefone' obrigatório."), 0 === $("input:checkbox[name='menu-dados-tel-autenticador']:checked", a).length && c[d[4]].push("Telefone 'autorizador' obrigatório."), 
+        $(".menu-conta-email", a).not(".menu-modelo-email").each(function(b) {
+            "" !== $.trim($(this, a).find(".menu-dados-email").val()) && (_($(this, a).find(".menu-dados-email").val()) || c[d[5]].push("'E-mail' inválido (" + $(this, a).find(".menu-dados-email").val() + ")"));
+        });
+        var m = !1;
+        $(".menu-dados-email", a).each(function(b) {
+            var c = $(this, a).val();
+            "" !== $.trim(c) && (c === $.trim($("#menu-dados-emailP", a).val()) && (m = !0), 
+            $(".menu-dados-email", a).not($(this, a)).each(function(b) {
+                $.trim($(this, a).val()) === $.trim(c) && (m = !0);
+            }));
+        }), m && c[d[5]].push("'E-mail' não pode ser repetido"), 0 === $("input:checkbox[name='menu-dados-email-autenticador']:checked", a).length && c[d[5]].push("E-mail 'autorizador' obrigatório.");
+        for (var n = 0; n < d.length; n++) if (c[d[n]].length > 0) {
+            $("<div>").addClass("titulo").html(d[n]).appendTo($("#menu-error-msgs", a));
+            for (var o = $("<ul>").appendTo($("#menu-error-msgs", a)), p = 0; p < c[d[n]].length; p++) o.append($("<li>", a).html(c[d[n]][p]).addClass("proibido"));
+        }
+        return !($("#menu-error-msgs", a).children().length > 0) || ($("#menu-error-msgs", a).addClass("erro").removeClass("sucesso"), 
+        $("#menu-error-msgs", a).css("display", "block"), !1);
+    }
+    function K() {
+        var b = $(".cabecalho-unico-sinesp #modalSenhaDadosUsr", a);
+        b.find("a#btnEnviarSenha").off("click.enviaSenha").on("click.enviaSenha", function(c) {
+            var d = b.find("input#mnuInputSenha").val();
+            b.find("p#erroEnvioSenha").hide(), L(d, function(c) {
+                c ? (b.find("p#erroEnvioSenha").text(c.msg).show(), b.find("input#mnuInputSenha").val("")) : (b.trigger("closeModal"), 
+                $("#menu-error-msgs", a).css("display", "none"), $.colorbox({
+                    inline: !0,
+                    href: "#alterar_meus_dados",
+                    width: "1030px",
+                    height: "600px",
+                    escKey: !1,
+                    onLoad: M
+                }));
+            });
+        }), b.find("input#mnuInputSenha").off("keypress.mnuInputSenha").on("keypress.mnuInputSenha", function(a) {
+            13 == a.keyCode && (a.stopPropagation(), b.find("a#btnEnviarSenha").click());
+        }), b.find("p#erroEnvioSenha").hide(), b.trigger("openModal"), b.find("input#mnuInputSenha").val("").focus();
+    }
+    function L(a, c) {
+        if (!a) return void setTimeout(function() {
+            c({
+                msg: "Informe a senha."
+            });
+        }, 10);
+        b.SERVER.sendPost({
+            url: b.URLS.validaSenha,
+            contentType: "application/x-www-form-urlencoded",
+            data: "senha=" + encodeURIComponent(a),
+            useLoadingModal: !0,
+            success: function(a) {
+                var b;
+                a || (b = {
+                    msg: "Senha inválida."
+                }), c(b);
+            }
+        });
+    }
+    function M() {
+        $("#menu-dados-foto", a).val(""), $("#foto-preview", a).attr("src", ""), $("#remove-foto", a).hide(), 
+        $("#menu-dados-senhaAtual", a).val(""), $("#menu-dados-novaSenha", a).val(""), $("#menu-dados-novaSenha2", a).val(""), 
+        $("#menu-error-msgs", a).html("").hide(), $("#header-sistema img", a).remove(), 
+        b.SERVER.send({
+            url: b.URLS.consultarDadosUsuarioCompleto,
+            useLoadingModal: !0,
+            success: function(a) {
+                O(a), qa = a.vinculadoSistemaSegundoFator, ra = a.telefones, sa = a.emails;
+            }
+        }), $("input.menu-dados-tel-numero, input.menu-dados-tel-numero-aut", a).bind("blur", function() {
+            fa($(this).val()) ? $(this).mask("(00) 00000-0000") : $(this).mask("(00) 0000-0000");
+        }), $("#menu-dados-nome", a).on("keyup", capitalizeInput), $("#menu-dados-nome", a).on("focusout", capitalizeInput), 
+        $("#menu-dados-nome").on("mouseleave", capitalizeInput), $("#menu-dados-nome").on("change", capitalizeInput), 
+        $("input.menu-dados-tel-numero, input.menu-dados-tel-numero-aut", a).bind("keyup", function() {
+            fa($(this).val()) && $(this).mask("(00) 00000-0000");
+        }), $("input.menu-dados-tel-numero, input.menu-dados-tel-numero-aut", a).bind("keydown", function(a) {
+            var b = $(this).val();
+            if (14 === $.trim(b).length && 8 !== a.which && (a.which >= 48 && a.which <= 57 || a.which >= 96 && a.which <= 105) && $(this).mask("(00) 00000-0000"), 
+            15 === $.trim(b).length && 8 === a.which) {
+                var c = y(b);
+                $(this).mask("(00) 0000-0000"), $(this).val(c);
+            }
+        }), $("input.menu-dados-tel-numero, input.menu-dados-tel-numero-aut", a).bind("focus", function() {
+            var a = $(this).val();
+            14 === $.trim(a).length ? $(this).mask("(00) 0000-0000") : 15 === $.trim(a).length ? $(this).mask("(00) 00000-0000") : $(this).mask("(00) 000000000");
+        });
+    }
+    function N(b) {
+        return null === $(b, a).val() || "" === $(b, a).val() || "-100" === $(b, a).val();
+    }
+    function O(c) {
+        if ($("select.menu-dados-end-uf option", a).remove(), c.ufs.length > 0) {
+            $("select.menu-dados-end-uf", a).append('<option value="">Selecione...</option>');
+            for (var d in c.ufs) $("select.menu-dados-end-uf", a).append("<option value=" + c.ufs[d].sigla + ">" + c.ufs[d].nome + "</option>");
+            $("select.menu-dados-end-uf", a).change(function() {
+                var c = $(this, a).parent().parent().parent();
+                b.SERVER.send({
+                    url: b.URLS.consultarMunicipios,
+                    data: {
+                        uf: c.find("select.menu-dados-end-uf").val()
+                    },
+                    useLoadingModal: !0,
+                    success: function(a) {
+                        Z(a, c);
+                    }
+                });
+            });
+        }
+        if ($("select#menu-dados-rg-uf option", a).remove(), c.ufs.length > 0) {
+            $("select#menu-dados-rg-uf", a).append('<option value="">Selecione...</option>');
+            for (var e in c.ufs) $("select#menu-dados-rg-uf", a).append("<option value=" + c.ufs[e].sigla + ">" + c.ufs[e].nome + "</option>");
+        }
+        if (!0 === c.externo ? $("#menu-nome-completo-titulo", a).html(c.nome + " (Usuário Externo)") : $("#menu-nome-completo-titulo", a).html(c.nome), 
+        $("#menu-dados-cpf", a).val(c.identificacao), $("#menu-dados-nome", a).val(c.nome), 
+        $("#menu-dados-nome-mae", a).val(c.nomeMae), $("#menu-dados-emailP", a).val(c.emailPrincipal), 
+        "" !== c.foto && ($("#foto-preview", a).attr("src", ea(c.foto)), "" !== ea(c.foto) && !1 === c.externo ? $("#remove-foto", a).show() : $("#remove-foto", a).hide()), 
+        $("#menu-dados-dtNasc", a).val(c.dataNascimento.substr(0, 10)), $("#menu-dados-apelido", a).val(c.apelido), 
+        $("#menu-dados-sexo", a).val(c.sexo), U(c.emails), T(c.telefones), $(".menu-conta-endereco", a).not(".menu-modelo-endereco").remove(), 
+        c.enderecos.length > 0) for (var f in c.enderecos) {
+            var g = $(".menu-modelo-endereco", a).clone(!0);
+            if (g.find(".menu-dados-end-id").val(c.enderecos[f].id), g.find(".menu-dados-end-endereco").val(c.enderecos[f].logradouro), 
+            g.find(".menu-dados-end-numero").val(c.enderecos[f].numero), g.find(".menu-dados-end-complemento").val(c.enderecos[f].complemento), 
+            g.find(".menu-dados-end-bairro").val(c.enderecos[f].bairro), g.find(".menu-dados-end-cep").val(x(c.enderecos[f].cep)), 
+            g.find(".menu-dados-end-cep").mask("00.000-000"), g.find("select.menu-dados-end-municipio option", a).remove(), 
+            c.enderecos[f].menuListaMunicipios.length > 0) {
+                g.find("select.menu-dados-end-municipio", a).append('<option value="">Selecione...</option>');
+                for (var h in c.enderecos[f].menuListaMunicipios) g.find("select.menu-dados-end-municipio", a).append("<option value=" + c.enderecos[f].menuListaMunicipios[h].id + ">" + c.enderecos[f].menuListaMunicipios[h].nome + "</option>");
+            }
+            g.find(".menu-dados-end-municipio").val(c.enderecos[f].municipio), g.find(".menu-dados-end-uf").val(c.enderecos[f].uf), 
+            g.toggleClass("menu-modelo-endereco"), $("#tab-3", a).append(g);
+        } else Y(null);
+        $("select#menu-dados-funcionais-cargo", a).empty(), $("select#menu-dados-funcionais-cargo", a).append('<option value="-100">Selecione...</option>');
+        for (var i in c.cargos) $("select#menu-dados-funcionais-cargo", a).append("<option value=" + c.cargos[i].id + ">" + c.cargos[i].nome + "</option>");
+        $("select#menu-dados-funcionais-cargo", a).append('<option value="999">Outros</option>'), 
+        $("select#menu-dados-funcionais-funcao", a).empty(), $("select#menu-dados-funcionais-funcao", a).append('<option value="-100">Selecione...</option>');
+        for (var j in c.funcoes) $("select#menu-dados-funcionais-funcao", a).append("<option value=" + c.funcoes[j].id + ">" + c.funcoes[j].nome + "</option>");
+        $("select#menu-dados-funcionais-funcao", a).append('<option value="999">Outros</option>'), 
+        $("#menu-dados-passaporte", a).val(c.passaporte), $("#menu-dados-cnh", a).val(c.cnh), 
+        $("#menu-dados-cnh-categoria", a).val(c.cnhCategoria), $("#menu-dados-cnh-validade", a).val(c.cnhValidade), 
+        N("#menu-dados-cnh") && ($("#menu-dados-cnh-categoria", a).prop("disabled", !0).parent().find("span.menu-required").hide(), 
+        $("#menu-dados-cnh-validade", a).prop("disabled", !0).parent().find("span.menu-required").hide()), 
+        $("#menu-dados-funcionais-matricula", a).val(c.matricula), null !== c.cargoId && "" !== c.cargoId && ($("#menu-dados-funcionais-cargo", a).val(c.cargoId), 
+        $("#menu-dados-funcionais-cargoOutros", a).hide(), 999 === c.cargoId ? $("#menu-dados-funcionais-cargoOutros", a).val(c.cargoOutros).show() : $("input#menu-dados-funcionais-cargoOutros", a).val("").hide()), 
+        null !== c.funcaoId && "" !== c.funcaoId && ($("#menu-dados-funcionais-funcao", a).val(c.funcaoId), 
+        $("#menu-dados-funcionais-funcaoOutros", a).hide(), 999 === c.funcaoId ? $("#menu-dados-funcionais-funcaoOutros", a).val(c.funcaoOutros).show() : $("input#menu-dados-funcionais-funcaoOutros", a).val("").hide()), 
+        $("select#menu-dados-funcionais-lotacao", a).empty();
+        for (var k in c.lotacoesPermitidasAlterar) {
+            var l = !0 === c.lotacoesPermitidasAlterar[k].disable ? "disabled" : "", m = "";
+            $("select#menu-dados-funcionais-lotacao", a).append('<option value="' + c.lotacoesPermitidasAlterar[k].id + '" ' + l + ">" + m + c.lotacoesPermitidasAlterar[k].nome + "</option>"), 
+            c.lotacoesPermitidasAlterar[k].filhos.length > 0 && V(c.lotacoesPermitidasAlterar[k].filhos, m + "&nbsp;&nbsp;&nbsp;");
+        }
+        $("input#lotacaoOrigemIdInicial", a).val(c.lotacaoId), $("select#menu-dados-funcionais-lotacao option", a).filter(function() {
+            return $(this).val() == c.lotacaoId;
+        }).prop("selected", !0), $("#menu-dados-rg", a).val(c.rgNumero), $("#menu-dados-rg-orgao", a).val(c.rgOrgaoExpedicao), 
+        $("#menu-dados-rg-uf", a).val(c.rgUfExpedicao), $("#menu-dados-rg-dt", a).val(c.rgDataExpedicao), 
+        N("#menu-dados-rg") && ($("#menu-dados-rg-orgao", a).prop("disabled", !0).parent().find("span.menu-required").hide(), 
+        $("#menu-dados-rg-uf", a).prop("disabled", !0).parent().find("span.menu-required").hide(), 
+        $("#menu-dados-rg-dt", a).prop("disabled", !0).parent().find("span.menu-required").hide()), 
+        $(".menu-dados-tel-autenticador", a).on("click", function() {
+            var b = $(this), c = "input:checkbox[name='" + b.attr("name") + "']";
+            b.prop("checked") ? ($(c, a).prop("checked", !1), $(c, a).each(function(b) {
+                $(this, a).parent().find(".menu-required").hide();
+            }), b.prop("checked", !0)) : ($(c, a).each(function(b) {
+                $(this, a).parent().find(".menu-required").show();
+            }), b.prop("checked", !1));
+        }), $(".menu-dados-email-autenticador", a).on("click", function() {
+            var b = $(this), c = "input:checkbox[name='" + b.attr("name") + "']";
+            b.prop("checked") ? ($(c, a).prop("checked", !1), $(c, a).each(function(b) {
+                $(this, a).parent().find(".menu-required").hide();
+            }), b.prop("checked", !0)) : ($(c, a).each(function(b) {
+                $(this, a).parent().find(".menu-required").show();
+            }), b.prop("checked", !1));
+        }), P(c.listaAppMoveis), $("#header-sistema", a).click(function() {
+            var c = $("#ordenacao_sistema", a).val();
+            b.SERVER.sendPost({
+                url: b.URLS.consultarApps,
+                contentType: "application/x-www-form-urlencoded",
+                data: "ordem=" + encodeURIComponent(c),
+                useLoadingModal: !0,
+                success: function(c) {
+                    $("#acoes_app_moveis", a).val(""), P(c), $("#header-sistema img", a).remove(), "" === $("#ordenacao_sistema", a).val() || "DESC" === $("#ordenacao_sistema", a).val() ? ($("#ordenacao_sistema", a).val("ASC"), 
+                    $("#header-sistema", a).append($("<img>").attr("src", b.PARAMS.urlRootMenu + "/images/seta_cima.png"))) : ($("#ordenacao_sistema", a).val("DESC"), 
+                    $("#header-sistema", a).append($("<img>").attr("src", b.PARAMS.urlRootMenu + "/images/seta_baixo.png")));
+                }
+            });
+        });
+    }
+    function P(c) {
+        $(".item_tabela", a).remove(), $("#acoes_app_moveis", a).val(""), $("#header-sistema", a).append($("<img>").attr("src", b.PARAMS.urlRootMenu + "/images/seta_baixo.png")), 
+        $("#menu-alerta-revogar", a).css("display", "none");
+        if (c.length > 0) for (var d = 0; d < c.length; d++) $("<tr>", a).addClass("item_tabela").append($("<td>", a).html(c[d].sistema)).append($("<td>", a).html(c[d].dataHora)).append($("<td>", a).html(c[d].dispositivo)).append($("<td>", a).html(c[d].status).attr("id", c[d].idSis + "-" + c[d].id + "_" + c[d].status)).append($("<td>", a).html(c[d].acao)).append($("<td>", a).html("").append($("<img>").addClass("detalhesAppMovel").attr("src", b.PARAMS.urlRootMenu + "/images/lupa.png").click(S(c[d].id)))).appendTo($("#lista_aplicativos_moveis > tbody:last-child", a)); else $("<tr>", a).addClass("item_tabela").append($('<td colspan="7">', a).html("Nenhum registro encontrado")).appendTo($("#lista_aplicativos_moveis > tbody:last-child", a));
+    }
+    function Q(b, c, d, e) {
+        if ("AT" === b && "Pendente" === c) try {
+            $("select[id^='" + d + "']", a).find("option[value='" + d + "_RV']").prop("selected", !0), 
+            $("select[id^='" + d + "']", a).prop("disabled", "disabled");
+        } catch (a) {
+            console.log("Apenas 01 caixa de ações disponível para este sistema.");
+        }
+    }
+    function R(b, c, d, e, f) {
+        if ("AT" === b && "Pendente" === c) try {
+            $("select[id^='" + d + "']", a).find("option[value='" + d + "_RV']").prop("selected", !0), 
+            $("select[id^='" + d + "']", a).prop("disabled", "disabled");
+        } catch (a) {
+            console.log("Apenas 01 caixa de ações disponível para este sistema.");
+        } else if (("RC" === b && "Pendente" === c || "0" === b && "Pendente" === c) && (void 0 !== e || null !== e) && $("select[id^='" + d + "']", a).prop("disabled")) try {
+            $("select[id^='" + d + "']", a).find("option[value='" + d + "_0']").prop("selected", !0), 
+            $("select[id^='" + d + "']", a).prop("disabled", !1);
+        } catch (a) {
+            console.log("Apenas 01 caixa de ações disponível para este sistema.");
+        }
+    }
+    function S(c) {
+        return function() {
+            b.SERVER.sendPost({
+                url: b.URLS.historicoInstalacoesAppMovel,
+                contentType: "application/x-www-form-urlencoded",
+                data: "idAplicativoMovel=" + encodeURIComponent(c),
+                useLoadingModal: !0,
+                success: function(b) {
+                    $(".item_historico", a).remove(), $.each(b, function(b, c) {
+                        $("#tabela-detalhes > tbody:last-child", a).append('<tr class="item_historico"><td>' + c.dataHora + "</td><td>" + c.status + "</td></tr>");
+                    });
+                }
+            }), $("#divExterna", a).trigger("openModal");
+        };
+    }
+    function T(b) {
+        if ($(".menu-conta-telefone", a).not(".menu-modelo-telefone").remove(), b.length > 0) for (var c in b) {
+            var d = $(".menu-modelo-telefone", a).clone(!0);
+            d.find(".menu-dados-tel-id").val(b[c].id), fa(b[c].numero) ? (d.find(".menu-dados-tel-numero").mask("(00) 00000-0000"), 
+            d.find(".menu-dados-tel-numero").val(w(b[c].numero))) : (d.find(".menu-dados-tel-numero").mask("(00) 0000-0000"), 
+            d.find(".menu-dados-tel-numero").val(w(b[c].numero))), d.find(".menu-dados-tel-tipo").val(b[c].tipo), 
+            d.find(".menu-dados-tel-autenticador").prop("checked", b[c].autenticador), d.find(".menu-dados-tel-autenticador").parent().find(".menu-required").hide(), 
+            d.toggleClass("menu-modelo-telefone"), $("#tab-4", a).append(d);
+        } else X(null);
+    }
+    function U(b) {
+        if ($(".menu-conta-email", a).not(".menu-modelo-email").remove(), b.length > 0) for (var c in b) {
+            var d = $(".menu-modelo-email", a).clone(!0);
+            d.attr("id", "email-" + b[c].id), d.find(".menu-dados-email-id", a).val(b[c].id), 
+            d.find(".menu-dados-email", a).val(b[c].email), d.find(".menu-dados-email-autenticador").prop("checked", b[c].autenticador), 
+            d.find(".menu-dados-email-autenticador").parent().find(".menu-required").hide(), 
+            d.toggleClass("menu-modelo-email"), $("#tab-5", a).append(d);
+        } else W(null);
+    }
+    function V(b, c) {
+        for (var d in b) {
+            var e = !0 === b[d].disable ? "disabled" : "";
+            $("select#menu-dados-funcionais-lotacao", a).append('<option value="' + b[d].id + '" ' + e + ">" + c + b[d].nome + "</option>"), 
+            b[d].filhos.length > 0 && V(b[d].filhos, c + "&nbsp;&nbsp;&nbsp;");
+        }
+    }
+    function W(b) {
+        if ($(".menu-conta-email", a).not(".menu-modelo-email").length < 4) {
+            var c = $(".menu-modelo-email", a).clone(!0);
+            $(".menu-autenticador-email", c).css("display", "none"), c.toggleClass("menu-modelo-email"), 
+            null !== b ? c.insertAfter(b) : $("#tab-5", a).append(c);
+        } else alert("Quantidade máxima atingida.");
+    }
+    function X(b) {
+        if ($(".menu-conta-telefone", a).not(".menu-modelo-telefone").length < 5) {
+            var c = $(".menu-modelo-telefone", a).clone(!0);
+            $(".menu-autenticador-telefone", c).css("display", "none"), c.toggleClass("menu-modelo-telefone"), 
+            c.find(".menu-dados-tel-numero").mask("(00) 000000000"), null !== b ? c.insertAfter(b) : $("#tab-4", a).append(c);
+        } else alert("Quantidade máxima atingida.");
+    }
+    function Y(b) {
+        if ($(".menu-conta-endereco", a).not(".menu-modelo-endereco").length < 5) {
+            var c = $(".menu-modelo-endereco", a).clone(!0);
+            c.toggleClass("menu-modelo-endereco"), c.find(".menu-dados-end-cep").mask("00.000-000"), 
+            null !== b ? c.insertAfter(b) : $("#tab-3", a).append(c);
+        } else alert("Quantidade máxima atingida.");
+    }
+    function Z(b, c) {
+        if (c.find("select.menu-dados-end-municipio option", a).remove(), b.length > 0) {
+            c.find("select.menu-dados-end-municipio", a).append('<option value="">Selecione...</option>');
+            for (var d in b) c.find("select.menu-dados-end-municipio", a).append("<option value=" + b[d].id + ">" + b[d].nome + "</option>");
+        }
+    }
+    function _(a) {
+        return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(a);
+    }
+    function aa(a) {
+        if (10 !== a.length) return !1;
+        var b = a.split("/");
+        if (3 !== b.length) return !1;
+        var c = parseInt(b[0], 10), d = parseInt(b[1], 10), e = parseInt(b[2], 10), f = new Date(e, d - 1, c), g = new Date();
+        return g.setHours(0, 0, 0, 0), !(f > g) && (f.getFullYear() == e && f.getMonth() + 1 == d && f.getDate() == c);
+    }
+    function ba(b) {
+        var c = b, d = $("#menu-dados-dtNasc", a).val();
+        if (c.length > 0 && d.length > 0) {
+            return parseInt(c.split("/")[2].toString() + c.split("/")[1].toString() + c.split("/")[0].toString()) < parseInt(d.split("/")[2].toString() + d.split("/")[1].toString() + d.split("/")[0].toString());
+        }
+        return !0;
+    }
+    function ca(a) {
+        if (10 !== a.length) return !1;
+        var b = a.split("/");
+        if (3 !== b.length) return !1;
+        var c = parseInt(b[0], 10), d = parseInt(b[1], 10), e = parseInt(b[2], 10), f = new Date(e, d - 1, c);
+        return f.getFullYear() == e && f.getMonth() + 1 == d && f.getDate() == c;
+    }
+    function da(a) {
+        return "" === $.trim(a.find(".menu-dados-end-endereco").val()) && "" === $.trim(a.find(".menu-dados-end-complemento").val()) && "" === $.trim(a.find(".menu-dados-end-uf").val()) && "" === $.trim(a.find(".menu-dados-end-municipio").val()) && "" === $.trim(a.find(".menu-dados-end-numero").val()) && "" === $.trim(a.find(".menu-dados-end-bairro").val()) && "" === $.trim(a.find(".menu-dados-end-cep").val());
+    }
+    function ea(a) {
+        return "data:image/png;base64, " + a;
+    }
+    function fa(a) {
+        return 11 === y(a).length;
+    }
+    function ga(b) {
+        $("#menu-link-session-countdown", a).countdown({
+            date: +new Date() + 1e3 * b,
+            render: function(a) {
+                $(this.el).text(this.leadingZeros(a.min, 2) + ":" + this.leadingZeros(a.sec, 2)), 
+                pa = b;
+            },
+            onEnd: function() {
+                $(this.el).addClass("ended");
+            }
+        }), $("#menu-link-session-countdown", a).data("countdown") !== c && $("#menu-link-session-countdown", a).removeClass("ended").data("countdown").update(+new Date() + 1e3 * b).start();
+    }
+    function ha(b) {
+        $("#menu_contador_aviso", a).countdown({
+            date: +new Date() + 1e3 * b,
+            render: function(a) {
+                $(this.el).text(this.leadingZeros(a.min, 2) + ":" + this.leadingZeros(a.sec, 2)), 
+                na = !0;
+            },
+            onEnd: function() {
+                $(this.el).addClass("ended"), toastr.clear(), na = c;
+            }
+        }), $("#menu_contador_aviso", a) !== c && $("#menu_contador_aviso", a).removeClass("ended").data("countdown").update(+new Date() + 1e3 * b).start();
+    }
+    function ia(b) {
+        $("#menu_contador_aviso_final", a).countdown({
+            date: +new Date() + 1e3 * b,
+            render: function(a) {
+                $(this.el).text(this.leadingZeros(a.min, 2) + ":" + this.leadingZeros(a.sec, 2)), 
+                oa = !0;
+            },
+            onEnd: function() {
+                $(this.el).addClass("ended"), toastr.clear(), oa = c;
+            }
+        });
+    }
+    function ja(a) {
+        return a !== c && null !== a && "" !== a;
+    }
+    function ka() {
+        b.SERVER.send({
+            url: b.URLS.atualizarSessaoUsuario,
+            success: function(b) {
+                toastr.options = {
+                    closeButton: !0,
+                    debug: !1,
+                    progressBar: !0,
+                    positionClass: "toast-top-right",
+                    onclick: null,
+                    showDuration: "300",
+                    hideDuration: "1000",
+                    timeOut: "3000",
+                    extendedTimeOut: "0",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                    target: $("body", a)
+                }, toastr.success("Sessão estendida com sucesso.", "Sucesso", toastr.options), ma = c, 
+                na = c;
+            }
+        });
+    }
+    var la, ma, na, oa, pa, qa, ra, sa, ta = "/user/", ua = "iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRFpaWl////5ubmrKystLS0zMzM8fHx3NzcpKSkvLy8+fn5/f39oaGhxMTE09PTp6enixYligAAAx9JREFUeNrsmst25CAMRM1bSID//28Hd3LmkTOOES46G9cmiyxuC8pClL1tjx49evTo0aNHjx49+lFR13uJpRzI/QP9PjbtzufQukKo3jnqv+MdXFebjZFNlwhHa4N3y9FELlgxL33+MYZjqm7pihfy4aPUfyQsHb0vLHqv1pyJm98Xkck1PuWKkVgXkX06574Uw14W1OvT99heNLcFNXtrroUn0whX2HAAm9s1MSMSrtB6t8DmS9c4dVjGlUyUrRlWwm1zcQqukQDrnqWyKMDWFVTHsgpuf6YqCpxZw4WVTHszOnEuBbLSUQk2YQPYi7q1tGDrEAUX7UofTQSyxUkN5rxjtli05FYQ59IUmH4GnAgBVpu6gzcEWCbAO6ZiLVoSYOo79li92A0CthOuRpjLTYARs8DRuUTfMgFgauqCrUcciyWrvZUcQU4Jq3yY+nmMmfWCdos9aOjyuhFEUBco7dDVRy7UXJ2jrm2hBnrdEBIz7ro4dEn93bWgV+ThxWbrkXHE0b7G+pfN2It5cWPbHOuGzSJoc0lGuPiArxxk/r5Vdu6CvGlz7XzePBwgMa9J2Mo3iWLncvJlRb0fz3OLZxXHQMu4veYQz5JMm92i/PYVVcdza0cb/IYnF/I18lUG0fB5ucuWP8x76uvjfxYb1dPm28DgdaDZ5q3guMEOD3zCAZZz+aQZBOR4oDHLrMwi2GBa2BGg6iZrlt60bxdc1dzP1xM30bW3jImbueFwx9zUuUamuHyHTMeoNcV9OWz+IlNmAp8/ZJ512FQW8DfZ+skoIN3hHmdl8jR19jKbe5I2lxaLuauJt1DFWwOQfpvp5gb/idqU25wjgqtf7N0aDFiXS3RnRQOStP1trePLXKApObDBqY2nXt4KEDyeTZRqoBofChIWPJpOKNOlAX8Nvl6lZsAaa1/kIxo89sqv3D8O/2OvoZQYD7YjjzJ+pYdyVaIgePBAdE6gg1j9skD7CQRsEqEVWzzyiQZlXsAVCZe2DrJgqfuIffUk72nFSsv1hxLOrgFfjV6LvCWX7irZrAGbC3dRNYv0FfxLgAEAUtErPzTrdUYAAAAASUVORK5CYII=", va = 5, wa = 0;
+    b.toggleMenu = function(b) {
+        var c;
+        $("#menu_sinesp_pad, #menu_sinesp", a).is(":hidden") ? ($("#menu_sinesp_pad, #menu_sinesp", a).slideDown(), 
+        c = !0) : ($("#menu_sinesp_pad, #menu_sinesp", a).slideUp(), c = !1), "function" == typeof b && b(c);
+    }, b.updadeTempoSessao = function(b) {
+        ga(b.segSesIn), b.segSesIn <= 120 ? ($("#btn_close_modal_sessao_aviso", a).click(function(a) {
+            ka();
+        }), $("#modalSessaoExpirar", a).easyModal({
+            overlayClose: !1,
+            closeOnEscape: !1
+        }), $("#open-modal2", a).click(function(b) {
+            $("#modalSessaoExpirar", a).trigger("openModal"), b.preventDefault();
+        }), toastr.clear(), ma = c, na = c, $("#open-modal2", a).click()) : b.segSesIn <= 60 * va ? (ma === c && (toastr.options = {
+            closeButton: !0,
+            debug: !1,
+            progressBar: !0,
+            positionClass: "toast-top-right",
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "0",
+            extendedTimeOut: "0",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+            target: $("body", a)
+        }, toastr.options.onclick = function() {
+            toastr.clear(), ka();
+        }, toastr.warning("Sua sessão vai expirar em <span id='menu_contador_aviso'></span>.<br />Para estender a sessão, clique nessa notificação.", "Aviso", toastr.options), 
+        ma = !0), ha(b.segSesIn)) : ma === c && na === c || (toastr.clear(), ma = c, na = c), 
+        b.segSesFim <= 60 * wa && (oa === c && (toastr.options = {
+            closeButton: !0,
+            debug: !1,
+            progressBar: !0,
+            positionClass: "toast-top-right",
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "0",
+            extendedTimeOut: "0",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+            tapToDismiss: !1,
+            target: $("body", a)
+        }, toastr.error("Sua sessão vai expirar de forma definitiva em <span id='menu_contador_aviso_final'></span> minutos, termine o que está fazendo.", "Aviso", toastr.options), 
+        oa = !0), ia(b.segSesFim));
+    }, b.updadeDadosUsuarioCompleto = function(b) {
+        b.estrangeiro ? $("#menu-identificador", a).html("ID: ") : $("#menu-identificador", a).html("CPF: "), 
+        b.estrangeiro ? $("#cpfUsuario", a).html(b.identificacao) : $("#cpfUsuario", a).html(v(b.identificacao)), 
+        $("#nomeUsuario", a).html(b.nome ? b.nome : "-"), $("#emailUsuario", a).html(b.email ? b.email : "-"), 
+        $("#fotoUsuario", a).attr("src", ea(b.foto && "" !== b.foto ? b.foto : ua)), "" !== b.foto && !1 === b.externo ? $("#remove-foto", a).show() : $("#remove-foto", a).hide(), 
+        $("#remove-foto", a).on("click", function() {
+            $("#foto-preview", a).attr("src", ""), $("#menu-dados-foto", a).val(""), $("#remove-foto", a).hide();
+        }), !0 === b.externo && ($("#msg-usuario-externo", a).show(), d());
+    }, b.updadeMenusPortal = function(c) {
+        ja(b.PARAMS.ambiente) ? $("h3.logo-sinesp-menu", a).addClass("logo-sinesp" + b.PARAMS.ambiente) : $("h3.logo-sinesp-menu", a).addClass("logo-sinesp"), 
+        ja(c.urlAreaTrabalho) && $("#menu-link-area-trabalho", a).attr("href", c.urlAreaTrabalho).attr("target", C() ? "_self" : "_blank").parent().show(), 
+        ja(c.urlNoticias) && $("#menu-link-noticias", a).attr("href", c.urlNoticias).attr("target", C() ? "_self" : "_blank").parent().show(), 
+        ja(c.urlPublicador) && $("#menu-link-publicador", a).attr("href", c.urlPublicador).attr("target", C() ? "_self" : "_blank").parent().show(), 
+        (ja(c.urlAreaTrabalho) || ja(c.urlNoticias) || ja(c.urlPublicador)) && $("#menu_sem_acesso_portal", a).hide();
+    }, b.updadeSistemas = function(b) {
+        $("#item_menu_sistemas", a).html(""), b.sort(function(a, b) {
+            return a.nomeSistema > b.nomeSistema ? 1 : b.nomeSistema > a.nomeSistema ? -1 : 0;
+        });
+        for (var c = 0; c < b.length; c++) $("<h3>", a).html(b[c].nomeSistema).addClass("link-" + b[c].sigla.toLowerCase()).appendTo($("<a>", a).attr("href", b[c].url).attr("target", "_blank").appendTo($("#item_menu_sistemas", a)));
+        0 === b.length && $("<span>", a).html("Não há sistemas habilitados.").appendTo($("<h3>", a).appendTo($("#item_menu_sistemas", a)));
+    }, b.updadeAlertas = function(b) {
+        $("span#menu-contador-alertas", a).html(b.length), $("ul#menu-lista-alertas", a).html("");
+        for (var c = 0; c < b.length; c++) $("<a>", a).html(b[c].msg).appendTo($("<li>", a).appendTo($("ul#menu-lista-alertas", a)));
+        b.length > 0 && $("div#alerta", a).show();
+    }, b.configMenu = function(c) {
+        la = c.urls.areaPublica, $("#menu-link-area-publica", a).attr("href", $.trim(c.urls.areaPublica)).attr("target", "_blank"), 
+        $("#menu-btn-restaurar", a).css("display", z() ? "block" : "none"), $("#menu-btn-itens", a).css("display", A() ? "block" : "none"), 
+        $("#menu-link-logout", a).attr("href", b.URLS.logout + "?goto=" + c.siglaSistema), 
+        $("#menu-btn-minha-conta", a).on("click", function() {
+            K();
+        }), $(".tabs-menu a", a).click(function(b) {
+            b.preventDefault(), $(this).parent().addClass("current"), $(this).parent().siblings().removeClass("current");
+            var c = $(this).attr("href");
+            $(".tab-content-mn-sinesp", a).not(c).css("display", "none"), $(c, a).css("display", "block");
+        }), $("#menu-dados-foto", a).change(function() {
+            var c, d = "menu_upload_iframe", e = a.getElementById("menu-form-foto");
+            e.target = d, e.name = d, e.enctype = "multipart/form-data", e.encoding = "multipart/form-data", 
+            e.action = b.URLS.carregaFoto, window.document.getElementById(d) ? c = window.document.getElementById(d) : (c = window.document.createElement("iframe"), 
+            c.setAttribute("id", d), c.setAttribute("name", d), c.setAttribute("style", "width: 0; height: 0;"), 
+            c.setAttribute("marginheight", "0"), c.setAttribute("marginwidth", "0"), c.setAttribute("tabindex", "0"), 
+            c.setAttribute("frameborder", "0"), c.setAttribute("hspace", "0"), c.setAttribute("vspace", "0"), 
+            window.document.body.appendChild(c), window.frames[d].name = d);
+            var f = window.document.getElementById(d), g = function() {
+                f.detachEvent ? f.detachEvent("onload", g) : f.removeEventListener("load", g, !1), 
+                b.SERVER.send({
+                    url: b.URLS.carregaFoto,
+                    success: function(b) {
+                        if ($("#menu-error-msgs ul", a).removeClass("erro").removeClass("sucesso").remove(), 
+                        $("#menu-error-msgs", a).css("display", "none"), b.foto && ($("#foto-preview", a).attr("src", ea(b.foto)), 
+                        $("#remove-foto", a).show()), b.erroFoto) {
+                            $("<ul>").appendTo($("#menu-error-msgs", a)).append($("<li>", a).html(b.erroFoto).addClass("proibido")), 
+                            $("#menu-error-msgs", a).addClass("erro").removeClass("sucesso"), $("#menu-error-msgs", a).css("display", "block"), 
+                            $("#menu-dados-foto", a).val("");
+                        }
+                    }
+                });
+            };
+            f.addEventListener && f.addEventListener("load", g, !0), f.attachEvent && f.attachEvent("onload", g), 
+            e.submit();
+        }), $(".cabecalho-unico-sinesp #modalGeralLoading", a).easyModal({
+            overlayClose: !1,
+            closeOnEscape: !1,
+            overlayOpacity: .3,
+            overlayParent: $("body", a),
+            zIndex: function() {
+                return 999999;
+            }
+        }), $(".cabecalho-unico-sinesp #modalSenhaDadosUsr", a).easyModal({
+            overlayClose: !0,
+            closeOnEscape: !0,
+            overlayOpacity: .8,
+            overlayParent: $("body", a)
+        }), $(".cabecalho-unico-sinesp #modalAguardLigacao", a).easyModal({
+            overlayClose: !1,
+            closeOnEscape: !1,
+            overlayParent: $("body", a),
+            zIndex: function() {
+                return 99999;
+            }
+        }), $(".cabecalho-unico-sinesp #modalSolAlterDados", a).easyModal({
+            overlayClose: !1,
+            closeOnEscape: !1,
+            overlayParent: $("body", a),
+            zIndex: function() {
+                return 99999;
+            }
+        }), $(".cabecalho-unico-sinesp", a).find(".snp-mnu-img-loading").attr("src", b.PARAMS.urlRootMenu + "/images/loading.gif"), 
+        $("#submitButton", a).click(function() {
+            e();
+        }), $("#closeButton", a).click(function() {
+            $("#acoes_app_moveis", a).val(""), $("#alterou_informacoes", a).val("nao"), $.colorbox.close();
+        }), $("#cboxClose, #cboxClose_perfis", a).click(function() {
+            $("#acoes_app_moveis", a).val(""), $("#alterou_informacoes", a).val("nao"), $.colorbox.close();
+        }), $("#menu-dados-dtNasc", a).mask("00/00/0000"), $("#menu-dados-cnh-validade", a).mask("00/00/0000"), 
+        $("#menu-dados-rg-dt", a).mask("00/00/0000"), $("#menu-dados-funcionais-cargo", a).on("change", function() {
+            "999" === $("#menu-dados-funcionais-cargo", a).val() ? $("#menu-dados-funcionais-cargoOutros", a).show() : $("#menu-dados-funcionais-cargoOutros", a).val("").hide();
+        }), $("#menu-dados-funcionais-funcao", a).on("change", function() {
+            "999" === $("#menu-dados-funcionais-funcao", a).val() ? $("#menu-dados-funcionais-funcaoOutros", a).show() : $("#menu-dados-funcionais-funcaoOutros", a).val("").hide();
+        }), $("#menu-dados-rg", a).on("input", function() {
+            N("#menu-dados-rg") ? ($("#menu-dados-rg-orgao", a).val("").prop("disabled", !0).parent().find("span.menu-required").hide(), 
+            $("#menu-dados-rg-uf", a).val("").prop("disabled", !0).parent().find("span.menu-required").hide(), 
+            $("#menu-dados-rg-dt", a).val("").prop("disabled", !0).parent().find("span.menu-required").hide()) : ($("#menu-dados-rg-orgao", a).prop("disabled", !1).parent().find("span.menu-required").show(), 
+            $("#menu-dados-rg-uf", a).prop("disabled", !1).parent().find("span.menu-required").show(), 
+            $("#menu-dados-rg-dt", a).prop("disabled", !1).parent().find("span.menu-required").show());
+        }), $("#menu-dados-cnh", a).on("input", function() {
+            N("#menu-dados-cnh") ? ($("#menu-dados-cnh-categoria", a).val("").prop("disabled", !0).parent().find("span.menu-required").hide(), 
+            $("#menu-dados-cnh-validade", a).val("").prop("disabled", !0).parent().find("span.menu-required").hide()) : ($("#menu-dados-cnh-categoria", a).prop("disabled", !1).parent().find("span.menu-required").show(), 
+            $("#menu-dados-cnh-validade", a).prop("disabled", !1).parent().find("span.menu-required").show());
+        }), $("#menu-btn-restaurar", a).on("click", function() {
+            confirm("Esta ação irá restaurar a área de trabalho com sua configuração original. Deseja continuar?") && b.SERVER.send({
+                url: b.LIFERAY.restaurar_url,
+                type: "html",
+                success: function() {
+                    window.parent.location = $("#menu-link-area-trabalho", a).attr("href");
+                }
+            });
+        }), $("#menu-btn-itens", a).on("click", function() {
+            void 0 !== window.parent.maisItensClick && $.isFunction(window.parent.maisItensClick) && window.parent.maisItensClick();
+        }), $("#menu-link-meus-perfis", a).on("click", function() {
+            $.colorbox({
+                inline: !0,
+                href: "#meus_perfis",
+                width: "1030px",
+                height: "600px",
+                onOpen: function() {
+                    $("#menu_meus_perfis_resultado_table", a).html(""), $("#menu_meus_perfis_resultado", a).html("");
+                },
+                onLoad: o
+            });
+        });
+    }, b.initMenu = function() {
+        u(), $(".menu", a).click(function() {
+            var b = $(this, a).position();
+            $(this, a).addClass("active"), $(this, a).next(".seta").css("display", "block"), 
+            $(this, a).closest(".menu-grupo").find(".submenu", a).css("display", "block"), $(this, a).closest(".menu-grupo").find(".seta", a).css("left", b.left), 
+            $(this, a).closest(".menu-grupo").find(".submenu", a).css("left", b.left - 215), 
+            $(".portal-item-menu:visible", a).length > 1 ? ($(this, a).closest(".menu-grupo").find(".menu-submenu", a).css("left", b.left - 143), 
+            $(this, a).closest(".menu-grupo").find(".menu-submenu", a).css("width", "195px")) : $(this, a).closest(".menu-grupo").find(".menu-submenu", a).css("left", b.left - 60);
+        }), $(a).mouseup(function(b) {
+            if ($("#cabecalho-mn-sinesp", a).find(".active").closest(".menu-grupo").find(".seta", a).css("display", "none"), 
+            $("#cabecalho-mn-sinesp", a).find(".active").closest(".menu-grupo").find(".submenu", a).css("display", "none"), 
+            $("#cabecalho-mn-sinesp", a).find(".active").removeClass("active"), $(".painel_css", a).css("display", "none"), 
+            C()) {
+                var c = b.target || b.srcElement;
+                "menu-btn-itens" !== c.id && "listaadicportlets" !== c.id && 0 === $(c, a).parents("#listaadicportlets").length && $(".cont_user", a).css("display", "none");
+            } else $(".cont_user", a).css("display", "none");
+        }), $(".seta_usuario, #menu-link-central-atendimento", a).mouseup(function(a) {
+            a.stopPropagation();
+        }), $(".seta_usuario", a).click(function() {
+            $(".cont_user", a).toggle();
+        }), $("#menu-link-central-atendimento", a).css("cursor", "pointer").click(function() {
+            $(".painel_css", a).css("display", $(".painel_css", a).is(":visible") ? "none" : "block");
+        }), $(".menu-icon-minus", a).click(function() {
+            var b = $(this, a).parent().parent().parent().parent().attr("class");
+            $("." + b, a).length > 2 && $(this, a).parent().parent().parent().parent().remove();
+        }), $(".menu-icon-plus", a).click(function() {
+            $(this, a).parent().parent().parent().parent().parent().hasClass("menu-tab-email") ? W($(this, a).parent().parent().parent().parent()) : $(this, a).parent().parent().parent().parent().parent().hasClass("menu-tab-telefone") ? X($(this, a).parent().parent().parent().parent()) : $(this, a).parent().parent().parent().parent().parent().hasClass("menu-tab-endereco") && Y($(this, a).parent().parent().parent().parent());
+        }), $("#aba-gestores", a).click(function() {
+            b.SERVER.sendPost({
+                url: b.URLS.exibirAbaGestores,
+                useLoadingModal: !0,
+                success: function(b) {
+                    if ($("#menu-dados-eo-lotacao", a).text($.trim($("#menu-dados-funcionais-lotacao", a).find(":selected").text())), 
+                    b.possuiAlteracaoDadosPendentes && $("#menu-dados-eo-lotacao", a).append(" <span style='color: red;'>(solicitação de alteração cadastral pendente)</span>"), 
+                    $("#menu-dados-eo-lotacao", a).append(" <ul id='lista-cadastradores' style='padding-left: 15px;'>"), 
+                    b.cadastradoresAutorizadores.length > 0) for (var c in b.cadastradoresAutorizadores) $("#lista-cadastradores", a).append(" <li>" + b.cadastradoresAutorizadores[c].nome + " - " + b.cadastradoresAutorizadores[c].emails[0].email + "</li>"); else $("#lista-cadastradores", a).append("<span>Nenhum cadastrador disponível</span>");
+                    $("#menu-dados-eo-lotacao", a).append("</ul>"), $.each(b.vinculos, function(b, c) {
+                        $("#menu-dados-eo-vinculos", a).append("<li><span style='font-weight: bold;'>" + b + "</span>"), 
+                        $("#menu-dados-eo-vinculos", a).append("<ul class='lista-eos' style='padding-left: 15px;'>"), 
+                        $.each(c, function(b, c) {
+                            "a" == c.tipo ? $(".lista-eos", a).last().append("<li style='font-weight: bold;'>" + c.estruturaOrganizacional + "<span style='color: red;'> (alteração de perfil solicitada)</span>") : "s" == c.tipo ? $(".lista-eos", a).last().append("<li style='font-weight: bold;'>" + c.estruturaOrganizacional + "<span style='color: red;'> (solicitação de acesso pendente)</span>") : $(".lista-eos", a).last().append("<li style='font-weight: bold;'>" + c.estruturaOrganizacional), 
+                            $(".lista-eos", a).last().append("<ul class='perfil-pessoas' style='padding-left: 15px;'><li>" + c.perfilDosVinculadores), 
+                            $(".perfil-pessoas", a).last().append("<ul class='lista-vinculadores' style='padding-left: 15px;'>"), 
+                            $.each(c.vinculadores, function(b, c) {
+                                $(".lista-vinculadores", a).last().append("<li>" + c.nomeEmailPrincipal + "</li>");
+                            }), $(".lista-vinculadores", a).last().append("</ul></li></ul></li><br>");
+                        }), $(".lista-eos", a).last().append("</ul></li><br>");
+                    }), jQuery.isEmptyObject(b.vinculos) && $("#secao-cadastradores-vinculadores", a).hide();
+                }
+            });
+        }), $("#divExterna", a).easyModal({
+            overlayClose: !1,
+            closeOnEscape: !1,
+            overlayOpacity: .7,
+            overlayColor: "#ffff00",
+            overlayParent: $("cboxWrapper", a),
+            zIndex: function() {
+                return 6e4;
+            }
+        }), $("#btnFecharModal", a).click(function() {
+            $("#divExterna", a).trigger("closeModal");
+        }), $("#icnFecharModal", a).click(function() {
+            $("#divExterna", a).trigger("closeModal");
+        });
+    }, $(a).on("change", ".opt", function() {
+        var b = $(this).val(), c = [], d = [], e = b.split("-"), f = b.split("_"), g = $("td[id^='" + f[0] + "']", a).text(), h = f[1], i = "", j = "";
+        try {
+            i = $("select[id^='" + e[0] + "']", a).not("select[id^='" + f[0] + "']").attr("id").split("_"), 
+            j = $("select[id='" + k + "']", a).find("option[value^='" + k + "']:selected").val().split("_");
+        } catch (a) {
+            console.log("Apenas 01 instalação encontrada para este sistema.");
+        }
+        var k = i[0];
+        i[1];
+        if ("" !== $("#acoes_app_moveis", a).val()) {
+            if (c = $("#acoes_app_moveis", a).val().split(","), c.length > 0) for (var l = 0; l < c.length; l++) {
+                var m = (c[l].split("-"), c[l].split("_"));
+                f[0] === m[0] ? R(h, g, k, j, e[0]) : Q(h, g, k, e[0]);
+            }
+        } else Q(h, g, k, e[0]);
+        $("#lista_aplicativos_moveis option:selected", a).each(function() {
+            "0" !== $(this).val().split("_")[1] && d.push($(this).val());
+        }), $("#acoes_app_moveis", a).val(d);
+    }), $(a).on("change", "input[type='text']", function() {
+        if ("nao" === $("#alterou_informacoes", a).val()) if ($(this).attr("id") !== c) $("#alterou_informacoes", a).val("sim"); else if ("menu-dados-email" === $(this).attr("class")) {
+            sa.filter(function(a) {
+                return a.autenticador;
+            })[0].email;
+        } else if ("menu-dados-tel-numero" === $(this).attr("class")) {
+            ra.filter(function(a) {
+                return a.autenticador;
+            })[0].numero;
+        } else $("#alterou_informacoes", a).val("sim");
+    }), $(a).on("change", "select", function() {
+        var b, c = "", d = !1, e = !1;
+        "opt" !== $(this).attr("class") && "menu-dados-tel-tipo" !== $(this).attr("class") ? $("#alterou_informacoes", a).val("sim") : ($("#menu-alerta-revogar", a).css("display", "none"), 
+        $(".opt", a).each(function() {
+            b = $(this).val(), b.includes("_RV") && ("disabled" == $(this).attr("disabled") ? d = !0 : e = !0);
+        }), d && (c = "Ao ativar, a instalação anterior será revogada."), e && (d && (c += "<br>"), 
+        c += "O acesso ao aplicativo será REVOGADO. Caso tenha interesse em acessar novamente o sistema pelo dispositivo móvel, será necessário realizar uma nova instalação do aplicativo."), 
+        "" !== c && ($("#menu-alerta-revogar", a).css("display", "block"), $("#menu-alerta-revogar", a).html(c)));
+    }), $(a).on("click", "#menu-dados-foto, #remove-foto", function() {
+        $("#alterou_informacoes", a).val("sim");
+    });
+}(parent.document, parent.MENU_SNSP);
+
+var pressionou_shift_tab = !1;
+
+!function(a, b) {
+    "use strict";
+    function c(b) {
+        $.ajax({
+            type: "get",
+            url: b.url,
+            dataType: b.type ? b.type : g(b.url) ? "jsonp" : "json",
+            cache: !1,
+            data: b.data,
+            crossDomain: g(b.url),
+            success: function(c) {
+                return c.redirect ? void (a.location.href = c.redirect) : void b.success(c);
+            },
+            error: function(a, c, d) {
+                console.log("Houve um erro ao buscar dados do usuário."), console.log(a, c, d), 
+                b.error && b.error(a, c, d);
+            }
+        }).always(function() {
+            e(b.useLoadingModal, !1);
+        }), e(b.useLoadingModal, !0);
+    }
+    function d(a) {
+        var b = (a.contentType || "application/json") + "; charset=utf-8";
+        $.ajax({
+            type: "post",
+            url: a.url,
+            data: a.data,
+            contentType: b,
+            success: function(b) {
+                a.success(b);
+            },
+            error: function(a, b, c) {
+                alert("Houve um erro ao enviar os dados do usuário."), console.log(a, b, c);
+            }
+        }).always(function() {
+            e(a.useLoadingModal, !1);
+        }), e(a.useLoadingModal, !0);
+    }
+    function e(b, c) {
+        var d;
+        b && (d = $(".cabecalho-unico-sinesp #modalGeralLoading", a), c ? d.trigger("openModal") : d.trigger("closeModal"));
+    }
+    function f(a, b) {
+        function d() {
+            return l || k;
+        }
+        function e() {
+            if (d()) return void (k || h(l));
+            c({
+                url: a,
+                success: function(a) {
+                    l || k || (l = g(a)), e();
+                },
+                error: function() {
+                    e();
+                }
+            });
+        }
+        function f() {
+            function a() {
+                setTimeout(function() {
+                    d() || (m > 0 ? (i(--m), a()) : (k = !0, h(l)));
+                }, 1e3);
+            }
+            i(m), a();
+        }
+        var g = function() {
+            return !1;
+        }, h = function() {}, i = function() {}, j = {}, k = !1, l = !1, m = b;
+        return j.each = function(a) {
+            return "function" == typeof a && (g = a), j;
+        }, j.eachSecond = function(a) {
+            return "function" == typeof a && (i = a), j;
+        }, j.end = function(a) {
+            return "function" == typeof a && (h = a), j;
+        }, j.start = function() {
+            return k = !1, l = !1, e(), f(), j;
+        }, j.stop = function() {
+            l = !0;
+        }, j;
+    }
+    function g(a) {
+        return h(window.location.href.toString().toLowerCase()) !== h(a);
+    }
+    function h(a) {
+        return a.split("/")[2];
+    }
+    b.SERVER = {
+        send: c,
+        sendPost: d,
+        longPolling: f
+    };
+}(parent.document, parent.MENU_SNSP), function(a) {
+    "use strict";
+    function b(b) {
+        "function" == typeof b && a.SERVER.send({
+            url: a.URLS.layout,
+            type: "html",
+            success: function(a) {
+                b(a);
+            }
+        });
+    }
+    function c(b) {
+        function c() {
+            return window.location.origin ? window.location.origin : window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+        }
+        "function" == typeof b && a.SERVER.send({
+            url: a.URLS.configMenu,
+            data: {
+                urlSistema: c()
+            },
+            success: function(a) {
+                b(a);
+            }
+        });
+    }
+    function d(b) {
+        "function" == typeof b && (a.SERVER.send({
+            url: a.URLS.dadosUsuario,
+            success: function(a) {
+                b(a);
+            }
+        }), setTimeout(function() {
+            d(b);
+        }, 18e4));
+    }
+    function e(b) {
+        a.SERVER.send({
+            url: a.URLS.dadosMenu,
+            success: function(a) {
+                for (var c in a) "function" == typeof b[c] && b[c](a[c]);
+            }
+        }), setTimeout(function() {
+            e(b);
+        }, 18e4);
+    }
+    function f(b) {
+        "function" == typeof b && (a.SERVER.send({
+            url: a.URLS.tempoSessao,
+            success: function(a) {
+                b(a);
+            }
+        }), setTimeout(function() {
+            f(b);
+        }, 6e4));
+    }
+    a.POLLER = {
+        carregarLayout: b,
+        consultarDadosMenu: e,
+        consultarDadosUsuario: d,
+        consultarConfigMenu: c,
+        checkTempoSessao: f
+    };
+}(parent.MENU_SNSP), function(a, b) {
+    "use strict";
+    b.POLLER.carregarLayout(function(c) {
+        a.getElementById("menu_sinesp").innerHTML = c, b.initMenu(), b.POLLER.consultarConfigMenu(function(a) {
+            b.configMenu(a);
+        }), b.POLLER.consultarDadosMenu({
+            menusPortal: function(a) {
+                b.updadeMenusPortal(a);
+            },
+            sistemas: function(a) {
+                b.updadeSistemas(a);
+            },
+            alertas: function(a) {
+                b.updadeAlertas(a);
+            }
+        }), b.POLLER.consultarDadosUsuario(function(a) {
+            b.updadeDadosUsuarioCompleto(a);
+        }), b.POLLER.checkTempoSessao(function(a) {
+            b.updadeTempoSessao(a);
+        });
+    });
+}(parent.document, parent.MENU_SNSP);

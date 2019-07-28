@@ -1,0 +1,166 @@
+﻿function validarData(campo) {
+	if (campo.value != "") {
+		var expReg = /^(([0-2]\d|[3][0-1])\/([0]\d|[1][0-2])\/[1-2][0-9]\d{2})$/;
+		var msgErro = 'Data inv\u00E1lida.';
+		if ((campo.value.match(expReg)) && (campo.value != '')) {
+			var dia = parseInt(campo.value.substring(0, 2), 10);
+			var mes = parseInt(campo.value.substring(3, 5), 10);
+			var ano = parseInt(campo.value.substring(6, 10), 10);
+			if (mes > 12) {
+				alert("M\u00EAs incorreto !!! O valor " + mes + "N\u00E3o corresponde a um valor v\u00E1lido");
+				campo.value = "";
+			} else {
+				if (dia < 1) {
+					alert("Dia incorreto !!! Dia deve ser positivo n\u00E3o nulo.");
+					campo.value = "";
+				} else {
+					if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia > 30)) {
+						alert("Dia incorreto !!! O m\u00EAs especificado cont\u00E9m no m\u00E1ximo 30 dias.");
+						campo.value = "";
+						return false;
+					}
+					else {
+						if ((ano % 4 != 0 && mes == 2) && (dia > 28)) {
+							alert("Data incorreta!! O m\u00EAs especificado cont\u00E9m no m\u00E1ximo 28 dias.");
+							campo.value = "";
+							return false;
+						}
+						else {
+							if ((ano % 4 == 0 && mes == 2) && (dia > 29)) {
+								alert("Data incorreta!! O m\u00EAs especificado cont\u00E9m no m\u00E1ximo 29 dias.");
+								campo.value = "";
+								return false;
+							}
+							else return true;
+						}
+					}
+				}
+			}
+		}
+		else {
+			alert(msgErro);
+			campo.value = "";
+			return false;
+		}
+	}
+}
+
+function ValidarDataVencimento(campo) {
+	if (validarData(campo)) {
+		var dia = parseInt(campo.value.substring(0, 2), 10);
+		var mes = parseInt(campo.value.substring(3, 5), 10) - 1;
+		var ano = parseInt(campo.value.substring(6, 10), 10);
+		var dtAux = new Date(ano, mes, dia);
+		var dtAtual = new Date();
+		var teste = dtAtual.getFullYear();
+		if (new Date(dtAtual.getFullYear(), dtAtual.getMonth(), dtAtual.getDate()) <= dtAux) {
+			return true;
+		} else {
+			alert('Data de vencimento anterior a data atual.');
+			campo.value = "";
+			return false;
+		}
+	} else return false;
+}
+
+
+function ValidarDataPassada(campo) {
+	if (validarData(campo)) {
+		var dia = parseInt(campo.value.substring(0, 2), 10);
+		var mes = parseInt(campo.value.substring(3, 5), 10) - 1;
+		var ano = parseInt(campo.value.substring(6, 10), 10);
+		var dtAux = new Date(ano, mes, dia);
+		var dtAtual = new Date();
+		var teste = dtAtual.getFullYear();
+		if (new Date(dtAtual.getFullYear(), dtAtual.getMonth(), dtAtual.getDate()) >= dtAux) {
+			return true;
+		} else {
+			alert('Datas futuras não permitidas.');
+			campo.value = "";
+			return false;
+		}
+	} else return false;
+}
+
+function SomenteNumero(objEvent) {
+	var iKeyCode, strKey;
+	var reValidChars = /\d/;
+
+	if (isIE())
+		iKeyCode = objEvent.keyCode;
+	else
+		iKeyCode = objEvent.which;
+
+	strKey = String.fromCharCode(iKeyCode);
+	if (!reValidChars.test(strKey))
+		objEvent.keyCode = 0;
+}
+
+
+
+function FormatarCNPJEstabelecimento(campo, teclapres) {
+	var tecla = teclapres.keyCode;
+	vr = campo.value;
+	vr = vr.replace(".", "");
+	vr = vr.replace("/", "");
+	vr = vr.replace("-", "");
+	tam = vr.length + 1;
+
+	if (tecla != 9 && tecla != 8)   //delete, backspace
+	{
+		if (tam > 2 && tam < 6) {
+			campo.value = vr.substr(0, tam - 2) + '.' + vr.substr(tam - 2, tam);
+		}
+
+		if (tam >= 6 && tam <= 10) {
+			campo.value = vr.substr(0, 2) + '.' + vr.substr(2, 3) + '.' + vr.substr(5, 3);
+		}
+		if (tam >= 9 && tam <= 13) {
+			campo.value = vr.substr(0, 2) + '.' + vr.substr(2, 3) + '.' + vr.substr(5, 3) + '/' + vr.substr(8, 4);
+		}
+		if (tam >= 13) {
+			campo.value = vr.substr(0, 2) + '.' + vr.substr(2, 3) + '.' + vr.substr(5, 3) + '/' + vr.substr(8, 4) + '-' + vr.substr(12, 1);
+		}
+	}
+
+}
+
+
+
+function SoAceitaNumeroLetraEspacoEPontuacao(objEvent) {
+	var iKeyCode, strKey;
+	var reValidChars = /(\u0008|\u007F|\u002c|\u002d|\u002e|\d|\w|\s)/;
+	//\u0008	backspace
+	//\u007F	delete
+	//\u002c	comma
+	//\u002d	hyphen-minus
+	//\u002e	dot
+	//\d			digits
+	//\w			word characters
+	//\s			space
+	
+	if (isIE()) {
+		iKeyCode = objEvent.keyCode;
+	}
+	else {
+		iKeyCode = objEvent.which;
+	}
+
+//	if ((iKeyCode == 8) ||
+//        (iKeyCode == 0) ||
+//        (iKeyCode == 32)) { // Trata as teclas delete, backspace, setas e espaço
+//		return true;
+//	}
+
+	strKey = String.fromCharCode(iKeyCode);
+	if (!reValidChars.test(strKey)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+
+
+

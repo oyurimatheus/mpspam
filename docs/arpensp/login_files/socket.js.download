@@ -1,0 +1,1429 @@
+      var porta = "5161";
+      var referencia ="https";
+      var caminhoExecutar = "";
+      var versaoSoftware = "";
+
+      function verificaPorta(){
+        if (window.location.protocol != "https:"){
+          referencia ="http";
+          porta = "5160";
+        }
+      }
+
+      function signerNaoInstalado(){
+        console.log(caminhoExecutar);
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'signerNaoInstalado'
+
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+
+                $("#assinador_conteudo").html(obj.html);
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+          }
+        });
+      }
+
+      function verificaConexao(caminho,qtd,funcao,params,url){
+        caminhoExecutar =caminho;
+
+        verificaPorta();
+        if(qtd == 0){
+          blockui("Aguarde verificando instalação.");
+        }
+        if(qtd < 5){
+          var teste = $.ajax({
+            type : "POST",
+            crossDomain: true,
+            url : referencia+'://localhost:'+porta+'/test',
+            data: {
+              'exec': 'verificarConexao'
+            },
+            success : function(obj){
+              versaoSoftware  = obj[0].versionSoftware;
+              unblockui();
+              $("#conteudoAssinador").show();
+              funcao(unescape(params));
+
+             },
+            error : function(xhr, textStatus, errorThrown ) {
+              if (xhr.readyState == 0) {
+                window.location = 'ArpenSignerOnline://';
+                var qtdFeitas = qtd + 1;
+                sleep(5000);
+                verificaConexao(caminho,qtdFeitas,funcao,params,url);
+              }
+            }
+          });
+        }else{
+          $('#assinador_conteudo').modal();
+          signerNaoInstalado();
+          unblockui();
+        }
+
+      }
+
+
+      function verificaConexaoJson(caminho,qtd,funcao,json,url){
+        caminhoExecutar =caminho;
+        verificaPorta();
+        if(qtd == 0){
+          blockui("Aguarde verificando instalação.");
+        }
+        if(qtd < 5){
+          var teste = $.ajax({
+            type : "POST",
+            crossDomain: true,
+            url : referencia+'://localhost:'+porta+'/test',
+            data: {
+              'exec': 'verificarConexao'
+            },
+            success : function(obj){
+              versaoSoftware  = obj[0].versionSoftware;
+              unblockui();
+              $("#conteudoAssinador").show();
+              funcao(json);
+
+             },
+            error : function(xhr, textStatus, errorThrown ) {
+              if (xhr.readyState == 0) {
+                window.location = 'ArpenSignerOnline://';
+                var qtdFeitas = qtd + 1;
+                sleep(5000);
+                verificaConexaoJson(caminho,qtdFeitas,funcao,json,url);
+              }
+            }
+          });
+        }else{
+          $('#assinador_conteudo').modal();
+          signerNaoInstalado();
+          unblockui();
+
+        }
+
+      }
+
+
+
+      function sleep(miliseconds) {
+        var currentTime = new Date().getTime();
+        while (currentTime + miliseconds >= new Date().getTime()) {
+        }
+      }
+
+      function blockui(msg) {
+        if (!msg)
+          return;
+
+        $.blockUI({
+          message : msg,
+          css : {
+            border : 'none',
+            padding : '15px',
+            baseZ : 100000,
+            backgroundColor : '#000',
+            '-webkit-border-radius' : '10px',
+            '-moz-border-radius' : '10px',
+            opacity : .5,
+            color : '#fff'
+          }
+        });
+      }
+
+      function unblockui(){
+        $.unblockUI();
+      }
+
+      function getInternetExplorerVersion(){
+          var rv = -1; // Return value assumes failure.
+
+          if (navigator.appName == 'Microsoft Internet Explorer')
+          {
+              var ua = navigator.userAgent;
+              var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+              if (re.exec(ua) != null)
+                  rv = parseFloat( RegExp.$1 );
+          }
+
+          return rv;
+      }
+
+      function isIE9or8(){
+        var version = getInternetExplorerVersion();
+        return(version != -1 && version <= 9 && version >= 7);
+
+        //return ($.browser.msie && $.browser.version <= 9 && window.XDomainRequest);
+      }
+
+      function verificarCartoes() {
+        blockui("Obtendo Certificados Aguarde.");
+        $.ajax({
+          type: 'GET',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'obterCertificados'
+          },
+          success: function(obj) {
+            $(".comboAssinador").empty();
+            $.each(obj, function () {
+              $('.comboAssinador').append($('<option>', {
+                  value: this.posicao+"-"+this.version,
+                  text : this.cpf+ " - " + this.cnpj + " - " + this.certificadoUsuario + " - " + this.dataVencimento
+
+              }));
+            });
+           unblockui();
+          }
+        });
+      }
+
+      function teste(ae,ae2){
+        alert(ae);
+        alert(ae2);
+      }
+
+      function verificarCartoesTable(base64Json) {
+
+        blockui("Obtendo Certificados Aguarde.");
+        $.ajax({
+          type: 'GET',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'obterCertificados'
+          },
+          success: function(obj) {
+            // $(".comboAssinador").empty();
+            if(obj.length >= 1){
+              assinarGenerico(obj,base64Json,versaoSoftware);
+              $('#assinador_conteudo').modal();
+            }
+            if(obj.length == 0){
+              alert('Não foi encontrado nenhum certificado.');
+              // funcao(unescape(params));
+            }
+            unblockui();
+          }
+        });
+      }
+
+      function verificarCartoesTableETSI(base64Json) {
+
+        blockui("Obtendo Certificados Aguarde.");
+        $.ajax({
+          type: 'GET',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'obterCertificadosPadesETSI'
+          },
+          success: function(obj) {
+            // $(".comboAssinador").empty();
+            if(obj.length >= 1){
+              assinarGenerico(obj,base64Json,versaoSoftware);
+              $('#assinador_conteudo').modal();
+            }
+            if(obj.length == 1){
+              // funcao(unescape(params));
+            }
+            unblockui();
+          }
+        });
+      }
+
+
+      function verificarCartoesETSI() {
+        blockui("Obtendo Certificados Aguarde.");
+        $.ajax({
+          type: 'GET',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'obterCertificadosPadesETSI'
+          },
+          success: function(obj) {
+            $(".comboAssinadorETSI").empty();
+            $.each(obj, function () {
+              $('.comboAssinadorETSI').append($('<option>', {
+                  value: this.posicao+"-"+this.version,
+                  text : this.cpf+ " - " + this.cnpj + " - " + this.certificadoUsuario + " - " + this.dataVencimento
+
+              }));
+            });
+           unblockui();
+          }
+        });
+      }
+
+      function autenticar() {
+        unblockui();
+        blockui("Autenticando Aguarde.");
+        var combo = $(".comboAssinador").val()
+        var posicao = combo.substr(0,combo.search("-"));
+        var version = combo.substr(combo.search("-")+1,combo.length);
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'autenticar',
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.autenticado == 'S') && (obj.pacoteAssinado != '')){
+              verificarAssinaturaLogin(obj.pacoteAssinado);
+            }
+            unblockui();
+          }
+        });
+      }
+
+      // function autenticarTabelaPortal(params) {
+      //   unblockui();
+      //   blockui("Autenticando Aguarde.");
+      //   var params = params.split('\',\'');
+      //   var id = params[0];
+      //   var proxURL = params[1];
+      //   var posicao = $("#"+id+"_posicao_assinador").val();
+      //   var version = $("#"+id+"_versao_assinador").val();
+
+      //   $.ajax({
+      //     type: 'POST',
+      //     crossDomain: true,
+      //     url : referencia+'://localhost:'+porta+'/test',
+      //     data: {
+      //       'exec': 'autenticar',
+      //       'posicao': escape(posicao),
+      //       'version': escape(version)
+      //     },
+      //     success: function(obj) {
+      //       if((obj.autenticado == 'S') && (obj.pacoteAssinado != '')){
+      //         verificarAssinaturaLoginPortal(obj.pacoteAssinado);
+      //       }
+      //       unblockui();
+      //     }
+      //   });
+      // }
+
+
+      function autenticarTabelaPortal(params) {
+        unblockui();
+        blockui("Autenticando Aguarde.");
+        var params = params.split('\',\'');
+        var id = params[0];
+        var proxURL = params[1];
+        var posicao = $("#"+id+"_posicao_assinador").val();
+        var version = $("#"+id+"_versao_assinador").val();
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'autenticar',
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.autenticado == 'S') && (obj.pacoteAssinado != '')){
+              var modulo = $("#modulo").val();
+              var urlLogin = $("#urlLogin").val();
+              var exec = $("#exec").val();
+              var fcjs = $("#fcjs").val();
+              var tipo = $("#tipo").val();
+                if(fcjs == "N"){
+                  logarTableParseSignature(modulo,obj.pacoteAssinado,urlLogin,tipo);
+                }else{
+                  logarTableFcParseSignature(obj.pacoteAssinado,modulo,exec,urlLogin);
+                }
+              //verificarAssinaturaLoginPortal(obj.pacoteAssinado);
+            }
+            unblockui();
+          }
+        });
+      }
+
+
+      function autenticarTabela(params) {
+
+        unblockui();
+        blockui("Autenticando Aguarde.");
+        var params = params.split('\',\'');
+        var id = params[0];
+        var proxURL = params[1]
+        var posicao = $("#"+id+"_posicao_assinador");
+        var version = $("#"+id+"_versao_assinador");
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'autenticar',
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.autenticado == 'S') && (obj.pacoteAssinado != '')){
+              verificarAssinaturaLogin(obj.pacoteAssinado);
+            }
+            unblockui();
+          }
+        });
+      }
+
+      function assinarDocumentoCMS(caminhos){
+        blockui("Assinando Documento Aguarde.");
+        var caminhos = caminhos.split('\',\'');
+        var caminhoArquivo = caminhos[0];
+        var caminhoSalvar = caminhos[1]
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'assinarDocumentoCMS',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                assinarDocumentoP7S(obj.conteudoAssinar,caminhoSalvar)
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+
+          }
+        });
+      }
+
+      function assinarDocumentoCMSTabela(params){
+        blockui("Assinando Documento Aguarde.");
+        var params = params.split('\',\'');
+        var id = params[0];
+        var proxURL = params[1];
+        var caminhoArquivo = params[2];
+        var caminhoSalvar = params[3]
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'assinarDocumentoCMS',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                assinarDocumentoP7STabela(obj.conteudoAssinar,caminhoSalvar,id,proxURL)
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+
+          }
+        });
+      }
+
+      function assinarDocumentoXMLDsigTabela(params) {
+        unblockui();
+        blockui("Assinando Documento Aguarde.");
+        var params = params.split('\',\'');
+        var id = params[0];
+        var proxURL = params[1]
+        var caminhoArquivo = params[2];
+        var caminhoSalvar = params[3]
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'assinarDocumentoXMLDsig',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                assinarDocumentoXMLTabela(obj.conteudoAssinar,caminhoSalvar,id,proxURL)
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+
+          }
+        });
+      }
+
+      function assinarDocumentoXMLDsig(caminhos){
+        blockui("Assinando Documento Aguarde.");
+        var caminhos = caminhos.split('\',\'');
+        var caminhoArquivo = caminhos[0];
+        var caminhoSalvar = caminhos[1]
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'assinarDocumentoXMLDsig',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                assinarDocumentoXML(obj.conteudoAssinar,caminhoSalvar)
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+
+          }
+        });
+      }
+
+      function assinarDocumentoPades(caminhos){
+        blockui("Assinando Documento Aguarde.");
+        var caminhos = caminhos.split('\',\'');
+        var caminhoArquivo = caminhos[0];
+        var caminhoSalvar = caminhos[1]
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          dataType:'text',
+          data: {
+            'exec': 'assinarDocumentoPades',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success:function(obj){
+            if(obj != 'ERRO'){
+              assinarDocumentoPDF(obj,caminhoSalvar);
+            }else{
+              alert('Ocorreu um erro ao obter documento');
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoPadesETSI(caminhos){
+        blockui("Assinando Documento Aguarde.");
+        var caminhos = caminhos.split('\',\'');
+        var caminhoArquivo = caminhos[0];
+        var caminhoSalvar = caminhos[1]
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          dataType:'text',
+          data: {
+            'exec': 'assinarDocumentoPades',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success:function(obj){
+            if(obj != 'ERRO'){
+              assinarDocumentoPDFETSI(obj,caminhoSalvar);
+            }else{
+              alert('Ocorreu um erro ao obter documento');
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoPadesETSISeloTabela(caminhos){
+        blockui("Assinando Documento Aguarde.");
+
+        var caminhos = caminhos.split('\',\'');
+        var id = caminhos[0];
+        var proxURL = caminhos[1];
+        var caminhoArquivo = caminhos[2];
+        var caminhoSalvar = caminhos[3]
+        var caminhoSelo = caminhos[4];
+        var posicaoX = caminhos[5];
+        var posicaoY = caminhos[6];
+        var largura = caminhos[7];
+        var altura = caminhos[8];
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+        caminhoSelo = caminhoSelo.replace("'", "");
+        posicaoX = posicaoX.replace("'", "");
+        posicaoY = posicaoY.replace("'", "");
+        largura = largura.replace("'", "");
+        altura = altura.replace("'", "");
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          dataType:'text',
+          data: {
+            'exec': 'assinarDocumentoPades',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success:function(obj){
+            if(obj != 'ERRO'){
+              obterSeloBase64Tabela(id,proxURL,obj,caminhoSalvar,caminhoSelo,posicaoX,posicaoY,largura,altura);
+            }else{
+              alert('Ocorreu um erro ao obter documento');
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoPadesETSISelo(caminhos){
+        blockui("Assinando Documento Aguarde.");
+        var caminhos = caminhos.split('\',\'');
+        var caminhoArquivo = caminhos[0];
+        var formCallback = caminhos[1];
+        var caminhoSelo = caminhos[2];
+        var posicaoX = caminhos[3];
+        var posicaoY = caminhos[4];
+        var largura = caminhos[5];
+        var altura = caminhos[6];
+        var caminhoSalvar = caminhos[7];
+        caminhoArquivo = caminhoArquivo.replace("'", "");
+        caminhoSalvar = caminhoSalvar.replace("'", "");
+        caminhoSelo = caminhoSelo.replace("'", "");
+        posicaoX = posicaoX.replace("'", "");
+        posicaoY = posicaoY.replace("'", "");
+        largura = largura.replace("'", "");
+        altura = altura.replace("'", "");
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          dataType:'text',
+          data: {
+            'exec': 'assinarDocumentoPades',
+            'caminhoArquivo': caminhoArquivo
+          },
+          success:function(obj){
+            if(obj != 'ERRO'){
+              obterSeloBase64(formCallback,obj,caminhoSalvar,caminhoSelo,posicaoX,posicaoY,largura,altura);
+            }else{
+              alert('Ocorreu um erro ao obter documento');
+            }
+          }
+        });
+      }
+
+
+
+      function obterSeloBase64(formCallback,base64Arquivo,caminhoSalvar,caminhoSelo,posicaoX,posicaoY,largura,altura){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          dataType:'text',
+          data: {
+            'exec': 'assinarDocumentoPades',
+            'caminhoArquivo': caminhoSelo
+          },
+          success:function(obj){
+            if(obj != 'ERRO'){
+              assinarDocumentoPDFETSISelo(formCallback,base64Arquivo,obj,caminhoSalvar,posicaoX,posicaoY,largura,altura);
+            }else{
+              alert('Ocorreu um erro ao obter documento');
+            }
+          }
+        });
+      }
+
+
+      function obterSeloBase64Tabela(id,proxUrl,base64Arquivo,caminhoSalvar,caminhoSelo,posicaoX,posicaoY,largura,altura){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          dataType:'text',
+          data: {
+            'exec': 'assinarDocumentoPades',
+            'caminhoArquivo': caminhoSelo
+          },
+          success:function(obj){
+            if(obj != 'ERRO'){
+              assinarDocumentoPDFETSISeloTabela(id,proxUrl,base64Arquivo,obj,caminhoSalvar,posicaoX,posicaoY,largura,altura);
+            }else{
+              alert('Ocorreu um erro ao obter documento');
+            }
+          }
+        });
+      }
+
+
+      function assinarDocumentoXML(arquivoBase64,caminhoSalvar){
+        var combo = $(".comboAssinador").val()
+        var posicao = combo.substr(0,combo.search("-"));
+        var version = combo.substr(combo.search("-")+1,combo.length);
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'assinarDocumentoXMLDsig',
+            'arquivoBase64': arquivoBase64.trim(),
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              verificarSalvarAssinaturaXMLDsig(obj.pacoteAssinado,caminhoSalvar);
+              unblockui();
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoXMLTabela(arquivoBase64,caminhoSalvar,id,proxURL){
+        var posicao = $("#"+id+"_posicao_assinador").val();
+        var version = $("#"+id+"_versao_assinador").val();
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'assinarDocumentoXMLDsig',
+            'arquivoBase64': arquivoBase64.trim(),
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              verificarSalvarAssinaturaXMLDsigRedirect(obj.pacoteAssinado,caminhoSalvar,proxURL);
+              unblockui();
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoPDF(arquivoBase64,caminhoSalvar){
+        var combo = $(".comboAssinador").val()
+        var posicao = combo.substr(0,combo.search("-"));
+        var version = combo.substr(combo.search("-")+1,combo.length);
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'assinarDocumentoPades',
+            'arquivoBase64': arquivoBase64,
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              // verificarSalvarAssinaturaPades(obj.pacoteAssinado,caminhoSalvar);
+              unblockui();
+
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoPDFETSI(arquivoBase64,caminhoSalvar){
+        var combo = $(".comboAssinadorETSI").val()
+        var posicao = combo.substr(0,combo.search("-"));
+        var version = combo.substr(combo.search("-")+1,combo.length);
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'assinarDocumentoPadesETSI',
+            'arquivoBase64': arquivoBase64.trim(),
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              verificarSalvarAssinaturaPades(obj.pacoteAssinado,caminhoSalvar);
+              unblockui();
+
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoPDFETSISeloTabela(id,proxUrl,arquivoBase64,arquivoSeloBase64,caminhoSalvar,posicaoX,posicaoY,largura,altura){
+        var posicao = $("#"+id+"_posicao_assinador").val();
+        var version = $("#"+id+"_versao_assinador").val();
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'assinarDocumentoPadesETSISelo',
+            'arquivoBase64': arquivoBase64.trim(),
+            'arquivoSeloBase64': arquivoSeloBase64.trim(),
+            'posicaoX': posicaoX,
+            'posicaoY': posicaoY,
+            'largura': largura,
+            'altura': altura,
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              verificarSalvarAssinaturaPadesTabela(proxUrl,obj.pacoteAssinado,caminhoSalvar);
+              unblockui();
+
+            }
+          }
+        });
+      }
+
+      function assinarDocumentoPDFETSISelo(formCallback,arquivoBase64,arquivoSeloBase64,caminhoSalvar,posicaoX,posicaoY,largura,altura){
+        var combo = $(".comboAssinadorETSI").val()
+        var posicao = combo.substr(0,combo.search("-"));
+        var version = combo.substr(combo.search("-")+1,combo.length);
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'assinarDocumentoPadesETSISelo',
+            'arquivoBase64': arquivoBase64.trim(),
+            'arquivoSeloBase64': arquivoSeloBase64.trim(),
+            'posicaoX': posicaoX,
+            'posicaoY': posicaoY,
+            'largura': largura,
+            'altura': altura,
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              verificarSalvarAssinaturaPades(formCallback,obj.pacoteAssinado,caminhoSalvar);
+              unblockui();
+
+            }
+          }
+        });
+      }
+
+
+      function assinarDocumentoP7STabela(arquivoBase64,caminhoSalvar,id,proxURL){
+        var posicao = $("#"+id+"_posicao_assinador").val();
+        var version = $("#"+id+"_versao_assinador").val();
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'assinarDocumentoP7S',
+            'arquivoBase64': arquivoBase64,
+            'posicao': escape(posicao),
+            'version': escape(version)
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              verificarSalvarAssinaturaRedirect(obj.pacoteAssinado,caminhoSalvar,proxURL);
+              unblockui();
+            }
+          }
+        });
+      }
+
+      function verificarSalvarAssinatura(pacoteAssinado,caminhoSalvar){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarSalvarAssinatura',
+            'pacoteAssinado': pacoteAssinado,
+            'caminhoSalvar': caminhoSalvar
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                alert(obj.erro_msg);
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+            unblockui();
+          }
+        });
+      }
+
+      function verificarSalvarAssinaturaRedirect(pacoteAssinado,caminhoSalvar,proxURL){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarSalvarAssinatura',
+            'pacoteAssinado': pacoteAssinado,
+            'caminhoSalvar': caminhoSalvar
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                location.href=proxURL;
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+            unblockui();
+          }
+        });
+      }
+
+      function verificarSalvarAssinaturaXMLDsig(pacoteAssinado,caminhoSalvar){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarSalvarAssinaturaXMLDsig',
+            'pacoteAssinado': pacoteAssinado,
+            'caminhoSalvar': caminhoSalvar
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                alert(obj.erro_msg);
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+            unblockui();
+          }
+        });
+      }
+
+
+      function verificarSalvarAssinaturaXMLDsigRedirect(pacoteAssinado,caminhoSalvar,proxURL){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarSalvarAssinaturaXMLDsig',
+            'pacoteAssinado': pacoteAssinado,
+            'caminhoSalvar': caminhoSalvar
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                location.href=proxURL;
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+            unblockui();
+          }
+        });
+      }
+
+      function verificarSalvarAssinaturaPades(formCallback,pacoteAssinado,caminhoSalvar){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarSalvarAssinaturaPades',
+            'pacoteAssinado': pacoteAssinado,
+            'caminhoSalvar': caminhoSalvar
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                $('#cpf_assinador').val(obj.CPF);
+                $("#"+formCallback).submit();
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+            unblockui();
+          }
+        });
+      }
+
+      function verificarSalvarAssinaturaPadesTabela(proxUrl,pacoteAssinado,caminhoSalvar){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarSalvarAssinaturaPades',
+            'pacoteAssinado': pacoteAssinado,
+            'caminhoSalvar': caminhoSalvar
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                location.href=proxUrl;
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+            unblockui();
+          }
+        });
+      }
+
+
+      function verificarAssinaturaLoginPortal(pacoteAssinado){
+        var modulo = $("#modulo").val();
+        var urlLogin = $("#urlLogin").val();
+        var exec = $("#exec").val();
+        var fcjs = $("#fcjs").val();
+        var tipo = $("#tipo").val();
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarAssinatura',
+            'pacoteAssinado': pacoteAssinado,
+            'modulo':escape(modulo)
+
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                if(fcjs == "N"){
+                  logarTable(modulo,obj.cpf,urlLogin,tipo);
+                }else{
+                  logarTableFc(obj.cpf,modulo,exec,urlLogin);
+                }
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+          }
+        });
+      }
+
+      function verificarAssinaturaLogin(pacoteAssinado){
+        var modulo = $("#modulo").val();
+        var urlLogin = $("#urlLogin").val();
+        var tipo = $("#tipo").val();
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarAssinatura',
+            'pacoteAssinado': pacoteAssinado,
+            'modulo':escape(modulo)
+
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+
+                logar(modulo,obj.cpf,urlLogin,tipo);
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+          }
+        });
+      }
+
+      function verificarAssinaturaLoginNextUrl(pacoteAssinado,nextURL){
+        var modulo = $("#modulo").val();
+        var urlLogin = $("#urlLogin").val();
+        var tipo = $("#tipo").val();
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'verificarAssinatura',
+            'pacoteAssinado': pacoteAssinado,
+            'modulo':escape(modulo)
+
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                  location.href=nextURL+'?cpf='+obj.cpf;
+                // logar(modulo,obj.cpf,urlLogin,tipo);
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+          }
+        });
+      }
+
+
+
+      function obterScanners() {
+        blockui("Obtendo Scanners Aguarde.");
+        $.ajax({
+          type: 'GET',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'obterScanners'
+          },
+          success: function(obj) {
+            $("#comboScanners").empty();
+            $("#functionUnit").empty();
+            $('#comboScanners').append($('<option>', {
+                              value: "",
+                              "data-flatbed": "",
+                              "data-feeder": "",
+                              "data-adf": "",
+                              text : ""
+
+                          }));
+            $.each(obj, function () {
+              $('#comboScanners').append($('<option>', {
+                  value: this.posicao+"-"+this.versionScanner,
+                  "data-flatbed": this.flag_flatbed,
+                  "data-feeder": this.flag_feeder,
+                  "data-adf": this.flag_adf,
+                  "data-posicao_feeder": this.posicao_feeder,
+                  "data-posicao_flatbed": this.posicao_flatbed,
+                  text : this.nome
+
+              }));
+
+            });
+           unblockui();
+          }
+        });
+      }
+
+      function verificarConfiguracoesScanner(){
+        $("#functionUnit").empty();
+        var flag_flatbed = $('#comboScanners option:selected').attr("data-flatbed");
+        var flag_feeder = $('#comboScanners option:selected').attr("data-feeder");
+        var posicao_flatbed = $('#comboScanners option:selected').attr("data-posicao_flatbed");
+        var posicao_feeder = $('#comboScanners option:selected').attr("data-posicao_feeder");
+
+
+        if(flag_flatbed == 'true'){
+          $('#functionUnit').append($('<option>', {
+              value: 'flag_flatbed',
+              'data-posicao': posicao_flatbed,
+              text : 'Bandeja'
+
+          }));
+        }
+        if(flag_feeder == 'true'){
+          $('#functionUnit').append($('<option>', {
+              value: 'flag_feeder',
+              'data-posicao': posicao_feeder,
+              text : 'Alimentador'
+          }));
+        }
+        verificarADF();
+      }
+
+      function verificarADF(){
+        $('#opcoes_scanner').html("");
+        var flag_adf = $('#comboScanners option:selected').attr("data-adf");
+        var functionUnit = $('#functionUnit').val();
+
+        if(flag_adf == "true"){
+          $('#opcoes_scanner').append($('<input>', {
+                            type: "checkbox",
+                            name: "flag_adf",
+                            id: "flag_adf",
+                            onClick: "obterOpcaoSeparado(this)",
+                            value: "S"
+          }));
+          $('<label />', { 'for': 'flag_adf', text: "ADF" }).appendTo("#opcoes_scanner");
+        }
+
+        if(functionUnit == "flag_feeder"){
+          $("#arquivo_separado").remove();
+          $("#lblArquivoSeparado").remove();
+          $('#opcoes_scanner').append($('<input>', {
+                            type: "checkbox",
+                            name: "arquivo_separado",
+                            id: "arquivo_separado",
+                            value: "S"
+          }));
+          $('<label />', { 'for': 'arquivo_separado', text: "Arquivo Separado",id: "lblArquivoSeparado" }).appendTo("#opcoes_scanner");
+        }
+
+
+      }
+
+
+      function obterOpcaoSeparado(checkbox){
+        if($(checkbox).is(':checked')){
+          $("#arquivo_separado").remove();
+          $("#lblArquivoSeparado").remove();
+          $('#opcoes_scanner').append($('<input>', {
+                            type: "checkbox",
+                            name: "arquivo_separado",
+                            id: "arquivo_separado",
+                            value: "S"
+          }));
+          $('<label />', { 'for': 'arquivo_separado', text: "Arquivo Separado",id: "lblArquivoSeparado" }).appendTo("#opcoes_scanner");
+        }else{
+          $("#arquivo_separado").remove();
+          $("#lblArquivoSeparado").remove();
+        }
+      }
+
+
+      function scannearDocumento(){
+        var combo = $("#comboScanners").val()
+        var functionUnit = $("#functionUnit").val()
+        var posicao = combo.substr(0,combo.search("-"));
+        var versionScanner = combo.substr(combo.search("-")+1,combo.length);
+        if(functionUnit == 'flag_feeder'){
+          var posicaoFu = $('#comboScanners option:selected').attr("data-posicao_feeder");
+        }
+        if(functionUnit == 'flag_flatbed'){
+          var posicaoFu = $('#comboScanners option:selected').attr("data-posicao_flatbed");
+        }
+
+        var flag_adf = false;
+        var flag_arquivo_separado =false;
+        var compressao = "";
+        var extensao ="PNG";
+        var cor="Preto e Branco";
+        var resolucao="200";
+
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url : referencia+'://localhost:'+porta+'/test',
+          data: {
+            'exec': 'scannearDocumento',
+            'flag_adf' :flag_adf,
+            'flag_arquivo_separado' :flag_arquivo_separado,
+            'compressao' :compressao,
+            'extensao' :extensao,
+            'posicaoFu' :posicaoFu,
+            'cor' :cor,
+            'resolucao' :resolucao,
+            'posicao' :posicao,
+            'versionScanner' :versionScanner
+          },
+          success: function(obj) {
+            if((obj.assinado == 'S') && (obj.pacoteAssinado != '')){
+              verificarSalvarAssinatura(obj.pacoteAssinado,caminhoSalvar);
+              unblockui();
+            }
+          }
+        });
+      }
+
+      function logar(modulo,cpf,urlLogin,tipo){
+        if(tipo != 'crc'){
+          $("#cpf").val(cpf);
+          $("#form_cpf" ).submit();
+          // location.href=urlLogin+"?cpf="+cpf;
+        }else{
+          $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: modulo,
+            data: {
+              'exec': 'logar',
+              'cpf': cpf
+
+            },
+            success: function(obj) {
+              var obj = $.parseJSON(obj);
+              if(obj.HTML == ""){
+                // location.href=urlLogin;
+              }else{
+                $("#principal").html(obj.HTML);
+              }
+            }
+          });
+        }
+
+      }
+
+      function logarTable(modulo,cpf,urlLogin,tipo){
+        if(tipo != 'crc'){
+          $("#cpf_assinador").val(cpf);
+          $("#form_cpf" ).submit();
+          // location.href=urlLogin+"?cpf="+cpf;
+        }else{
+          $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: modulo,
+            data: {
+              'exec': 'logar',
+              'cpf': cpf
+
+            },
+            success: function(obj) {
+
+              var obj = $.parseJSON(obj);
+              if(obj.HTML == ""){
+                if(obj.ERRO_COD != 0){
+                  alert(obj.ERRO_MSG);
+                }else{
+                  location.href=urlLogin;
+                }
+              }else{
+                $("#principal").html(obj.HTML);
+              }
+            }
+          });
+        }
+      }
+
+
+      function logarTableParseSignature(modulo,signature,urlLogin,tipo){
+        if(tipo != 'crc'){
+          $("#cpf_assinador").val(signature);
+          $("#form_cpf" ).submit();
+          // location.href=urlLogin+"?cpf="+cpf;
+        }else{
+          $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: modulo,
+            data: {
+              'exec': 'logar',
+              'signature': signature
+
+            },
+            success: function(obj) {
+
+              var obj = $.parseJSON(obj);
+              if(obj.HTML == ""){
+                if(obj.ERRO_COD != 0){
+                  alert(obj.ERRO_MSG);
+                }else{
+                  location.href=urlLogin;
+                }
+              }else{
+                $("#principal").html(obj.HTML);
+              }
+            }
+          });
+        }
+      }
+
+      function logarTableFc(cpf,modulo,exec,urlLogin){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: modulo,
+          data: {
+            'exec': exec,
+            'cpf': cpf
+
+          },
+          success: function(obj) {
+
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                location.href=urlLogin;
+                break;
+              default:
+                $('.modal-backdrop').remove();
+                $('#assinador_conteudo').empty();
+
+
+                alert(obj.erro_msg);
+            }
+          }
+        });
+      }
+
+      function logarTableFcParseSignature(signature,modulo,exec,urlLogin){
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: modulo,
+          data: {
+            'exec': exec,
+            'signature': signature
+
+          },
+          success: function(obj) {
+
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+                location.href=urlLogin;
+                break;
+              default:
+                $('.modal-backdrop').remove();
+                $('#assinador_conteudo').empty();
+
+
+                alert(obj.erro_msg);
+            }
+          }
+        });
+      }
+
+      function assinarGenerico(obj,base64Json,versaoSoftware){
+        var conteudoOBJ = JSON.stringify(obj);
+        $.ajax({
+          type: 'POST',
+          crossDomain: true,
+          url: caminhoExecutar,
+          data: {
+            'exec': 'assinadorModal',
+            'versaoSoftware':versaoSoftware,
+            'base64Json': base64Json,
+            'conteudoOBJ': conteudoOBJ
+
+          },
+          success: function(obj) {
+            var obj = $.parseJSON(obj);
+            switch(parseInt(obj.erro_cod)) {
+              case 0:
+
+                $("#assinador_conteudo").html(obj.html);
+                break;
+              default:
+                alert(obj.erro_msg);
+            }
+          }
+        });
+      }

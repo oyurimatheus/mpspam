@@ -1,0 +1,186 @@
+/*! 2018-12-03 02:24 */
+!function(a, b) {
+    "use strict";
+    function c(a) {
+        if (!a.urlSeguranca) throw new Error("A URL do Sinesp Segurança não foi informada e o Menu Geral não está sendo utilizado.");
+        if (!a.siglaSistema) throw new Error("Sigla do sistema não informada.");
+    }
+    function d() {
+        return document.cookie.replace(/(?:(?:^|.*;\s*)iPlanetDirectoryPro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    }
+    function e() {
+        g = d(), f = angular.module("sinespModule", []), f.config([ "$provide", function(a) {
+            a.constant("configSinesp", {
+                urlSeguranca: "",
+                siglaSistema: "",
+                errorCallback: void 0,
+                callErrorCallback: function(a) {
+                    "function" == typeof this.errorCallback && this.errorCallback.call(null, a);
+                }
+            });
+        } ]), f.config([ "$httpProvider", function(a) {
+            a.interceptors.push("sinespHttpInterceptor");
+        } ]), f.factory("sinespHttpInterceptor", [ "$q", "$window", "configSinesp", function(b, c, e) {
+            return {
+                request: function(a) {
+                    var b = "?";
+                    return a.url.indexOf(h) > -1 && (a.url.indexOf("?") > 0 && (b = "&"), a.url = a.url + b + "access_token=" + g + "&always_ok=true&callback=JSON_CALLBACK"), 
+                    a.headers.Authorization = "token " + d(), a;
+                },
+                response: function(a) {
+                    return a.data.status_code && 200 !== a.data.status_code && (401 === a.data.status_code ? c.location.href = a.data.login_url : 403 === a.data.status_code ? c.location.href = a.data.acesso_negado_url : e.callErrorCallback(a.data)), 
+                    a;
+                },
+                responseError: function(d) {
+                    var f = d.data || {};
+                    return d.config.url.indexOf(h) > -1 ? e.callErrorCallback(d) : 401 === d.status ? f.login_url && (c.location.href = f.login_url) : 403 === d.status && (f.segundo_fator_url ? c.location.href = f.segundo_fator_url + encodeURIComponent(a.location.hash) : e.callErrorCallback({
+                        status_code: d.status,
+                        mensagem: f.mensagem || "Não autorizado"
+                    })), b.reject(d);
+                }
+            };
+        } ]), f.factory("sessaoAutenticadaSinesp", [ "$rootScope", "$q", "$http", "$interval", "$timeout", "$window", "configSinesp", function(e, f, j, k, l, m, n) {
+            function o() {
+                var a, b = f.defer(), c = d();
+                return v.initializing ? a = k(function() {
+                    v.initializing || (k.cancel(a), a = void 0, b.resolve());
+                }, 500) : v.init && g === c ? l(b.resolve, 100) : (g = c, v.initializing = !0, v.init = !1, 
+                j.jsonp(h + "/sessao_autenticada?sigla_sistema=" + n.siglaSistema).then(function(a) {
+                    delete v.initializing, v.usuario = void 0, v.vinculos = void 0, v.perfisAtivos = void 0, 
+                    v.funcionalidadesAtivas = void 0, v.identificador = a.data.identificador, v.nome = a.data.nome, 
+                    v.urlUsuario = a.data.usuario_url, v.urlVinculos = a.data.vinculos_url, v.lastCheckUsuario = 0, 
+                    v.lastCheckVinculos = 0, v.init = !0, k.cancel(u), t(), u = k(function() {
+                        t();
+                    }, 6e4), b.resolve();
+                }, function(a) {
+                    delete v.initializing, b.reject(a);
+                })), b.promise;
+            }
+            function p(a, b) {
+                var c;
+                v.shouldRenewUsuario() || b ? v.initializingUsuario ? c = k(function() {
+                    v.initializingUsuario || (k.cancel(c), c = void 0, a.resolve(v.usuario));
+                }, 500) : (v.initializingUsuario = !0, j.jsonp(v.urlUsuario).then(function(b) {
+                    delete v.initializingUsuario, v.setUsuario(b.data), a.resolve(v.usuario);
+                }, function(b) {
+                    delete v.initializingUsuario, a.reject(b);
+                })) : a.resolve(v.usuario);
+            }
+            function q(a, b) {
+                var c;
+                v.shouldRenewVinculos() || b ? v.initializingVinculos ? c = k(function() {
+                    v.initializingVinculos || (k.cancel(c), c = void 0, a.resolve(v.vinculos));
+                }, 500) : (v.initializingVinculos = !0, j.jsonp(v.urlVinculos).then(function(b) {
+                    delete v.initializingVinculos, v.setVinculos(b.data), a.resolve(v.vinculos);
+                }, function(b) {
+                    delete v.initializingVinculos, a.reject(b);
+                })) : a.resolve(v.vinculos);
+            }
+            function r() {
+                var a = {};
+                return v.perfisAtivos || (v.perfisAtivos = v.vinculos.map(function(a) {
+                    return a.perfis;
+                }).reduce(function(a, b) {
+                    return a.concat(b);
+                }).filter(function(a) {
+                    return !0 === a.ativo;
+                }).filter(function(b, c, d) {
+                    return !a.hasOwnProperty(b.id) && (a[b.id] = !0);
+                })), v.perfisAtivos;
+            }
+            function s() {
+                var a = {};
+                return v.funcionalidadesAtivas || (v.funcionalidadesAtivas = r().map(function(a) {
+                    return a.funcionalidades;
+                }).reduce(function(a, b) {
+                    return a.concat(b);
+                }).filter(function(a) {
+                    return !0 === a.ativo;
+                }).filter(function(b, c, d) {
+                    return !a.hasOwnProperty(b.id) && (a[b.id] = !0);
+                })), v.funcionalidadesAtivas;
+            }
+            function t(a) {
+                o().then(function() {
+                    p(f.defer(), a), q(f.defer(), a);
+                });
+            }
+            var u, v;
+            return v = {
+                init: !1,
+                lastCheckUsuario: 0,
+                lastCheckVinculos: 0,
+                setUsuario: function(a) {
+                    this.usuario = a, this.lastCheckUsuario = new Date().getTime(), e.$broadcast("usuarioAtualizado", this.usuario);
+                },
+                setVinculos: function(a) {
+                    this.vinculos = a, this.perfisAtivos = void 0, this.funcionalidadesAtivas = void 0, 
+                    this.lastCheckVinculos = new Date().getTime(), e.$broadcast("funcionalidadesAtualizadas", s());
+                },
+                shouldRenewUsuario: function() {
+                    return new Date().getTime() - this.lastCheckUsuario > 6e5;
+                },
+                shouldRenewVinculos: function() {
+                    return new Date().getTime() - this.lastCheckVinculos > 18e4;
+                }
+            }, n.urlSeguranca = n.urlSeguranca || (b ? b.URLS.seguranca : null), c(n), h = n.urlSeguranca + "/api", 
+            i = n.urlSeguranca + "/private/escolha_segundo_fator.jsf?siglaSistema=" + n.siglaSistema + "&siglaFunc={0}&goto={1}", 
+            {
+                init: function() {
+                    var a = f.defer(), b = f.defer(), c = f.defer();
+                    return o().then(function() {
+                        p(b), q(c), f.all([ b.promise, c.promise ]).then(function() {
+                            a.resolve();
+                        });
+                    }), a.promise;
+                },
+                getUsuario: function() {
+                    var a = f.defer();
+                    return o().then(function() {
+                        p(a);
+                    }), a.promise;
+                },
+                getVinculos: function() {
+                    var a = f.defer();
+                    return o().then(function() {
+                        q(a);
+                    }), a.promise;
+                },
+                getPerfis: function() {
+                    var a = f.defer();
+                    return this.getVinculos().then(function() {
+                        a.resolve(r());
+                    }), a.promise;
+                },
+                getFuncionalidades: function() {
+                    var a = f.defer();
+                    return this.getVinculos().then(function() {
+                        a.resolve(s());
+                    }), a.promise;
+                },
+                funcionalidadeAutorizada: function(b) {
+                    var c = f.defer();
+                    return t(!0), this.getVinculos().then(function() {
+                        var d, e = s(), f = !1;
+                        for (d = 0; d < e.length; d++) if (e[d].sigla === b) {
+                            !e[d].exige_segundo_fator || e[d].segundo_fator_validado ? f = !0 : m.location.href = i.replace("{0}", b).replace("{1}", encodeURIComponent(a.location.href));
+                            break;
+                        }
+                        c.resolve({
+                            autorizada: f
+                        });
+                    }), c.promise;
+                },
+                existeFuncionalidadeNosVinculos: function(a) {
+                    var b, c;
+                    if (!v.init || !v.vinculos) throw new Error("Sessão ou vínculos não inicializados.");
+                    for (b = s(), c = 0; c < b.length; c++) if (b[c].sigla === a) return !0;
+                    return !1;
+                }
+            };
+        } ]);
+    }
+    var f, g, h, i;
+    if (!angular) throw new Error("Não existe o objeto do Angular na página.");
+    e();
+}(window, window.MENU_SNSP);

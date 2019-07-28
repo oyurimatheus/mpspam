@@ -1,0 +1,216 @@
+* { margin: 0; padding: 0; border: 0; list-style: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+body { font-size: 70%;}
+.iframe { background:none;}
+a { text-decoration: none; }
+a:hover {text-decoration:underline;}
+.clear {clear:both;}
+
+input, textarea, select {}
+
+.left {float:left;}
+.right {float:right;}
+.center {clear:both; margin:0}
+
+
+.canvas {width:776px; margin:0 auto 0 auto; position:relative; z-index:5 }
+.canvasRodape {width:776px; margin:0 auto 0 auto; position:relative; }
+
+.imgLeft {float:left; margin:0 10px 10px 0; border:4px solid #EBEBC8;}
+.imgRight {float:right; margin:0 0 10px 10px; border:4px solid #EBEBC8;}
+.imgCenter {margin-bottom: 10px; clear:none; border:4px solid #EBEBC8;}
+
+.imgRegistroLeft {float:left; margin:0 10px 10px 0;}
+.imgRegistroLeft img {border:4px solid #EBEBC8;}
+.imgRegistroRight {float:right; margin:0 0 10px 10px;}
+.imgRegistroRight img {border:4px solid #EBEBC8;}
+.imgRegistroCenter {margin-bottom: 10px; clear:none;}
+.imgRegistroCenter img {border:4px solid #EBEBC8;}
+.imgRegistroLeft span {font-style:italic; display:block; color:#666666}
+.imgRegistroLeft span { font-size:10px;}
+
+/* topo */
+
+.topo { height:83px; position:relative;}
+.topo h1 {}
+.topo .quadroBusca {background:url(../img/buscaFundoTopo.gif) #F1F1D8 no-repeat top center; height:74px; position:absolute; right:0; top:9px; width:194px;}
+.topo .quadroBusca .controleFonte { color:#999933; font-size:0.8em;}
+.topo .quadroBusca .controleFonte span {margin:0 7px 0 8px; position:relative; top:4px; font-family:Arial, Helvetica, sans-serif; }
+.topo .quadroBusca .controleFonte img { vertical-align:text-top;}
+.topo .quadroBusca .formBusca { height:50px; background:#EBEBC8; width:194px; position:absolute; bottom:0px; left:0; }
+.topo .quadroBusca .formBusca .campoTexto {width:130px; border:#D3D385 1px solid; height:16px; position:absolute; top:8px; left:6px}
+.topo .quadroBusca .formBusca .btnImage {position:absolute; top:8px; right:6px}
+.topo .quadroBusca .formBusca h5 { position:absolute; bottom:8px; left:6px; z-index:5}
+.topo .quadroBusca .formBusca .fundoRodape {background:url(../img/buscaFundoRodape.gif) no-repeat; width:194px; height:7px; z-index:0; position:absolute; top:43px; left:0;}
+
+.menuPrincipal { width:158px; padding:14px 0 20px 8px; float:left; z-index:5; position:relative;
+top:-14px;}
+
+.menuPrincipal ul { background:#79A6A6; width:150px; }
+.menuPrincipal ul li {color:#E4EDED; border-bottom:#A1C1C1 solid 1px; padding:7px; display:block; width:136px; position:relative;}
+.menuPrincipal ul li a {color:#E4EDED;}
+.menuPrincipal ul li img {position:absolute; left:138px; top:7px;}
+.menuPrincipal .overMarcado { background: #9DBDBD; color:#FFFFFF;}
+.menuPrincipal .overMarcado a {color:#FFFFFF;}
+.menuPrincipal ul li a:hover { text-decoration:none;}
+.absolute { position:absolute}
+
+.quadroContato { width:130px; margin:10px; height:91px;}
+.quadroContato h3 { margin:0 0 9px 0}
+.quadroContato h4 { color:#426464; }
+.quadroContato p {color:#4C7373; margin:0 0 7px 0}
+.quadroContato h5 { color:#426464; }
+
+.menuEleitor { background:#BEDF5B; height:45px; position:relative; width:610px; margin:1px 0 0 0; }
+.menuEleitor h3 { position:absolute; top:1px; left:15px;}
+.menuEleitor li {float:right; padding:4px 7px 0 0;}
+
+.menuEleicoes {background:#83A321; height:45px; position:relative; width:610px; margin:1px 0 0 0;}
+.menuEleicoes li {float:right; padding:4px 7px 0 0;}
+
+.mioloInterna { padding:10px 10px 20px 7px; color:#777; list-style: outside disc;}
+.mioloInterna p { margin:0 0 10px 0;}
+
+.mioloInterna h2 { color:#79A6A6; border-bottom: 1px solid #eee; padding:0 0 3px 3px; margin:10px 0 10px 0;}
+
+/* .mioloInterna ul li { background:url(../img/maisNoticiasMarcador.gif) 3px 8px no-repeat; padding:0 0 8px 10px; line-height:18px;} sandro 23/07/2008 */ 
+.mioloInterna ul li { padding:0 0 8px 10px; }
+
+.listagemTextos {}
+.listagemTextos h3 {color:#79A6A6; border-bottom: 0px solid #eee; padding-bottom:3px;}
+.listagemTextos h3 a {color:#79A6A6;}
+.listagemTextos p {color:#666666;}
+.listagemTextos p a {}
+.listagemTextos ul {padding:5px 0 0 0; margin:0 0 0 15px 0;}
+.listagemTextos ul li {margin:0 0 12px 0;}
+.listagemTextos ul li.cat ul li { margin-bottom:5px; }
+.listagemTextos ul li.cat h1 {
+	color:#aaa;
+	border-bottom: 2px solid #eee;
+	font-size:18px;
+	margin-bottom:3px;
+	font-weight:bold;
+}
+
+.estatisticas { width:270px; color:#FFFFFF; position:absolute; top:2px; left:18px;}
+.estatisticas a {color:#FFFFFF; line-height:12px;}
+.estatisticas h6 { font-weight:normal; margin-bottom:2px; }
+.estatisticas p { font-weight:bold; }
+
+.breadCrumbs {width:610px; background:#99CC00; height:18px; margin:1px 0 0 0;}
+.breadCrumbs h5 {color:#fff; padding:2px 0 0 8px; font-weight:normal;}
+.breadCrumbs h5 a {color:#FFFFFF;}
+
+/* Layout Eleições */
+.breadCrumbs {height:23px;}
+.breadCrumbs h5 {padding:5px 0 0 8px;}
+
+
+.submenu { height:38px; background:#F7F7EE; border-top:1px #FFFFFF solid; }
+.submenu ul li { display:table; height:38px; _height:28px; float:left; width:70px; padding:5px 9px 5px 9px; border-right:1px solid #FFFFFF; font-family:Verdana;}
+.submenu ul li a {color:#000000; font-family:Verdana;}
+.submenu ul .maior { width:120px;}
+
+.abaSubmenu { width:172px; background: #9DBDBD; position:absolute; left:157px; top:0}
+
+.abaSubmenu .sombra { position:absolute; top:0; left:0; z-index:0;}
+.abaSubmenu .fundoTopo { width:172px; height:8px; position:absolute; right:0; top:-8px;}
+.abaSubmenu .fundoRodape { width:171px; height:8px; position:absolute; right:0; bottom:-8px;}
+.abaSubmenu .opcao {background:url(../img/separadorRodape.gif) no-repeat 5px 9px; padding:4px 5px 4px 13px; position:relative; z-index:5; margin:0 0 0 7px }
+.abaSubmenu a {color:#FFFFFF;}
+.abaSubmenu a:hover { text-decoration:underline; }
+
+.conteudo {width:610px; float:left;}
+.conteudo .miolo { width:415px; float:left; margin:10px 0 0 0; color:#666666; }
+
+.registro {clear:both; margin:0 0 15px 0; color:#666666; line-height:140%}
+.registro h2 { margin:0 0 10px 0}
+.registro p {margin:0 0 10px 0;}
+.registro p a {color:#616161;}
+.registro h4 {color:#426464;}
+
+.quadroPaginacao { background:#F0F0F0;  width:588px; height:28px; position:relative; text-align:center; margin:0 0 10px 0 }
+.quadroPaginacao .cantoEsq { background:url(../img/paginacaoCantoEsq.gif) no-repeat; width:3px; height:28px; position:absolute; top:0; left:0; }
+.quadroPaginacao .cantoDir { background:url(../img/paginacaoCantoDir.gif) no-repeat; width:3px; height:28px; position:absolute; top:0; right:0; }
+.quadroPaginacao h5 { color:#000000; font-weight:normal; position:absolute; top:7px; left:10px;}
+.quadroPaginacao .paginas { padding:5px 0 0 0;}
+.quadroPaginacao .paginas img { position:relative; top:2px;}
+.quadroPaginacao .paginas a {color:#000000;}
+.quadroPaginacao h6 {color:#000000; font-weight:normal; position:absolute; top:4px; right:10px; }
+.quadroPaginacao h6 span {position:relative;} 
+.quadroPaginacao h6 input {width:25px; border:#CCCCCC 1px solid; vertical-align:middle;}
+
+.conteudo .menuBanners { width:194px; float:left; }
+
+.cartolaTitulo {  width:610px; height:64px;position:relative;}
+.cartolaTitulo h2 { font-weight:bold; position:absolute; left:9px; bottom:7px; }
+
+/* Layout Eleições */
+.cartolaTitulo {height:68px;}
+
+.destaqueNoticia { width:395px; margin:0 0 3px 10px;}
+.destaqueNoticia h3 { font-weight:normal; margin-bottom:7px;}
+.destaqueNoticia h3 a {color:#444;}
+.destaqueNoticia p a {color:#666666;}
+
+
+.maisNoticias { width:395px; margin:0 0 15px 10px; }
+.maisNoticias h3 {margin:0 0 5px 0;}
+.maisNoticias ul {margin:0 0 4px 0;}
+.maisNoticias ul li { background:url(../img/maisNoticiasMarcador.gif) 3px 8px no-repeat; padding:0 0 5px 10px;}
+.maisNoticias ul li a {color:#666;}
+.maisNoticias h5 {font-weight:normal;}
+.maisNoticias h5 a {color:#878787;}
+
+.destaquesHome { width:395px; margin:0 0 0 10px; }
+.destaquesHome h3 {margin:0 0 5px 0;}
+.destaquesHome h5 { color:#9A9A50; margin-top:6px;}
+.destaquesHome h5 a {color:#9A9A50}
+.destaquesHome p a {color:#9A9A50}
+
+.menuBanners ul li { width:195px; height:60px; border-bottom:1px #E2E2E2 solid; text-align:right;}
+.menuBanners ul li h3 { color:#A0A0A0; margin:0 10px 0 10px; padding:6px 0 0 0;} 
+.menuBanners ul li p { margin:0 10px 0 10px; color:#A0A0A0;}
+.over * {text-decoration:underline; cursor:pointer;}
+.menuBanners .destaquesMenuBanners {position:relative;}
+.menuBanners .destaquesMenuBanners * {color:#9A9A50;}
+.menuBanners .destaquesMenuBanners .fundoDirRodape {background:url(../img/menuDirFundoRodape.gif) no-repeat; width:6px; height:6px; position:absolute; top:115px; left:0}
+.menuBanners .destaquesMenuBanners ul li {background:#EBEBC8; margin:1px 0 0 0; border:none;}
+.menuBanners .ultimo {border:none;}
+
+.rodapeCima { background:#EBEBC8; height:60px;}
+.rodapeBaixo { background:#DEDEA3; height:20px;}
+
+.textoRodape { width:400px; color:#93934D; position:absolute; top:8px; left:169px;}
+
+.menuRodape { width: 194px; position:absolute; right:0; top:7px}
+.menuRodape ul li {float:left;}
+
+.rodapeBaixo { position:relative; z-index:0}
+.rodapeBaixo ul {padding:3px 0 0 20px}
+.rodapeBaixo ul li {display:inline; color:#9A9A50;}
+.rodapeBaixo ul img {margin:0 8px 0 8px;}
+.rodapeBaixo ul li a {color:#9A9A50;}
+
+.fundoRodapeMenuPrincipal { background:url(../img/menuRodape.gif) no-repeat; width:166px; height:41px; position:absolute; top:0; left:0;}
+
+
+div.error {
+	border: 1px solid;
+	margin: 10px 20px 15px 20px;
+	border-color: #DB3324;
+	padding:12px 12px 12px 30px;;
+	color:#99000A;
+	font-size:11px;
+	font-weight:bold;
+	background-color:#FFF8F7;
+	background-image: url('../img/red.gif');
+	background-repeat:no-repeat;
+	background-position: 10px 13px;
+}
+
+div.rss {
+	padding: 6px;
+	text-align:right;
+	border-bottom:1px solid #eee;
+}
+.formulario fieldset {padding:5px 0 5px 10px !important /*Non-IE6*/; padding:0 /*IE6*/; margin:0 0 20px 0; border:solid 1px rgb(220,220,220); width:80%;}

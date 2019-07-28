@@ -1,0 +1,1049 @@
+/* Folha de estilos responsavel pela formatacao dos itens genericos das paginas */
+
+
+
+/* DEFAULT */
+
+html, body, form {
+
+	margin: 0;
+
+	padding: 0;
+
+	color: #303030;
+
+	font-size: 11px;    
+
+	overflow-x: hidden;
+
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
+a {
+
+	color: #043a66;
+
+	text-decoration: underline;
+
+}
+
+a:hover {
+
+	text-decoration: none;
+
+}
+
+a img {
+
+	border: 0;
+
+}
+
+
+
+/* CABECALHO */
+
+/* Estilo para barra amarela do Governo Eletronico para aplicacoes Internet */
+
+
+
+
+
+#governoInterna {
+
+	background:#004B82;
+
+	margin: 0 auto;
+
+	height: 23px;
+
+}
+
+#governoInfiniteLine {
+
+	width: 100%;
+
+	height: 1px;
+
+	background:#FFCC00;
+
+}
+
+
+
+#brasilInterna {
+
+
+
+	width: 1000px;
+
+	height: 23px;
+
+	background-image: url(../images/mte/barra-brasil-v3-azul.gif);
+
+	float: right;
+
+
+
+}
+
+.topo {
+
+	width: 100%;
+
+	height: 60px;
+
+	/*background-color: #015DA6;
+
+	background-repeat: repeat-y;
+
+	background-position: left top;*/
+
+	background: url(../images/mte/nav_background.png);
+
+}
+
+#logoMTE {
+	width: 70px;
+	float: left;
+	vertical-align: middle;
+	padding: 2px 110px 11px 11px;
+	padding-right: 25px;
+
+}
+
+
+
+#logoSirc {
+	padding-top: 12px !important;
+
+	vertical-align: bottom !important;
+}
+
+
+
+#logoEntidade { 
+	padding-top: 6px;
+
+	vertical-align: bottom;
+}
+
+
+#logoEntidadeNovo { 
+
+	float: right;
+}
+
+
+#seloComemorativo { 
+
+	float: right;
+}
+
+.topo h1 {
+   margin: 3px;
+
+   float: left;
+
+   color: #fff;
+
+   font-weight: bold;
+
+   font-size: 18px !important;
+
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* MENU */
+
+.menu { 
+
+	height:24px;
+
+	background-image:url(../images/mte/bg_menu.gif) !important;
+
+}
+
+#icons { 
+
+	position: absolute;
+
+	text-align:right;
+
+	padding-top:6px;
+
+	z-index:30000;
+
+    width:50px;
+
+    left:100%;
+
+    margin-left: -52px;
+
+}
+
+.usuario {
+
+	font-family: Arial, Helvetica, sans-serif;
+
+	font-size: 11px;
+
+	color: #000000;
+
+	text-align: right;
+
+	padding-right: 15px;
+
+}
+
+
+
+/* CONTEUDO */
+
+
+
+#conteudo {
+
+		
+
+}
+
+h2 {
+
+	width: 95%;
+
+	margin: 0 auto;
+
+	color: #043d6a;
+
+	font-size: 12px;
+
+	font-weight: bold;
+
+	padding-right: 10px;
+
+    border-bottom: 1px solid #619b61;
+
+}
+
+/* Estilo usado para tratar dos links dentro das tags H2 para facilitar o acesso ao conteudo das paginas */
+
+h2 a {
+
+	text-decoration: none;
+
+}
+
+
+
+h3 {
+
+	width: 90%;
+
+	margin: 0 auto;
+
+	color: #043d6a;
+
+	font-size: 11px;
+
+	font-weight: bold;
+
+	padding-right: 20px;
+
+    border-bottom: 1px solid #619b61;
+
+}
+
+/* Estilo usado para tratar dos links dentro das tags H3 para facilitar o acesso ao conteudo das paginas */
+
+h3 a {
+
+	text-decoration: none;
+
+}
+
+
+
+
+
+/* Ha tres estilos de paragrafos:
+
+ * - o primeiro (p) pode ser usado em qualquer local que necessitar de texto dentro de uma pagina 
+
+ * - o segundo (p.aviso) deve ser usado sob o titulo da pagina para avisos específicos como, por exemplo, o aviso dos campos obrigatorios
+
+ * - o terceiro pode ser usado para textos que necessitem chamar uma atencao maior do usuario. Deve ser aplicado para um paragrafo apenas.
+
+ */
+
+p {
+
+	width: 90%;
+
+	margin: 0 auto;
+
+}
+
+p.aviso {
+
+	width: 95%;
+
+	padding-right: 10px;
+
+}
+
+p.imperativo {
+
+	color: #000;
+
+	padding: 5px 30px;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/aponta.gif);
+
+}
+
+
+
+div.aguarde {
+
+	width: 100%;
+
+	height:100%;
+
+	padding: 0px 0px; 
+
+	border: 0px solid #fc0;
+
+	background-color: #999999;
+
+	z-index: 998;
+
+	border: 0px;
+
+	opacity: 0.3;
+
+	-moz-opacity : 0.3;
+
+    -khtml-opacity : 0.3;
+
+    filter:alpha(opacity=30);
+
+}
+
+
+
+div.mensagemAguarde {
+
+	width: 40%;
+
+	border: 1px solid;
+
+	border-color: #81c181;
+
+	font-weight: bold;
+
+	text-align: center;
+
+	background-color: #FFFFFF;
+
+	z-index: 999;
+
+	opacity: 1 !important;
+
+	-moz-opacity : 1 !important;
+
+    -khtml-opacity : 1 !important;
+
+    filter:alpha(opacity=100) !important;
+
+}
+
+
+
+/* A classe abaixo deve ser usada para tornar elementos inline em float, caso seja necessario */
+
+.flutua{
+
+	float: left;
+
+	padding: 2px;
+
+}
+
+/* RODAPE */
+
+.rodape {
+
+	float: left;
+
+	width: 100%;
+
+	margin: 10px 0;
+
+}
+
+.rodape .links { 
+
+	color: #fff;
+
+	height: 18px;
+
+	font-size: 10px;
+
+	padding-top: 6px;
+
+	text-align: center;
+
+	font-family: Arial, Helvetica, sans-serif;
+
+	background-image: url(../images/mte/bg_menu.gif) !important;
+
+}
+
+.rodape .links a {
+
+	color: #fff;
+
+	text-decoration: none;
+
+}
+
+.rodape .links a:hover {
+
+	text-decoration: underline;
+
+}
+
+.textoRodape {
+
+	color: #929292;
+
+	font-size: 10px;
+
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.textoRodape a {
+
+	color: #929292;
+
+	margin-left: 3px;
+
+	margin-right: 6px;
+
+	font-weight: normal;
+
+	text-decoration: none;
+
+}
+
+.textoRodape a:hover {
+
+	text-decoration: underline;
+
+}
+
+.esquerda {
+
+	width: 19%;
+
+	float: left;
+
+	text-align: left;
+
+	padding-left: 1%;
+
+}
+
+.centro {
+
+	width: 58%;
+
+	float: left;
+
+	text-align: center;
+
+	margin-bottom: 5px;
+
+}
+
+.direita {
+
+	width: 19%;
+
+	float: right;
+
+	text-align: right;
+
+	padding-right: 1%;
+
+}
+
+/* GERAL */
+
+/* Os estilos 'even' e 'odd' sao usados em lugares onde se faz necessario alternar a cor das linhas */
+
+.odd {
+
+	background-color: #ebebeb;
+
+}
+
+.even {
+
+	background-color: #f7f7f7;
+
+}
+
+/* Os estilos 'left', 'right' e 'center' sao usados para o alinhamento do texto */
+
+.left {
+
+	text-align: left;
+
+}
+
+.right {
+
+	text-align: right;
+
+}
+
+.center {
+
+	text-align: center !important;
+
+}
+
+
+
+/* TAMANHOS */
+
+
+
+/* Os estilos abaixo possuem diversas opcoes de tamanho e pode ser usados em qualquer elemento. 
+
+ * As regras de tamanho prevalecerao sobre outras regras de tamanho herdadas pelo elemento ao 
+
+ * qual elas serao aplicadas, devido o uso do !important.
+
+ */
+
+ .tamanho01{
+
+	width: 01% !important;
+
+}
+
+.tamanho02{
+
+	width: 02% !important;
+
+}
+
+.tamanho03{
+
+	width: 03% !important;
+
+}
+
+.tamanho04{
+
+	width: 04% !important;
+
+}
+
+.tamanho05{
+
+	width: 05% !important;
+
+}
+
+.tamanho06{
+
+	width: 06% !important;
+
+}
+
+.tamanho07{
+
+	width: 07% !important;
+
+}
+
+.tamanho08{
+
+	width: 08% !important;
+
+}
+
+.tamanho09{
+
+	width: 09% !important;
+
+}
+
+.tamanho10{
+
+	width: 10% !important;
+
+}
+
+.tamanho15{
+
+	width: 15% !important;
+
+}
+
+.tamanho20{
+
+	width: 20% !important;
+
+}
+
+.tamanho25{
+
+	width: 25% !important;
+
+}
+
+.tamanho30{
+
+	width: 30% !important;
+
+}
+
+.tamanho35{
+
+	width: 35% !important;
+
+}
+
+.tamanho40{
+
+	width: 40% !important;
+
+}
+
+.tamanho45{
+
+	width: 45% !important;
+
+}
+
+.tamanho50{
+
+	width: 50% !important;
+
+}
+
+.tamanho55{
+
+	width: 55% !important;
+
+}
+
+.tamanho60{
+
+	width: 60% !important;
+
+}
+
+.tamanho65{
+
+	width: 65% !important;
+
+}
+
+.tamanho70{
+
+	width: 70% !important;
+
+}
+
+.tamanho75{
+
+	width: 75% !important;
+
+}
+
+.tamanho80{
+
+	width: 80% !important;
+
+}
+
+.tamanho85{
+
+	width: 85% !important;
+
+}
+
+.tamanho90{
+
+	width: 90% !important;
+
+}
+
+.tamanho95{
+
+	width: 95% !important;
+
+}
+
+.tamanho100{
+
+	width: 100% !important;
+
+}
+
+
+
+/* BORDAS */
+
+.borda01PX{
+
+	margin: 2px !important;
+
+}
+
+.padding00PX{
+
+	padding: 0px 0px 0px 0px !important;
+
+}
+
+
+
+
+
+/* TAMANHOS MATRICULA*/
+
+.tamanho01PX{
+
+	width: 1px;
+
+}
+
+.tamanho300PX{
+
+	width: 300px;
+
+}
+
+
+
+.tamanho01M{
+
+	width: 9px;
+
+}
+
+.tamanho02M{
+
+	width: 18px;
+
+}
+
+.tamanho03M{
+
+	width: 27px;
+
+}
+
+.tamanho04M{
+
+	width: 36px;
+
+}
+
+.tamanho05M{
+
+	width: 45px;
+
+}
+
+.tamanho06M{
+
+	width: 55px;
+
+}
+
+.tamanho07M{
+
+	width: 64px;
+
+}
+
+.tamanho08M{
+
+	width: 73px;
+
+}
+
+.tamanho09M{
+
+	width: 81px;
+
+}
+
+.tamanho10M{
+
+	width: 90px;
+
+}
+
+/* MENSAGENS */
+
+div.mensagem ul {
+
+	clear: both;
+
+	width: 90%;
+
+	padding: 0;
+
+	margin: 15px auto;
+
+}
+
+div.mensagem ul li.sucesso {
+
+	padding: 2px 20px; 
+
+	list-style: none;
+
+	font-weight: bold;
+
+	border: 1px solid #696;
+
+ 	background-color: #B0E5B0;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_verde.png);
+
+}
+
+p.sucesso {
+
+	clear: both;
+
+	width: 85%;
+
+	padding: 2px 20px; 
+
+	font-weight: bold;
+
+	border: 1px solid #696;
+
+ 	background-color: #B0E5B0;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_verde.png);
+
+}
+
+div.mensagem ul li.alerta {
+
+	padding: 2px 20px; 
+
+	list-style: none;
+
+	font-weight: bold;
+
+	border: 1px solid #fc0;
+
+ 	background-color: #fdf6c4;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_amarela.png);
+
+}
+
+p.alerta {
+
+	clear: both;
+
+	width: 85%;
+
+	padding: 2px 20px; 
+
+	font-weight: bold;
+
+	border: 1px solid #fc0;
+
+ 	background-color: #fdf6c4;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_amarela.png);
+
+}
+
+div.mensagem ul li.erro, p.erro {
+
+	padding: 2px 20px; 
+
+	list-style: none;
+
+	font-weight: bold;
+
+	border: 1px solid #a02f37;
+
+ 	background-color: #fcb8ac;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_vermelha.png);
+
+}
+
+p.erro {
+
+	clear: both;
+
+	width: 85%;
+
+	padding: 2px 20px; 
+
+	font-weight: bold;
+
+	border: 1px solid #a02f37;
+
+ 	background-color: #fcb8ac;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_vermelha.png);
+
+}
+
+div.mensagem ul li.dica, p.dica {
+
+	padding: 2px 20px; 
+
+	list-style: none;
+
+	font-weight: bold;
+
+	border: 1px solid #3980f4;
+
+ 	background-color: #c4deeb;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_azul.png);
+
+}
+
+p.dica {
+
+	clear: both;
+
+	width: 85%;
+
+	padding: 2px 20px; 
+
+	font-weight: bold;
+
+	border: 1px solid #3980f4;
+
+ 	background-color: #c4deeb;
+
+	background-position: left;
+
+	background-repeat: no-repeat;
+
+	background-image: url(../images/mps/msg_azul.png);
+
+}
+
+div.mensagem ul li, p.alerta, p.sucesso, p.erro, p.dica {
+
+	margin-top: 5px;
+
+}
+
+
+
+.normal {
+
+	font-weight: normal !important;
+
+}
+
+.negrito {
+
+	font-weight: bold !important;
+
+}
+
+ol li {
+
+	font-family: Arial, Helvetica, sans-serif;
+
+	font-size: 12px;
+
+	color: #000000;	
+
+	margin: 10px;	
+
+	margin-left: 30px;
+
+}
+
+.aba {
+
+	height: 30px;
+
+	border: 1px solid;
+
+	border-color:#707070;
+
+	background-color: #dddddd;
+
+	background-position: left top;
+
+	text-decoration: none;
+
+	font-size:0.9em;
+
+	font-weight:bold;
+
+	white-space: nowrap;
+
+	border-spacing: 10px !important; 
+
+	cursor:pointer;
+
+	height:21px;
+
+	margin:0 2px;
+
+	padding:0 5px;
+
+}

@@ -1,0 +1,301 @@
+// Angular
+var app = angular.module("infoseg", ['appSeguranca', 'sinespModule']);
+
+app.config(['configSinesp', function(configSinesp) {
+	configSinesp.urlSeguranca = urlSeguranca;
+	configSinesp.siglaSistema = 'INFOSEG';
+	configSinesp.errorCallback = function(error) {
+		if (error.status_code === 403) {
+			//Acesso Negado...
+			console.log('Erro capturado na aplicação cliente: ' + error);
+		}
+	};
+}]);
+
+var appSeguranca = angular.module('appSeguranca', []);
+
+appSeguranca.controller('segurancaController', ['$scope', 'sessaoAutenticadaSinesp', function($scope, sessao) {
+	$scope.consultaLoteAutorizada = false;
+	$scope.usuarioPerfilInteligencia = false;
+	$scope.usuarioAprovador = false;
+	$scope.gestaoServicos = false;
+	$scope.painelIndiceNacional = false;
+	$scope.painelBasesIntegradas = false;
+	$scope.menuGestao = false;
+
+	/*
+	sessao.getUsuario().then(function(usuario) {
+		$scope.usuarioAutenticado = {
+				nome: usuario.nome,
+				identificador: usuario.identificador
+		}
+	});
+
+	sessao.getFuncionalidades().then(function(funcionalidades) {
+		var lstFuncionalidades = [];
+		for (var i = 0; i < funcionalidades.length; i++) {
+			if(funcionalidades[i].sigla != ""){
+				lstFuncionalidades.push(funcionalidades[i].sigla);
+			}
+		}
+		$scope.usuarioFuncionalidades = lstFuncionalidades.join(", ");
+	});
+	 */
+
+	var atualizaLinkManual = function () {
+		if($scope.consultaLoteAutorizada){
+			$scope.urlManual = "manual/MANUAL-INFOSEG-LOTE.pdf";
+		} else {
+			$scope.urlManual = "manual/MANUAL-INFOSEG.pdf";
+		}
+	};
+
+	sessao.getPerfis().then(function(perfis) {
+		var lstPerfis = [];
+		for (var i = 0; i < perfis.length; i++) {
+			if(perfis[i].descricao != ""){
+				lstPerfis.push(perfis[i].descricao);
+			}
+		}
+		$scope.usuarioPerfis = lstPerfis.join(", ");
+	});
+
+	sessao.funcionalidadeAutorizada('CONSULTA_LOTE').then(function(aut) {
+		if (aut.autorizada) {
+			$scope.consultaLoteAutorizada = true;
+		}
+		atualizaLinkManual();
+	});
+
+	sessao.funcionalidadeAutorizada('APROVACAO_LOTE').then(function(aut) {
+		if (aut.autorizada) {
+			$scope.usuarioAprovador = true;
+			if (typeof Lote !== 'undefined') {
+				Lote.usuarioAprovador = true;
+			}
+		}
+	});
+
+	sessao.funcionalidadeAutorizada('FUNC_INTELIGENCIA').then(function(aut) {
+		if (aut.autorizada) {
+			$scope.usuarioPerfilInteligencia = true;
+			if (typeof Siapen !== 'undefined') {
+				Siapen.usuarioPerfilInteligencia = true;
+			}
+		}
+	});
+
+	sessao.funcionalidadeAutorizada('GESTAO-SERVICOS').then(function(aut) {
+		if (aut.autorizada) {
+			$scope.gestaoServicos = true;
+			$scope.menuGestao = true;
+		}
+	});
+
+	sessao.funcionalidadeAutorizada('PAINEL_INDICE_NACIONAL').then(function(aut) {
+		if (aut.autorizada) {
+			$scope.painelIndiceNacional = true;
+			$scope.menuGestao = true;
+		}
+	});
+
+	sessao.funcionalidadeAutorizada('PAINEL_BASES_INTEGRADAS').then(function(aut) {
+		if (aut.autorizada) {
+			$scope.painelBasesIntegradas = true;
+			$scope.menuGestao = true;
+		}
+	});
+}]);
+
+app.controller('advancedSearchController', function($scope, $http) {
+
+	$scope.groupServices = [];
+	$scope.groupIndividuos = [];
+	$scope.groupVeiculos = [];
+	$scope.groupEmpresas = [];
+	$scope.groupArmas = [];
+
+	$http.get('json/tipo-documentos.json').success(function (data) {
+		$scope.tipoDocumentos = data;
+	});
+
+	$http.get('json/tribunais.json').success(function (data) {
+		$scope.tribunais = data;
+	});
+
+	$http.get('json/paises-mercosul.json').success(function (data) {
+		$scope.paisesMercosul = data;
+	});
+
+	$scope.init = function () {
+	};
+
+	$scope.individuosLoaded = function () {
+		loadListaTribunais($scope.tribunais);
+		loadListaTipoDocumentos($scope.tipoDocumentos);
+		loadListaUfs();
+		loadPaisesMercosulIndividuos($scope.paisesMercosul);
+
+		$('#slct-indice_nacional-sigla-origem').multiselect({
+		    columns: 3,
+		    placeholder: 'Selecione',
+		    selectAll: true,
+		        texts: {
+		            placeholder: 'Selecione',
+		            selectAll: 'Marcar todos',
+		            unselectAll: 'Desmarcar todos',
+		            selectedOptions: ' selecionados'
+		        }
+		});
+	};
+
+	$scope.individuosChange = function (item) {
+		if(item.tipoServico == COD_SERVICO.SRV_SIAPEN) {
+			//Quando a base do SIAPEN for selecionada no combo
+			// da Pesquisa Avançada, carrega a lista de Unidades Penais
+			loadUnidadesPenais();
+		}
+	};
+
+	$scope.empresasLoaded = function () {
+		loadListaUfs();
+	};
+
+	$scope.armasLoaded = function () {
+		loadPaisesMercosul($scope.paisesMercosul);
+	};
+
+	$scope.veiculosLoaded = function () {
+		loadPaisesMercosulVeiculos($scope.paisesMercosul);
+	};
+
+	$scope.consultaExata = false;
+
+	$scope.showAdvancedSearch = function() {
+
+		//Busca os agrupamentos apenas quando a Pesquisa Avançada será aberta
+		if(!$('#tabAdvancedSearch').is(':visible')){
+
+			SearchProxy.getAgrupamentos().done(
+					function(data) {
+						var individuos, veiculos, empresas, armas;
+	
+						for (var i = 0; i < data.agrupamentos.length; i++) {
+							var nomeAgrupamento = data.agrupamentos[i].nomeAgrupamento.toLowerCase();
+	
+							switch (nomeAgrupamento) {
+							case 'indivíduos':
+								individuos = data.agrupamentos[i];
+								break;
+							case 'veículos':
+								veiculos = data.agrupamentos[i];
+								break;
+							case 'empresas':
+								empresas = data.agrupamentos[i];
+								break;
+							case 'armas':
+								armas = data.agrupamentos[i];
+								break;
+							}
+						}
+	
+						if(individuos === undefined || individuos.servicos.length === 0){
+							hideAbaPesquisaAvancada('individuos');
+						} else{
+							showAbaPesquisaAvancada('individuos');
+						}
+						if(veiculos === undefined || veiculos.servicos.length === 0){
+							hideAbaPesquisaAvancada('veiculos');
+						} else {
+							showAbaPesquisaAvancada('veiculos');
+						}
+						if(empresas === undefined || empresas.servicos.length === 0){
+							hideAbaPesquisaAvancada('empresas');
+						} else {
+							showAbaPesquisaAvancada('empresas');
+						}
+						if(armas === undefined || armas.servicos.length === 0){
+							hideAbaPesquisaAvancada('armas');
+						} else {
+							showAbaPesquisaAvancada('armas');
+						}
+	
+						$scope.$apply(function() {
+							$scope.groupServices = data.agrupamentos;
+							$scope.groupIndividuos = individuos;
+							$scope.groupVeiculos = veiculos;
+							$scope.groupEmpresas = empresas;
+							$scope.groupArmas = armas;
+						});
+					});
+		}
+	};
+
+	$scope.searchMandados = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaMandados,event);
+	};
+
+	$scope.searchArmas = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaArmas,event);
+	};
+
+	$scope.searchCondutores = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaCondutores,event);
+	};
+
+	$scope.searchPessoaFisica = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaPessoaFisica,event);
+	};
+
+	$scope.searchPessoaJuridica = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaPessoaJuridica,event);
+	};
+
+	$scope.searchVeiculos = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaVeiculos,event);
+	};
+
+	$scope.searchIndiceNacional = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaIndiceNacionalIndividuos,event);
+	};
+
+	$scope.searchInterpol = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaInterpol,event);
+	};
+
+	$scope.searchDesaparecidos = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaDesaparecidos,event);
+	};
+
+	$scope.searchSiapen = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaSiapen,event);
+	};
+
+	$scope.searchRaisTrabalhadores = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaRaisTrabalhadores,event);
+	};
+
+	$scope.searchRaisEstabelecimentos = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaRaisEstabelecimentos,event);
+	};
+
+	$scope.searchBos = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaBos,event);
+	};
+
+	$scope.searchSismeArmas = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaSismeArmas,event);
+	};
+
+	$scope.searchSismeVeiculos = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaSismeVeiculos,event);
+	};
+
+	$scope.searchSismePessoas = function(event) {
+		executaPesquisaAvancada(pesquisaAvancadaSismePessoas,event);
+	};
+
+	$scope.resetMultiselec = function() {
+		$('#slct-indice_nacional-sigla-origem').multiselect('reset');
+	};
+});

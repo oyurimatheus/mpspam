@@ -1,0 +1,269 @@
+function pesquisarUsuarios() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_pesquisar').attr('disabled','disabled');
+  var nome = $('form[name=form_pesquisar_usuario] [name=nome]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './usuario/usuarioExecutar.cfm',
+    data: {
+      'exec': 'pesquisarUsuarios',
+      'nome': escape(nome)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#pesq_usuarios').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_pesquisar').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+}
+
+function adicionarUsuario() {
+  $('#adic_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_adicionar').attr('disabled','disabled');
+  var nome = $('form[name=form_usuario_adicionar] [name=nome]').val();
+  var cpf = $('form[name=form_usuario_adicionar] [name=cpf]').val();
+  var telefone = $('form[name=form_usuario_adicionar] [name=telefone]').val();
+  var email = $('form[name=form_usuario_adicionar] [name=email]').val();
+  var vara_juiz_id = $('form[name=form_usuario_adicionar] [name=vara_juiz_id]').val();
+  var papel_id = getCheckbox('form_usuario_adicionar','papel_id');
+
+  $.ajax({
+    type: 'POST',
+    url: './usuario/usuarioExecutar.cfm',
+    data: {
+      'exec': 'adicionarUsuario',
+      'nome': escape(nome),
+      'cpf': escape(cpf),
+      'telefone': escape(telefone),
+      'email': escape(email),
+      'vara_juiz_id': escape(vara_juiz_id),
+      'papel_id': escape(papel_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('usuario/usuariosVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_adicionar').removeAttr('disabled');
+      $('#adic_loading').html('');
+    }
+  });
+}
+
+function atualizarUsuario() {
+  $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_atualizar').attr('disabled','disabled');
+  var usuario_juiz_id = $('form[name=form_usuario_atualizar] [name=usuario_juiz_id]').val();
+  var nome = $('form[name=form_usuario_atualizar] [name=nome]').val();
+  var cpf = $('form[name=form_usuario_atualizar] [name=cpf]').val();
+  var email = $('form[name=form_usuario_atualizar] [name=email]').val();
+  var telefone = $('form[name=form_usuario_atualizar] [name=telefone]').val();
+  var vara_juiz_id = $('form[name=form_usuario_atualizar] [name=vara_juiz_id]').val();
+  var flag_ativo = getRadio('form_usuario_atualizar','flag_ativo');
+  var papel_id = getCheckbox('form_usuario_atualizar','papel_id');
+
+  $.ajax({
+    type: 'POST',
+    url: './usuario/usuarioExecutar.cfm',
+    data: {
+      'exec': 'atualizarUsuario',
+      'usuario_juiz_id':escape(usuario_juiz_id),
+      'nome': escape(nome),
+      'cpf': escape(cpf),
+      'email': escape(email),
+      'telefone': escape(telefone),
+      'vara_juiz_id': escape(vara_juiz_id),
+      'flag_ativo': escape(flag_ativo),
+      'papel_id': escape(papel_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('usuario/usuariosVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_atualizar').removeAttr('disabled');
+      $('#atua_loading').html('');
+    }
+  });
+}
+
+function excluirUsuario() {
+  var confirma=confirm('Tem certeza que deseja excluir esse Usuário?');
+  if(confirma){
+    $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+    $('#btn_atualizar').attr('disabled','disabled');
+    var usuario_juiz_id = $('form[name=form_usuario_atualizar] [name=usuario_juiz_id]').val();
+
+    $.ajax({
+      type: 'POST',
+      url: './usuario/usuarioExecutar.cfm',
+      data: {
+        'exec': 'excluirUsuario',
+        'usuario_juiz_id': escape(usuario_juiz_id)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            montarURL('usuario/usuariosVisualizar');
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+        $('#btn_atualizar').removeAttr('disabled');
+        $('#atua_loading').html('');
+      }
+    });
+  }
+}
+
+function validarUsuario() {
+  var confirma=confirm('Tem certeza que deseja validar esse Usuário?');
+  if(confirma){
+    $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+    $('#btn_atualizar').attr('disabled','disabled');
+    $('#btn_excluir').attr('disabled','disabled');
+    var usuario_juiz_id = $('form[name=form_usuario_atualizar] [name=usuario_juiz_id]').val();
+    var nome = $('form[name=form_usuario_atualizar] [name=nome]').val();
+    var email = $('form[name=form_usuario_atualizar] [name=email]').val();
+
+    $.ajax({
+      type: 'POST',
+      url: './usuario/usuarioExecutar.cfm',
+      data: {
+        'exec': 'validarUsuario',
+        'usuario_juiz_id': escape(usuario_juiz_id),
+        'nome': escape(nome),
+        'email': escape(email)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            montarURL('usuario/usuariosPendentesValidacaoVisualizar');
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+        $('#btn_atualizar').removeAttr('disabled');
+        $('#btn_excluir').removeAttr('disabled');
+        $('#atua_loading').html('');
+      }
+    });
+  }
+}
+
+function adicionarPapel() {
+  $('#adic_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_adicionar').attr('disabled','disabled');
+  var nome = $('form[name=form_papel_adicionar] [name=nome]').val();
+  var ordem = $('form[name=form_papel_adicionar] [name=ordem]').val();
+  var privilegio_juiz_id = getCheckbox('form_papel_adicionar','privilegio_juiz_id');
+  var tipo_papel = $('form[name=form_papel_adicionar] [name=tipo_papel]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './usuario/papelExecutar.cfm',
+    data: {
+      'exec': 'adicionarPapel',
+      'nome': escape(nome),
+      'ordem': escape(ordem),
+      'privilegio_juiz_id': escape(privilegio_juiz_id),
+      'tipo_papel': escape(tipo_papel)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('usuario/papeisVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_adicionar').removeAttr('disabled');
+      $('#adic_loading').html('');
+    }
+  });
+}
+
+function atualizarPapel() {
+  $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_atualizar').attr('disabled','disabled');
+  var papel_juiz_id = $('form[name=form_papel_atualizar] [name=papel_juiz_id]').val();
+  var nome = $('form[name=form_papel_atualizar] [name=nome]').val();
+  var ordem = $('form[name=form_papel_atualizar] [name=ordem]').val();
+  var privilegio_juiz_id = getCheckbox('form_papel_atualizar','privilegio_juiz_id');
+  var tipo_papel = $('form[name=form_papel_atualizar] [name=tipo_papel]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './usuario/papelExecutar.cfm',
+    data: {
+      'exec': 'atualizarPapel',
+      'papel_juiz_id': escape(papel_juiz_id),
+      'nome': escape(nome),
+      'ordem': escape(ordem),
+      'privilegio_juiz_id': escape(privilegio_juiz_id),
+      'tipo_papel': escape(tipo_papel)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('usuario/papeisVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_atualizar').removeAttr('disabled');
+      $('#atua_loading').html('');
+    }
+  });
+}
+
+
+function excluirPapel() {
+  var confirma=confirm('Tem certeza que deseja excluir esse Papel?');
+  if(confirma){
+    $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+    $('#btn_atualizar').attr('disabled','disabled');
+    var papel_juiz_id = $('form[name=form_papel_atualizar] [name=papel_juiz_id]').val();
+
+    $.ajax({
+      type: 'POST',
+      url: './usuario/papelExecutar.cfm',
+      data: {
+        'exec': 'excluirPapel',
+        'papel_juiz_id': escape(papel_juiz_id)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            montarURL('usuario/papeisVisualizar');
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+        $('#btn_atualizar').removeAttr('disabled');
+        $('#atua_loading').html('');
+      }
+    });
+  }
+}

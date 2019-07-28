@@ -1,0 +1,1061 @@
+var posterImage;
+var isIE = "false";
+var showWaitPopup = false;
+if (!(navigator.mimeTypes && navigator.mimeTypes.length)) {
+	isIE = "true";
+}
+var principal = document.getElementById('principal');
+
+function javaError() {
+	var oapplet = document.getElementById('divApplet');
+	if (oapplet) {
+		oapplet.style.height = '200px';
+		oapplet.style.width = '500px';
+		oapplet.innerHTML = '<div style="width: 500px; height: 200px; color: #ffffff; '
+				+ 'background: #fceba2; border-style: solid; border-color: #ffffff; text-align: center"><br/>'
+				+ '<a href="http://java.com/inc/BrowserRedirect.jsp?locale=pt_BR&host=java.com" target="_blank">'
+				+ 'Voc&ecirc; '
+				+ 'precisa da vers&atilde;o mais nova do pugin Java&#8482;. Clique aqui para instalar</a><br/><br/></div>'
+	}
+}
+
+function detectJava() {
+	var javawsInstalled = 0;
+	var javaws142Installed = 0;
+	var javaws150Installed = 0;
+	var javaws160Installed = 0;
+	if (isIE != 'true') {
+		var x = null;
+		for (i = 0; i < navigator.mimeTypes.length; i++) {
+			if (navigator.mimeTypes[i].type == 'application/x-java-applet;version=1.6') {
+				x = 1;
+				break;
+			}
+		}
+		if (x) {
+			javawsInstalled = 1;
+			javaws142Installed = 1;
+			javaws150Installed = 1;
+			javaws160Installed = 1;
+		} else {
+			javaError();
+		}
+	} else {
+		checkJavaVB();
+	}
+}
+
+function setCookie(c_name, value, expiredays) {
+	var exdate = new Date();
+	exdate.setDate(exdate.getDate() + expiredays);
+	document.cookie = c_name + "=" + escape(value)
+			+ ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+}
+
+function getCookie(c_name) {
+	if (document.cookie.length > 0) {
+		c_start = document.cookie.indexOf(c_name + "=");
+		if (c_start != -1) {
+			c_start = c_start + c_name.length + 1;
+			c_end = document.cookie.indexOf(";", c_start);
+			if (c_end == -1)
+				c_end = document.cookie.length;
+			return unescape(document.cookie.substring(c_start, c_end));
+		}
+	}
+	return "";
+}
+
+function checkApplet() {
+	var oapplet = document.getElementById('oApplet');
+	if (oapplet) {
+		detectJava();
+	}
+}
+
+function checkCookies() {
+	cookie = getCookie('CAGED_POPUP');
+	if (cookie == 'true') {
+		hidePopup();
+	}
+	setCookie('CAGED_POPUP', 'true', 1);
+}
+
+function hidePopup() {
+	var divs = document.getElementsByTagName('div');
+	if (divs == null || divs.length == 0)
+		return;
+	for (i = (divs.length - 1); i >= 0; i--) {
+		var str = '' + divs[i].className;
+		if (str.indexOf('ui-dialog ui-widget ui-widget-content') == 0) {
+			divs[i].style.display = 'none';
+			return;
+		}
+	}
+}
+
+/**
+ * Retorna as dimens�es atuais ocupadas pelo documento na tela
+ */
+function getDocumentDimension() {
+	var winW = 0, winH = 0;
+	if (typeof (window.innerWidth) == 'number') {
+		// Non-IE
+		winW = window.innerWidth;
+		winH = window.innerHeight;
+	} else if (document.documentElement
+			&& (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+		// IE 6+ in 'standards compliant mode'
+		winW = document.documentElement.clientWidth;
+		winH = document.documentElement.clientHeight;
+	} else if (document.body
+			&& (document.body.clientWidth || document.body.clientHeight)) {
+		// IE 4 compatible
+		winW = document.body.clientWidth;
+		winH = document.body.clientHeight;
+	}
+	return {
+		width : winW,
+		height : winH
+	}
+}
+
+/** Centraliza um elemento no documento */
+function center(obj) {
+	if (obj == null)
+		return;
+	var width = 300;
+	var height = 80;
+	if ((width * height) != 0) {
+		obj.style.width = width + 'px';
+		obj.style.height = height + 'px';
+		var dim = getDocumentDimension();
+		var top = (dim.height - height) / 2 + 'px';
+		var left = (dim.width - width) / 2 + 'px';
+		// alert('top: ' + top + ' left: ' + left);
+		obj.style.top = top;
+		obj.style.left = left;
+	}
+}
+
+function setShowWaitPopup(s) {
+	showWaitPopup = s;
+	return true;
+}
+
+function confirmaExclusaoComPreventDoubleSubmit() {
+	showWaitPopup = true;
+	return confirmaExclusao() && preventDoubleSubmit();
+}
+
+function confirmaEnvioComPreventDoubleSubmit() {
+	showWaitPopup = true;
+	return confirmaEnvio() && preventDoubleSubmit();
+}
+
+function preventDoubleSubmit() {
+	if (!showWaitPopup)
+		return;
+	var obj = document.getElementById('bkdiv');
+	var obj2 = document.getElementById('waitpopup');
+	if (obj && obj2) {
+		obj.style.display = 'block';
+		obj2.style.width = '300';
+		obj2.style.height = '100';
+		obj2.style.position = 'fixed';
+		center(obj2);
+		obj2.style.display = 'block';
+		setShowWaitPopup(false);
+	}
+	return true;
+}
+
+function checkSO() {
+	if (OSName == "Linux" || OSName == "UNIX") {
+		var objs = document.getElementsByTagName('input');
+		for (i = 0; i < objs.length; i++) {
+			obj = objs[i];
+			if (obj) {
+				// Adapta o formulario FEC ao Linux/Unix
+				if (obj.type == 'text') {
+					switch (obj.size) {
+					case 50:
+						obj.size = '43';
+						break;
+					case 20:
+						obj.size = '18';
+						break;
+					case 8:
+						obj.size = '6';
+						break;
+					}
+				} else if (obj.type == '') {
+				}
+			}
+		}
+		objs = document.getElementsByTagName('select');
+		for (i = 0; i < objs.length; i++) {
+			obj = objs[i];
+			if (obj && obj.id) {
+				var strID = new String(obj.id);
+				if (strID.search('lb_porte$') > 0) {
+					obj.style.width = '250px';
+				}
+			}
+		}
+		// Adapta o menu FEC
+		// var links = document.getElementsByTagName('a');
+		// for (i = 0; i < links.length; i++) {
+		// if (links[i].id.indexOf('lk_menu_fec') > 0) {
+		// links[i].innerHTML = 'Formul\u00e1rio&nbsp;Eletr\u00f4nico-FEC';
+		// return;
+		// }
+		// }
+	}
+}
+
+var defaultForm = null;
+
+function documentLoad() {
+	// checkCookies();
+	checkApplet();
+	checkSO();
+	invocarPreencherCampo();
+	selecionaVersao();
+	// Sem isso o menu n�o funciona no IE8-
+	if (isIE == 'true') {
+		try {
+			dropdownInit();
+		} catch (e) {
+		}
+	}
+	habilitarPerfisPerfis();
+	// checkDefaultSubmit();
+}
+
+var OSName = "Unknown OS";
+if (navigator.appVersion.indexOf("Win") != -1)
+	OSName = "Windows";
+if (navigator.appVersion.indexOf("Mac") != -1)
+	OSName = "MacOS";
+if (navigator.appVersion.indexOf("X11") != -1)
+	OSName = "UNIX";
+if (navigator.appVersion.indexOf("Linux") != -1)
+	OSName = "Linux";
+
+function checkDefaultSubmit() {
+	if (!defaultSubmitID || !defaultSubmitForm)
+		return;
+	if (defaultSubmitForm && defaultSubmitForm != '') {
+		setDefaultSubmitForm(defaultSubmitForm);
+	}
+	if (defaultSubmitID && defaultSubmitID != '') {
+		setDefaultSubmitButton(defaultSubmitID);
+	}
+}
+
+function submitForm() {
+	if (defaultForm)
+		defaultForm.submit();
+}
+
+var defaultForm = null;
+
+function setDefaultSubmitForm(id) {
+	defaultForm = document.getElementById(id);
+}
+
+function setDefaultSubmitButton(id) {
+	if (isIE == 'true')
+		return;
+	var objs = document.getElementsByTagName('input');
+	for (i = 0; i < objs.length; i++) {
+		obj = objs[i];
+		if (obj) {
+			if (!obj.type)
+				continue;
+			// Desabilita o submit de todos os botoes que nao possuem
+			// o id especificado
+			if (obj.type == 'submit' && obj.id != id) {
+				obj.type = 'button';
+				// redefine o onclick para manter o submit
+				if (!obj.onclick) {
+					// alert('Form: ' + obj.form);
+					obj.onclick = submitForm;
+				}
+			}
+		}
+	}
+}
+
+function trataKeyPress(obj) {
+	if (obj && obj.onkeypress) {
+		obj.onkeypress = "new function ('event', " + obj + ", 'retiraAcento')";
+	}
+}
+
+function inputKeyDown(event, obj) {
+	var keycode;
+	if (window.event) { // IE
+		keycode = window.event.keycode;
+	} else {
+		keycode = event.which;
+	}
+	if (keycode == 13)
+		retiraAcento(obj);
+	return true;
+}
+
+function ehImprimivel(c) {
+	var ret = (c.charCodeAt(0) >= 32 && c.charCodeAt(0) <= 126)
+	return ret;
+}
+
+function retiraAcento(obj, checkCaret) {
+	var caretPos = 0;
+	if (checkCaret)
+		caretPos = getCaretPosition(obj);
+	var palavra = obj.value;
+	var novaPalavra = '';
+	var keycode;
+	var caracteresInvalidos = '\u00e0\u00e8\u00ec\u00f2\u00f9\u00e2\u00ea\u00ee\u00f4\u00fb\u00e4\u00eb\u00ef\u00f6\u00fc\u00e1\u00e9\u00ed\u00f3\u00fa\u00e3\u00f5\u00c0\u00c8\u00cc\u00d2\u00d9\u00c2\u00ca\u00ce\u00d3\u00db\u00c4\u00cb\u00cf\u00d6\u00dc\u00c1\u00c9\u00cd\u00d3\u00da\u00c3\u00d5\u00e7\u00c7';
+	var caracteresValidos = 'aeiouaeiouaeiouaeiouaoAEIOUAEIOUAEIOUAEIOUAOcC';
+	var acento = '\u00b4\u0060\u005e\u00a8\u007e';
+	var modificou = false;
+	var cursor = 0;
+	for (i = 0; i < palavra.length; i++) {
+		var c = palavra.charAt(i);
+		var pos = acento.indexOf(c);
+		if (pos >= 0) {
+			modificou = true;
+			continue;
+		}
+		pos = caracteresInvalidos.indexOf(c);
+		if (pos >= 0) {
+			novaPalavra += caracteresValidos.substr(pos, 1);
+			modificou = true;
+		} else {
+			if (ehImprimivel(c)) {
+				novaPalavra += c;
+			} else {
+				modificou = true;
+			}
+		}
+	}
+	if (modificou) {
+		obj.value = novaPalavra;
+		if (checkCaret)
+			setCaretPosition(obj, caretPos);
+	}
+	return true;
+}
+
+function retiraAcentoUpperCase(obj, checkCaret) {
+	obj.value = obj.value.toUpperCase();
+	return retiraAcento(obj, checkCaret);
+}
+
+function invocarPreencherCampo() {
+	if (typeof preencherCampo == "function") {
+		preencherCampo();
+	}
+}
+
+function getCaretPosition(oField) {
+
+	// Initialize
+	var iCaretPos = 0;
+
+	// IE Support
+	if (document.selection) {
+
+		// Set focus on the element
+		oField.focus();
+
+		// To get cursor position, get empty selection range
+		var oSel = document.selection.createRange();
+
+		// Move selection start to 0 position
+		oSel.moveStart('character', -oField.value.length);
+
+		// The caret position is selection length
+		iCaretPos = oSel.text.length;
+	}
+
+	// Firefox support
+	else if (oField.selectionStart || oField.selectionStart == '0')
+		iCaretPos = oField.selectionStart;
+
+	// Return results
+	return (iCaretPos);
+}
+
+function setCaretPosition(oField, iCaretPos) {
+
+	// IE Support
+	if (document.selection) {
+		// Set focus on the element
+		oField.focus();
+
+		// Create empty selection range
+		var oSel = document.selection.createRange();
+
+		// Move selection start and end to 0 position
+		// oSel.moveStart ('character', -oField.value.length);
+
+		// Move selection start and end to desired position
+		oSel.moveStart('character', iCaretPos);
+		oSel.moveEnd('character', iCaretPos - oField.value.length);
+		oSel.select();
+	}
+
+	// Firefox support
+	else if (oField.selectionStart || oField.selectionStart == '0') {
+		oField.selectionStart = iCaretPos;
+		oField.selectionEnd = iCaretPos;
+		oField.focus();
+	}
+}
+
+/**
+ * Cria uma div para servir de background
+ */
+function createBackgroundDiv() {
+	var odiv = getOdiv();
+	odiv.setAttribute('id', 'bkimgdiv');
+	if (isIE == 'true')
+		odiv.setAttribute('className', 'backgrounddiv');
+	else
+		odiv.setAttribute('class', 'backgrounddiv');
+	odiv.setAttribute('onclick', 'hideImageDiv();');
+	return odiv;
+}
+
+/**
+ * Cria um div pra exibir o cartaz da festa
+ */
+function createImageDiv(url) {
+	imDiv = getParentDoc().createElement('div')
+	imDiv.setAttribute('id', 'divimage');
+	if (isIE == 'true')
+		imDiv.setAttribute('className', 'divimage');
+	else
+		imDiv.setAttribute('class', 'divimage');
+	imDiv.setAttribute('onclick', 'hideImageDiv();');
+	var image = new Image();
+	image.onload = function() {
+		imageDiv = document.getElementById('divimage');
+		if (centerImage)
+			centerImage();
+		imageDiv.innerHTML = '<img src="' + url
+				+ '" title="Clique para fechar" alt="Poster"/>';
+	}
+	image.src = url;
+	posterImage = image;
+	imDiv.innerHTML = '<img src="images/wait30.gif" title="Abrindo poster" alt="Abrindo poster"/>';
+	principal = document.getElementById('principal');
+	if (principal) {
+		setTimeout("fade(principal, 0.7)", 100);
+		setTimeout("fade(principal, 0.5)", 200);
+		setTimeout("fade(principal, 0.3)", 300);
+	}
+	return imDiv;
+}
+
+function getParentDoc() {
+	if (window.parent)
+		return window.parent.document;
+	else
+		return document;
+}
+
+function getOdiv() {
+	return getParentDoc().createElement('div');
+}
+
+function fade(element, valor) {
+	if (element && element.style) {
+		element.style.opacity = valor;
+		principal.style.filter = 'alpha(opacity=' + valor + ')'
+	}
+}
+
+function showImageIE(url) {
+	var odiv = document.createElement('div');
+	odiv.setAttribute('className', 'divimage');
+	odiv.setAttribute('class', 'divimage');
+	odiv.setAttribute('id', 'divimage');
+	odiv.setAttribute('onclick', 'hideImageDiv();');
+	document.body.appendChild(odiv);
+	var image = new Image();
+	posterImage = image;
+	image.onload = function() {
+		imageDiv = document.getElementById('divimage');
+		if (centerImage)
+			centerImage();
+		imageDiv.innerHTML = '<img src="' + url
+				+ '" title="Clique para fechar" alt="Poster"/>';
+	}
+	image.src = url;
+	principal = document.getElementById('principal');
+	if (principal) {
+		setTimeout("fade(principal, 0.7)", 100);
+		setTimeout("fade(principal, 0.5)", 200);
+		setTimeout("fade(principal, 0.3)", 300);
+	}
+	fade(principal, 0.5);
+}
+
+/**
+ * Apresenta uma imagem na tela
+ */
+function showImage(url) {
+	if (isIE == 'true')
+		return showImageIE(url);
+	var odiv = getOdiv();
+	oDoc = getParentDoc();
+	odiv = oDoc.getElementById('divimage');
+	if (!odiv) {
+		odiv = createBackgroundDiv();
+		imDiv = createImageDiv(url);
+	}
+	odiv.style.display = 'inline';
+	oDoc.body.appendChild(odiv);
+	oDoc.body.appendChild(imDiv);
+	imageDiv = odiv;
+	posterDiv = imDiv;
+}
+
+/*
+ * Centraliza a imagem do poster na tela
+ */
+function centerImage() {
+	oImDiv = document.getElementById('divimage');
+	if (!oImDiv) {
+		oImDiv = document.getElementById('divimage');
+	}
+	if (!oImDiv) {
+		return;
+	}
+	var docDim = getDocumentDimension();
+	// var top = (docDim.height - posterImage.height) / 2 + 'px';
+	var top = 30 + 'px';
+	var left = (docDim.width - posterImage.width) / 2 + 'px';
+	oImDiv.style.top = top;
+	oImDiv.style.left = left;
+}
+
+/*
+ * Remove a imagem do poster da tela
+ */
+function hideImageDiv() {
+	imageDiv = document.getElementById('divimage');
+	posterDiv = document.getElementById('bkimgdiv');
+	if (imageDiv)
+		document.body.removeChild(imageDiv);
+	if (posterDiv)
+		document.body.removeChild(posterDiv);
+	principal = document.getElementById('principal');
+	if (principal) {
+		setTimeout("fade(principal, 0.5)", 100);
+		setTimeout("fade(principal, 0.7)", 200);
+		setTimeout("fade(principal, 1)", 300);
+	}
+}
+
+/**
+ * Retorna as dimens�es atuais ocupadas pelo documento na tela
+ */
+function getDocumentDimension() {
+	var winW = 0, winH = 0;
+	if (typeof (window.innerWidth) == 'number') {
+		// Non-IE
+		winW = window.innerWidth;
+		winH = window.innerHeight;
+	} else if (document.documentElement
+			&& (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+		// IE 6+ in 'standards compliant mode'
+		winW = document.documentElement.clientWidth;
+		winH = document.documentElement.clientHeight;
+	} else if (document.body
+			&& (document.body.clientWidth || document.body.clientHeight)) {
+		// IE 4 compatible
+		winW = document.body.clientWidth;
+		winH = document.body.clientHeight;
+	}
+	return {
+		width : winW,
+		height : winH
+	}
+}
+
+function obtemApp(so, platform) {
+	var sId = so + '-' + platform;
+	var x = document.getElementById(sId);
+	if (!x) {
+		platform = 'x86';
+		sId = so + '-' + platform;
+		x = document.getElementById(sId);
+		if (!x) {
+			so = 'Java';
+			platform = 'All';
+			sId = so + '-' + platform;
+			x = document.getElementById(sId);
+		}
+	}
+	return x;
+}
+
+function selecionaVersao() {
+	var appElement = document.getElementById('app-download');
+	if (!appElement)
+		return;
+	var str = navigator.platform;
+	var so = 'Java';
+	var platform = 'All';
+	if (str == 'Win32') {
+		so = 'Windows';
+		platform = 'x86';
+	} else if (str == 'Win64') {
+		so = 'Windows';
+		platform = 'x86_64';
+	} else if (str.indexOf('Linux') != -1 && str.indexOf('x86_64') != -1) {
+		so = 'Linux';
+		platform = 'x86_64';
+	} else if (str.indexOf('Linux') != -1) {
+		so = 'Linux';
+		platform = 'x86';
+	}
+	var x = obtemApp(so, platform);
+	if (x) {
+		x.selected = 'selected';
+	}
+}
+
+function focusOn(x) {
+	var elem = document.getElementById(x);
+	if (elem) {
+		elem.focus();
+	}
+	return true;
+}
+
+function checkMaxSize(id, maxLength) {
+	var obj = document.getElementById(id);
+	if (obj) {
+		var size = obj.value.length;
+		if (size > maxLength) {
+			var content = obj.value;
+			var cut = getCaretPosition(obj);
+			if (cut <= 0 || cut >= maxLength) {
+				obj.value = content.substring(0, maxLength);
+			} else {
+				var val1 = content.substring(0, cut - 1);
+				var val2 = content
+						.substring(cut + (size - maxLength) - 1, size);
+				obj.value = val1 + val2;
+				setCaretPosition(obj, cut - 1);
+			}
+		}
+	}
+}
+
+function getOffset(el) {
+	var _x = 0;
+	var _y = 0;
+	while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+		_x += el.offsetLeft - el.scrollLeft;
+		_y += el.offsetTop - el.scrollTop;
+		el = el.offsetParent;
+	}
+	return {
+		top : _y,
+		left : _x
+	};
+}
+
+function showTextPopup(text, okFunction, legendTitle, w, h) {
+	var width = 500;
+	var height = 150;
+	if (w) {
+		width = w;
+	}
+	if (h) {
+		height = h;
+	}
+	var popup = document.getElementById('bddocMessagePopup');
+	var h = document.body.clientHeight;
+	var obj = document.getElementById('bkdiv');
+	var innerDIV;
+	if (popup && obj) {
+		var divText = document.getElementById('bddocMessagePopupText');
+		if (divText != null) {
+			if (legendTitle) {
+				innerDIV = '<fieldset class="info"><legend>' + legendTitle
+						+ '</legend><br/><table style="width: 450px">';
+				for (var i = 0; i < text.length; i++) {
+					innerDIV += '<td style="font-weight: bold; text-align: right" width="50%">'
+							+ text[i][0]
+							+ '</td><td style="text-align: left" width="50%">'
+							+ text[i][1] + '</td></tr>';
+				}
+				innerDIV += '</table></fieldset>';
+			} else {
+				innerDIV = '<div id="txtPop" class="txtPop">' + text + '</div>';
+			}
+			divText.innerHTML = innerDIV;
+		}
+		obj.style.display = 'block';
+		obj.style.height = h + 'px';
+		popup.style.display = 'block';
+		popup.style.position = 'fixed';
+		popup.style.zIndex = '3000';
+		center2(popup, width, height);
+		var txDivOk = document.getElementById('divOkBtn');
+		popBottom = document.getElementById('bddocMessagePopupBottom');
+		divHeight = getElementHeight(popBottom);
+		textHeight = getElementHeight(txDivOk);
+		var textInfoHeight = getElementHeight(document
+				.getElementById('bddocMessagePopupText'));
+		txDivOk.style.top = ((divHeight - textHeight) / 2) + textInfoHeight
+				+ 'px';
+		txDivOk.style.marginTop = '0.1cm';
+		divWidth = getElementWidth(popBottom);
+		textWidth = getElementWidth(txDivOk);
+		txDivOk.style.left = ((divWidth - textWidth) / 2) + 'px';
+		var okButton = document.getElementById('okButton');
+		if (okButton)
+			okButton.focus();
+		if (okFunction) {
+			if (okButton.addEventListener)
+				okButton.addEventListener('click', okFunction, false);
+			if (okButton.attachEvent)
+				okButton.attachEvent('onclick', okFunction);
+		}
+	}
+}
+
+/**
+ * Retorna a largura de um elemento
+ */
+function getElementWidth(elem) {
+	if (elem.style.pixelWidth) {
+		return elem.style.pixelWidth;
+	} else {
+		return elem.offsetWidth;
+	}
+}
+/**
+ * Retorna a altura de um elemento
+ */
+function getElementHeight(elem) {
+	if (elem.style.pixelHeight) {
+		return elem.style.pixelHeight;
+	} else {
+		return elem.offsetHeight;
+	}
+}
+
+function closeTextPopup() {
+	var popup = document.getElementById('bddocMessagePopup');
+	var obj = document.getElementById('bkdiv');
+	if (popup && obj) {
+		popup.style.display = 'none';
+		obj.style.display = 'none';
+	}
+}
+
+function center2(obj, width, height) {
+	if (obj == null)
+		return;
+	if ((width * height) != 0) {
+		obj.style.width = width + 'px';
+		obj.style.height = height + 'px';
+		var dim = getDocumentDimension();
+		var top = (dim.height - height) / 2 + 'px';
+		var left = (dim.width - width) / 2 + 'px';
+		// alert('top: ' + top + ' left: ' + left);
+		obj.style.top = top;
+		obj.style.left = left;
+	}
+}
+
+function geraTabelaUsuarioBDDOC(nome, cpf, pis, ip, data) {
+	var tabela = [ [ 'IP Cadastro:', ip ], [ 'CPF:', cpf ], [ 'PIS:', pis ],
+			[ 'Nome do Usu\u00e1rio:', nome ], [ 'Data/Hora Cadastro:', data ] ];
+	return tabela;
+}
+
+function geraTabelaUsuarioAtualizaACIBDDOC(nome, cpf, pis, ip, data) {
+	var tabela = [ [ 'IP:', ip ], [ 'CPF:', cpf ], [ 'PIS:', pis ],
+			[ 'Nome do Usu\u00e1rio:', nome ], [ 'Data/Hora:', data ] ];
+	return tabela;
+}
+
+function geraTabelaTransmissao2(ip, data) {
+	var tabela = [ [ 'IP&#160;Transmiss\u00e3o:', ip ],
+			[ 'Data/Hora&#160;Transmiss\u00e3o:', data ] ];
+	return tabela;
+}
+
+function geraTabelaTransmissao(ip, data) {
+	var tabela = "<table>" + "<tr><td>IP&#160;Transmiss\u00e3o:</td><td>" + ip
+			+ "</td></tr>"
+			+ "<tr><td>Data/Hora&#160;Transmiss\u00e3o:</td><td>" + data
+			+ "</td></tr>" + "</table>";
+	return tabela;
+}
+
+function endsWith(str, suffix) {
+	return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+function enablePerfilRaisCaged() {
+	var suffix = 'perfilRaisCaged';
+	var inputs = document.getElementsByTagName('input');
+	if (inputs) {
+		for (var i = 0; i < inputs.length; i++) {
+			if (inputs[i].id && endsWith(inputs[i].id, suffix)) {
+				inputs[i].value = '1';
+				return;
+			}
+		}
+	}
+}
+
+function enablePerfilApenasRaisCaged() {
+	var suffix = 'perfilApenasRaisCaged';
+	var inputs = document.getElementsByTagName('input');
+	if (inputs) {
+		for (var i = 0; i < inputs.length; i++) {
+			if (inputs[i].id && endsWith(inputs[i].id, suffix)) {
+				inputs[i].value = '1';
+				return;
+			}
+		}
+	}
+}
+
+function verificaPerfil(idInput, perfis) {
+	for (var i = 0; i < perfis.length; i++) {
+		if (endsWith(idInput, perfis[i])) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function habilitarPerfisPerfis() {
+	var perfis = [ 'perfilRaisCaged', 'perfilApenasRaisCaged',
+			'perfilRAISCAGED', 'perfilRAIS', 'perfilCAGED' ];
+	var inputs = document.getElementsByTagName('input');
+	if (inputs) {
+		for (var i = 0; i < inputs.length; i++) {
+			if (inputs[i].id && verificaPerfil(inputs[i].id, perfis)) {
+				inputs[i].value = '1';
+			}
+		}
+	}
+}
+
+function mudarCor(id, cor) {
+	document.getElementById(id).style.color = cor;
+}
+
+function closeConfirmPopup(id) {
+	document.getElementById(id).style.display = 'none';
+	var bkdiv = document.getElementById('bkdiv');
+	if (bkdiv) {
+		bkdiv.style.display = 'none';
+	}
+}
+
+function showConfirmPopup(data) {
+	if (data.status == "success") {
+		setupConfirmPopup();
+	}
+}
+
+function setupConfirmPopup() {
+	var popup = document.getElementById('formPopupExcluir');
+	var bkdiv = document.getElementById('bkdiv');
+	if (popup && bkdiv) {
+		bkdiv.style.display = 'block';
+		popup.style.display = 'block';
+		center2(document.getElementById('bddocMessagePopupExcluir'), '500', '130');
+		var txDivOk = document.getElementById('divOkBtnExcluir');
+		popBottom = document.getElementById('bddocMessagePopupBottomExcluir');
+		divHeight = getElementHeight(popBottom);
+		textHeight = getElementHeight(txDivOk);
+		var textInfoHeight = getElementHeight(document
+				.getElementById('bddocMessagePopupTextExcluir'));
+		txDivOk.style.top = ((divHeight - textHeight) / 2) + textInfoHeight
+				+ 'px';
+		txDivOk.style.marginTop = '0.1cm';
+		divWidth = getElementWidth(popBottom);
+		textWidth = getElementWidth(txDivOk);
+		txDivOk.style.left = ((divWidth - textWidth) / 2) + 'px';
+	}
+}
+
+function showDadosSolicitacaoPopup(data) {
+	if (data.status == "success") {
+		setupDadosSolicitacaoPopup();
+	}
+}
+
+function setupDadosSolicitacaoPopup() {
+	var popup = document.getElementById('formPopupExibirSolicitacao');
+	var bkdiv = document.getElementById('bkdiv');
+	if (popup && bkdiv) {
+		bkdiv.style.display = 'block';
+		popup.style.display = 'block';
+		center2(document.getElementById('bddocMessagePopupExibirSolicitacao'), '500', '140');
+		var txDivOk = document.getElementById('divOkBtnExibirSolicitacao');
+		popBottom = document.getElementById('bddocMessagePopupBottomExibirSolicitacao');
+		divHeight = getElementHeight(popBottom);
+		textHeight = getElementHeight(txDivOk);
+		var textInfoHeight = getElementHeight(document
+				.getElementById('bddocMessagePopupTextExibirSolicitacao'));
+		txDivOk.style.top = ((divHeight - textHeight) / 2) + textInfoHeight
+				+ 'px';
+		txDivOk.style.marginTop = '0.1cm';
+		divWidth = getElementWidth(popBottom);
+		textWidth = getElementWidth(txDivOk);
+		txDivOk.style.left = ((divWidth - textWidth) / 2) + 'px';
+	}
+}
+
+function showDadosDetalhamentoEstabelecimentoPopup(data) {
+	if (data.status == "success") {
+		setupDadosDetalhamentoEstabelecimentoPopup();
+	}
+}
+
+function setupDadosDetalhamentoEstabelecimentoPopup() {
+	var popup = document.getElementById('formPopupDetalhamentoEstabelecimento');
+	var bkdiv = document.getElementById('bkdiv');
+	if (popup && bkdiv) {
+		bkdiv.style.display = 'block';
+		popup.style.display = 'block';
+		center2(document.getElementById('bddocMessagePopupDetalhamentoEstabelecimento'), '500', '250');
+		var txDivOk = document.getElementById('divOkBtnDetalhamentoEstabelecimento');
+		popBottom = document.getElementById('bddocMessagePopupDetalhamentoEstabelecimento');
+		var textInfoHeight = getElementHeight(document
+				.getElementById('bddocMessagePopupDetalhamentoEstabelecimento'));
+		txDivOk.style.top = 200 + 'px';
+		txDivOk.style.marginTop = '0.1cm';
+		divWidth = getElementWidth(popBottom);
+		textWidth = getElementWidth(txDivOk);
+		txDivOk.style.left = ((divWidth - textWidth) / 2) + 'px';
+		var okButton = document.getElementById('okButtonDetalhamentoEstabelecimento');
+		if (okButton)
+			okButton.focus();
+	}
+}
+
+function showDadosDetalhamentoTrabalhadorPopup(data) {
+	if (data.status == "success") {
+		setupDadosDetalhamentoTrabalhadorPopup();
+	}
+}
+
+function setupDadosDetalhamentoTrabalhadorPopup() {
+	var popup = document.getElementById('formPopupDetalhamentoTrabalhador');
+	var bkdiv = document.getElementById('bkdiv');
+	if (popup && bkdiv) {
+		bkdiv.style.display = 'block';
+		popup.style.display = 'block';
+		center2(document.getElementById('bddocMessagePopupDetalhamentoTrabalhador'), '500', '260');
+		var txDivOk = document.getElementById('divOkBtnDetalhamentoTrabalhador');
+		popBottom = document.getElementById('bddocMessagePopupDetalhamentoTrabalhador');
+		var textInfoHeight = getElementHeight(document
+				.getElementById('bddocMessagePopupDetalhamentoTrabalhador'));
+		txDivOk.style.top = 265 + 'px';
+		txDivOk.style.marginTop = '0.1cm';
+		divWidth = getElementWidth(popBottom);
+		textWidth = getElementWidth(txDivOk);
+		txDivOk.style.left = ((divWidth - textWidth) / 2) + 'px';
+		var okButton = document.getElementById('okButtonDetalhamentoTrabalhador');
+		if (okButton)
+			okButton.focus();
+	}
+}
+
+
+function formatarMascaraVazia(objeto, evt) {
+    evt  = (evt) ? evt : event;
+    var key = window.event ? evt.keyCode : evt.which;
+	
+	var value = objeto.value;
+	if(ehTeclaEnter(key) && ehNITCPFDataVazia(value)) {
+		objeto.value = "";
+	}
+}
+
+function limparMascaraAposEnter(objeto, evt){
+	evt  = (evt) ? evt : event;
+    var key = window.event ? evt.keyCode : evt.which;
+	if(ehTeclaEnter(key)) {
+		var value = objeto.value;
+		var i = 0;
+		while (i < value.length) {
+			if(value.charAt(i) == "_"){			
+				value = value.replace("_", "");
+				i = 0;
+			} else if(value.charAt(i) == "-"){			
+				value = value.replace("-", "");
+				i = 0;
+			} else if(value.charAt(i) == "."){			
+				value = value.replace(".", "");
+				i = 0;
+			} else {
+				i++;
+			}
+		}
+		objeto.value = value;
+	}
+}
+
+function ehTeclaEnter(key){
+    if (key == '13') {
+    	return true;
+    }
+    return false;
+}
+
+function ehNITCPFDataVazia(value){
+	//Data
+    if(value == "__/__/__" || value == "  /  /  " || value == "__/__/____" || value == "  /  /    " || value == "  /    " || value == "__/____"){
+        return true;
+    }
+    
+    //PISPASEP ou NIT
+    if(value == "___._____.__-_"){
+        return true;
+    }
+
+    //CPF
+    if(value == "___.___.___-__"){
+        return true;
+    }
+}
+
+
+/**
+ * Centraliza popup após redimensionar janela do navegador.
+ */
+function centerPopupOnResize(idDivPopup, strDefaultWidth, strDefaulHeight){
+	window.onresize = function(event) {
+		var element = document.getElementById(idDivPopup);
+		if(element!=null){
+			var width = $('#'+idDivPopup).css('width');
+			width = width != null ? width : strDefaultWidth; 
+			width = width.replace("px","");
+			var height = $('#'+idDivPopup).css('height');
+			height = height != null ? height : strDefaulHeight;
+			height = height.replace("px","");
+			center2(element, width, height);
+		}
+	};
+}

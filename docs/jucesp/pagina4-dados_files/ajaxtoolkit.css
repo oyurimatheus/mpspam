@@ -1,0 +1,60 @@
+/* Modal Popup */
+.modalBackground {
+	background-color:Gray;
+	filter:alpha(opacity=70);
+	opacity:0.7;
+}
+
+.modalPopup {
+	background-color:#fbddac;
+	border-width:1px;
+	border-style:solid;
+	border-color:Gray;
+	padding:10px;
+	width:auto;
+}
+
+/* Textbox Watermark */
+
+.unwatermarked {
+	width:260px;
+}
+
+.watermarked {
+	width:260px;
+	padding:2px 0 0 2px;
+	border:1px solid #BEBEBE;
+	background-color:#F0F8FF;
+	color:gray;
+}	
+
+/* Accordion */
+.accordionHeader
+{
+    border-left: 1px solid #F6F6F6;
+    border-top: 1px solid #CCCCCC;
+    color: #666666;
+    background-color: #F6F6F6;
+	font-family: Arial, Sans-Serif;
+	font-size: 12px;
+	font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.accordionHeaderSelected
+{
+    border: 1px solid #B4B4B4;
+    color: #666666;
+    background-color: #EEEEEE;
+	font-family: Arial, Sans-Serif;
+	font-size: 12px;
+	font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.accordionContent
+{
+    background-color: #FFFFFF;
+}

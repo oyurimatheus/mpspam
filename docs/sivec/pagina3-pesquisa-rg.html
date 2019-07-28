@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>SIVEC - Sistema das Varas de Execuções Criminais do Estado de São Paulo.</title>
+		
+		
+<!--
+    The "Cache-Control" http-equiv meta-tag was introduced in
+    the HTTP/1.1 specification.  The allowed "content" values
+    include:
+    * public - may be cached in public shared caches
+    * private - may only be cached in private (client) cache
+    * no-cache - may not be cached
+    * no-store - may be cached but no archived
+    
+    Cache-Control modifiers include:
+    * no-transform - proxy servers are not allowed to transform
+      the cached data.
+    * must-revalidate - proxy servers and other caching mechanisms
+      must revalidate the original file each time the file is
+      accessed.
+    * proxy-revalidate - same as must-revalidate, but it only
+      applies to proxy servers.
+    * max-age=<seconds> - client/browser is willing to accept
+      a page that is more recent than the number of seconds
+      indicated.
+    * s-maxage=<seconds> - same as max-age but applies to shared
+      proxy servers and other shared caching mechanisms.
+    
+    The directive CACHE-CONTROL:NO-CACHE indicates cached
+    information should not be used and instead requests should
+    be forwarded to the origin server. This directive has the
+    same semantics as the PRAGMA:NO-CACHE.
+    
+    Clients/Browsers SHOULD include both "pragma no-cache" and
+    "cache-control no-cache" http-equiv meta-tags when used with
+    a server not known to be HTTP/1.1 compliant.    
+-->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+<!--
+    The "expires" "http-equiv" meta-tag can be used to control
+    the cacheing of pages with Netscape 3.0 and later browsers.
+    The 'content="0"' form tells the browser to not cache the
+    page at all.
+-->
+		<meta http-equiv="expires" content="0">
+		
+<!--
+    The "pragma no-cache" http-equiv meta-tag was introduced
+    in the HTTP/1.1 specification.  Not all browsers or proxy
+    agents may support these operations.  To be safe you may
+    want to specify both expires and pragma in the file.
+-->
+		<meta http-equiv="Pragma" content="no-cache">
+		
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	
+		<link rel="stylesheet" href="./pagina3-pesquisarg_files/jquery.dataTables.css">
+		<link href="./pagina3-pesquisarg_files/displayTag-estilo.css" rel="stylesheet" type="text/css">
+		<link href="./pagina3-pesquisarg_files/estilo.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="./pagina3-pesquisarg_files/subModal.css">
+		<link rel="stylesheet" href="./pagina3-pesquisarg_files/bootstrap.min.css">
+		<link rel="stylesheet" href="./pagina3-pesquisarg_files/bootstrap-custom.css">
+		<link rel="stylesheet" href="./pagina3-pesquisarg_files/jquery.ui-1.9.2.custom.css">
+		<link rel="stylesheet" type="text/css" href="./pagina3-pesquisarg_files/select2.min.css">
+		<link rel="stylesheet" href="./pagina3-pesquisarg_files/jquery.autocomplete.css">
+		
+		<script src="./pagina3-pesquisarg_files/jquery-1.11.1.min.js.download"></script>
+		<script src="./pagina3-pesquisarg_files/jquery-migrate-1.2.1.min.js.download"></script>
+		
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/jquery.mask.min.js.download"></script>
+		
+		<script src="./pagina3-pesquisarg_files/jquery.dataTables.js.download"></script>
+		<script src="./pagina3-pesquisarg_files/jquery.dataTables.bootstrap.js.download"></script>
+		
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/jquery-ui-1.9.2.custom.js.download"></script>
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/jquery.ui.datepicker-pt-BR.js.download"></script>
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/select2.full.min.js.download"></script>
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/pt-BR.js.download"></script>
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/json2.js.download"></script>
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/moment.js.download"></script>
+		<script type="text/javascript" src="./pagina3-pesquisarg_files/jquery.autocomplete.js.download"></script>
+		
+		<script src="./pagina3-pesquisarg_files/vec_funcoes.js.download"></script>
+		<script src="./pagina3-pesquisarg_files/mousetrap.min.js.download"></script>
+
+		<script src="./pagina3-pesquisarg_files/util.js.download"></script>	
+		<script src="./pagina3-pesquisarg_files/common.js.download"></script>
+		<script src="./pagina3-pesquisarg_files/subModal.js.download"></script>		
+			
+		
+		<!-- commonxp include [js=./include/script/vec_funcoes_pessoa_fisica.js?01] --><script type="text/javascript" language="JavaScript" src="./pagina3-pesquisarg_files/vec_funcoes_pessoa_fisica.js.download"></script>
+		
+		
+		
+		
+ 		
+	 	<script src="./pagina3-pesquisarg_files/bootstrap.min.js.download"></script>
+		
+		<!--[if lt IE 9]>
+			<script src="./include/script/html5shiv/html5shiv.min.js"></script>
+			<script src="./include/script/respond/respond.min.js"></script>
+			<script src="./include/script/jquery/jquery.placeholder.min.js"></script>
+		<![endif]-->
+		
+		<script>			
+			function doUnload() {
+				if (window.event.clientX < 0 && window.event.clientY < 0) {
+					window.open("http://intinfo.tj.sp.gov.br:80/vec/logout.view");
+				}
+			}
+		</script>
+	<meta id="dcngeagmmhegagicpcmpinaoklddcgon"></head>
+
+	<body onunload="doUnload()">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+function rejeitaTecla(oEvent){    
+    var oEvent = oEvent ? oEvent : window.event;
+    var tecla = (oEvent.keyCode) ? oEvent.keyCode : oEvent.which;
+	if(oEvent.type=="keydown"){
+	    if (typeof(oEvent.keyCode)=='number' && oEvent.keyCode == 116){
+	        if (typeof(oEvent.preventDefault)=='function'){
+    	        oEvent.preventDefault();
+        	} else {
+            	oEvent.returnValue = false;
+	            oEvent.keyCode = 0;
+			   return false;	
+    	    }		 
+	    }
+		if ( oEvent.ctrlKey ) {
+				if (oEvent.keyCode == 78 ) {
+	    	       alert("Função desabilitada!"); 
+				   return false;	    	
+				}   
+		}		 
+	}
+    return true;	
+}
+document.onkeydown = rejeitaTecla; 
+
+$(document).submit(function() {
+	  jQuery.data(this, "disabledOnSubmit", { submited: true });
+	  $('.btn', this).each(function() {
+	      $(this).attr("disabled", "disabled");
+	});
+	$('.btn', this).attr("disabled", "disabled");
+	return true;
+});
+
+(function($){
+	$(document).ready(function(){
+		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+			event.preventDefault(); 
+			event.stopPropagation(); 
+			$(this).parent().siblings().removeClass('open');
+			$(this).parent().toggleClass('open');
+		});
+	});
+
+	var data = {
+		login: 'VEC9530779', 
+		nome: 'KLAUS TORRES CAMARA', 
+		codigo: '25158',
+		codVara: '953',
+		codSubVara: ''
+	}; 
+	
+	$("possuiNotificacao").ready(function refreshNotificacao(){
+	  	$.ajax({
+			  url: "NotificacaoListenerTriggerServlet",
+			  cache: false,
+			  data: data,
+			  dataType: 'json',
+			  success: function(data){
+			  	if(data != null) {
+					$("#possuiNotificacao").text(data.recordsTotal);
+				}
+				setTimeout(refreshNotificacao, 1750000);
+			  }
+		});
+	});
+	
+	$(document).on('click', '.btn-link', function() {
+				
+		var data = {
+			login: 'VEC9530779', 
+			nome: 'KLAUS TORRES CAMARA', 
+			codigo: '25158',
+			codVara: '953',
+			codSubVara: '',
+			acao: 'Pesquisar'
+		};
+		
+		var oTable = $('#tabListaNotificacoes').DataTable({
+			destroy: true,
+    		paging: true,
+			"bProcessing": true,
+			"sDom": '<"top"lpf>rt<"bottom"ip><"clear">',
+			pagingType: "full_numbers",
+			length: 10,
+			autoWidth: false,
+			ordering: false,
+			ajax: {
+		        url: 'NotificacaoListenerTriggerServlet',
+		        type: 'GET',
+		          	data: data
+		   	},
+		   	"fnDrawCallback": function(oSettings) {
+    		$(oSettings.nTableWrapper).find('.dataTables_paginate').show();
+			if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+				$(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+			}
+		}
+		});
+		
+		$('#tabListaNotificacoes tbody').on( 'click', 'a', function () {
+        	var data = oTable.row( $(this).parents('tr') ).data();
+        	
+        	if(data != null || data != undefined) {
+	        	$('#idDataCadastro').text(data[0]);
+	        	$('#idCartorio').text(data[3]);
+		       	$('#idAssunto').text(data[4]);
+		       	$('#idDestinatario').text($(data[6]).val());
+		        $('#idNumProcExec').text($(data[7]).val());
+		        $('#idSituacao').text($(data[9]).val());
+		        $('#idTexto').val($(data[10]).val());
+		        $('#codNotificacao').val($(data[11]).val());
+		        $('#setSubModalLida').val($(data[11]).val());
+		        
+		        $('#idLogin').text($(data[12]).val());
+		        $('#idAutor').text($(data[13]).val());
+		        $('#idRemetente').text($(data[14]).val());
+	        }
+	        	        
+	        $('#modalPesquisa').modal('show');
+    	});
+		
+		$('.btn-primary').on('click', function () {
+			var data = {
+				login: 'VEC9530779', 
+				nome: 'KLAUS TORRES CAMARA', 
+				codigo: '25158',
+				codVara: '953',
+				codSubVara: '',
+				codNotificacao: this.value,
+				acao: 'concluir'
+			};
+		
+		  	$.ajax({
+				  url: "NotificacaoListenerTriggerServlet",
+				  cache: false,
+				  data: data,
+				  dataType: 'json',
+				  success: function(data){
+				  	oTable.ajax.reload();
+				 	oTable.columns.adjust().draw();
+				 	
+			 		$.ajax({
+						  url: "NotificacaoListenerTriggerServlet",
+						  cache: false,
+						  data: {codVara: '953'},
+						  dataType: 'json',
+						  success: function(data){
+						  	if(data != null) {
+								$("#possuiNotificacao").text(data.recordsTotal);
+							}
+						  }
+					});
+				  }
+			});
+		});
+		$('#tabListaNotificacoes tbody').on( 'click', 'button', function () {
+			var data = {
+				login: 'VEC9530779', 
+				nome: 'KLAUS TORRES CAMARA', 
+				codigo: '25158',
+				codVara: '953',
+				codSubVara: '',
+				codNotificacao: this.value,
+				acao: 'concluir'
+			};
+		
+		  	$.ajax({
+				  url: "NotificacaoListenerTriggerServlet",
+				  cache: false,
+				  data: data,
+				  dataType: 'json',
+				  success: function(data){
+				  	oTable.ajax.reload();
+				 	oTable.columns.adjust().draw();
+				 	
+			 		$.ajax({
+						  url: "NotificacaoListenerTriggerServlet",
+						  cache: false,
+						  data: {codVara: '953'},
+						  dataType: 'json',
+						  success: function(data){
+						  	if(data != null) {
+								$("#possuiNotificacao").text(data.recordsTotal);
+							}
+						  }
+					});
+				  }
+			});
+		});
+		$('#modalPesquisa').modal();
+	});
+	
+})(jQuery);
+
+function abrirModal(){
+	$('#modalDicaPrincipal').modal();
+}
+</script>	
+ 
+ 
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td width="13%" height="70" background="./pagina3-pesquisarg_files/imgtopologo.gif">
+		<table width="379" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="101" height="50" align="left" class="textotopo">&nbsp;</td>
+				<td width="278" align="left" class="textotopo"><b>Tribunal de
+				Justiça do Estado de São Paulo</b><br>
+				</td>
+			</tr>
+			<tr valign="middle">
+			<td></td>
+				<td height="20" class="titulopesquisa">VEC - Vara das Execuções
+            Criminais</td>
+			</tr>
+		</tbody></table>
+		</td>
+		<td width="47%" align="right" background="./pagina3-pesquisarg_files/bgtopo.jpg"><img src="./pagina3-pesquisarg_files/imgtopomartelo.gif" width="378" height="70"></td>
+	</tr>
+</tbody></table>
+
+<div id="login">
+  <table class="menulogin"> 
+  	
+		<tbody><tr>
+	      <td class="textotopo">Login:</td>
+	      <td class="login">VEC9530779</td>
+	    </tr>
+		 
+		 	
+		 	
+		 		<tr>
+		  			<td class="textotopo">Comarca:</td>
+	      			<td class="login">M.P.
+						 
+							
+	    				
+					</td>
+	    		</tr>
+	    	
+	    
+	    
+    
+    
+  </tbody></table>
+</div>
+
+
+<hr class="linhabranca">
+
+
+<nav class="navbar navbar-inverse navbar-static-top marginBottom-0" role="navigation">
+	<div class="navbar-header">
+		<!-- Disable navbar icon menu
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+	        <span class="sr-only"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+	   	 -->
+	</div>
+	
+	<div class="collapse navbar-collapse" id="navbar-collapse-1">
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">Cadastros</a>
+				<ul class="dropdown-menu" role="menu">
+					<li class="dropdown-submenu">
+						<a style="color: #BBBBBB;"></a>
+			   				<ul class="dropdown-menu">
+			   					<li>
+			   						<a style="color: #BBBBBB;"></a>
+			   					</li>
+			   					<li>
+			   						<a style="color: #BBBBBB;">Acervo</a>
+			   					</li>
+			   				</ul>
+						</li>
+			   			<li>
+			   			 	<a style="color: #BBBBBB;">Execução</a>
+						</li>
+						<li>
+							<a style="color: #BBBBBB;">Incidente</a>
+					   	</li>
+			   			<li><a style="color: #BBBBBB;">RoteiroPena</a></li>
+			   			<li><a style="color: #BBBBBB;">Habeas Corpus</a></li>
+			   			<li><a style="color: #BBBBBB;">Mandado Segurança</a></li>
+			   			<li><a style="color: #BBBBBB;">Movimentos</a></li>
+			   			<li><a style="color: #BBBBBB;">Despacho/Decisão/Sentença</a></li>
+			   			<li><a style="color: #BBBBBB;">Juntadas</a></li>
+			   			<li><a style="color: #BBBBBB;">Remessa de Documentos</a></li>
+			   			<li><a style="color: #BBBBBB;">Inf. Complementares</a></li>
+			   			<li><a style="color: #BBBBBB;">RGs Provisórios</a></li>
+			   			<li><a style="color: #BBBBBB;">FAs em Lote</a></li>
+			   			<li><a style="color: #BBBBBB;">Internações</a></li>
+			   			<li><a style="color: #BBBBBB;">Manutenção de Dados do Cartório</a></li>
+			   			<li><a style="color: #BBBBBB;">Atualizar Qualificação</a></li>
+                       </ul>
+                   </li>
+				<li class="dropdown">
+                   	<a style="color: #BBBBBB;">Albergados</a>
+			   		<ul class="dropdown-menu">
+			   			<li><a style="color: #BBBBBB;">Cadastros</a></li>
+			   			<li class="dropdown-submenu">
+							<a style="color: #BBBBBB;">Fotos</a>
+				   				<ul class="dropdown-menu">
+				   					<li><a style="color: #BBBBBB;">Capturar Fotos</a></li>
+				   					<li><a style="color: #BBBBBB;">Excluir Fotos</a></li>
+				   				</ul>
+						</li>
+			   			
+			   			<li><a style="color: #BBBBBB;">Pesquisas</a></li>
+			   			<li><a style="color: #BBBBBB;">Relatórios Não Comparecimento</a></li>
+			   			<li><a style="color: #BBBBBB;">Relatórios Estatísticos</a></li>
+			   			<li><a style="color: #BBBBBB;">Rel. de Comparecimentos Previstos</a></li>
+			   		</ul>
+			   	</li>
+			   	<li class="dropdown">                   
+                   	<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">T. Ambulatorial</a>                   
+			   		<ul class="dropdown-menu">
+			   			<li><a style="color: #BBBBBB;">Cadastros</a></li>
+			   			<li><a style="color: #BBBBBB;">Relatórios Não Comparecimento</a></li>			   			
+			   		</ul>
+			   	</li>			   	
+			   	<li class="dropdown"><a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="" data-toggle="dropdown">Pesquisa</a>
+                       <ul class="dropdown-menu" role="menu">
+                       	<li>
+                       		
+  			 						<a href="http://intinfo.tj.sp.gov.br/vec/menu?op=./pe_pesquisar_processo.view">Por Processo de Execução</a>
+  			 					
+  			 				</li>
+                           <li class="dropdown-submenu">
+			   				
+			   					<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" id="1" class="dropdown-toggle" data-toggle="dropdown">Por Réu</a>
+			   				
+			   				<ul class="dropdown-menu">
+								<li>
+			   					<a href="pagina3-pesquisa-rg.html">Por RG</a></li>
+			   					<li>
+			   					<a href="pagina4-pesquisa-nome.html">Por Nome</a></li>
+			   					<li>
+			   					<a href="pagina5-pesquisa-sap.html">Matrícula SAP</a></li>
+			   				</ul>
+			   			</li>
+			   				<li>
+				   			 <a href="http://intinfo.tj.sp.gov.br/vec/menu?op=./entrada_pesq_movimentacao.do">Movimentos</a></li>   			 
+				   			 <li><a style="color: #BBBBBB;">Processos Criminais</a></li>
+				   			 <li><a style="color: #BBBBBB;">Internações</a></li>
+				   			 <li><a style="color: #BBBBBB;">Expedientes</a></li>
+                       </ul>
+                   </li>
+                   <li class="dropdown"><a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">Relatórios</a>   	
+			   		<ul class="dropdown-menu">
+			   			 <li><a style="color: #BBBBBB;">Certidão de Execução Criminal</a></li>
+			   			 <li class="dropdown-submenu">
+			   			   	<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" id="1" class="dropdown-toggle" data-toggle="dropdown">Contagem de Processos</a>
+			   				<ul class="dropdown-menu">
+								<li>
+					   			 	<a style="color: #BBBBBB;">Contagem de Processos</a>
+					   			 </li>
+					   			 <li>
+					   			 	<a style="color: #BBBBBB;">Por Situação Proc./Apenado</a>
+				   			 	</li>
+			   			 	</ul>
+			   			 </li>
+			   			 <li>
+			   			 <a href="http://intinfo.tj.sp.gov.br/vec/menu?op=./fa_procuradoc.view">F.A.</a></li>
+			   			 <li><a style="color: #BBBBBB;">F.A. em Lote</a></li>
+			   			 <li><a style="color: #BBBBBB;">Internações</a></li>
+			   			 <li><a style="color: #BBBBBB;">Livro de Feitos</a></li>
+			   			 <li><a style="color: #BBBBBB;">Rel. Lapso de Penas</a></li>
+			   			 <li><a style="color: #BBBBBB;">Rel. Operações Diárias</a></li>
+			   			 <li><a style="color: #BBBBBB;">Rel. Penas Alternativas</a></li>
+			   			 <li><a style="color: #BBBBBB;">Rel. Remessa de Documentos</a></li>
+			   			 <li><a style="color: #BBBBBB;">Rel. RGs Provisórios</a></li>
+			   			 <li><a style="color: #BBBBBB;">Rel. RDD</a></li>
+			   			 <li><a style="color: #BBBBBB;">Rel. Vencimento de Penas</a></li>
+			   			 <li><a style="color: #BBBBBB;">Expedientes</a></li>
+						<li class="dropdown-submenu"><a style="color: #BBBBBB;">Mandado de Prisão</a>
+			   			 	<ul class="dropdown-menu">
+				   			 	<li><a style="color: #BBBBBB;">Emissão Mandado</a></li>
+				   			 	<li class="dropdown-submenu"><a style="color: #BBBBBB;">Atualizar BNMP</a>
+					   			 	<ul class="dropdown-menu">
+						   			 	<li><a style="color: #BBBBBB;">Mandados Pendentes</a></li>
+						   			 	<li><a style="color: #BBBBBB;">Mandados Transmitidos</a></li>
+						   			 	<li><a style="color: #BBBBBB;">Mandados Cumprido(s)/Revogado(s)</a></li>
+						   			 	<li><a style="color: #BBBBBB;">Mandados Cancelados</a></li>
+						   			 	<li><a style="color: #BBBBBB;">Mandados Restritos</a></li>
+				   			 		</ul>
+				   			 	</li>
+			   			 	</ul>
+			   			 </li> 
+			   		</ul>
+			   	</li>
+			   	<li class="dropdown">
+			   		<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">Cálculos</a>
+			   		<ul class="dropdown-menu">
+			   			 <li><a style="color: #BBBBBB;">Cálculo de Benefícios</a></li>
+			   			 <li><a style="color: #BBBBBB;">Calcular Prescrições</a></li>
+			   			 <li><a style="color: #BBBBBB;">Calcular RDD</a></li>
+			   			 <li><a style="color: #BBBBBB;">Calcular Multas</a></li>
+			   			 <li><a style="color: #BBBBBB;">Calcular Penas Alternativas</a></li>
+			   			 <li><a style="color: #BBBBBB;">Simular Benefícios</a></li>
+			   		</ul>
+			   	</li>
+			   	<li class="dropdown">
+			   		<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">Demais Funcionalidades</a>
+			   		<ul class="dropdown-menu">
+			   			 <li class="dropdown-submenu">
+				   			 <a style="color: #BBBBBB;">Imprimir Etiquetas</a>
+			   			 	<ul class="dropdown-menu">
+				   			 	<li><a style="color: #BBBBBB;">Processo Execução</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Processo Execução</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Habeas Corpus</a></li>
+				   			 	<li><a style="color: #BBBBBB;">M. Segurança</a></li>	   			 	
+			 			 	</ul>
+			   			 </li>
+			   			 <li class="dropdown-submenu">
+				   			 <a style="color: #BBBBBB;">Remessa de Processo</a>
+			   				 <ul class="dropdown-menu">
+				   			 	<li><a style="color: #BBBBBB;">Remessa</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Recebimento</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Cancelar Remessa</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Pesquisar Remessa</a></li>	
+				   			 	<li><a style="color: #BBBBBB;">Pesquisar Remessas Pendentes</a></li>   			 	
+			 			 	 </ul>
+			   			 </li>
+			   			 <li><a style="color: #BBBBBB;">Transferir Processos Arquivados</a></li>
+			   			 <li><a style="color: #BBBBBB;">Recuperar Processos</a></li>   			 
+			   			 <li>
+			   			 <a href="http://intinfo.tj.sp.gov.br/vec/menu?op=./altera_senha_usuario.do">Alterar Senha</a></li>
+			   			 
+			   			 <li><a style="color: #BBBBBB;">Índices Financeiros</a></li>
+			   			 <li><a style="color: #BBBBBB;">Moedas</a></li>
+			   			 <li class="dropdown-submenu">
+				   			 <a style="color: #BBBBBB;">Órgãos e Entidades</a>
+			   				 <ul class="dropdown-menu">
+				   			 	<li><a style="color: #BBBBBB;">Coordenadorias</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Unidades Prisionais</a></li>
+				   			 	
+				   			 	<!--Mantis 5997 - Retirar a opção Detran/Ciretran  
+				   			 	<li><a style='color: #BBBBBB;'>Detran / Ciretran</a></li>  			 	
+			 			 	 	--->
+			 			 	 </ul>
+			   			 </li>
+			   			 <li class="dropdown-submenu">
+				   			 <a style="color: #BBBBBB;">Manutenção de Tabelas</a>
+			   			 	<ul class="dropdown-menu">
+			   			 		<li><a style="color: #BBBBBB;">Varas/Local Prisão</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Manutençao Legislação</a></li>
+			   			 	</ul>
+			   			 </li>
+			   			 <li class="dropdown-submenu">
+				   			  <a style="color: #BBBBBB;">Faixa de Protocolos (CNJ)</a>
+			   				 <ul class="dropdown-menu">
+				   			 	<li><a style="color: #BBBBBB;">Configurar</a></li>
+				   			 	<li><a style="color: #BBBBBB;">Monitorar</a></li>		 	
+			 			 	 </ul>
+			   			 </li>
+			   		</ul>
+			   	</li>
+			   	<li class="dropdown">
+			   		<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">BNMP 2.0</a>
+			   	  	<ul class="dropdown-menu">
+						<li class="dropdown-submenu-left">
+			   			 	<a style="color: #BBBBBB;">RJI</a>
+ 							 <ul class="dropdown-menu">
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Vincular Processo ao RJI - CNJ</a>
+				   			 	</li>
+				   			 	
+								
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Pesquisar Pessoa no BNMP - CNJ</a>
+				   			 	</li> 			 	
+			 			 	</ul>
+			   			</li>
+			   			<li class="dropdown-submenu-left">	
+			   			 	<a style="color: #BBBBBB;">Emitir Mandado de Prisão/Recaptura</a>
+ 							 <ul class="dropdown-menu">
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Emitir o Mandado de Prisão/Recaptura</a>
+				   			 	</li>
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Emitir a Certidão de Cumprimento do Mandado</a>
+				   			 	</li>
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Contingência</a>
+				   			 	</li>
+			 			 	</ul>
+			   			</li>
+			   			<li class="dropdown-submenu-left">
+			   			 	<a style="color: #BBBBBB;">Contramandado</a>
+ 							 <ul class="dropdown-menu">
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Emitir Contramandado</a>
+				   			 	</li>
+								<li>
+				   			 		<a style="color: #BBBBBB;">Contingência</a>
+				   			 	</li>
+			 			 	</ul>
+			   			</li>
+			   			<li class="dropdown-submenu-left">
+			   				<a style="color: #BBBBBB;">Alvará de Soltura/Ordem de Liberação</a>
+		   					<ul class="dropdown-menu">
+		   						<li>
+				   			 		<a style="color: #BBBBBB;">Emitir Alvará de Soltura/Ordem de Liberação</a>
+				   			 	</li>
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Contingência</a>
+				   			 	</li>
+			   			 	</ul>
+		   			 	</li>
+			   			<li class="dropdown-submenu-left">
+			   			 	<a style="color: #BBBBBB;">Mandado de Internação</a>
+ 							 <ul class="dropdown-menu">
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Emitir o Mandado de Internação</a>
+				   			 	</li>
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Emitir a Certidão de Cumprimento do Mandado</a>
+				   			 	</li>
+								<li>
+				   			 		<a style="color: #BBBBBB;">Contingência</a>
+				   			 	</li>
+			 			 	</ul>
+			   			</li>
+			   			<li class="dropdown-submenu-left">
+			   			 	<a style="color: #BBBBBB;">Ordem de Desinternação</a>
+ 							 <ul class="dropdown-menu">
+				   			 	<li>
+				   			 		<a style="color: #BBBBBB;">Emitir Ordem de Desinternação</a>
+				   			 	</li>
+								<li>
+				   			 		<a style="color: #BBBBBB;">Contingência</a>
+				   			 	</li>
+			 			 	</ul>
+			   			</li>
+			   			<li>
+			   				<a style="color: #BBBBBB;">Guia de Internação (Acervo da Execução)</a>
+				   		</li>  
+			   			<li>
+			   			 	<a style="color: #BBBBBB;">Certidão de Extinção de Punibilidade por Morte</a>
+			   			</li>
+			   			<li>
+			   				<a style="color: #BBBBBB;">Guia de Recolhimento (Acervo da Execução)</a>
+				   		</li>
+			   			<li>
+			   			 	<a style="color: #BBBBBB;">Certidão de Arquivamento da Guia</a>
+			   			 </li>
+			   			 <li class="dropdown-submenu-left">
+			   			 	<a style="color: #BBBBBB;">Pesquisar Peca</a>
+			   			</li>
+			   		</ul>
+			   	</li>
+			   	<li class="dropdown">
+			   		<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">Comunicados</a>
+			   	  	<ul class="dropdown-menu">
+			   			 <li><a style="color: #BBBBBB;">Novidades</a></li>
+			   			 <li><a style="color: #BBBBBB;">Popup</a></li>
+			   			 	   			 
+			   			 <li class="dropdown-submenu">
+			   			 	
+			   			 		<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">Notificação</a>
+			   			 	
+ 							 <ul class="dropdown-menu">
+				   			 	<li>
+				   			 		
+				   			 			<a href="http://intinfo.tj.sp.gov.br/vec/notificacao_nova.do">Nova/Rascunho</a>
+				   			 		
+				   			 	</li>
+				   			 	<li>
+				   			 		
+				   			 			<a href="http://intinfo.tj.sp.gov.br/vec/notificacao_pesquisas_enviadas.do">Pesquisar Enviadas</a>
+				   			 		
+				   			 	</li>
+				   			 	<li>
+				   			 		
+				   			 			<a href="http://intinfo.tj.sp.gov.br/vec/notificacao_pesquisas_lidas.do">Pesquisar Lidas</a>
+				   			 		
+				   			 	</li>   			 	
+			 			 	</ul>
+			   			</li>
+			   		</ul>
+			   	</li>
+			   	<li class="dropdown">
+			   		<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" class="dropdown-toggle" data-toggle="dropdown">Ajuda</a>
+			   		<ul class="dropdown-menu">
+			   			<li>
+				   		<a href="http://intinfo.tj.sp.gov.br/vec/menu?op=./manual.view">Manual</a></li> 
+			   		</ul>
+			   	</li>			   	
+			   	<li>
+			   		<a href="http://intinfo.tj.sp.gov.br/vec/logout.view">Sair</a>
+			   	</li>
+			   	<li>
+				  <button id="buttonEventNotificacao" class="btn btn-sm btn-link" style="font-size:16px;">
+				    <span class="glyphicon glyphicon-comment"></span>
+				  </button>
+				  <span id="possuiNotificacao" class="badge badge-notify">0</span>
+				</li>
+               </ul>
+           </div><!-- /.navbar-collapse -->
+       </nav>
+<br>	
+<noscript>Seu navegador não suporta script.</noscript>
+
+
+<div id="modalPesquisa" class="modal fade modal-wide" tabindex="-1" style="z-index:1000000000" role="dialog"><!-- /.modal -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title textobranco2 text-center">
+        	Notificações -
+        	M.P.
+			 
+				
+			
+        </h4>
+	   </div>
+	      	<div class="modal-body">
+				<table id="tabListaNotificacoes" class="table compact table-striped">
+					<thead>
+						<tr class="even">
+							<th class="display-th">Envio</th>
+							<th class="display-th">Remetente</th>
+							<th class="display-th">N° de Controle VEC</th>
+							<th class="display-th">Cartório</th>
+							<th class="display-th">Assunto</th>
+							<th class="display-th">Ciente</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+					    		
+					</tbody>
+				</table>	
+	  		</div>
+	      <div class="modal-footer">
+	         <div class="col-md-11 top-buffer5">
+				<a href="http://intinfo.tj.sp.gov.br/vec/pfisica_rg.view#" onclick="javascript:abrirModal();" class="paginacao">Dicas para as Notificações Enviadas</a>
+			</div>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="modalDetalhe" class="modal fade modal-wide" tabindex="-1" style="z-index:1000000000" role="dialog"><!-- /.modal -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title textobranco2 text-center">Detalhe Notificação</h4>
+	   </div>
+	      <div class="modal-body">
+	        	
+       			<div class="row top-buffer15">
+					<div class="col-md-6">
+						<span class="textotab2">Login:</span>
+						<span id="idLogin" class="textotab"></span>
+					</div>
+					<div class="col-md-6">
+						<span class="textotab2">Autor:</span>
+						<span id="idAutor" class="textotab"></span>
+					</div>	
+				</div>
+				<div class="row top-buffer15">
+					<div class="col-md-6">
+						<span class="textotab2">Remetente:</span>
+						<span id="idRemetente" class="textotab"> </span>
+						
+						<!-- 
+							
+						 -->
+					</div>
+					<div class="col-md-6">
+						<span class="textotab2">Enviado em:</span>
+						<span id="idDataCadastro" class="textotab"> </span>
+					</div>	
+				</div>
+				<div class="row top-buffer15">
+					<div class="col-md-6">
+							<span class="textotab2">Destinatário:</span>
+							<span id="idDestinatario" class="textotab"></span>
+					</div>
+					<div class="col-md-6">
+						<span class="textotab2">Situação:</span>
+						<span id="idSituacao" class="textotab"></span>
+					</div>
+				</div>
+				<div class="row top-buffer25">
+					<div class="col-md-12">
+						<fieldset><legend class="titulo"></legend></fieldset>
+					</div>
+				</div>
+				<div class="row top-buffer15">
+					<div class="col-md-2"><span class="textotab2">Assunto:</span></div>
+					<div class="col-md-4">
+						<span id="idAssunto" class="textotab"></span>
+					</div>
+					<div class="col-md-4">
+						<span class="textotab2">N° Controle VEC:</span>
+						
+						<span id="idNumProcExec" class="textotab"></span>
+					</div>
+				</div>
+				<div class="row top-buffer15">
+					<div class="col-md-2"><span class="textotab2">Texto:</span></div>
+					<div class="col-md-8">
+						<input id="idTexto" type="textarea" disabled="true" tabindex="0" class="form-control" cols="90" rows="7">
+					</div>
+				</div>
+	        	
+	      </div>
+      <div class="modal-footer">
+        <button id="setSubModalLida" type="button" class="btn btn-primary" data-dismiss="modal"><span aria-hidden="true" class="glyphicon glyphicon-ok"></span></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        
+        <input id="idCodUsuario" type="hidden" name="texto">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="modalDicaPrincipal" class="modal fade modal-wide" tabindex="-1" style="z-index:1000000000" role="dialog"><!-- /.modal -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title textobranco2 text-center">Dicas para as Notificações Enviadas</h4>
+      </div>
+      <div class="modal-body">
+        	
+			<div class="row top-buffer15">
+				<div class="col-md-12 top-buffer15 textotab2">
+					1 - Qualquer usuário da Comarca/Unidade destino poderá visualizar o alerta de nova notificação recebida e marcá-la como lida;
+				</div>
+				<div class="col-md-12 top-buffer15 textotab2">
+					2 - Uma vez que o usuário marcar a notificação recebida como lida e não existirem mais notificações pendentes, o alerta irá desaparecer da tela. 
+				</div>
+			</div>
+      	</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- commonxp include [url=/WEB-INF/jsp/pt_BR/header.jsp] -->
+		
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#idValorPesq').mask('99999999#').focus();
+		
+		$('input').keydown(function(e) {
+	   		if (e.keyCode == 13) {
+	    		$('#procurar').focus();
+	    	}
+		});
+	});
+	
+	function clearValorPesq(){
+		$('#idValorPesq').val('');
+		$('#idValorPesq').removeClass('ui-state-error');
+	}
+	
+	function corrigevalorPesq(params){
+		for(i=0;i<params.length;i++){
+			document.getElementById(params[i]).value = "";
+		}
+	}
+</script>
+
+<form name="pesquisarPessoaFisicaForm" method="get" action="pagina6-resultado.html" id="pesq_pf">
+	<input type="hidden" name="telaPesquisaPorProcesso" value="1">
+	<input type="hidden" name="pesqPessoasFisicas" value="">
+	<input type="hidden" name="voltar" value="">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<fieldset><legend class="titulo">Pesquisa por Réu - Por RG</legend></fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="row tituloPreto top-buffer15">
+			<div class="col-md-offset-2 col-md-8">
+				<span>Para fazer a pesquisa, informe o RG desejado:</span>
+			</div>
+		</div>
+		<div class="row top-buffer15">
+			<div class="col-md-offset-2 col-md-8">
+				<fieldset><legend></legend></fieldset>
+			</div>
+		</div>
+		<div class="row top-buffer15">
+			<div class="col-md-offset-2 col-md-5">
+				<div class="input-group input-group-sm">
+					<span class="input-group-addon">Informe o RG:<span class="textovermelho">*</span></span>
+					<input class="form-control" type="text" id="idValorPesq" name="valorPesq" maxlength="8" onclick="corrigevalorPesq([&#39;idValorPesq&#39;]);clearValorPesq()">
+				</div>	
+			</div>
+		</div>
+		<div class="row top-buffer25">
+			<div class="col-md-offset-2 col-md-6 textovermelho">Os campos marcados com (*), são obrigatórios.</div>
+		</div>
+		<div class="row top-buffer15">
+			<div class="col-md-8 top-buffer10 col-md-offset-2 text-right">
+				<input type="hidden" name="tipoPesq" value="1">
+				<input type="hidden" name="pesquisaRealizada" value="pfisica_rg.view">
+				<input type="button" class="btn btn-sm btn-oldstyle" name="procura" value="Pesquisar" id="procurar" onclick="location.href='pagina6-resultado.html';">
+			</div>
+		</div>
+		<div class="row top-buffer15">
+			<div class="col-md-offset-2 col-md-8">
+				<fieldset><legend></legend></fieldset>
+			</div>
+		</div>
+	</div>
+</form><!-- commonxp include [url=/WEB-INF/jsp/pt_BR/pfisica_rg.jsp] -->		
+		
+	
+	
+<div id="icpbravoaccess_loaded"></div><div id="popupMask"></div><div id="popupContainer"><div id="popupInner" style="width:100%"><div id="popupTitleBar" style="width:100%"><div id="popupTitle"></div><div id="popupControls"><a onclick="hidePopWin(true);"><img src="./pagina3-pesquisarg_files/close.gif" onclick="hidePopWin(false);" id="popCloseBox"></a></div></div><iframe src="./pagina3-pesquisarg_files/loading.html" style="width:100%;height:100%;background-color:transparent;" scrolling="auto" frameborder="0" allowtransparency="true" id="popupFrame" name="popupFrame" width="100%" height="100%"></iframe></div></div></body></html>

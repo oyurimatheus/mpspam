@@ -1,0 +1,42 @@
+﻿function OpenBaixaBradesco() {
+    $.post('/Servicos/Pagamentos/BaixaAutomaticaBradesco', { Action: "Carregar" }, function (data) {
+        ClosePopup("#popupPagamentos");
+        if ($("#popupBradesco").length > 0) OpenPopup("#popupBradesco");
+        else {
+            $("#boxes").append(data);
+            
+            $("#NumeroPedido").onlyNumbers();
+            $("#Data").datepicker({ changeMonth: true, changeYear: true,
+                minDate: new Date().adjustDate(-5).toLocaleDateString(),
+                maxDate: new Date().toLocaleDateString()
+            });
+
+            CreatePopups();
+            OpenPopup("#popupBradesco");
+        }
+    });
+}
+
+function ProcessarBaixaAutomatica() {
+
+    ShowLoading();
+    $("#frmBaixaAutomatica").ajaxForm({
+        success: function (data) {
+            if (data.Error) {
+                DestroyLoading();
+                $("#FiltrosBaixaAutomatica").hide();
+                $("#ErrosBaixaAutomatica label")
+                        .html(data.Message)
+                        .parent().show();
+            }
+            else LoadPage('/Servicos/Pagamentos/BaixaAutomaticaBradesco', [['Action', 'Listar']]);
+        },
+        error: function () {
+            DestroyLoading();
+            alert('Não foi possível processar sua solicitação, tente novamente por gentileza.\nSe o problema persistir, entre em contato com a Arisp.');
+        },
+        url: '/Servicos/Pagamentos/BaixaAutomaticaBradesco',
+        resetForm: false
+    }).submit();
+
+}

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!-- saved from url=(0160)https://sistema.registrocivil.org.br/crcjud/index.cfm#/central/registroDetalhar/258612/params/tipo_registro/C/id/105521142/cartorio_id/110/busca_juiz_id/1997333 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <link rel="stylesheet" href="./pagina4-resultado_files/estilo.css" type="text/css">
+
+    <link rel="stylesheet" href="./pagina4-resultado_files/jquery-ui-1.9.2.custom.min.css" type="text/css">
+    <script async="" src="./pagina4-resultado_files/analytics.js.download"></script><script src="./pagina4-resultado_files/jquery-1.4.4.min.js.download"></script>
+    <script src="./pagina4-resultado_files/jquery.dataTables.js.download"></script>
+    <script src="./pagina4-resultado_files/jquery.address-1.3.2.min.js.download"></script>
+    <script src="./pagina4-resultado_files/jquery-ui-1.8.9.custom.min.js.download"></script>
+    <script src="./pagina4-resultado_files/jquery.ui.datepicker-pt-BR.js.download"></script>
+    <script src="./pagina4-resultado_files/jquery.liveready.js.download"></script>
+    <script src="./pagina4-resultado_files/jquery.corner.js.download"></script>
+
+    
+<script language="javascript" type="text/javascript">
+// insertcode is used for bold, italic, underline and quote and just
+// wraps the tags around a selection or prompts the user for some
+// text to apply the tag to
+function insertcode(tag, desc)
+{
+    // our textfield
+    var textarea = document.getElementById("The_TextArea");
+
+    // our open tag
+    var open = "[" + tag + "]";
+
+    // our close tag
+    var close = "[/" + tag + "]";
+
+    if(!textarea.setSelectionRange)
+    {
+        var selected = document.selection.createRange().text;
+        if(selected.length <= 0)
+        {
+            // no text was selected so prompt the user for some text
+            textarea.value += open + prompt("Por favor, entre com o texto que voc� gostaria de " + desc, "") + close;
+        }
+        else
+        {
+            // put the code around the selected text
+            document.selection.createRange().text = open + selected + close;
+        }
+
+    }
+    else
+    {
+        // the text before the selection
+        var pretext = textarea.value.substring(0, textarea.selectionStart);
+
+        // the selected text with tags before and after
+        var codetext = open + textarea.value.substring(textarea.selectionStart, textarea.selectionEnd) + close;
+
+        // the text after the selection
+        var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+
+        // check if there was a selection
+        if(codetext == open + close)
+        {
+            //prompt the user
+            codetext = open + prompt("Por favor, entre com o texto que voc� gostaria de " + desc, "") + close;
+        }
+
+        // update the text field
+        textarea.value = pretext + codetext + posttext;
+    }
+
+    // set the focus on the text field
+    textarea.focus();
+}
+
+// inserts an image by prompting the user for the url
+function insertimage()
+{
+    // our textfield
+    var textarea = document.getElementById("The_TextArea");
+
+    // our image
+    var image = "<img src='" + prompt("Por favor, insira a url", "http://") + "' alt='' />";
+
+    if(!textarea.setSelectionRange)
+    {
+        // get selected text
+        var selected = document.selection.createRange().text;
+
+        if(selected.length <= 0)
+        {
+            // no text was selected so add the image to the end
+            textarea.value += image;
+        }
+        else
+        {
+            // replace the selection with the image
+            document.selection.createRange().text = image;
+        }
+    }
+    else
+    {
+        // the text before the selection
+        var pretext = textarea.value.substring(0, textarea.selectionStart);
+
+        // the text after the selection
+        var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+
+        // update the text field
+        textarea.value = pretext + image + posttext;
+    }
+
+    // set the focus on the text field
+    textarea.focus();
+}
+
+// inserts a link by prompting the user for a url
+function insertlink()
+{
+    // our textfield
+    var textarea = document.getElementById("The_TextArea");
+
+    // our link
+    var url = prompt("Por favor, insira a url", "");
+    var link = "[link=" + url + "]" + url + "[/link]";
+
+    if(!textarea.setSelectionRange)
+    {
+        // get selected text
+        var selected = document.selection.createRange().text;
+
+        if(selected.length <= 0)
+        {
+            // no text was selected so add the link to the end
+            textarea.value += link;
+        }
+        else
+        {
+            // replace the selection with the link
+            document.selection.createRange().text = "[link=" + url + "]" + selected + "[/link]";
+        }
+    }
+    else
+    {
+        // get selected text
+        var selected = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+        // the text before the selection
+        var pretext = textarea.value.substring(0, textarea.selectionStart);
+
+        // the text after the selection
+        var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+
+        // update the text field
+        textarea.value = pretext + "[link=" + url + "]" + selected + "[/link]" + posttext;
+    }
+
+    // set the focus on the text field
+    textarea.focus();
+}
+
+
+function insertcode2(id, tag, desc)
+{
+    // our textfield
+    var textarea = document.getElementById("The_TextArea_" + id);
+
+    // our open tag
+    var open = "[" + tag + "]";
+
+    // our close tag
+    var close = "[/" + tag + "]";
+
+    if(!textarea.setSelectionRange)
+    {
+        var selected = document.selection.createRange().text;
+        if(selected.length <= 0)
+        {
+            // no text was selected so prompt the user for some text
+            textarea.value += open + prompt("Por favor, entre com o texto que voc� gostaria de " + desc, "") + close;
+        }
+        else
+        {
+            // put the code around the selected text
+            document.selection.createRange().text = open + selected + close;
+        }
+
+    }
+    else
+    {
+        // the text before the selection
+        var pretext = textarea.value.substring(0, textarea.selectionStart);
+
+        // the selected text with tags before and after
+        var codetext = open + textarea.value.substring(textarea.selectionStart, textarea.selectionEnd) + close;
+
+        // the text after the selection
+        var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+
+        // check if there was a selection
+        if(codetext == open + close)
+        {
+            //prompt the user
+            codetext = open + prompt("Por favor, entre com o texto que voc� gostaria de " + desc, "") + close;
+        }
+
+        // update the text field
+        textarea.value = pretext + codetext + posttext;
+    }
+
+    // set the focus on the text field
+    textarea.focus();
+}
+
+// inserts an image by prompting the user for the url
+function insertimage2(id)
+{
+    // our textfield
+    var textarea = document.getElementById("The_TextArea_" + id);
+
+    // our image
+    var image = "<img src='" + prompt("Por favor, insira a url", "http://") + "' alt='' />";
+
+    if(!textarea.setSelectionRange)
+    {
+        // get selected text
+        var selected = document.selection.createRange().text;
+
+        if(selected.length <= 0)
+        {
+            // no text was selected so add the image to the end
+            textarea.value += image;
+        }
+        else
+        {
+            // replace the selection with the image
+            document.selection.createRange().text = image;
+        }
+    }
+    else
+    {
+        // the text before the selection
+        var pretext = textarea.value.substring(0, textarea.selectionStart);
+
+        // the text after the selection
+        var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+
+        // update the text field
+        textarea.value = pretext + image + posttext;
+    }
+
+    // set the focus on the text field
+    textarea.focus();
+}
+
+// inserts a link by prompting the user for a url
+function insertlink2(id)
+{
+    // our textfield
+    var textarea = document.getElementById("The_TextArea_" + id);
+
+    // our link
+    var url = prompt("Por favor, insira a url", "");
+    var link = "[link=" + url + "]" + url + "[/link]";
+
+    if(!textarea.setSelectionRange)
+    {
+        // get selected text
+        var selected = document.selection.createRange().text;
+
+        if(selected.length <= 0)
+        {
+            // no text was selected so add the link to the end
+            textarea.value += link;
+        }
+        else
+        {
+            // replace the selection with the link
+            document.selection.createRange().text = "[link=" + url + "]" + selected + "[/link]";
+        }
+    }
+    else
+    {
+        // get selected text
+        var selected = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+        // the text before the selection
+        var pretext = textarea.value.substring(0, textarea.selectionStart);
+
+        // the text after the selection
+        var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+
+        // update the text field
+        textarea.value = pretext + "[link=" + url + "]" + selected + "[/link]" + posttext;
+    }
+
+    // set the focus on the text field
+    textarea.focus();
+}
+</script>
+    <script src="./pagina4-resultado_files/generico.js.download"></script>
+    <script src="./pagina4-resultado_files/usuario.js.download"></script>
+    <script src="./pagina4-resultado_files/pedido.js.download"></script>
+    <script src="./pagina4-resultado_files/entidade.js.download"></script>
+    <script src="./pagina4-resultado_files/busca.js.download"></script>
+    <script src="./pagina4-resultado_files/vara.js.download"></script>
+    <script src="./pagina4-resultado_files/mandado.js.download"></script>
+  <meta id="dcngeagmmhegagicpcmpinaoklddcgon"></head>
+  <body>
+    <
+    
+      <div id="cabecalho">
+        
+  <div class="topo">
+    <div style="height:35px;margin:0px 10px;padding-top:3px;">
+      <a href="https://sistema.registrocivil.org.br/crcjud/index.cfm" style="float:left;">
+        <img src="./pagina4-resultado_files/logo_topo.png" title="Ju�z" width="40px;">
+      </a>
+      <a style="float: left; text-align: center; width: 1278px;" class="layout_titulo">CRC-JUD </a>
+      <span id="submenu" style="float:right;margin:3px 0px;">
+
+        
+          <a link="includes/inicioVisualizar" class="link" style="font-size:15px;"><div class="layout_submenu">Antonio Torres Coutinho</div></a>
+        
+        <a link="includes/inicioVisualizar" class="layout_titulo_01 link" style="font-size:15px;"><div class="layout_submenu">Principal </div></a>
+        <a href="https://sistema.registrocivil.org.br/crcjud/login/loginEntrarNovov2.cfm" class="layout_titulo_01 link" style="font-size:15px;cursor:pointer;"><div class="layout_submenu_last">Sair </div></a>
+      </span>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+
+      </div>
+      <div id="corpo">
+        <div id="menu" style="float:left; padding:5px 5px 0px 5px;">
+          
+
+
+<div id="wrapper">
+
+  <ul class="menu">
+    <li class="subitem1"><a link="includes/inicioVisualizar"><div id="arrumaMenu">Principal </div></a></li>
+    
+      <li class="item3"><a href="javascript:void(0);" class="active"><div id="arrumaMenu">C. R. C.</div></a>
+        <ul style="display: block;">
+          
+            <li class="subitem1"><a link="central/buscaRegistros">Busca na CRC</a></li>
+          
+            <li class="subitem1"><a link="pedido/pedido2aViaFormulario">Pedido de Certid�o</a></li>
+            <li class="subitem1"><a link="pedido/pedido2aViaPesquisarVisualizar">Certid�es Solicitadas</a></li>
+          
+            <li class="subitem1"><a link="mandado/envioDocumentosVisualizar">Enviar Mandado Eletr�nico</a></li>
+            <li class="subitem1"><a link="mandado/mandadosPesquisarVisualizar">Mandados Enviados</a></li>
+          
+        </ul>
+      </li>
+    
+    
+  </ul>
+
+</div>
+
+<!--initiate accordion-->
+<script type="text/javascript">
+  $(function() {
+
+      var menu_ul = $('.menu > li > ul'),
+             menu_a  = $('.menu > li > a');
+
+      menu_ul.hide();
+
+      menu_a.click(function(e) {
+          e.preventDefault();
+          if(!$(this).hasClass('active')) {
+              menu_a.removeClass('active');
+              menu_ul.filter(':visible').slideUp('normal');
+              $(this).addClass('active').next().stop(true,true).slideDown('normal');
+          } else {
+              $(this).removeClass('active');
+              $(this).next().stop(true,true).slideUp('normal');
+          }
+      });
+
+  });
+</script>
+
+
+        </div>
+        <div id="body">
+          <div class="voltar"><a href="javascript:history.back();" class="btn_back" alt="Voltar" title="Voltar" style="left: 925px;">VOLTE</a></div>
+          <div id="principal" class="principal">
+
+<div class="redondo">
+<h1>Vizualiza��o de Dados do Registro</h1>
+<br>
+
+<form action="javascript:pedido2aViaBusca();" method="POST" name="form_registro">
+<input type="Hidden" name="cartorio_id" value="110">
+<input type="Hidden" name="busca_juiz_id" value="1997333">
+<table align="center" width="90%">
+  <tbody><tr><td align="right" width="20%" nowrap="">Cart�rio de Registro:</td><td><b>S�o Paulo -  8� Subdistrito - Santana</b></td></tr>
+  <tr><td align="right" width="20%" nowrap="">N�mero do CNS:</td><td><b>11914-9</b></td></tr>
+  <tr><td align="right" width="20%" nowrap="">UF:</td><td><b>SP</b></td></tr>
+  <tr><td align="right" width="20%" nowrap="">&nbsp;</td><td>&nbsp;</td></tr>
+</tbody></table>
+
+  <input type="Hidden" name="tipo_registro" value="C">
+  <input type="Hidden" name="nome_registrado_1" value="Antonio TORRES Coutinho">
+  <input type="Hidden" name="nome_registrado_2" value="Ellen MARIA FERNANDES CASTAGNA">
+  <input type="Hidden" name="novo_nome_registrado_1" value="">
+  <input type="Hidden" name="novo_nome_registrado_2" value="Ellen MARIA FERNANDES CASTAGNA Coutinho">
+  <input type="Hidden" name="data_ocorrido" value="19/03/2015">
+  <input type="Hidden" name="data_registro" value="19/03/2015">
+  <input type="Hidden" name="num_livro" value="00133">
+  <input type="Hidden" name="num_folha" value="237">
+  <input type="Hidden" name="num_registro" value="0039194">
+  <input type="Hidden" name="matricula" value="11914901552015200133237003919491">
+  <table align="center" width="90%">
+    
+      <tbody><tr><td align="left" nowrap="" colspan="2"><b>CASAMENTO RELIGIOSO</b><hr noshade=""></td></tr>
+    
+    <tr><td align="right" width="20%" nowrap="">Nome do C�njuge 1a:</td><td>Antonio TORRES Coutinho</td></tr>
+    <tr><td align="right" width="20%" nowrap="">Novo nome do C�njuge 1:</td><td></td></tr>
+    <tr><td align="right" width="20%" nowrap="">Nome do C�njuge 2:</td><td>Ellen MARIA FERNANDES CASTAGNA</td></tr>
+    <tr><td align="right" width="20%" nowrap="">Novo nome do C�njuge 2:</td><td>Ellen MARIA FERNANDES CASTAGNA Coutinho</td></tr>
+    <tr><td align="right" width="20%" nowrap="">Data do Casamento:</td><td>19/03/2015</td></tr>
+    <tr><td align="left" nowrap="" colspan="2"><hr noshade=""></td></tr>
+    <tr><td align="right" width="20%" nowrap="">Matr�cula:</td><td><b>11914901552015200133237003919491</b></td></tr>
+    <tr><td align="right" width="20%" nowrap="">Data de Entrada:</td><td><b>23/03/2015</b></td></tr>
+    <tr><td align="right" width="20%" nowrap="">Data do Registro:</td><td>19/03/2015</td></tr>
+    <tr><td align="right" width="20%" nowrap="">Ac�rvo: </td><td>01</td></tr>
+    <tr><td align="right" width="20%" nowrap="">N�mero do Livro: </td><td>00133</td></tr>
+    <tr><td align="right" width="20%" nowrap="">N�mero da Folha: </td><td>237</td></tr>
+    <tr><td align="right" width="20%" nowrap="">N�mero do Registro: </td><td>0039194</td></tr>
+    <tr><td align="right" width="20%" nowrap="" height="24">Tipo do Livro:</td>
+      <td>
+        
+          <b>B</b>
+        
+      </td>
+    </tr>
+
+    <tr><td align="left" nowrap="" colspan="2"><hr noshade=""></td></tr>
+      <tr><td align="right" valign="top">Observa��es:</td>
+          <td nowrap="" align="left">
+            <input type="hidden" name="nome_requerente" value="Antonio Torres Coutinho">
+            <input type="hidden" name="documento_requerente" value="">
+            <input type="hidden" name="telefone_requerente" value="(11) 3119-7142">
+            <textarea cols="35" rows="4" id="obs_solicitacao" name="obs_solicitacao" onkeyup="counterUpdate(&#39;obs_solicitacao&#39;, &#39;count_obs_solicitacao&#39;, 2000);" wrap="soft"></textarea>
+            <b>&nbsp;<span id="count_obs_solicitacao">0</span></b> caracteres de <b>2000</b>&nbsp;
+          </td>
+      </tr>
+      <tr><td align="right" nowrap=""></td>
+          <td nowrap="" align="left">
+            <input type="submit" class="botao" name="btn_certidao" value="Solicitar 2� Via de certid�o" id="btn_certidao">
+            <span id="pesq_loading"></span>
+          </td>
+      </tr>
+
+  </tbody></table>
+</form>
+
+
+
+
+</div></div>
+        </div>
+        <div id="rodape">
+          
+        </div>
+      </div>
+    
+
+    
+  
+<div id="icpbravoaccess_loaded"></div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body></html>

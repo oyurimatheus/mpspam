@@ -1,0 +1,130 @@
+/**
+ * Padr�es de m�scaras utilizadas pelos projetos da Dataprev.
+ * @author Comit� de interfaces (COMINT)
+ * @version 1.0
+ */
+
+$( document ).ready(
+	function()
+	{
+		jQuery(
+			function( $ )
+			{
+				/* NIT */
+				$('input[class*=nitFormat]').mask( "?999.99999.99-9" );
+
+				/* PIS */
+				$('input[class*=pisFormat]').mask( "?999.99999.99-9" );
+				
+				/* CTPS */
+		        $('input[class*=ctpsFormat]').mask( "?99999999" );
+
+		        /* IBGE */
+		        $('input[class*=ibgeFormat]').mask( "?999999" );
+		        
+		        /* CNAE */
+		        $('input[class*=cnaeFormat]').mask( "?9999999" );
+		        
+				/* PASEP */
+				$('input[class*=pasepFormat]').mask( "?999.99999.99-9" );
+
+				/* CNPJ */
+				$('input[class*=cnpjFormat]').mask( "?99.999.999/9999-99" );
+				
+				/* CNPJ RAIZ */
+		        $('input[class*=cnpjRaizFormat]').mask("?99.999.999");
+
+				/* CPF */
+		        $('input[class*=cpfFormat]').mask( "?999.999.999-99" );
+		        
+		        /* CREA */
+				$('input[class*=creaFormat]').mask( "?999999999999" );
+
+				/* CEI */
+				$('input[class*=ceiFormat]').mask( "?99.999.99999/99" );
+				
+				/* Compet�ncia */
+				$('input[class*=competenciaFormat]').mask("?99/9999");
+				
+				/* Ano Refer�ncia */
+				$('input[class*=anoFormat]').mask("?9999");
+
+				/* C�digo de Endere�amento Postal (CEP) */
+				$('input[class*=cepFormat]').mask( "?99999-999" );
+
+				/* Cadastro Brasileiro de Ocupa��es (CBO) */
+				$('input[class*=cboFormat]').mask( "?9999-99" );
+				
+				/* Ag�ncia da Previd�ncia Social (APS) */
+				$('input[class*=apsFormat]').mask( "?99.999.999" );
+				
+				/* N�mero do Benef�cio */
+				$('input[class*=nbFormat]').mask( "?999.999.999-9" ); 		
+
+				/* DDD */
+				$('input[class*=dddFormat]').mask( "?99" );
+
+				/* N�mero telef�nico */
+				$('input[class*=telefoneFormat]').mask( "?9999-9999" );
+				
+				/* N�mero telef�nico com DDD */
+				$('input[class*=telefoneDDDFormat]').mask( "?99-9999-9999" );
+
+				/* Ramal */
+				$('input[class*=ramalFormat]').mask( "?9999" );
+
+				/* DDD seguido do n�mero telef�nico */
+				$('input[class*=dddFormat][class*=telefoneFormat]').unmask().mask( "?(99) 9999-9999" );
+
+				/* Data sem componente de calend�rio */
+				$('input[class*=dataFormat]').mask( "?99/99/9999" );
+				
+				/* Hora */
+				$('input[class*=horaFormat]').mask( "?99:99:99" );
+
+				/* Data seguido da hora */
+				$('input[class*=dataHoraFormat]').unmask().mask( "?99/99/9999 99:99" );
+
+				/* Sigla Estado (UF)*/
+				$('input[class*=ufFormat]').mask( "?aaa" );
+				
+				/* Placa de autom�vel */
+				$('input[class*=placaFormat]').mask( "?aaa-9999" );
+				
+				/* Conv�nio do Termo de Ades�o */
+				$('input[class*=convenioFormat]').mask( "?99999.999999/9999-99" );
+				
+				/* N�mero da Demanda */
+				$('input[class*=numeroDemandaFormat]').mask( "?99999999/9999" );
+
+				/* Valores em porcentagem */ 
+				$('input[class*=percentualFormat]').maskPercent({decimal:",",thousands:"."});
+
+				/* Valores em real */
+			    $('input[class*=realFormat]').maskMoney({symbol:"R$",decimal:",",thousands:"."});
+			    
+			    /* Valores em moeda */
+			    $('input[class*=moedaFormat]').maskMoney({symbol:"",decimal:",",thousands:"."});
+
+		    	/* Valores decimais */
+		        $('input[class*=decimal3Format]').maskMoney({symbol:"",decimal:",",thousands:".",precision:3});
+		        $('input[class*=decimal4Format]').maskMoney({symbol:"",decimal:",",thousands:".",precision:4});
+		        
+		        /* Path */
+				$('input[class*=pathFormat]').validation({type: "alphasInt", add: "/\\"});
+				
+				/* Valores num�ricos */
+				$('input[class*=numeroFormat]').validation({ type: "int", ctrl: "no" });
+				
+				/*Valores num�ricos negativos */
+				$('input[class*=numeroNegativo]').validation({ type: "intNN", ctrl: "no" });
+				
+				/* Campos de texto */
+				$('input[class*=textoFormat]').validation({ type: "alphas", add: " ", ctrl: "no" });
+				
+				$("#menu ul").bgiframe();
+				
+			}
+		);	
+	}
+);

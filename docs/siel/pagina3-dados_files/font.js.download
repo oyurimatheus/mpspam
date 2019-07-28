@@ -1,0 +1,68 @@
+function createCookie(name,value,days)
+{
+	if (days)
+	{
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+function readCookie(name)
+{
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++)
+	{
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+function eraseCookie(name)
+{
+	createCookie(name,"",-1);
+}
+// JavaScript Document
+var fontObj = {
+	CSSArray:['font_normal.css', 'font_big.css', 'font_bigger.css'],
+	CSSSelected:0,
+	init:function(){
+		this.CSSSelected = this.getFontSizeCookie();
+		var fsize_css = document.createElement('link');
+		fsize_css.setAttribute('href','/css/'+this.CSSArray[this.CSSSelected]);
+		fsize_css.setAttribute('id','altcss');
+		fsize_css.setAttribute('rel','stylesheet');
+		fsize_css.setAttribute('title','gerencia tamanho da fonte');
+		document.getElementsByTagName('head')[0].appendChild(fsize_css);
+	},
+	getFontSizeCookie:function(){
+		var cookie = readCookie("FSize");
+		var fsize = cookie ? parseInt(cookie) : 1;
+		return fsize;
+	},	
+	getFontSizeCSS:function(){
+		var cssfont = document.getElementById('altcss');
+		return cssfont;
+	},
+	setFontSizeCSS:function(){
+		var cssfont = this.getFontSizeCSS();
+		cssfont.setAttribute('href','/css/'+this.CSSArray[this.CSSSelected]);
+		return true;
+	},
+	fontChangeUp:function(){
+		this.CSSSelected = (this.CSSSelected >= this.CSSArray.length-1) ? this.CSSSelected : this.CSSSelected +1;
+		this.setFontSizeCSS(this.CSSSelected);
+		createCookie("FSize", this.CSSSelected, 365);
+		return false;
+	},
+	fontChangeDown:function(){
+		this.CSSSelected = (this.CSSSelected <= 1) ? 0 : this.CSSSelected -1;
+		this.setFontSizeCSS(this.CSSSelected);
+		createCookie("FSize", this.CSSSelected, 365);
+		return false;
+	}
+}
+//fontObj.init();

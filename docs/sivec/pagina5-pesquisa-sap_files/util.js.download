@@ -1,0 +1,51 @@
+// util.js
+//Eduardo Bregaida - 19/03/2008
+
+// FunÁ„o para desabilitar objetos da tela
+function desabilitar(nomeCampo){
+	document.getElementById(nomeCampo).disabled = true;
+}
+
+// FunÁ„o para visualizar ou n„o um determinado campo
+function exibirProtocolo(valor,nomeCampo){
+	var valorRecebido =valor;
+	if(valorRecebido==""){
+		document.getElementById(nomeCampo).style.display = 'none';
+	}else
+		document.getElementById(nomeCampo).style.display = '';
+}
+			
+//Abre uma janela modal, infelizmente È simples e n„o possui fade.
+function openModal(pUrl, pWidth, pHeight) {
+	if (window.showModalDialog) {
+		return window.showModalDialog(pUrl, window,
+		  "dialogWidth:" + pWidth + "px;dialogHeight:" + pHeight + "px");
+	} else {
+		try {
+			netscape.security.PrivilegeManager.enablePrivilege(
+			  "UniversalBrowserWrite");
+			window.open(pUrl, "wndModal", "width=" + pWidth
+			  + ",height=" + pHeight + ",resizable=no,modal=yes");
+			return true;
+		}
+		catch (e) {
+			alert("Script n„o confi·vel, n„o È possÌvel abrir janela modal.");
+			return false;
+		}
+	}
+}
+
+//remove acentuaÁ„o e outros caracteres especiais
+function removeAcentos(campo){
+	campo.value = campo.value.toLowerCase();
+ 	var estranha = "·ÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚‰ÎÔˆ¸„ı@#$%^&*()_+=-~`Á";
+	var correta = "aeiouaeiouaeiouaeiouaoc";
+	var retorno = "";
+	for(i=0;i<estranha.length;i++){
+		for(j=0;j<campo.value.length;j++){
+			retorno = campo.value.replace(estranha.substr(i,1),correta.substr(i,1));
+			retorno = retorno.replace("_","");
+			campo.value = retorno;
+		}
+	}
+} 

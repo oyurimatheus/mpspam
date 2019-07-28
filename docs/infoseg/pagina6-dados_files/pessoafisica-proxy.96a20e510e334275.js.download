@@ -1,0 +1,1 @@
+var PessoaFisicaProxy={url:"api/pessoas",getListaPessoaFisica:function(a,s,e){return $.ajax(AjaxWrapper.getRequest(PessoaFisicaProxy.url,a,s,e))},getPessoaFisica:function(a,s){return $.ajax(AjaxWrapper.getRequest(PessoaFisicaProxy.url+"/detalhe",a,s))},getListaPessoaFisicaFiltro:function(a,s,e){return $.ajax(AjaxWrapper.getRequest(PessoaFisicaProxy.url+"/filtro",a,s,e))}};

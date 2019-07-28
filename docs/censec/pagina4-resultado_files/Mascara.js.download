@@ -1,0 +1,105 @@
+﻿
+$(document).ready(function () {
+    var cpfcnpj = {
+        reverse: true ,
+        onKeyPress: function (campo, e, field, options) {
+            var masks = ['9000.000.000-00', '00.000.000/0000-00'];
+            mask = (campo.length > 14) ? masks[1] : masks[0];
+            $('input[alt=cpfcnpj]').mask(mask, { reverse: true });
+        }
+    };
+
+
+    $('span[alt=cpfcnpj]').mask('9000.000.000-00', cpfcnpj);
+    $('td[alt=cpfcnpj]').mask('9000.000.000-00', cpfcnpj);
+
+    $('input[alt=cpfcnpj]').mask('9000.000.000-00', cpfcnpj);
+    $('input[alt=cpf]').mask('000.000.000-00', { reverse: true });
+    $('input[alt=cnpj]').mask('00.000.000/0000-00', { reverse: true });
+
+
+    $('input[alt=hora]').mask('H0:M0', {
+        'translation': {
+                                            H: { pattern: /[0-2]/ },
+                                            M: { pattern: /[0-5]/ },
+                                            0: { pattern: /[0-9]/ }
+                                        }
+                                    },
+                                    { clearIfNotMatch: true });
+
+    $('span[alt=hora]').mask('H0:M0', {
+        'translation': {
+            H: { pattern: /[0-2]/ },
+            M: { pattern: /[1-5]/ },
+            0: { pattern: /[0-9]/ }
+        }
+    },
+                                    { clearIfNotMatch: true });
+
+    
+
+    $('input[alt=date]').mask('d0/m0/y000', {
+        'translation': {
+                                                                d: { pattern: /[0-3]/ },
+                                                                m: { pattern: /[0-1]/ },
+                                                                y: { pattern: /[1-2]/ },
+                                                                0: {pattern: /[0-9]/}
+                                                            }
+                                            },
+                                            { clearIfNotMatch: true });
+    $('span[alt=date]').mask('d0/m0/y000', {
+        'translation': {
+            d: { pattern: /[0-3]/ },
+            m: { pattern: /[0-1]/ },
+            y: { pattern: /[1-2]/ },
+            0: { pattern: /[0-9]/ }
+        }
+    },
+                                        { clearIfNotMatch: true });
+
+
+    $('input[alt=cep]').mask('00000-000', {
+        onComplete: function (cep) {
+            if (cep.substr(0, 1) == '0') {
+                cep = '';
+            }
+        }
+    });
+
+    $('input[alt=livro]').mask('00000000');
+    $('input[alt=folha]').mask('000000');
+
+    $('input[alt=placa]').mask('SSS-0000', { clearIfNotMatch: true });
+    $('span[alt=placa]').mask('SSS-0000');
+    $('tb[alt=placa]').mask('SSS-0000');
+
+    $('input[alt=tel]').mask('(00)0000-0000');
+    $('input[alt=telefone]').mask('(00)0000-0000');
+    $('span[alt=telefone]').mask('(00)0000-0000');
+    $('td[alt=telefone]').mask('(00)0000-0000');
+
+    $('input[alt=cel]').mask('(00)90000-0000');
+    $('input[alt=celular]').mask('(00)90000-0000');
+    $('span[alt=celular]').mask('(00)90000-0000');
+    $('td[alt=celular]').mask('(00)90000-0000');
+
+    $('input[alt=integer]').mask("#.##9", { reverse: true });
+    $('td[alt=integer]').mask("#.##9", { reverse: true });
+    $('span[alt=integer]').mask("#.##9", { reverse: true });
+
+    $('input[alt=decimal]').mask("#.##9,00", { reverse: true });
+    $('td[alt=decimal]').mask("#.##9,00", { reverse: true });
+    $('span[alt=decimal]').mask("#.##9,00", { reverse: true });
+    
+	$('input[alt=number]').mask("#9", { reverse: true });
+
+    $('input[alt=percent]').mask("00,0", { reverse: true });
+    $('td[alt=percent]').mask("00,0", { reverse: true });
+    $('span[alt=percent]').mask("00,0", { reverse: true });
+
+    $('input[alt=ip]').mask('0ZZ.0ZZ.0ZZ.0ZZ', {translation: {'Z': {pattern: /[0-9]/, optional: true}}})
+    $('tb[alt=ip]').mask('0ZZ.0ZZ.0ZZ.0ZZ', {translation: {'Z': {pattern: /[0-9]/, optional: true}}})
+    $('span[alt=ip]').mask('0ZZ.0ZZ.0ZZ.0ZZ', {translation: {'Z': {pattern: /[0-9]/, optional: true}}})
+    
+});
+

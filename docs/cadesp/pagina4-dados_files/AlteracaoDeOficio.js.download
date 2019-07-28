@@ -1,0 +1,79 @@
+﻿// ============================================================================
+//
+// Arquivo de código javascript Alteração de Ofício
+//
+// ============================================================================
+
+//---------------------------- Filtro ----------------------------------------
+function ValidarFiltroAlteracaoDeOficioClient(source, arguments) 
+{
+    var tipoFiltro = ObterTipoFiltroDropDownList();
+    var valorFiltro = ObterValorFiltroTextBox();
+
+    if (tipoFiltro == 'IE') {
+        return VerificaIE(valorFiltro);
+    }
+    else {
+        if (tipoFiltro == 'CNPJBase') {
+            return VerificaCNPJBase(valorFiltro);
+        }
+        else {
+            if (tipoFiltro == 'CNPJ') {
+                return VerificaCNPJ(valorFiltro);
+            }
+            else {
+                alert('Nenhum campo foi preenchido no filtro da consulta.');
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+//------------------------ Situação Cadastral --------------------------------
+function ValidarDataInicioSituacaoCadastralClient(dtInicio) {
+    
+    var retorno = VerificaData(dtInicio.value);
+    
+    if (retorno != 0) {
+        alert('Campo "Data Início da Situação" com data inválida.');
+        return false;
+    }
+    return true;
+}
+
+function ValidarCnpjSituacaoCadastral(nrCnpjSituacaoCadastralListBox) {
+
+	var nrCnpj = ObterValorNrCnpjSituacaoCadastralTextBox();
+	var listaCnpj = ObterNrCnpjSituacaoCadastralListBox();
+	var nrCnpJRepetido = false;
+
+	if (VerificaCNPJ(nrCnpj)) {
+		if (listaCnpj != null) {
+			for (i = 0; i < listaCnpj.length; i++) {
+				if (nrCnpj == listaCnpj.options[i].text) {
+					nrCnpJRepetido = true;
+				}
+			}
+		}
+	}
+	else
+		return false;
+		
+	if (nrCnpJRepetido){
+		alert ('Número de CNPJ já informado.');
+		return false;
+	}
+	return true;
+}
+//------------------------ Regime de Apuração --------------------------------
+function ValidarDataInicioRegimeApuracaoClient(dtInicio) {
+
+	var retorno = VerificaData(dtInicio.value);
+
+	if (retorno != 0) {
+		alert('Campo "Data Início do Regime" com data inválida.');
+		return false;
+	}
+	return true;
+}

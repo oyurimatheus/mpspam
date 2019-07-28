@@ -1,0 +1,917 @@
+
+.lista {
+	width: 100%;
+	font: 11px Verdana, Arial, Tahoma;
+	border-bottom: 1px solid #eee
+}
+
+.lista thead {
+	color: white;
+	background: #0D3F84;
+	font: bold;
+	text-align: left
+}
+
+.lista thead tr {
+	height: 20px;
+	padding: 0 5px 0 5px
+}
+
+.lista thead tr .center {
+	text-align: center
+}
+
+.lista thead tr th {
+	border-bottom: 1px solid orange
+}
+
+.lista thead tr th a {
+	color: white;
+	text-decoration: underline
+}
+
+.lista tbody tr {
+	background: #F6F6F6
+}
+
+.lista tbody tr .center {
+	text-align: center
+}
+
+.lista tbody tr .alternado,.lista tbody tr .alternadoCenter {
+	background: #ddd
+}
+
+.lista tbody tr .alternadoCenter {
+	text-align: center
+}
+
+.lista tbody tr td {
+	height: 22px;
+	padding: 0 5px 0 5px
+}
+
+.login {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 10px;
+	COLOR: #F8D094;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+#login {
+	position:absolute; 
+	left:409px; 
+	top:33px; 
+	width:196px; 
+	height:25px; 
+	z-index:9999; 
+	visibility: visible;
+}
+
+.titulopopup {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 14px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.titulopesquisaadm {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	COLOR: #F8D094;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	height: 20px;
+}
+
+.titulopesquisa {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	COLOR: #FFFFFF;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.titulo {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #990000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	text-align:left;
+}
+
+.tituloFont12 {
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: 12px; 
+	COLOR: #990000; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tituloPreto {
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow:black;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tituloPreto2 {
+	font-weight: bold;
+	font-size: 10px;
+	text-shadow:black;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textonota {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 10px;
+	COLOR: #990000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textonota11 {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #990000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.data {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 10px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textoazul {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textovermelho {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 10px;
+	COLOR: red !important;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textovermelho2 {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: red;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textoaviso {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	TEXT-ALIGN: left;
+	COLOR: red;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+.textoavisopq {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 10px;
+	TEXT-ALIGN: left;
+	COLOR: red;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+.textocinzapq {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #4d4d4d;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textobranco {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #FFFFFF;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textobranco2 {
+	FONT-WEIGHT: normal;;
+	COLOR: #FFFFFF;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textopreto {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #000000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+.textotopo {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 10px;
+	COLOR: #FFFFFF;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textotabtopo {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #FFFFFF;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textotab1 {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textotab1 A :link {
+	COLOR: #0D3F84;
+	TEXT-DECORATION: underline
+}
+
+.textotab1 A :visited {
+	COLOR: #0D3F84;
+	TEXT-DECORATION: underline
+}
+
+.textotab1 A :active {
+	TEXT-DECORATION: underline;
+	COLOR: #0D3F84;
+}
+
+.textotab1 A :hover {
+	COLOR: #0D3F84;
+	TEXT-DECORATION: underline
+}
+
+.textotab {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #000000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+}
+
+.textotab A :link {
+	COLOR: #000000;
+	TEXT-DECORATION: none
+}
+
+.textotab A :visited {
+	COLOR: #000000;
+	TEXT-DECORATION: none
+}
+
+.textotab A :active {
+	TEXT-DECORATION: none;
+	COLOR: #000000;
+}
+
+.textotab A :hover {
+	COLOR: #000000;
+	TEXT-DECORATION: underline
+}
+
+.textotab2 {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.textotab2 A :link {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	TEXT-DECORATION: none
+}
+
+.textotab2 A :visited {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	TEXT-DECORATION: none
+}
+
+.textotab2 A :active {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	TEXT-DECORATION: none
+}
+
+.textotab2 A :hover {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 11px;
+	COLOR: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	TEXT-DECORATION: underline
+}
+
+.paginacao {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 14px;
+	COLOR: #990000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.paginacao A :link {
+	FONT-WEIGHT: normal;
+	COLOR: #03477A;
+	TEXT-DECORATION: underline
+}
+
+.paginacao A :visited {
+	FONT-WEIGHT: normal;
+	COLOR: #03477A;
+	TEXT-DECORATION: underline
+}
+
+.paginacao A :active {
+	FONT-WEIGHT: normal;
+	COLOR: #03477A;
+	TEXT-DECORATION: underline
+}
+
+.paginacao A :hover {
+	FONT-WEIGHT: normal;
+	COLOR: #03477A;
+	TEXT-DECORATION: underline
+}
+
+.menu {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #03477A;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.menu A :link {
+	COLOR: #03477A;
+	TEXT-DECORATION: none
+}
+
+.menu A :visited {
+	COLOR: #03477A;
+	TEXT-DECORATION: none
+}
+
+.menu A :active {
+	TEXT-DECORATION: none;
+	COLOR: #990000;
+}
+
+.menu A :hover {
+	TEXT-DECORATION: none;
+	COLOR: #990000;
+}
+
+.menu2 {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #0D3F84;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.menu2 A :link {
+	COLOR: #0D3F84;
+	TEXT-DECORATION: none
+}
+
+.menu2 A :visited {
+	COLOR: #003366;
+	TEXT-DECORATION: none
+}
+
+.menu2 A :active {
+	TEXT-DECORATION: none;
+	COLOR: #0D3F84;
+}
+
+.menu2 A :hover {
+	COLOR: #0D3F84;
+	TEXT-DECORATION: underline
+}
+
+.tabelaPrincipal {
+	width: 750px;
+	border: 0;
+	border-spacing: 1px;
+	padding: 0;
+}
+
+.botao {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #0D3F84;
+	border: 2px solid #FFD300;
+	font-weight: bold;
+	padding: 4px 6px 6px 4px;
+}
+
+.botaodir {
+	vertical-align:top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #0D3F84;
+	border: 2px solid #FFD300;
+	font-weight: bold;
+	padding: 4px 6px 6px 4px;
+}
+
+.botaoSemAcao {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #849EC2;
+	border: 1px solid #FFE980;
+	font-weight: bold;
+	padding: 4px 6px 6px 4px;
+}
+
+.botaoHidden {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #0D3F84;
+	border: 1px solid #FFD300;
+	font-weight: bold;
+	padding: 2px 2px 2px 2px;
+	visibility: hidden
+}
+
+INPUT {
+	border-width: 1px;
+	border-color: #000033;
+	border-style: solid;
+	font-size: 10px;
+	FONT-FAMILY: Humnst777 BT, Arial, Helvetica, sans-serif;
+}
+
+INPUT .visivel {
+	border-width: 1px;
+	border-color: #000033;
+	border-style: solid;
+	font-size: 10px;
+	FONT-FAMILY: Humnst777 BT, Arial, Helvetica, sans-serif;
+	visibility: show
+}
+
+INPUT .escondido {
+	border-width: 1px;
+	border-color: #000033;
+	border-style: solid;
+	font-size: 10px;
+	FONT-FAMILY: Humnst777 BT, Arial, Helvetica, sans-serif;
+	visibility: hidden
+}
+
+TEXTAREA {
+	border-width: 1px;
+	border-color: #00003;
+	border-style: solid;
+	font-family: Verdana;
+	font-size: 8pt;
+	FONT-FAMILY: Humnst777 BT, Arial, Helvetica, sans-serif;
+	overflow: hidden;
+	padding: 0;
+	outline: none;
+}
+
+SELECT {
+
+}
+
+.subMenu {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 10px;
+	COLOR: #03477A;
+	font-family: Verdana, Arial, Helvetica, sans-serif;;
+	text-decoration: none
+}
+
+.chekBox {
+	border-top-width: 0;
+	border-right-width: 0;
+	border-bottom-width: 0;
+	border-left-width: 0;
+}
+
+.erros {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #E67E00;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.sucess {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #E67E00;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tituloPrint {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 16px;
+	COLOR: #990000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tituloPrint2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none
+}
+
+.linkSemConteudo {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #aaa;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.linkSemPermisao {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #F8D094;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.subMenuSemLink {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 10px;
+	COLOR: #BBBBBB;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+fieldset {
+	border-right-width: 0;
+	border-bottom-width: 0;
+	border-left-width: 0;
+	border-color: #9b0000;
+	padding-right: 10px;
+	padding-left: 10px;
+    border-style:solid;
+}
+
+.headerMargin {
+	margin-bottom: 2cm;
+}
+
+div.autocomplete {
+  position: absolute;
+  width: 250px; /* will be adjusted by script.aculo.us */
+  background-color: white; border: 1px solid #888;
+  margin: 0; 
+  padding: 0;
+}
+div.autocomplete ul {
+  list-style-type: none; margin: 0; padding: 0;
+}
+div.autocomplete ul li.selected { background-color:  #ff9;}
+div.autocomplete ul li {
+  list-style-type: none; display: block;
+  font-family: sans-serif; font-size: smaller; color: #444;
+  margin: 0; padding: 0.1em; height: 1.5em; line-height: 1.5em;
+  cursor: pointer;
+}
+.oddtr
+{
+	background-color:#F7F7F7;
+}
+.eventr
+{
+	background-color:#E7E7E8;
+}
+
+.itemInativo
+{
+	color: red;
+}
+
+.textoSemEfeito{
+	text-decoration:line-through;
+	color:red;
+}
+.corTexto{
+	color:black;
+}
+
+
+.tablepadrao {
+	margin:0 auto;
+	border: 0;
+	width: 750px;
+}
+
+.tablepadrao tr {
+	vertical-align: middle;
+}
+
+.tablepadrao td {
+	width: auto;
+}
+
+.tablepadrao02 {
+	margin:0 auto;
+	border: 0;
+	width: 1150px;
+}
+
+.tablepadrao02 tr {
+	vertical-align: middle;
+}
+
+.tablepadrao02 td {
+	width: auto;
+}
+
+.tablealinhada {
+	width: 750px;
+	border-spacing: 100px;
+}
+
+.tablealinhada tr {
+}
+
+.tablealinhada td {
+	text-align: center;
+	font-size: 11px;
+	font-weight:bold;
+	color: #03477A;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.alinhacentro {
+	text-align: left;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tablepadraodir {
+	margin:0 auto;
+	border: 0;
+	width: 750px;
+}
+
+.tablepadraodir tr {
+	vertical-align: middle;
+}
+.tablepadraodir td {
+	font-weight: bold;
+	font-size: 10px;
+	color: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #F7F7F7;
+	text-align: right;
+}
+
+.tablepadraoesq {
+	margin:0 auto;
+	border: 0;
+	width: 750px;
+}
+
+.tablepadraoesq tr {
+	vertical-align: middle;
+}
+.tablepadraoesq td {
+	font-weight: bold;
+	font-size: 10px;
+	color: #03477A;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+.tablebotao {
+	margin:0 auto;
+	border: 0;
+}
+
+.tablebotao tr {
+	vertical-align: middle;
+	text-align: right;
+}
+
+.tablebotao td {
+	width: auto;
+}
+
+.tableMenu {
+	border: 0;
+	width:100%;
+	border-spacing: 0;
+    border-collapse: 0;
+}
+
+.tablemenu2 {
+	text-align:center;
+	width: 379px;
+	border: 0;
+	border-spacing: 0;
+    border-collapse: 0;
+}
+
+.menulogin {
+	width: 500px; height: 27px;
+	border: 0px; 
+	text-align: center;
+	border-spacing: 0;
+    border-collapse: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.linhadivisoria {
+	border: 0;
+	margin: 0 auto;
+	width: 750px;
+	color: #F8D094;
+	background-color: #F8D094;
+	height: 1px;
+}
+
+.linhadivermelha {
+	border: 0;
+	margin: 0 auto;
+	width: 1140px;
+	background-color: #990000;
+	height: 1px;
+}
+
+.linhadivisoriacinza {
+	border-top: 3px solid #d9d9d9;
+	margin: 0 auto;
+	width: 1140px;
+	background-color: #d9d9d9;
+	height: 1px;
+}
+
+.linhadivisoria1 {
+	border: 0;
+	margin: 0 auto;
+	width: 450px;
+	color: #F8D094;
+	background-color: #F8D094;
+	height: 1px;
+}
+
+.linhadivisoria2 {
+	border: 0;
+	margin: 0 auto;
+	width: 1150px;
+	color: #F8D094;
+	background-color: #F8D094;
+	height: 1px;
+}
+
+.linhabranca{
+	border: 0;
+	margin: 0 auto;
+	width: 100%;
+	color: #FFFFFF;
+	background-color: #FFFFFF;
+	height: 2px;
+}
+
+.menutopologo {
+	background: url("../../img/pt_BR/imgtopologo.gif") no-repeat;
+	width: 53%;
+	height: 70px;
+}
+
+.textotopo1{
+	FONT-WEIGHT: normal;
+	
+	FONT-SIZE: 10px;
+	COLOR: #FFFFFF;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	height: 50px;
+}
+
+.textoinfo {
+	face: verdana;
+	font-size: 10px;
+	color: blue;
+}
+
+.textoinput {
+	text-align: center;
+	font: 11px Verdana, Arial, Tahoma;
+	border-bottom: 1px solid #eee
+}
+
+#capturaDecisao{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: black;
+	font-size: 10px;
+	font-style:italic;
+	font-weight:bold;
+}
+
+.beneficiofracao {
+	width: 170px;
+}
+
+.beneficiofracao2 {
+	width: 80px;
+}
+
+.loading {
+	display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../../img/pt_BR/loading.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+.textoAviso{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: red;
+	text-decoration: none
+}
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+  
+#boxes .window {
+  position:absolute;
+  left:0;
+  top:0;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+ 
+#boxes #dialog {
+  width:670px; 
+  height:680px;
+  padding:10px;
+  background-color:#ffffff;
+}
+
+.linkextern{
+color: #70DBDB;
+}
+.close{display:block;}
+
+div.boxborder, div.inner { color: #000; font-family: verdana, arial, sans-serif;}
+div.boxborder  {
+	width: 500px; 
+	height:286px; 
+	background-repeat:no-repeat; 
+
+}
+
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
+.visible-print-block {
+  display: none !important;
+}
+@media print {
+  .visible-print-block {
+    display: block !important;
+  }
+}
+
+.disabled {
+    pointer-events:none;
+    opacity:0.6;
+}
+
+a.disabled {
+    pointer-events: none;
+}

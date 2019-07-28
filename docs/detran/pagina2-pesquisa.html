@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://simprod.prodesp.sp.gov.br/sim/ -->
+<html style="overflow: hidden; height: 100%; border: none; padding: 0px; margin: 0px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="./pagina2-pesquisa_files/theme.css.xhtml">
+    <script type="text/javascript" src="./pagina2-pesquisa_files/jsf.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./pagina2-pesquisa_files/jquery.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./pagina2-pesquisa_files/jquery-plugins.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./pagina2-pesquisa_files/primefaces.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <link rel="stylesheet" media="screen" type="text/css" href="./pagina2-pesquisa_files/primefaces-extensions.css.xhtml">
+    <script type="text/javascript" src="./pagina2-pesquisa_files/primefaces-extensions.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <link rel="stylesheet" media="screen" type="text/css" href="./pagina2-pesquisa_files/primefaces.css.xhtml">
+    <link rel="stylesheet" media="screen" type="text/css" href="./pagina2-pesquisa_files/layout.css.xhtml">
+    <script type="text/javascript" src="./pagina2-pesquisa_files/layout.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://simprod.prodesp.sp.gov.br/sim/_static/images/favicon2.ico">
+    <link type="text/css" rel="stylesheet" href="./pagina2-pesquisa_files/default_v1.1.css">
+    <link type="text/css" rel="stylesheet" href="./pagina2-pesquisa_files/media_query.css">
+    <link type="text/css" rel="stylesheet" href="./pagina2-pesquisa_files/menu.css">
+    <link type="text/css" rel="stylesheet" href="./pagina2-pesquisa_files/prime.css">
+
+    <script type="text/javascript" src="./pagina2-pesquisa_files/global_v1.3.js.download" charset="ISO-8859-1">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./pagina2-pesquisa_files/locale-primefaces.js.download" charset="ISO-8859-1">
+        <!--
+
+        //-->
+    </script>
+
+    <link type="text/css" rel="stylesheet" href="./pagina2-pesquisa_files/font-awesome.css">
+
+    <title>SIM - Sistema Integrado de Multas</title>
+
+    <script>
+        <!--
+
+        function tratarPaginaExpirada() {
+            dgPaginaExpirada.show();
+        }
+
+        //-->
+    </script>
+    <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+</head>
+
+<body onunload="showAjaxStatus(true);" class="ui-layout-container" style="overflow: hidden; width: auto; height: auto; margin: 0px; position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">
+    <script type="text/javascript">
+        myfaces.config._autoeval = true;
+    </script>
+    <style>
+        #ajaxErrorHandlerDialog button {
+            background: none !important;
+            margin-top: 0px !important;
+            color: #FFFFFF !important;
+            font-weight: normal;
+            box-shadow: 0 !important;
+            text-shadow: none !important;
+            font-weight: bold;
+            background-color: #025b95 !important;
+        }
+        
+        .ui-dialog-buttonpane {
+            text-align: center !important;
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+        
+        .colunaRotulo {
+            text-align: right;
+            width: 130px;
+        }
+    </style>
+    <script id="j_id2029076418_1287af48_s" type="text/javascript">
+        <!--
+        $(function() {
+            PrimeFacesExt.getAjaxErrorHandlerInstance().setHostname('novaveneza-ws1.prodesp-dc00.sp.gov.br');
+        });
+        $(function() {
+            PrimeFacesExt.getAjaxErrorHandlerInstance().addErrorSettings({
+                'button': 'Recarregar página.',
+                'buttonOnclick': function() {
+                    window.location.href = window.location.href;
+                },
+                'onerror': function(error, response) {
+                    showAjaxStatus(false);
+                }
+            });
+        });
+        //-->
+    </script>
+    <style>
+        .colunaRotulo {
+            text-align: right;
+            width: 130px;
+        }
+    </style>
+    <div id="dgPaginaExpiradaId" class="ui-dialog ui-widget ui-widget-content ui-overlay-hidden ui-corner-all ui-shadow ui-draggable" role="dialog" aria-labelledby="dgPaginaExpiradaId_title" aria-hidden="true" style="width: 550px; height: auto;">
+        <div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"><span id="dgPaginaExpiradaId_title" class="ui-dialog-title">Página Expirada</span></div>
+        <div class="ui-dialog-content ui-widget-content" style="height: 140px;">
+            <div id="pnMensagem" class="ui-outputpanel ui-widget"><span style="vertical-align: top;" class="bold">A página expirou, ela pode expirar por tempo, quando o usuário               desloga da aplicação ou quando o usuário abre uma nova aba do navegador. O sistema não               permite que mais de duas páginas sejam abertas em uma mesma sessão.</span></div>
+        </div>
+        <div class="ui-dialog-footer ui-widget-content"><span><div id="j_id1148580341_4f9db55a" class="ui-outputpanel ui-widget" style="text-align:center"><button id="j_id1148580341_4f9db548" name="j_id1148580341_4f9db548" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botao" onclick="dgPaginaExpirada.hide(); window.location.href=window.location.href;;" type="button" role="button" aria-disabled="false"><span class="ui-button-icon-left ui-icon ui-c ui-icon-close-white"></span><span class="ui-button-text ui-c">Recarregar página.</span></button>
+        </div>
+        </span>
+    </div>
+    </div>
+    <div id="ajaxStatus">
+        <div id="ajaxStatus_start" style="display:none">
+            <div id="pnBlock" style="position:fixed; bottom:0px; right:0px; top:0px; left:0px; z-index:2000;"><img src="./pagina2-pesquisa_files/iconCarregando.gif" alt="" style="width:50px;height:50px;display:block;position:fixed;right:50%;top:50%;z-index:2001;">
+            </div>
+        </div>
+        <div id="ajaxStatus_complete" style="display:none"></div>
+    </div><span id="msgs"></span>
+    <div id="j_id776342735_6aae4df" class="ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-north ui-layout-pane ui-layout-pane-north ui-layout-pane-hover ui-layout-pane-north-hover ui-layout-pane-open-hover ui-layout-pane-north-open-hover" style="background-color: rgb(242, 242, 242); position: absolute; margin: 0px; top: 0px; bottom: auto; left: 0px; right: 0px; width: auto; z-index: 0; height: 202px; display: block; visibility: visible;">
+        <div class="ui-layout-unit-content ui-widget-content" style="position: relative; height: 196px; visibility: visible;">
+
+            <div id="divTopo">
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table cellpadding="0" border="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="./pagina2-pesquisa_files/iconUsuario.png" alt=""><span class="texto_barra_top">37047519874</span><span style="display:inline" class="texto_barra_top">/ DETRAN</span>
+                                            </td>
+                                            <td style="padding-top: 3px; padding-left: 10px">
+                                            </td>
+                                            <td style="padding-top: 3px">
+                                            </td>
+                                            <td style="padding-top: 3px; padding-left: 15px">
+                                            </td>
+                                            <td style="padding-botton: 3px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="100"><img src="./pagina2-pesquisa_files/iconEditar.png" alt="Alterar Senha"><a href="http://simprod.prodesp.sp.gov.br/sim/pages/sgu/alterar-senha/index.xhtml" class="texto_barra_top_esqueci_senha">Alterar Senha</a>
+                            </td>
+                            <td width="170"><img id="menos" src="./pagina2-pesquisa_files/iconAmenos.gif" alt="Diminuir" title="Diminuir" style="border:0"><img id="normal" src="./pagina2-pesquisa_files/iconAnormal.gif" alt="Normal" title="Normal" style="border:0"><img id="mais" src="./pagina2-pesquisa_files/iconAmais.gif" alt="Aumentar" title="Aumentar" style="border:0"><span class="texto_barra_top">Tamanho do Texto</span></td>
+                            <td width="100"><img src="./pagina2-pesquisa_files/iconContrastewhite.gif" alt="contraste" style="border:0"><img src="./pagina2-pesquisa_files/iconContrasteblack.gif" alt="contraste" style="border:0"><span style="border:0" class="texto_barra_top">Contraste</span></td>
+                            <td width="70"><img src="./pagina2-pesquisa_files/iconAjuda.png" alt="Ajuda" title="Ajuda" style="border:0"><span class="texto_barra_top">Ajuda</span></td>
+                            <td width="100">
+                                <a href="http://simprod.prodesp.sp.gov.br/sim/j_spring_security_logout"><img src="./pagina2-pesquisa_files/iconSair.png" alt="Sair" title="Sair" style="border:0"><span class="texto_barra_top">Sair</span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="pnDetran">
+                <table width="97%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px; margin-left: 20px;">
+                    <tbody>
+                        <tr>
+                            <td class="imagem_top" style="height: 70px;" onclick="gotoHome();"></td>
+                            <td class="imagem_top2" style="height: 70px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 30px;" class="titulo_topo1">
+                                detran.sp - Departamento Estadual de Trânsito de São Paulo
+                            </td>
+                            <td style="height: 30px;" class="versao">Versão:5.69.013</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table width="99%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color: #eaeaea;">
+                <tbody>
+                    <tr style="height: 37px;">
+                        <td width="12" class="imagem_menu_left"></td>
+                        <td width="99%" class="imagem_menu_middle">
+
+                            <nav id="nav">
+
+                                <script type="text/javascript">
+                                    <!--
+
+                                    var exibirApplet = true;
+                                    var reqEmAndamento = false;
+
+                                    function hideApplet(delayed) {
+                                        exibirApplet = false;
+                                        if (delayed) {
+                                            delayedShowOrHideApplet();
+                                        } else {
+                                            showOrHideApplet();
+                                        }
+                                    }
+
+                                    function showApplet(delayed) {
+                                        exibirApplet = true;
+                                        if (delayed) {
+                                            delayedShowOrHideApplet();
+                                        } else {
+                                            showOrHideApplet();
+                                        }
+                                    }
+
+                                    function delayedShowOrHideApplet() {
+                                        if (!reqEmAndamento) {
+                                            reqEmAndamento = true;
+                                            setTimeout("showOrHideApplet()", 100);
+                                        }
+                                    }
+
+                                    function showOrHideApplet() {
+                                        reqEmAndamento = false;
+                                        var panelApplet = document.getElementById('pnApplet');
+                                        var pnAppletInterno = document.getElementById('pnAppletInterno');
+
+                                        if (panelApplet != null) {
+                                            if (exibirApplet) {
+                                                pnAppletInterno.style.visibility = 'visible';
+                                                panelApplet.style.backgroundImage = "";
+                                                panelApplet.style.backgroundSize = "100% 100%";
+                                            } else {
+                                                pnAppletInterno.style.visibility = 'hidden';
+                                                panelApplet.style.backgroundImage = "url('../../../../_static/images/img_applet.jpg')";
+                                                panelApplet.style.backgroundSize = "100% 100%";
+                                            }
+                                        }
+                                    }
+
+                                    //-->
+                                </script>
+
+                                <ul id="navigation" onmouseover="hideApplet(true)" onmouseout="showApplet(true)">
+
+                                    <li id="navigation_li_M_9">
+                                        <a id="navigation_a_M_9" href="http://simprod.prodesp.sp.gov.br/sim" onclick="return false">Usuário<img src="./pagina2-pesquisa_files/iconSetaBaixo.png" alt="" style="border: 0px;">
+   		</a>
+                                        <ul id="navigation_ul_M_9">
+
+                                            <li id="navigation_li_F_9">
+                                                <a id="navigation_a_F_9" href="http://simprod.prodesp.sp.gov.br/sim/pages/sgu/usuario/index.xhtml" onclick="return true">Cadastro de Usuários
+   		</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li id="navigation_li_M_16">
+                                        <a id="navigation_a_M_16" href="http://simprod.prodesp.sp.gov.br/sim" onclick="return false">Condutor<img src="./pagina2-pesquisa_files/iconSetaBaixo.png" alt="" style="border: 0px;">
+   		</a>
+                                        <ul id="navigation_ul_M_16">
+
+                                            <li id="navigation_li_F_16">
+                                                <a id="navigation_a_F_16" href="pagina3-pesquisa-linha-de-vida.html">Linha da Vida do Condutor
+   		</a>
+                                            </li>
+
+                                            <li id="navigation_li_F_16">
+                                                <a id="navigation_a_F_16" href="pagina4-pesquisa-imagem-cnh.html">Consultar Imagem da CNH
+   		</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li id="navigation_li_M_18">
+                                        <a id="navigation_a_M_18" href="http://simprod.prodesp.sp.gov.br/sim" onclick="return false">Veículo<img src="./pagina2-pesquisa_files/iconSetaBaixo.png" alt="" style="border: 0px;">
+   		</a>
+                                        <ul id="navigation_ul_M_18">
+
+                                            <li id="navigation_li_F_18">
+                                                <a id="navigation_a_F_18" href="pagina5-pesquisa-veiculo.html" onclick="return true">Consultar Veículo Base Estadual
+   		</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </td>
+                        <td width="12" class="imagem_menu_right"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="j_id776342735_6aae192" class="ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-center ui-layout-pane ui-layout-pane-center" style="background-color: rgb(242, 242, 242); position: absolute; margin: 0px; left: 0px; right: 0px; top: 208px; bottom: 28px; height: 504px; width: 1600px; z-index: 0; display: block; visibility: visible;">
+        <div class="ui-layout-unit-content ui-widget-content" style="position: relative; height: 498px; visibility: visible;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color: #f2f2f2;">
+                <tbody>
+                    <tr>
+                        <td align="center">
+                            <div class="bordaBox" align="center">
+                                <b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
+                                <div class="conteudo">
+                                    <form id="form" name="form" method="post" action="http://simprod.prodesp.sp.gov.br/sim/pages/home.xhtml" enctype="application/x-www-form-urlencoded">
+                                        <table cellpadding="4" cellspacing="4" width="50%">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div id="divImagemDetran"></div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <input type="hidden" name="form_SUBMIT" value="1">
+                                        <input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="A9g/mZ8AAqg1xF33sX8CZnyZ2ZPOS5BbEjQv0AIokQn0IvkkXC/eQu4WhQ5+xRI/vjVvQqaefV81Vewru+zEO7CQ2a9h77CzghaJ5pKoSWgKUDcxg0NPvNFq9mU=">
+                                    </form>
+                                </div>
+                                <b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="j_id776342735_6aae1c9" class="ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-south ui-layout-pane ui-layout-pane-south" style="background-color: rgb(242, 242, 242); position: absolute; margin: 0px; top: auto; bottom: 0px; left: 0px; right: 0px; width: auto; z-index: 0; height: 22px; display: block; visibility: visible;">
+        <div class="ui-layout-unit-content ui-widget-content" style="position: relative; height: 16px; visibility: visible;">
+            <div id="divRodape" style="vertical-align: middle;">// SIM // SISTEMA INTEGRADO DE MULTAS - DESENVOLVIDO PELA PRODESP</div>
+        </div>
+    </div>
+    <form id="acoesForm" name="acoesForm" method="post" action="http://simprod.prodesp.sp.gov.br/sim/pages/home.xhtml" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="acoesForm_SUBMIT" value="1">
+        <input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="A9g/mZ8AAqg1xF33sX8CZnyZ2ZPOS5BbEjQv0AIokQn0IvkkXC/eQu4WhQ5+xRI/vjVvQqaefV81Vewru+zEO7CQ2a9h77CzghaJ5pKoSWgKUDcxg0NPvNFq9mU=">
+    </form>
+    <div id="javax_faces_developmentstage_messages"></div>
+    <div id="textarea_simulator" style="position: absolute; top: 0px; left: 0px; visibility: hidden;"></div>
+    <div class="ui-dialog-docking-zone"></div>
+    <div id="msgs_container" class="ui-growl ui-widget" style="z-index: 1001;"></div>
+    <div id="j_id776342735_6aae4df-resizer" class="ui-layout-resizer ui-layout-resizer-north ui-layout-resizer-open ui-layout-resizer-north-open" style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; top: 202px; cursor: default; width: 1600px; height: 6px; left: 0px;"></div>
+    <div id="j_id776342735_6aae1c9-resizer" class="ui-layout-resizer ui-layout-resizer-south ui-layout-resizer-open ui-layout-resizer-south-open" style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; bottom: 22px; cursor: default; width: 1600px; height: 6px; left: 0px;"></div>
+    <div id="icpbravoaccess_loaded"></div>
+</body>
+
+</html>

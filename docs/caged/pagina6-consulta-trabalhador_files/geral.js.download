@@ -1,0 +1,9 @@
+function limpar(id) {
+	document.getElementById(id).value = '';
+}
+
+function setAllCheckBox() {
+	
+	$(":checkbox:eq(0)").attr("checked") ? $(":checkbox:gt(0)").attr({checked : true}) :
+		$(":checkbox:gt(0)").attr({checked : false}); 
+}

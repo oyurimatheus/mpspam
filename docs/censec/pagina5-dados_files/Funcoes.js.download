@@ -1,0 +1,191 @@
+﻿function SelecionaAba(id) {
+    if (document.getElementById(id) != null) {
+        document.getElementById(id).className = 'menuselecionado';
+    }
+}
+
+function validaTELEFONE(custom, args) {
+    var tel = args.Value;
+    var telFormatado = tel.replace(/_/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\-/g, '').replace(/ /g, '')
+    if (telFormatado != '') {
+        var RExp = /^\(\d{2}\) \d{4}-\d{4}$/;
+        args.IsValid = RExp.test(args.Value);
+    } else {
+        args.IsValid = true;
+    }
+}
+
+function validaCpfFalecido(campoCPF) {
+    if (!validacaoCpf(campoCPF.value)) {
+        alert('CPF Inválido.');
+    }
+}
+
+//function validaCpfFalecido(campoCPF) {
+//    var resultado = !validacaoCpf(campoCPF)
+//    if (resultado) {
+//        alert('CPF Inválido.');
+//    }
+//    return resultado;
+//}
+
+function validacaoCpf(CPF) {
+    var cpf = CPF.replace(/\./g, '').replace(/\-/g, '');
+
+    if (cpf.replace(/\_/g, '') == '') {
+        return true;
+    }
+
+    if (cpf.length > 11) {
+        return false;
+    }
+
+    if (cpf.length != 11 || cpf == "00000000000" || cpf == "11111111111" ||
+	            cpf == "22222222222" || cpf == "33333333333" || cpf == "44444444444" ||
+	            cpf == "55555555555" || cpf == "66666666666" || cpf == "77777777777" ||
+	            cpf == "88888888888" || cpf == "99999999999") {
+        return false;
+    }
+
+    soma = 0;
+    for (i = 0; i < 9; i++)
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+    resto = 11 - (soma % 11);
+    if (resto == 10 || resto == 11)
+        resto = 0;
+    if (resto != parseInt(cpf.charAt(9))) {
+        return false;
+    }
+    soma = 0;
+    for (i = 0; i < 10; i++)
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+    resto = 11 - (soma % 11);
+    if (resto == 10 || resto == 11)
+        resto = 0;
+    if (resto != parseInt(cpf.charAt(10))) {
+        return false;
+    }
+    return true;
+}
+
+function validarCPF(custom, args) {
+    args.IsValid = validacaoCpf(args.Value);
+}
+
+function validarCNPJ(valor, args) {
+    var numeros, digitos, soma, i, resultado, pos, tamanho, digitos_iguais;
+    digitos_iguais = 1;
+    cnpj = args.Value;
+
+    cnpj = remove(cnpj, ".");
+    cnpj = remove(cnpj, "-");
+    cnpj = remove(cnpj, "/");
+
+    if (remove(cnpj, "_") == '') {
+        return true;
+    }
+
+    if (cnpj.length < 14 && cnpj.length < 15) {
+        args.IsValid = false;
+        return false;
+    }
+    for (i = 0; i < cnpj.length - 1; i++)
+        if (cnpj.charAt(i) != cnpj.charAt(i + 1)) {
+            digitos_iguais = 0;
+            break;
+        }
+    if (!digitos_iguais) {
+        tamanho = cnpj.length - 2
+        numeros = cnpj.substring(0, tamanho);
+        digitos = cnpj.substring(tamanho);
+        soma = 0;
+        pos = tamanho - 7;
+        for (i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2)
+                pos = 9;
+        }
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0)) {
+            args.IsValid = false;
+            return false;
+        }
+        tamanho = tamanho + 1;
+        numeros = cnpj.substring(0, tamanho);
+        soma = 0;
+        pos = tamanho - 7;
+        for (i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2)
+                pos = 9;
+        }
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(1)) {
+            args.IsValid = false;
+            return false;
+        }
+        return true;
+    }
+    else {
+        args.IsValid = false;
+        return false;
+    }
+}
+
+function remove(str, sub) {
+    i = str.indexOf(sub);
+    r = "";
+    if (i == -1) return str;
+    r += str.substring(0, i) + remove(str.substring(i + sub.length), sub);
+    return r;
+}
+
+function IniciaVerificaTamanho(campo, tamanho) {
+    setTimeout(function () { VerificaTamanho(campo, tamanho); }, 10);
+}
+/*function VerificaTamanho(campo, tamanho) {
+    if (campo.value == '') return;
+    for (i = campo.value.length; i < tamanho; i++) {
+        campo.value = '0' + campo.value;
+    }
+}*/
+function VerificaTamanho(campo, tamanho, caractere) {
+    if (caractere == null) {
+        caractere = ' '
+    }
+
+    var valor = campo.value.split('_').join('');
+    for (i = valor.length; i < tamanho; i++) {
+        valor = caractere + valor;
+    }
+    if (valor.split(caractere).length - 1 == tamanho)
+        valor = "";
+
+    campo.value = valor.split(caractere).join('');
+}
+
+function CarregaFormatacoes() {
+    FormataData();
+}
+
+function FormataData() {
+    if ($('input[id*="Data"]').length > 0) {
+        
+
+        $('input[id*="Data"]').datepicker({
+            onSelect: function () { },
+            beforeShow: function (i) { if ($(i).attr('readonly')) { return false; } }
+        });
+        $('input[id*="Data"]').blur(function () { LimpaData($(this).attr('id')) })
+    }
+
+
+    $(".ui-datepicker a").removeAttr("href");
+}
+
+
+function LimpaData(id) {
+    var dataSemFormatacao = $('#' + id).val().split('/').join('').split('_').join('').split(' ').join('');
+    if (dataSemFormatacao.length < 8 || dataSemFormatacao.length > 8)
+        $('#' + id).val(' ');
+}

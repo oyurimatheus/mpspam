@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0083)https://www.cadesp.fazenda.sp.gov.br/(S(gruly2uxotjffg45lz4uciz2))/Pages/Login.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="ctl00_Head1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+        Página de Login do Sistema Cadesp
+    </title>
+    <!-- Devido Modo de Compatiblidade-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <meta name="author" content="DTI">
+    <meta name="description" content="CADESP - Secretaria da Fazenda do Estado de São Paulo">
+    <meta name="keywords" content="secretaria, fazenda, SEFAZ, ICMS, contribuinte, cadastro, governo, São Paulo">
+    <meta name="copyright" content="Copyright ? 2009 Secretaria da Fazenda do Estado de São Paulo - Todos os direitos reservados">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <!-- Estilos -->
+    <link rel="stylesheet" type="text/css" href="./login_files/fazenda.css">
+    <link rel="stylesheet" type="text/css" href="./login_files/cadesp.css">
+    <style type="text/css">
+        .adjustedZIndex {
+            z-index: 1;
+        }
+    </style>
+    <!-- este ajuste resolve o problema de compatibilidade do menu do asp.net com o ie8 -->
+
+    <!-- Scripts -->
+    <script type="text/javascript" language="javascript" src="./login_files/fazenda.js.download"></script>
+    <script type="text/javascript" language="javascript" src="./login_files/MonitorInterfaceRFB.js.download"></script>
+    <script type="text/javascript" language="javascript" src="./login_files/CadespUtil.js.download"></script>
+    <script type="text/javascript" language="javascript" src="./login_files/ProcessamentoSolicitacoesRFB.js.download"></script>
+    <script type="text/javascript" language="javascript" src="./login_files/AlteracaoDeOficio.js.download"></script>
+    <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+</head>
+
+<body class="body1" style="border-width: 0px">
+    <form name="aspnetForm" method="get" action="pagina2-pesquisa.html" id="aspnetForm">
+        <div>
+            <input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+            <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+            <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTc2NDcwNjI0Ng9kFgJmD2QWBAIBD2QWAgIMDxUFMS8oUyhncnVseTJ1eG90amZmZzQ1bHo0dWNpejIpKS9TY3JpcHRzL2ZhemVuZGEuanM9LyhTKGdydWx5MnV4b3RqZmZnNDVsejR1Y2l6MikpL1NjcmlwdHMvTW9uaXRvckludGVyZmFjZVJGQi5qczQvKFMoZ3J1bHkydXhvdGpmZmc0NWx6NHVjaXoyKSkvU2NyaXB0cy9DYWRlc3BVdGlsLmpzRi8oUyhncnVseTJ1eG90amZmZzQ1bHo0dWNpejIpKS9TY3JpcHRzL1Byb2Nlc3NhbWVudG9Tb2xpY2l0YWNvZXNSRkIuanNGLyhTKGdydWx5MnV4b3RqZmZnNDVsejR1Y2l6MikpL1NjcmlwdHMvQWx0ZXJhY29lcy9BbHRlcmFjYW9EZU9maWNpby5qc2QCAw9kFgQCCw9kFgRmD2QWAmYPZBYEAgEPPCsACgEADxYCHgtGYWlsdXJlVGV4dGVkFgJmD2QWDAIBDxAPFgIeC18hRGF0YUJvdW5kZ2QQFQocU2VsZWNpb25lIG8gdGlwbyBkZSB1c3XDoXJpbwxDb250YWJpbGlzdGEMQ29udHJpYnVpbnRlA0NSQwtGYXplbmTDoXJpbwZKdWNlc3ADUEdFClByb21vdG9yaWEPUmVjZWl0YSBGZWRlcmFsA1RSVBUKAi0xBUNPTlRBBUNPTlRSA0NSQwVTRUZBWgVKVUNFUwVQUk9DVQVQUk9NTwNSRkIDVFJUFCsDCmdnZ2dnZ2dnZ2cWAQIHZAILDxYCHgdWaXNpYmxlaGQCEQ8PFgIeBFRleHRlZGQCEw8PFgIeB0VuYWJsZWRoZGQCFQ8PFgIfA2VkZAIXDw8WBB8EaB8CaGRkAgMPDxYCHwNlZGQCAg8PFgIfAwUNQ29udHJpYnVpbnRlc2RkAg0PDxYCHwMFD1ZlcnPDo286IDMuNjMuMGRkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBVRjdGwwMCRjb250ZXVkb1BhZ2luYVBsYWNlSG9sZGVyJGxvZ2luQ29udHJvbCRGZWRlcmF0ZWRQYXNzaXZlU2lnbkluQ2VydGlmaWNhZG8kY3RsMDQFWWN0bDAwJGNvbnRldWRvUGFnaW5hUGxhY2VIb2xkZXIkbG9naW5Db250cm9sJEZlZGVyYXRlZFBhc3NpdmVTaWduSW5DZXJ0aWZpY2FkbyRyZW1lbWJlck1lBTZjdGwwMCRjb250ZXVkb1BhZ2luYVBsYWNlSG9sZGVyJGxvZ2luQ29udHJvbCRmYXFCdXR0b258UkM0PzzCjEk+ocM5AFdyOekwvw==">
+        </div>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var theForm = document.forms['aspnetForm'];
+            if (!theForm) {
+                theForm = document.aspnetForm;
+            }
+
+            function __doPostBack(eventTarget, eventArgument) {
+                if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                    theForm.__EVENTTARGET.value = eventTarget;
+                    theForm.__EVENTARGUMENT.value = eventArgument;
+                    theForm.submit();
+                }
+            }
+            //]]>
+        </script>
+
+        <script src="./login_files/WebResource.axd" type="text/javascript"></script>
+
+        <script src="./login_files/ScriptResource.axd" type="text/javascript"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            var __cultureInfo = '{"name":"pt-BR","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":",","IsReadOnly":true,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":".","CurrencySymbol":"R$","NaNSymbol":"NaN (Não é um número)","CurrencyNegativePattern":9,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-Infinito","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":",","NumberGroupSeparator":".","CurrencyPositivePattern":2,"PositiveInfinitySymbol":"+Infinito","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":",","PercentGroupSeparator":".","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"","Calendar":{"MinSupportedDateTime":"\/Date(-62135589600000)\/","MaxSupportedDateTime":"\/Date(253402300799999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"/","FirstDayOfWeek":0,"CalendarWeekRule":0,"FullDateTimePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss","LongDatePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"dd\u0027 de \u0027MMMM","PMDesignator":"","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"dd/MM/yyyy","ShortTimePattern":"H:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM\u0027 de \u0027yyyy","AbbreviatedDayNames":["dom","seg","ter","qua","qui","sex","sáb"],"ShortestDayNames":["dom","seg","ter","qua","qui","sex","sáb"],"DayNames":["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],"AbbreviatedMonthNames":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""],"MonthNames":["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],"IsReadOnly":true,"NativeCalendarName":"Calendário gregoriano","AbbreviatedMonthGenitiveNames":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""],"MonthGenitiveNames":["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""]}}'; //]]>
+        </script>
+
+        <script src="./login_files/ScriptResource(1).axd" type="text/javascript"></script>
+        <script src="./login_files/ScriptResource(2).axd" type="text/javascript"></script>
+        <script src="./login_files/WebResource(1).axd" type="text/javascript"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            function WebForm_OnSubmit() {
+                if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+                return true;
+            }
+            //]]>
+        </script>
+
+        <div>
+
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="D44F3332">
+            <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWFQKtiI/1BgL2y5R1AvWk8pgMAv6/mp0LAoO4mp0LAq7Cma8MAoOK9Z8LArLO7LsKAtapoMYDAvypuKMHArjri7ECAqSU2e4EApaY3dkKAqqh+tgGAvf8xI8DApuYwPcDAvjProMLAqfczoMHAriv9IYNAp3G1vECAoLduNwIMoLFOrUr3LV2JMuz1LU344wz+9Q=">
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', document.getElementById('aspnetForm'));
+            Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tctl00$conteudoPaginaPlaceHolder$UpdatePanel1'], [], [], 90);
+            //]]>
+        </script>
+
+        <!-- Cabe?alho -->
+        <div id="global">
+            <table style="width: 100%; border-bottom: solid 1px #000000; padding: 0;" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td style="width: 50%; text-align: left; vertical-align: top;">
+                            <h1 id="logo">
+              <a href="http://www.fazenda.sp.gov.br/" title="Secretaria da Fazenda do Estado de São Paulo">
+                Secretaria da Fazenda</a>
+            </h1>
+                        </td>
+                        <td style="width: 50%; text-align: right">
+                            <img src="./login_files/header_bg.png" alt="Estado de São Paulo"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- T?tulo da P?gina / Sistema -->
+        <table style="width: 100%; border: 0; border-bottom: solid 1px #000000;">
+            <tbody>
+                <tr style="height: 45px">
+                    <td class="titulo_pagina" style="width: 50%; padding-left: 5px; padding-right: 5px">
+                        <!-- T?tulo da p?gina parametrizado -->
+
+                        Login
+                    </td>
+                    <td class="titulo_sistema" style="width: 50%; padding-left: 5px; padding-right: 5px; text-align:right;">
+                        <span id="nomeSistemaSpan">Cadastro de Contribuintes de ICMS - Cadesp</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Menu -->
+        <div id="ctl00_menuSuperiorPanel" class="menuSuperior">
+
+        </div>
+        <table id="ctl00_tableMenu" border="0" style="width:100%;">
+            <tbody>
+                <tr id="ctl00_tableMenuRow1" class="cabecalhoMenu">
+                    <td id="ctl00_tableMenuRow1Cell1" class="cabecalhoBotoesMenu">
+                        <div id="ctl00_botaoFecharPanel">
+
+                            <img src="./login_files/botao_sair.gif" id="ctl00_imgSairSistema" class="imgButton" alt="Fechar" onclick="javascript:SairSistema();">
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Conte?do da P?gina -->
+        <table class="conteudoGeral">
+            <tbody>
+                <tr>
+                    <td class="margemEsquerdaConteudoGeral">
+                        &nbsp;</td>
+                    <td class="conteudoPrincipal">
+
+                        <script type="text/javascript">
+                            function ValidarLoginESenha() {
+                                var oUsernameTextBox = document.getElementById("ctl00_conteudoPaginaPlaceHolder_loginControl_UserName");
+                                var oPasswordTextBox = document.getElementById("ctl00_conteudoPaginaPlaceHolder_loginControl_Password");
+                                var oTipoUsuarioDropDown = document.getElementById("ctl00_conteudoPaginaPlaceHolder_loginControl_TipoUsuarioDropDownList");
+
+                                var str = "Erro no preenchimento do quadro de login:\r\n";
+                                var campoObrigatorioNaoPreenchido = false;
+
+                                if (oTipoUsuarioDropDown.value == "-1") {
+                                    str = str + "- O campo 'Tipo de Usuário' deve ser preenchido.\r\n";
+                                    campoObrigatorioNaoPreenchido = true;
+                                }
+
+                                if (oUsernameTextBox.value == "") {
+                                    str = str + "- O campo 'Identificação do Usuário' deve ser preenchido.\r\n";
+                                    campoObrigatorioNaoPreenchido = true;
+                                }
+
+                                if (oPasswordTextBox.value == "") {
+                                    str = str + "- O campo 'Senha' deve ser preenchido.";
+                                    campoObrigatorioNaoPreenchido = true;
+                                }
+
+                                if (campoObrigatorioNaoPreenchido) {
+                                    alert(str);
+                                   
+                                } else {
+                                    document.forms[0].submit();
+                                }
+
+                            }
+
+                            document.execCommand("ClearAuthenticationCache");
+                        </script>
+                        <!-- Espaçamento do início da página -->
+                        <table border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td style="height: 60px">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Conteúdo do Login -->
+                        <div id="ctl00_conteudoPaginaPlaceHolder_UpdatePanel1">
+
+                            <center>
+                                <table cellspacing="0" cellpadding="0" style="width: 700px" class="loginTable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="cantoSupEsq">
+                                            </td>
+                                            <td class="linhaSuperior">
+                                            </td>
+                                            <td class="cantoSupDir">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="linhaEsquerda">
+                                            </td>
+                                            <td>
+                                                <table id="ctl00_conteudoPaginaPlaceHolder_loginControl" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <table cellspacing="0" cellpadding="0" style="width: 100%;">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="loginConteudo">
+                                                                                <table class="loginTable" style="width: 100%">
+                                                                                    <tbody>
+                                                                                        <tr style="height: 40px">
+                                                                                            <td class="alinharCentro, negrito" colspan="2" align="center">
+                                                                                                Identificação do Usuário
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr style="height: 20px">
+                                                                                            <td align="right" class="labelDetalhe" style="padding-right: 5px; width: 150px" valign="top">
+                                                                                                Tipo:
+                                                                                            </td>
+                                                                                            <td align="left" class="dadoDetalhe" style="padding-left: 5px; width: 250px">
+                                                                                                <select name="ctl00$conteudoPaginaPlaceHolder$loginControl$TipoUsuarioDropDownList" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$conteudoPaginaPlaceHolder$loginControl$TipoUsuarioDropDownList\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_conteudoPaginaPlaceHolder_loginControl_TipoUsuarioDropDownList" tabindex="1" class="dadoDetalhe">
+                                                                                                    <option value="-1">Selecione o tipo de usuário</option>
+                                                                                                    <option value="CONTA">Contabilista</option>
+                                                                                                    <option value="CONTR">Contribuinte</option>
+                                                                                                    <option value="CRC">CRC</option>
+                                                                                                    <option value="SEFAZ">Fazendário</option>
+                                                                                                    <option value="JUCES">Jucesp</option>
+                                                                                                    <option value="PROCU">PGE</option>
+                                                                                                    <option selected="selected" value="PROMO">Promotoria</option>
+                                                                                                    <option value="RFB">Receita Federal</option>
+                                                                                                    <option value="TRT">TRT</option>
+
+                                                                                                </select>
+                                                                                                <span id="ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1" style="color:Red;display:none;"></span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td colspan="2" style="width: 100%; height: 20px">
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td colspan="2">
+                                                                                                <hr>
+                                                                                                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td style="padding-right: 2px; width: 50%">
+                                                                                                                <table cellpadding="0" cellspacing="0" style="width: 100%">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td align="center" class="labelDetalhe" colspan="2" style="padding-right: 5px; padding-top: 0px; height: 20px;">
+                                                                                                                                Acesso via login e senha
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr id="ctl00_conteudoPaginaPlaceHolder_loginControl_Tr1" align="center">
+                                                                                                                            <td align="center" class="dadoDetalhe" colspan="2" style="height: 20px">
+
+                                                                                                                            </td>
+                                                                                                                        </tr>
+
+                                                                                                                        <tr style="height: 20px">
+                                                                                                                            <td align="right" class="labelDetalhe" style="padding-right: 5px; width: 35%; height: 20px">
+                                                                                                                                Login:
+                                                                                                                            </td>
+                                                                                                                            <td align="left" class="dadoDetalhe" style="padding-left: 5px;width: 65%">
+                                                                                                                                <input name="ctl00$conteudoPaginaPlaceHolder$loginControl$UserName" type="text" maxlength="16" id="ctl00_conteudoPaginaPlaceHolder_loginControl_UserName" tabindex="1" class="dadoDetalhe">
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td align="right" class="labelDetalhe" style="padding-right: 5px; width: 35%; height: 20px">
+                                                                                                                                Senha:
+                                                                                                                            </td>
+                                                                                                                            <td align="left" class="dadoDetalhe" style="padding-left: 5px; width: 65%; height: 20px">
+                                                                                                                                <input name="ctl00$conteudoPaginaPlaceHolder$loginControl$Password" type="password" maxlength="16" id="ctl00_conteudoPaginaPlaceHolder_loginControl_Password" tabindex="2" class="dadoDetalhe">
+                                                                                                                            </td>
+                                                                                                                        </tr>
+
+                                                                                                                        <tr>
+                                                                                                                            <td class="alinharCentro" colspan="2" style="height: 60px">
+                                                                                                                                <input type="submit" name="ctl00$conteudoPaginaPlaceHolder$loginControl$loginButton" value="Entrar" onclick="return ValidarLoginESenha()" id="ctl00_conteudoPaginaPlaceHolder_loginControl_loginButton" tabindex="3" class="botao">
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                            <td style="padding-right: 2px; width: 50%">
+                                                                                                                <table cellpadding="0" cellspacing="0" style="width: 100%">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td align="center" class="labelDetalhe" colspan="2" style="padding-right: 5px; height: 20px;">
+                                                                                                                                Acesso via certificado digital (e-CPF/e-CNPJ)
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td align="center" style="min-height: 80px" colspan="2">
+                                                                                                                                <div id="ctl00_conteudoPaginaPlaceHolder_loginControl_certPnl" clientidmode="Static">
+
+                                                                                                                                    <table cellspacing="0" cellpadding="1" border="0" id="ctl00_conteudoPaginaPlaceHolder_loginControl_FederatedPassiveSignInCertificado" style="border-collapse:collapse;">
+                                                                                                                                        <tbody>
+                                                                                                                                            <tr>
+                                                                                                                                                <td>
+                                                                                                                                                    <table cellpadding="0" border="0">
+                                                                                                                                                        <tbody>
+                                                                                                                                                            <tr>
+                                                                                                                                                                <td align="center">
+                                                                                                                                                                    <input type="image" name="ctl00$conteudoPaginaPlaceHolder$loginControl$FederatedPassiveSignInCertificado$ctl04" src="./login_files/icon-e-cpf-e-cnpj.png" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$conteudoPaginaPlaceHolder$loginControl$FederatedPassiveSignInCertificado$ctl04&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" style="border-width:0px;">
+                                                                                                                                                                </td>
+                                                                                                                                                            </tr>
+                                                                                                                                                        </tbody>
+                                                                                                                                                    </table>
+                                                                                                                                                </td>
+                                                                                                                                            </tr>
+                                                                                                                                        </tbody>
+                                                                                                                                    </table>
+                                                                                                                                    <input type="image" name="ctl00$conteudoPaginaPlaceHolder$loginControl$faqButton" id="ctl00_conteudoPaginaPlaceHolder_loginControl_faqButton" title="Esclarecimentos sobre: Uso de Certificado digital, Procurações eletrônicas e Configuração do Navegador." src="./login_files/helpSmall.png" alt="Esclarecimentos sobre: Uso de Certificado digital, Procurações eletrônicas e Configuração do Navegador." onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$conteudoPaginaPlaceHolder$loginControl$faqButton&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" style="border-width:0px;">
+
+                                                                                                                                </div>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td align="right" class="labelDetalhe" style="padding-right: 5px; width: 35%; height: 20px">
+
+                                                                                                                            </td>
+                                                                                                                            <td align="left" class="dadoDetalhe" style="padding-left: 5px;width: 65%">
+
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td align="right" class="labelDetalhe" style="padding-right: 5px; width: 35%; height: 20px">
+
+                                                                                                                            </td>
+                                                                                                                            <td align="left" class="dadoDetalhe" style="padding-left: 5px; width: 65%; height: 20px">
+
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="alinharCentro" colspan="2" style="height: 20px">
+                                                                                                <span id="ctl00_conteudoPaginaPlaceHolder_loginControl_FailureText" style="color:Red;font-family:Verdana;font-weight:bold;"></span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div id="ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary" style="color:Red;display:none;">
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+
+                                            </td>
+                                            <td class="linhaDireita">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cantoInfEsq">
+                                            </td>
+                                            <td class="linhaInferior">
+                                            </td>
+                                            <td class="cantoInfDir">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+
+                        </div>
+                        <!-- Espaçamento do fim da página -->
+                        <table border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td align="center" class="dadoDetalhe">
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 50px">
+                                    <td align="center" class="dadoDetalhe">
+                                        <br>
+                                        <span style="color: #FF0000"><b>Para criação de usuário, alteração ou recuperação
+					de senha</b></span> de <b><span id="ctl00_conteudoPaginaPlaceHolder_MensagemCadastroUsuarioLabel" style="color:Black;font-weight:bold;">Contribuintes</span></b>,
+                                        <a id="ctl00_conteudoPaginaPlaceHolder_redirecionarPfeLinkButton" href="javascript:__doPostBack(&#39;ctl00$conteudoPaginaPlaceHolder$redirecionarPfeLinkButton&#39;,&#39;&#39;)" style="color: #FF0000">clique aqui</a> &nbsp;para acessar o Posto Fiscal Eletrônico.
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr style="height: 140px">
+                                    <td align="center" class="dadoDetalhe">
+                                        <br>
+                                        <a id="ctl00_conteudoPaginaPlaceHolder_LinkButton1" href="javascript:__doPostBack(&#39;ctl00$conteudoPaginaPlaceHolder$LinkButton1&#39;,&#39;&#39;)" style="color: #FF0000; font-weight: bold;">CONSULTA PÚBLICA DO CADASTRO - clique aqui.</a>
+                                        <br>
+                                        <br>
+                                        <a id="ctl00_conteudoPaginaPlaceHolder_LinkButton2" href="javascript:__doPostBack(&#39;ctl00$conteudoPaginaPlaceHolder$LinkButton2&#39;,&#39;&#39;)" style="color: #FF0000; font-weight: bold;">CONSULTA CASSAÇÃO - clique aqui.</a>
+                                        <br>
+                                        <br>
+                                        <a id="ctl00_conteudoPaginaPlaceHolder_LinkButton3" href="javascript:__doPostBack(&#39;ctl00$conteudoPaginaPlaceHolder$LinkButton3&#39;,&#39;&#39;)" style="color: #FF0000; font-weight: bold;">CERTIDÃO DE PESSOA JURÍDICA NÃO INSCRITA - clique aqui.</a>
+                                        <br>
+                                        <br>(não exigem validação de usuário e senha)
+                                        <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                    <td class="margemDireitaConteudoGeral">
+                        &nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--Vers?o-->
+        <div id="web_version">
+            <span id="ctl00_Versao" class="web_version_label">Versão: 3.63.0</span>
+        </div>
+        <!-- Rodap? -->
+        <div id="footer">Secretaria da Fazenda do Estado de São Paulo</div>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var Page_ValidationSummaries = new Array(document.getElementById("ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary"));
+            var Page_Validators = new Array(document.getElementById("ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1"));
+            //]]>
+        </script>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1 = document.all ? document.all["ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1"] : document.getElementById("ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1");
+            ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1.controltovalidate = "ctl00_conteudoPaginaPlaceHolder_loginControl_TipoUsuarioDropDownList";
+            ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1.errormessage = "O campo \'Tipo de Usuário\' deve ser preenchido.";
+            ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1.display = "None";
+            ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+            ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1.initialvalue = "-1";
+            var ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary = document.all ? document.all["ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary"] : document.getElementById("ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary");
+            ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary.headertext = "Erro no preenchimento do quadro de login:";
+            ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary.showmessagebox = "True";
+            ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary.showsummary = "False";
+            //]]>
+        </script>
+
+        <script type="text/javascript">
+            //<![CDATA[
+
+            var Page_ValidationActive = false;
+            if (typeof(ValidatorOnLoad) == "function") {
+                ValidatorOnLoad();
+            }
+
+            function ValidatorOnSubmit() {
+                if (Page_ValidationActive) {
+                    return ValidatorCommonOnSubmit();
+                } else {
+                    return true;
+                }
+            }
+
+            document.getElementById('ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary').dispose = function() {
+                Array.remove(Page_ValidationSummaries, document.getElementById('ctl00_conteudoPaginaPlaceHolder_loginControl_validationSummary'));
+            }
+            WebForm_AutoFocus('ctl00_conteudoPaginaPlaceHolder_loginControl_loginButton');
+            Sys.Application.initialize();
+
+            document.getElementById('ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1').dispose = function() {
+                    Array.remove(Page_Validators, document.getElementById('ctl00_conteudoPaginaPlaceHolder_loginControl_Requiredfieldvalidator1'));
+                }
+                //]]>
+        </script>
+    </form>
+
+    <div id="icpbravoaccess_loaded"></div>
+</body>
+
+</html>

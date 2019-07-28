@@ -1,0 +1,150 @@
+
+//Fotos
+var jan1;
+function popupFoto(nome, rg, img){
+	
+	showPopWin("popup_fotoreu.view?nome=" + nome + "&rg=" + rg + "&img=" + img , 200, 270, null)
+	
+}
+
+function popupFotoGrBase(nome, rg, img, dataCadastro){
+	var gPopupMask = null;
+	var gPopupContainer = null;
+	var gPopFrame = null;
+	var gReturnFunc;
+	var gPopupIsShown = false;
+	var gHideSelects = false;
+	showPopWin("popup_fotoreu_gr.view?nome=" + nome + "&rg="+ rg + "&img=" + img + "&dataCadastro=" + dataCadastro , 370, 600, null)
+}
+
+function popupFotoGr(nome, rg, img, dataCadastro){
+	window.parent.hidePopWin(true);
+	window.parent.popupFotoGrBase(nome, rg, img, dataCadastro);
+}
+
+function popupFotoMais(nome, rg, img){
+	showPopWin("popup_fotoreu_mais.view?nome=" + nome + "&rg="+ rg + "&img=" + img, 700, 600, null);
+}
+
+//Mantis 3072
+function voltar_imagens(nome, rg){
+	window.parent.hidePopWin(true);
+	janelaAberta = 'true';
+	window.parent.popupFotoMais(nome,rg,null);
+}
+//fim Mantis 3072
+
+function validarFotos(nome, rg , imagemFormatada){
+	showPopWin("validar_Img_Albergado.view?nome=" + nome + "&rg="+ rg + "&imagemFormatada=" + imagemFormatada , 700, 800, null);
+}
+
+function visualizarFotosRejeitadas(nome, rg){
+	showPopWin("visualizarImg_Rejeitados.view?nome=" + nome + "&rg="+ rg, 700, 600, null)
+}
+
+//validaImagens.jsp
+function aprovarImagensFunc(){
+	var count = 0;
+	var resposta = true;
+	$(".chekbox").each( function() {
+		if (!$(this).is(':checked'))
+		 count +=1;
+	});
+	if(count > 0){
+		resposta = false;
+		$("<div class=\"textotab2 text-center\" title=\"Albergados - Cadastro (L.C./R.A./Sursis) \"><br>A foto não foi selecionadas e será excluída. Deseja continuar? </div>").dialog({   		
+			width: 450,
+	        modal: true,
+	        buttons:{
+				"Confirmar" : function() {
+					$('#aprovarImagens').attr('disabled', 'true');
+					$('#busca').val( count > 0 ? 'aprovarImagens' : 'validarTodasImagens');
+					desabilitarBotoes(true);
+					$("form:first").prop('action','validarImagens.do');
+					$("form:first").submit();
+				$(this).dialog("close");
+		      }, "Cancelar" : function() {
+		    	  $("#albergadoForm").prop("value", false);
+		    	  $(this).dialog("close");
+		      }
+		    }
+		 }).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+			
+	if(resposta){
+		$('#aprovarImagens').attr('disabled', 'true');
+		$('#busca').val( count > 0 ? 'aprovarImagens' : 'validarTodasImagens');
+		desabilitarBotoes(true);
+		$("form:first").prop('action','validarImagens.do');
+		$("form:first").submit();
+	}
+}
+
+function verificaImagem(){
+	if ($('#idValidar').val()== "True"){
+		$('#modalSemPeca').modal();
+	}
+}
+
+function selecionarTodas(){
+	$(".chekbox").each( function() {
+		$(this).attr("checked",'checked');
+	});
+}
+
+function desmarcarTodas(){
+	$(".chekbox").each( function() {
+		 $(this).removeAttr("checked");
+	});	
+}
+
+function desabilitarBotoes(opcao){
+		$('#aprovarImagens').attr('disabled', 'disabled');
+		$('#selecionarTD').attr('disabled', 'disabled');
+		$('#loadingGif').show();
+		$('#aprovarImagens').hide();
+}
+
+function validarTodasImagens(){
+	$('#busca').val('validarTodasImagens');
+	document.albergadoForm.submit();
+}
+
+function excluirImagens(){
+	var answer = confirm ("Deseja realmente excluir essa(s) imagem(s)?")
+	if (answer){
+		$('#busca').val('excluirImagens');
+		document.albergadoForm.submit();
+	}
+}			
+
+function obterFotos(rg ){
+	
+	var nome = $('#idNome').val();
+	
+	$.ajax({
+		  url: "FotosCadastradasServlet",
+		  cache: false,
+		   data: { rg : rg, nome : nome},
+		  type: 'GET',
+		   dataType: 'json'
+	}).done(function (data) {
+	 	$("#resultado").html(data.montaDiv);
+        abrirModalFoto();
+	});
+}
+
+function abrirModalFoto(idFoto){
+	$('#modalFoto').modal();
+}
+
+function imprimeFoto(idFoto){
+
+	var conteudo = "<img width='120' height='160' id='imgFoto' class='foto visible-print-block' src='"+$(idFoto).attr('src')+"' border='0' >";
+	  tela_impressao = window.open('about:blank');
+		tela_impressao.document.write(conteudo);
+		tela_impressao.location.reload();
+		tela_impressao.print();
+		tela_impressao.close();
+}

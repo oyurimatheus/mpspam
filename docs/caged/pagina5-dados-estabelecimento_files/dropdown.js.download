@@ -1,0 +1,44 @@
+var dropdownIntervalId;
+var dropdownUlId = (!dropdownUlId) ? 'nav' : dropdownUlId;
+var dropdownDelay = (!dropdownDelay) ? 700 : dropdownDelay;
+ 
+function dropdownInit() {
+   try {
+      var as = document.getElementById(dropdownUlId).getElementsByTagName('a');
+      for (var a = 0; a < as.length; a++) {
+         as[a].onfocus = function() { dropdownExpand(this) }
+         as[a].onmouseover = function() { dropdownExpand(this) }
+         as[a].onblur = function() { dropdownColapse(dropdownDelay) }
+         as[a].onmouseout = function() { dropdownColapse(dropdownDelay) }
+      }
+      dropdownColapse(0);
+   } catch(e){}
+}
+ 
+function dropdownExpand(caller) { 
+   try { 
+      clearInterval(dropdownIntervalId);
+      var uls = caller.parentNode.parentNode.getElementsByTagName('ul');
+      for (var ul = 0; ul < uls.length; ul++)
+         uls[ul].style.left = "-1000em";
+      caller.parentNode.getElementsByTagName('ul')[0].style.left = "auto";
+   } catch(e){} 
+}
+ 
+function dropdownColapse(milliseconds) {
+   try {
+      clearInterval(dropdownIntervalId);
+      dropdownIntervalId = setInterval(function(){    
+         var uls = document.getElementById(dropdownUlId).getElementsByTagName('ul');
+         for (var ul = 0; ul < uls.length; ul++)
+            uls[ul].style.left = "-1000em";
+    
+         clearInterval(dropdownIntervalId);
+      }, milliseconds, null);
+  
+   } catch(e){}
+}
+ 
+window.onload = dropdownInit;
+
+

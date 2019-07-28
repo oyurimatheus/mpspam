@@ -1,0 +1,1694 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0050)http://www.infocrim.ssp.sp.gov.br/seguro/index.cfm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./pagina2-pesquisa_files/cfform.js.download"></script>
+<script type="text/javascript" src="./pagina2-pesquisa_files/masks.js.download"></script>
+
+<title>Infocrim</title>
+
+<meta http-equiv="x-ua-compatible" content="IE=8">
+
+<style>
+/* =INITIAL 
+   v2.1, by Faruk Ates - www.kurafire.net
+   Addendum by Robert Nyman - www.robertnyman.com */
+
+/* Neutralize styling: 
+   Elements we want to clean out entirely: */
+html, body, form, fieldset {
+        margin: 0;
+        padding: 0;
+        font: 100%/120% Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Neutralize styling: 
+   Elements with a vertical margin: */
+h1, h2, h3, h4, h5, h6, p, pre,
+blockquote, ul, ol, dl, address {
+        margin: 1em 0;
+        padding: 0;
+}
+
+/* Apply left margin:
+   Only to the few elements that need it: */
+li, dd, blockquote {
+        margin-left: 1em;
+}
+
+/* Miscellaneous conveniences: */
+form label {
+        cursor: pointer;
+}
+fieldset {
+        border: none;
+}
+input, select, textarea {
+        font-size: 100%;
+}
+
+A {
+	TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: none
+}
+A:link {
+	TEXT-DECORATION: none
+}
+A:visited {
+	TEXT-DECORATION: none
+}
+.menu {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; VERTICAL-ALIGN: top; COLOR: #000000; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.titCabec {
+	FONT-SIZE: 10px; VERTICAL-ALIGN: top; COLOR: #666666; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.litField {
+	FONT-SIZE: 10px; COLOR: #666666; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.dtlogin {
+	FONT-SIZE: 10px; VERTICAL-ALIGN: middle; COLOR: #666666; FONT-FAMILY: Verdana, Arial, sans-serif; TEXT-ALIGN: left
+}
+.entPrinc {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 11px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Aria, sans-serif; BACKGROUND-COLOR: #cccccc
+}
+.litPrinc {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #000000; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.litPrincSenhaMail {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; VERTICAL-ALIGN: middle; COLOR: #ff3300; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.titNomeUsuario {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; VERTICAL-ALIGN: middle; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.litPrinclaranjaSemBold {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; VERTICAL-ALIGN: middle; COLOR: #ff3300; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.textoPopUp {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; VERTICAL-ALIGN: middle; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, sans-serif; LETTER-SPACING: normal; TEXT-ALIGN: justify
+}
+.cinzaMarcaDagua {
+	FONT-SIZE: 10px; COLOR: #999999; FONT-FAMILY: Verdana, Arial, sans-serif; TEXT-ALIGN: left
+}
+.litPrincFiltros {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #000000; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.entPrincFiltros {
+	FONT-SIZE: 11px;
+	WIDTH: 150px;
+	FONT-FAMILY: Verdana, Aria, sans-serif;
+	HEIGHT: auto;
+	BACKGROUND-COLOR: #cccccc;
+	border: medium groove #CCCCCC;
+}
+.entPrincFiltros2 {
+	FONT-SIZE: 11px;
+	WIDTH: 230px;
+	FONT-FAMILY: Verdana, Aria, sans-serif;
+	HEIGHT: auto;
+	BACKGROUND-COLOR: #cccccc;
+	border: medium groove #CCCCCC;
+}
+.entPrincFiltrosPeriodo {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 9px; BORDER-LEFT: medium none; WIDTH: 65px; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Aria, sans-serif; HEIGHT: auto; BACKGROUND-COLOR: #e8e8e8
+}
+.entPrincFiltrosPeriodoData {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 11px; BORDER-LEFT: medium none; WIDTH: 40px; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Aria, sans-serif; HEIGHT: auto; BACKGROUND-COLOR: #e8e8e8
+}
+.entPrincFiltrosApresentac {
+	FONT-SIZE: 9px;
+	WIDTH: 110px;
+	FONT-FAMILY: Verdana, Aria, sans-serif;
+	HEIGHT: auto;
+	BACKGROUND-COLOR: #e8e8e8;
+	border: thin groove #FFFFFF;
+}
+.entPrincFiltrosApresentacSuBFiltros {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 9px; BORDER-LEFT: medium none; WIDTH: 105px; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Aria, sans-serif; HEIGHT: auto; BACKGROUND-COLOR: #cccccc
+}
+.litPrincTitFiltros {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; VERTICAL-ALIGN: middle; COLOR: #ff3300; LINE-HEIGHT: normal; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.linhaCabec {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #ffffff 1px; FONT-WEIGHT: bold; FONT-SIZE: 9px; VERTICAL-ALIGN: middle; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px; FONT-FAMILY: Verdana, Arial, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #e8e8e8; TEXT-ALIGN: center
+}
+.linhaDet {
+	BORDER-RIGHT: #e8e8e8 1px solid; BORDER-TOP: #e8e8e8 1px; FONT-SIZE: 9px; TEXT-TRANSFORM: capitalize; BORDER-LEFT: #e8e8e8 1px solid; COLOR: #000000; BORDER-BOTTOM: silver 1px solid; FONT-FAMILY: Verdana, Arial, sans-serif; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+}
+.linhaFecha {
+	BORDER-RIGHT: #e8e8e8 1px; BORDER-TOP: #e8e8e8 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 9px; BORDER-LEFT: #e8e8e8 1px; COLOR: #000000; BORDER-BOTTOM: #e8e8e8 1px; FONT-FAMILY: Verdana, Arial, sans-serif; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+}
+.celulaCinza {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #ffffff 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 9px; VERTICAL-ALIGN: middle; BORDER-LEFT: #ffffff 1px solid; COLOR: #000000; BORDER-BOTTOM: #ffffff 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #cccccc; TEXT-ALIGN: center
+}
+.celulaCinzaClarinha {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #ffffff 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: middle; BORDER-LEFT: #ffffff 1px solid; COLOR: #ff6600; BORDER-BOTTOM: #ffffff 1px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #e8e8e8; TEXT-ALIGN: center
+}
+.litPrincMensagemInic {
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; COLOR: #000000; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.litPrincMensagemInicLaranja {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; VERTICAL-ALIGN: middle; COLOR: #ff6600; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.litPrincMensagemInicLaranjasembold {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; VERTICAL-ALIGN: middle; COLOR: #ffcc00; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.litPrincMensagemInicLaranjaclaro {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #ff9900; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.litPrincsembold {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; COLOR: #666666; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.litPrincsembold2 {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.ObsFundo0{
+	BACKGROUND-COLOR: #f8f8f8; 
+}
+.ObsFundo1{
+	BACKGROUND-COLOR: #e8e8e8; 
+}
+.ObsFundo2{
+	 BACKGROUND-COLOR: #cccccc;
+}
+.ObsFundo3{
+	 BACKGROUND-COLOR: #ffcc00;
+}
+</style>
+
+
+<script language="JavaScript1.2" src="./pagina2-pesquisa_files/janelaBo.js.download"></script>
+<script language="JavaScript1.2" src="./pagina2-pesquisa_files/mm_menu.js.download"></script>
+
+<script language="JavaScript">
+function mmLoadMenus() {
+
+  window.administracao = new Menu("root",107,14,"Verdana, Arial, sans-serif",10,"#000000","#666666","#FFCC00","#FFCC00","left","middle",2,2,1000,-5,7,true,true,true,0,true,true);
+
+  administracao.addMenuItem("");
+  administracao.hideOnMouseOut=true;
+  administracao.menuBorder=0;
+  administracao.menuLiteBgColor='#FFCC00';
+  administracao.menuBorderBgColor='#FFCC00';
+  administracao.bgColor='#FFCC00';
+
+  window.meuPerfil = new Menu("root",107,14,"Verdana, Arial, sans-serif",10,"#000000","#666666","#FFCC00","#FFCC00","left","middle",2,2,1000,-5,7,true,true,true,0,true,true);
+  
+  meuPerfil.addMenuItem("+&nbsp;Meus Dados","document.location.href='index.cfm?fuseaction=usu.meuPerfil&id_usuario=42354'");
+  
+  meuPerfil.addMenuItem("+&nbsp;Trocar Senha","document.location.href='index.cfm?fuseaction=usu.trocaSenha'");
+  meuPerfil.addMenuItem("");
+  meuPerfil.hideOnMouseOut=true;
+  meuPerfil.menuBorder=0;
+  meuPerfil.menuLiteBgColor='#FFCC00';
+  meuPerfil.menuBorderBgColor='#FFCC00';
+  meuPerfil.bgColor='#FFCC00';
+
+  window.gestor = new Menu("+&nbsp;Gestor",107,10,"Verdana, Arial, sans-serif",10,"#000000","#666666","#FFCC00","#FFCC00","left","middle",2,2,1000,-5,7,true,true,true,0,true,true);
+  gestor.addMenuItem("+&nbsp;Parametros","document.location.href='index.cfm?fuseaction=adt.gestor&go=/Auditoria/parametriza.do?acao>iniciar'");
+  gestor.addMenuItem("+&nbsp;Amostragem","document.location.href='index.cfm?fuseaction=adt.gestor&go=/Auditoria/amostragemBO.do?acao>iniciar'");
+  gestor.addMenuItem("+&nbsp;Agenda","document.location.href='index.cfm?fuseaction=adt.gestor&go=/Auditoria/calendario.do?acao>iniciar'");
+  gestor.addMenuItem("+&nbsp;Aloca grupos","document.location.href='index.cfm?fuseaction=adt.gestor&go=/Auditoria/gruposAuditores.do?acao>iniciar'");
+  gestor.addMenuItem("+&nbsp;Aloca auditores","document.location.href='index.cfm?fuseaction=adt.gestor&go=/Auditoria/alocacao.do?acao>iniciar'");
+  gestor.addMenuItem("+&nbsp;Ações","document.location.href='index.cfm?fuseaction=adt.gestor&go=/Auditoria/acao.do?acao>iniciar'");
+  gestor.addMenuItem("+&nbsp;Responsáveis","document.location.href='index.cfm?fuseaction=adt.gestor&go=/Auditoria/responsavel.do?acao>iniciar'");
+  gestor.addMenuItem("");
+  gestor.hideOnMouseOut=true;
+  gestor.menuBorder=0;
+  gestor.menuLiteBgColor='#FFCC00';
+  gestor.menuBorderBgColor='#FFCC00';
+  gestor.bgColor='#FFCC00';
+  
+  
+  
+  window.auditoria = new Menu("root",107,14,"Verdana, Arial, sans-serif",10,"#000000","#666666","#FFCC00","#FFCC00","left","middle",2,2,1000,-5,-15,true,true,true,0,true,true);
+
+  auditoria.addMenuItem("");
+  auditoria.hideOnMouseOut=true;
+  auditoria.menuBorder=0;
+  auditoria.menuLiteBgColor='#FFCC00';
+  auditoria.menuBorderBgColor='#FFCC00';
+  auditoria.bgColor='#FFCC00';
+
+
+
+/* Primeira varsão
+  window.mm_menu_0204160237_0 = new Menu("root",76,14,"Verdana, Arial, sans-serif",10,"#000000","#666666","#FFCC00","#FFCC00","left","middle",2,2,1000,-5,7,true,true,true,0,true,true);
+   mm_menu_0204160237_0.addMenuItem("+&nbsp;Infocrim");
+   mm_menu_0204160237_0.addMenuItem("+&nbsp;Pesquisas");
+   mm_menu_0204160237_0.addMenuItem("+&nbsp;F&oacute;rum");
+   mm_menu_0204160237_0.addMenuItem("+&nbsp;Usu&aacute;rios");
+   mm_menu_0204160237_0.hideOnMouseOut=true;
+   mm_menu_0204160237_0.menuBorder=0;
+   mm_menu_0204160237_0.menuLiteBgColor='#FFCC00';
+   mm_menu_0204160237_0.menuBorderBgColor='#FFCC00';
+   mm_menu_0204160237_0.bgColor='#FFCC00';
+
+  window.mm_menu_0204160101_0 = new Menu("root",121,14,"Verdana, Arial, sans-serif",10,"#000000","#666666","#FFCC00","#FFCC00","left","middle",2,2,1000,-5,7,true,true,true,0,true,true);
+   mm_menu_0204160101_0.addMenuItem("+&nbsp;Sala&nbsp;de&nbsp;Discuss&atilde;o");
+   mm_menu_0204160101_0.hideOnMouseOut=true;
+   mm_menu_0204160101_0.menuBorder=0;
+   mm_menu_0204160101_0.menuLiteBgColor='#FFCC00';
+   mm_menu_0204160101_0.menuBorderBgColor='#FFCC00';
+   mm_menu_0204160101_0.bgColor='#FFCC00';
+*/
+
+  administracao.writeMenus();
+  
+} // mmLoadMenus()
+</script>
+
+<script language="JavaScript1.2">
+
+    var day_nme = new Array("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado");
+	var month_nme = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro");
+	var now = new Date();
+	var nowDay = now.getDay();
+	var nowDate = now.getDate();
+	var nowMonth = now.getMonth() + 1;
+	var nowMonth0 = now.getMonth();
+	var nowYear = now.getFullYear();</script>
+<script type="text/javascript">
+<!--
+    _CF_checkpesquisa = function(_CF_this)
+    {
+        //reset on submit
+        _CF_error_exists = false;
+        _CF_error_messages = new Array();
+        _CF_error_fields = new Object();
+        _CF_FirstErrorField = null;
+
+        //form element bo_num 'INTEGER' validation checks
+        if (!_CF_checkinteger(_CF_this['bo_num'].value, false))
+        {
+            hError(_CF_this, "bo_num", _CF_this['bo_num'].value, "Campo número da ocorrência deve ser númerico!");
+            _CF_error_exists = true;
+        }
+
+        //form element bo_ano 'INTEGER' validation checks
+        if (!_CF_checkinteger(_CF_this['bo_ano'].value, false))
+        {
+            hError(_CF_this, "bo_ano", _CF_this['bo_ano'].value, "Campo ano da ocorrência deve ser númerico!");
+            _CF_error_exists = true;
+        }
+
+        //form element dtIni 'EURODATE' validation checks
+        if (!_CF_checkeurodate(_CF_this['dtIni'].value, false))
+        {
+            hError(_CF_this, "dtIni", _CF_this['dtIni'].value, "Data inicial inválida!");
+            _CF_error_exists = true;
+        }
+
+        //form element hrIni 'TIME' validation checks
+        if (!_CF_checktime(_CF_this['hrIni'].value, false))
+        {
+            hError(_CF_this, "hrIni", _CF_this['hrIni'].value, "Hora inícial inválida!");
+            _CF_error_exists = true;
+        }
+
+        //form element dtFim 'EURODATE' validation checks
+        if (!_CF_checkeurodate(_CF_this['dtFim'].value, false))
+        {
+            hError(_CF_this, "dtFim", _CF_this['dtFim'].value, "Data final inválida!");
+            _CF_error_exists = true;
+        }
+
+        //form element hrFim 'TIME' validation checks
+        if (!_CF_checktime(_CF_this['hrFim'].value, false))
+        {
+            hError(_CF_this, "hrFim", _CF_this['hrFim'].value, "Hora final inválida!");
+            _CF_error_exists = true;
+        }
+
+
+        //display error messages and return success
+        if( _CF_error_exists )
+        {
+            if( _CF_error_messages.length > 0 )
+            {
+                // show alert() message
+                _CF_onErrorAlert(_CF_error_messages);
+                // set focus to first form error, if the field supports js focus().
+                if( _CF_this[_CF_FirstErrorField].type == "text" )
+                { _CF_this[_CF_FirstErrorField].focus(); }
+
+            }
+            return false;
+        }else {
+            return true;
+        }
+    }
+//-->
+</script>
+<script type="text/javascript" src="./pagina2-pesquisa_files/String.js.download"></script><script type="text/javascript" src="./pagina2-pesquisa_files/Firefox.attachEvent.js.download"></script><script type="text/javascript" src="./pagina2-pesquisa_files/Textbox.Common.js.download"></script><script type="text/javascript" src="./pagina2-pesquisa_files/Keyboard.js.download"></script><meta id="dcngeagmmhegagicpcmpinaoklddcgon"></head>
+<body leftmargin="0" topmargin="0">
+	<a name="#topo">
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tbody><tr> 
+    <td width="125" rowspan="2" valign="middle"><img src="./pagina2-pesquisa_files/LOGO.jpg"> 
+    </td>
+    <td align="left" width="326"><img src="./pagina2-pesquisa_files/header.gif"> </td>
+    <td valign="top" align="left" width="100%">
+<div align="right"><img src="./pagina2-pesquisa_files/header_comple.jpg" width="278" height="90"></div>
+
+	</td>
+  </tr>
+</tbody></table>
+	<table cellspacing="0" cellpadding="0" width="100%" border="0">
+		<tbody><tr>
+			<td bgcolor="#cccccc" colspan="3" height="1"></td>
+		</tr>
+		<tr>
+			<td colspan="3" height="1"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffcc00" colspan="3" height="11"></td>
+		</tr>
+		<tr>
+			<td background="./pagina2-pesquisa_files/ponto.gif" bgcolor="#ffcc00" colspan="3" height="1"></td>
+		</tr>
+		<tr>
+			<td align="left" bgcolor="#ffcc00" colspan="3&quot;">
+				<table width="779" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr> 
+						<td width="570">
+							<script language="JavaScript1.2">mmLoadMenus();</script><span id="menuContainer"><div id="menuLayer0" style="position: absolute; z-index: 1; left: -300px; top: -300px; visibility: hidden; color: rgb(255, 204, 0); background-color: rgb(255, 204, 0); width: 107px; height: 14px;">
+  <div id="menuLite0" style="position: absolute; z-index: 1; left: 0px; top: 0px; height: 14px; width: 107px; background-color: rgb(255, 204, 0);" onmouseout="mouseoutMenu();">
+	 <div id="menuFg0" style="position: absolute; left: 0px; top: 0px; height: 14px; width: 107px; background-color: rgb(255, 204, 0);">
+<div id="menuItem0" style="position: absolute; left: 0px; top: 0px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 14px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText0" style="position:absolute;left:3px;top:1px;color:#000000;">&nbsp;</div>
+<div id="menuItemHilite0" style="position:absolute;left:3px;top:1px;color:#666666;visibility:hidden;">&nbsp;</div></div>	  <div id="focusItem0" style="position: absolute; left: 0px; top: -30px;" onclick="onMenuItemAction(null,this);">&nbsp;</div>
+   </div>
+  </div>
+</div>
+<div id="menuLayer1" style="position: absolute; z-index: 1; left: -300px; top: -300px; visibility: hidden; color: rgb(255, 204, 0); background-color: rgb(255, 204, 0); width: 107px; height: 48px;">
+  <div id="menuLite1" style="position: absolute; z-index: 1; left: 0px; top: 0px; height: 48px; width: 107px; background-color: rgb(255, 204, 0);" onmouseout="mouseoutMenu();">
+	 <div id="menuFg1" style="position: absolute; left: 0px; top: 0px; height: 48px; width: 107px; background-color: rgb(255, 204, 0);">
+<div id="menuItem1" style="position: absolute; left: 0px; top: 0px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 14px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText1" style="position:absolute;left:3px;top:1px;color:#000000;">+&nbsp;Meus Dados&nbsp;</div>
+<div id="menuItemHilite1" style="position:absolute;left:3px;top:1px;color:#666666;visibility:hidden;">+&nbsp;Meus Dados&nbsp;</div></div><div id="menuItem2" style="position: absolute; left: 0px; top: 17px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 14px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText2" style="position:absolute;left:3px;top:1px;color:#000000;">+&nbsp;Trocar Senha&nbsp;</div>
+<div id="menuItemHilite2" style="position:absolute;left:3px;top:1px;color:#666666;visibility:hidden;">+&nbsp;Trocar Senha&nbsp;</div></div><div id="menuItem3" style="position: absolute; left: 0px; top: 34px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 14px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText3" style="position:absolute;left:3px;top:1px;color:#000000;">&nbsp;</div>
+<div id="menuItemHilite3" style="position:absolute;left:3px;top:1px;color:#666666;visibility:hidden;">&nbsp;</div></div>	  <div id="focusItem1" style="position: absolute; left: 0px; top: -30px;" onclick="onMenuItemAction(null,this);">&nbsp;</div>
+   </div>
+  </div>
+</div>
+<div id="menuLayer2" style="position: absolute; z-index: 1; left: -300px; top: -300px; visibility: hidden; color: rgb(255, 204, 0); background-color: rgb(255, 204, 0); width: 107px; height: 101px;">
+  <div id="menuLite2" style="position: absolute; z-index: 1; left: 0px; top: 0px; height: 101px; width: 107px; background-color: rgb(255, 204, 0);" onmouseout="mouseoutMenu();">
+	 <div id="menuFg2" style="position: absolute; left: 0px; top: 0px; height: 101px; width: 107px; background-color: rgb(255, 204, 0);">
+<div id="menuItem4" style="position: absolute; left: 0px; top: 0px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText4" style="position:absolute;left:3px;top:-1px;color:#000000;">+&nbsp;Parametros&nbsp;</div>
+<div id="menuItemHilite4" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">+&nbsp;Parametros&nbsp;</div></div><div id="menuItem5" style="position: absolute; left: 0px; top: 13px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText5" style="position:absolute;left:3px;top:-1px;color:#000000;">+&nbsp;Amostragem&nbsp;</div>
+<div id="menuItemHilite5" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">+&nbsp;Amostragem&nbsp;</div></div><div id="menuItem6" style="position: absolute; left: 0px; top: 26px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText6" style="position:absolute;left:3px;top:-1px;color:#000000;">+&nbsp;Agenda&nbsp;</div>
+<div id="menuItemHilite6" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">+&nbsp;Agenda&nbsp;</div></div><div id="menuItem7" style="position: absolute; left: 0px; top: 39px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText7" style="position:absolute;left:3px;top:-1px;color:#000000;">+&nbsp;Aloca grupos&nbsp;</div>
+<div id="menuItemHilite7" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">+&nbsp;Aloca grupos&nbsp;</div></div><div id="menuItem8" style="position: absolute; left: 0px; top: 52px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText8" style="position:absolute;left:3px;top:-1px;color:#000000;">+&nbsp;Aloca auditores&nbsp;</div>
+<div id="menuItemHilite8" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">+&nbsp;Aloca auditores&nbsp;</div></div><div id="menuItem9" style="position: absolute; left: 0px; top: 65px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText9" style="position:absolute;left:3px;top:-1px;color:#000000;">+&nbsp;Ações&nbsp;</div>
+<div id="menuItemHilite9" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">+&nbsp;Ações&nbsp;</div></div><div id="menuItem10" style="position: absolute; left: 0px; top: 78px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText10" style="position:absolute;left:3px;top:-1px;color:#000000;">+&nbsp;Responsáveis&nbsp;</div>
+<div id="menuItemHilite10" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">+&nbsp;Responsáveis&nbsp;</div></div><div id="menuItem11" style="position: absolute; left: 0px; top: 91px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 10px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText11" style="position:absolute;left:3px;top:-1px;color:#000000;">&nbsp;</div>
+<div id="menuItemHilite11" style="position:absolute;left:3px;top:-1px;color:#666666;visibility:hidden;">&nbsp;</div></div>	  <div id="focusItem2" style="position: absolute; left: 0px; top: -30px;" onclick="onMenuItemAction(null,this);">&nbsp;</div>
+   </div>
+  </div>
+</div>
+<div id="menuLayer3" style="position: absolute; z-index: 1; left: -300px; top: -300px; visibility: hidden; color: rgb(255, 204, 0); background-color: rgb(255, 204, 0); width: 107px; height: 14px;">
+  <div id="menuLite3" style="position: absolute; z-index: 1; left: 0px; top: 0px; height: 14px; width: 107px; background-color: rgb(255, 204, 0);" onmouseout="mouseoutMenu();">
+	 <div id="menuFg3" style="position: absolute; left: 0px; top: 0px; height: 14px; width: 107px; background-color: rgb(255, 204, 0);">
+<div id="menuItem12" style="position: absolute; left: 0px; top: 0px; font-family: Verdana, Arial, sans-serif; font-size: 10px; width: 107px; height: 14px; background-color: rgb(255, 204, 0); visibility: inherit; cursor: pointer;"><div id="menuItemText12" style="position:absolute;left:3px;top:1px;color:#000000;">&nbsp;</div>
+<div id="menuItemHilite12" style="position:absolute;left:3px;top:1px;color:#666666;visibility:hidden;">&nbsp;</div></div>	  <div id="focusItem3" style="position: absolute; left: 0px; top: -30px;" onclick="onMenuItemAction(null,this);">&nbsp;</div>
+   </div>
+  </div>
+</div>
+</span>
+ 
+							&nbsp; 
+							<a href="http://www.infocrim.ssp.sp.gov.br/seguro/index.cfm?fuseaction=pes.formPesq" class="menu" name="menu">Pesquisa</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+							
+							
+								
+
+							<a href="http://www.infocrim.ssp.sp.gov.br/seguro/index.cfm?fuseaction=obs.inicio" class="menu" name="menuobs">Observatório</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+
+
+
+							 
+
+
+						</td>
+						<td nowrap="">
+							<a href="http://www.infocrim.ssp.sp.gov.br/seguro/index.cfm" class="menu" onmouseout="MM_startTimeout();" onmouseover="MM_showMenu(window.meuPerfil,565,18,null,&#39;menu&#39;);">Meu Perfil</a>&nbsp;&nbsp;&nbsp;
+														
+							<a href="http://www.infocrim.ssp.sp.gov.br/seguro/index.cfm?fuseaction=hlp.listar&amp;link=" class="menu">Ajuda</a>&nbsp;&nbsp;&nbsp;
+														
+							<a href="http://www.infocrim.ssp.sp.gov.br/seguro/index.cfm?fuseaction=home.logOut" class="menu">Encerrar</a>
+						</td>
+					</tr>
+				</tbody></table> 
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="#000000" colspan="3" height="7"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" colspan="3" height="6"></td>
+		</tr>
+		<tr>
+			<td valign="center" width="777" bgcolor="#000000" height="27">
+				<table cellspacing="0" cellpadding="0" width="777" border="0">
+					<tbody><tr> 
+						<td width="50" class="textoPopUp" align="right">
+							<a name="resultado"></a>
+							&nbsp;&nbsp;&nbsp;Usuário
+						</td>
+						<td class="litPrincMensagemInicLaranjasembold" align="left" width="125">
+							&nbsp;&nbsp; <b> </b> 
+						</td>
+						<td align="left" width="200"></td>
+						<td class="textoPopUp" align="middle" width="292" nowrap=""> 
+							<script>
+								document.write( day_nme[nowDay] + ', ' +  
+											    nowDate + ' de ' + 
+												month_nme[nowMonth0] + ' de ' + 
+												nowYear);
+							</script>Segunda-feira, 17 de junho de 2019 
+						</td>
+						<td width="300" align="right" valign="middle" class="litPrinc">
+							
+						</td>
+						<td class="titNomeUsuario" width="77">
+							
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+
+	 
+<script language="javascript" src="./pagina2-pesquisa_files/Global.js.download" type="text/javascript"></script>
+<script language="javascript" src="./pagina2-pesquisa_files/Textbox.Trim.js.download" type="text/javascript"></script>
+<script language="javascript" src="./pagina2-pesquisa_files/Textbox.MaskEdit.js.download" type="text/javascript"></script>
+
+<script language="JavaScript1.2" src="./pagina2-pesquisa_files/mask.js.download"></script>
+<div id="Layer1" style="Z-INDEX: 1; LEFT: 278px; WIDTH: 50px; POSITION: absolute; TOP: 180px; HEIGHT: 39px"> 
+  <img height="34" src="./pagina2-pesquisa_files/icone_02.gif" width="17"> </div>
+<div id="Layer2" style="Z-INDEX: 0; LEFT: 532px; WIDTH: 23px; POSITION: absolute; TOP: 180px; HEIGHT: 34px">
+	<img height="34" src="./pagina2-pesquisa_files/icone_03.gif" width="17">
+</div>
+<div id="Layer3" style="Z-INDEX: 0; LEFT: 735px; WIDTH: 30px; POSITION: absolute; TOP: 180px; HEIGHT: 45px">
+	<img src="./pagina2-pesquisa_files/icone_04.gif" width="17" height="28">
+</div>
+<div id="Layer4" style="Z-INDEX: 4; LEFT: 103px; WIDTH: 56px; POSITION: absolute; TOP: 165px; HEIGHT: 46px"> 
+  <img src="./pagina2-pesquisa_files/icone_01.gif" width="15" height="28"> </div>
+
+<table width="770" height="275" border="0" cellpadding="0" cellspacing="0">
+<form name="pesquisa" id="pesquisa" action="http://www.infocrim.ssp.sp.gov.br/seguro/index.cfm?fuseaction=pes.criticaParam" method="POST" onsubmit="return _CF_checkpesquisa(this)"></form>
+
+  <tbody><tr> 
+    <td height="275" colspan="3" valign="top" bgcolor="#e8e8e8"> 
+		<table width="130" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr> 
+				<td width="13">&nbsp;</td>
+				
+            <td width="145">&nbsp;</td>
+			</tr>
+			
+			<tr> 
+				<td>&nbsp;</td>
+				<td>
+					<br>
+					<span class="litPrinc">Apresentação</span>
+					<br> 
+					<select name="apres" class="entPrincFiltrosApresentac" onchange="mudaApresentacao()">
+						
+							<option value="pes.ocorrencia">Ocorrências</option>
+						
+							<option value="pes.natureza">Naturezas</option>
+						
+							<option value="pes.logradouro">Logradouros</option>
+						
+							<option value="pes.envolvido">Envolvidos</option>
+						
+							<option value="pes.historico">Históricos</option>
+						
+							<option value="pes.mapa">Mapas</option>
+						
+							<option value="pes.detFreq">Frequência</option>
+						
+					</select>
+				</td>
+			</tr>
+			<tr id="envolvido" style=""> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail">
+					<br>
+					<span class="litPrincMensagemInicLaranja">Tipo</span>
+					<br> 
+					<select name="tpEnvolvido" size="4" multiple="" class="entPrincFiltrosApresentac">
+						<option value="0" selected="">Todos </option>
+						<option value="1">Indiciado</option>
+						<option value="2">Vitima</option>
+						<option value="3">Testemunha</option>
+						<option value="4">Desaparecido</option>
+						<option value="5">Declarante</option>
+						<option value="6">Representante</option>
+						<option value="7">Averiguado</option>
+						<option value="8">Adolescente</option>
+						<option value="9">Partes</option>
+						<option value="10">Crianca</option>
+						<option value="11">Condutor</option>
+						<option value="12">Curador</option>
+						<option value="13">Adolescente infrator</option>
+						<option value="14">Autor/vitima</option>
+						<option value="15">Advogado</option>
+						<option value="16">Autor</option>
+						<option value="17">Encontrado</option>
+						<option value="18">Vítima de Suicídio</option>
+						<option value="19">Adolescente Inf/Vit</option>
+						<option value="20">Capturado</option>
+					</select> 
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Nome</span><br> 
+					<input name="nome" type="text" class="entPrincFiltrosApresentacSuBFiltros"> 
+				</td>
+			</tr>
+			<tr id="ordem" style="display: none;"> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail"> 
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Ordenação</span><br> 
+					<select name="ordem" class="entPrincFiltrosApresentac">
+						<option value="" selected="">Ordenada por ...</option>
+						<option value="1">Distrito/BO</option>
+						<option value="2">Data/Hora</option>
+						<option value="3">Logradouro </option>
+						<option value="4">Logradouro/Data</option>
+						<option value="5">Natureza/Data</option>
+						<option value="6">Natureza/Autoria</option>
+					</select>
+					<br> 
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Número &nbsp;&nbsp;&nbsp;&nbsp; Ano</span><br> 
+					<input name="bo_num" id="bo_num" type="text" maxlength="8" style="width: 60;" class="entPrincFiltrosApresentacSuBFiltros" size="6"> <input name="bo_ano" id="bo_ano" type="text" maxlength="4" style="width:40 ;" class="entPrincFiltrosApresentacSuBFiltros" size="4"> 
+					<br> 
+					<br> 
+				</td>
+			</tr>
+			<tr id="mapa" style="display: none;"> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail"> 
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Detalhes de</span><br> 
+					<input type="Checkbox" name="chkdetruas" value="S">
+					Ruas <br>
+					<input type="Checkbox" name="chkdetocorr" value="S">
+					Ocorrências <br>
+					<span class="litPrincMensagemInicLaranja">Locais de interesse</span><br> 
+					<input type="Hidden" name="equip" value="">
+
+					<select name="equipamento" class="entPrincFiltrosApresentac" multiple="" size="3">
+						<option value="" selected="">Nenhum...</option>
+						<option value="1">Comércio</option> 		
+						<option value="2">Diversos</option> 		
+						<option value="3">Educação</option> 		
+						<option value="4">Financeiro</option> 		
+						<option value="5">Saúde</option> 		
+						<option value="6">Segurança</option> 		
+						<option value="7">Serviço</option> 		
+						<option value="8">Social</option> 		
+						<option value="9">Transporte</option> 		
+					</select>						
+					<br>
+					<span class="litPrincMensagemInicLaranja">Tipo do mapa</span>
+					<br> 
+					<select name="tpMapa" class="entPrincFiltrosApresentac">
+						<option value="0" selected="">Somente ponto</option>
+						<option value="1">Sub-setor polícia militar</option> 		
+						<option value="2">Grade </option> 		
+						<option value="3">Logradouro</option> 		
+					</select>						
+				</td>
+			</tr>
+			<tr id="objetos" style="display: none;"> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail">
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Objetos</span><br>
+					<span class="litPrincMensagemInicLaranja">
+					<input type="Checkbox" name="chkApr" value="YES">
+					Apreendidos <br>
+					<input type="Checkbox" name="chkSub" value="YES" checked="">
+					Subtraídos<br>
+					<input type="Checkbox" name="chkDan" value="YES">
+					Danificados <br>
+					<input type="Checkbox" name="chkExt" value="YES">
+					Extraviados </span>
+				</td>
+			</tr>
+			<tr id="logradouro" style="display: none;"> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail">
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Logradouro</span><br> 
+					<input name="logra" type="text" class="entPrincFiltrosApresentacSuBFiltros"> 
+					<br> 
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Ordenação</span><br> 
+					<select name="ordemlogra" class="entPrincFiltrosApresentac">
+						<option value="" selected="">Ordenada por ...</option>
+						<option value="1">Qtd.</option>
+						<option value="2">Cid.</option>
+						<option value="3">Cid. / D.P.</option>
+						<option value="4">Cid. / D.P. / Logra.</option>
+						<option value="5">Logra.</option>
+					</select>
+				</td>
+			</tr>
+			<tr id="palavras" style="display: none;"> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail">
+					<br> 
+					<span class="litPrincMensagemInicLaranja">Palavras</span>
+					<br>
+					<textarea title="Preencher com uma palavra ou palavra coligadas por and ou or. Não misturar maiusculas e minusculas" name="palavras" class="entPrincFiltrosApresentacSuBFiltros" rows="4"></textarea> 
+					</td>
+			</tr>
+
+			<tr id="natureza" style="display: none;"> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail">
+				<br>
+				<span class="litPrincMensagemInicLaranja">
+					<input type="Checkbox" name="DetNatu" value="yes">Detalhar 
+				</span>
+				</td>
+			</tr>
+		
+			<tr id="amostragem" style="display: none;"> 
+				<td>&nbsp;</td>
+				<td class="litPrincSenhaMail">
+					<br>
+					<span class="litPrincMensagemInicLaranja">Corte</span>
+					<br> 
+					<select name="amostragem" class="entPrincFiltrosApresentac">
+						<option value="10">Até 10 % </option>
+						<option value="20">Até 20 % </option>
+						<option value="30">Até 30 % </option>
+						<option value="40">Até 40 % </option>
+						<option value="50">Até 50 % </option>
+						<option value="60">Até 60 % </option>
+						<option value="70">Até 70 % </option>
+						<option value="80">Até 80 % </option>
+						<option value="90">Até 90 % </option>
+						<option value="100" selected="">Todas</option>
+					</select> 
+				</td>
+			</tr>
+			<input type="Hidden" name="aux" value="S">
+			<tr> 
+				<td>&nbsp;</td>
+				<td>
+					<input name="circuns" type="radio" value="S" checked="" onchange="pesquisa.aux.value = &#39;S&#39;;DinamicSelectdep();DinamicSelectsec();DinamicSelectdel();"> 
+					<span class="litPrinc">Circunscrição</span>
+				</td>
+			</tr>
+			<tr> 
+				<td>&nbsp;</td>
+				<td id="elabora">
+					<input name="circuns" type="radio" value="N" onchange="pesquisa.aux.value = &#39;N&#39;;DinamicSelectdep();DinamicSelectsec();DinamicSelectdel();"> 
+					<span class="litPrinc">Elaboração</span>
+				</td>
+			</tr>
+		</tbody></table>
+	</td>
+    <td width="657" colspan="3" align="left" valign="top">
+		<table width="0" height="97%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr> 
+				<td height="5" colspan="15"></td>
+			</tr>
+			<tr> 
+				<td width="15" rowspan="3">&nbsp;</td>
+				<td width="50" rowspan="3" valign="top" class="litPrinc">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tbody><tr> 
+							<td height="10" width="170" valign="top">
+								<br>
+								<br>
+								<span class="litPrincFiltros">Instituição</span><br> 
+								<select onchange="mudaInst();" name="inst" size="1" class="entPrincFiltros">
+									<option value="1" selected="">Polícia Cívil</option>
+									<option value="2">Polícia Militar</option>
+									<option value="3">Prefeituras</option>
+								</select> 
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdDep" width="170" valign="top">
+								<span class="litPrincFiltros">Departamentos</span> 
+								
+
+<select name="dep" id="dep" size="1" style="text-transform:capitalize" onchange="DinamicSelectsec();DinamicSelectdel();" class="entPrincFiltros">
+<option value="">Todos ...</option><option value="500000">decap</option><option value="141000">deic</option><option value="900501">deinter 1 s.jose dos campos</option><option value="900510">deinter 10 araçatuba</option><option value="900502">deinter 2 campinas</option><option value="900503">deinter 3 ribeirao preto</option><option value="900504">deinter 4 bauru</option><option value="900505">deinter 5 s.jose do rio preto</option><option value="900506">deinter 6 santos</option><option value="900507">deinter 7 sorocaba</option><option value="900508">deinter 8 presidente prudente</option><option value="900509">deinter 9 piracicaba</option><option value="999999">delegacia eletronica</option><option value="900000">delegacia geral de policia</option><option value="400000">demacro</option><option value="210000">denarc - depto inv. sobre narc</option><option value="200000">dep.hom.protecao pessoa</option><option value="900800">dep.pol.prot.cidadania</option><option value="140606">detran</option><option value="170410">polícia militar </option></select>
+
+<script language="JavaScript">
+
+//Funções utilitarias
+//Carrega se for o caso
+function newOption( oSelect, label, keyfield, selected ) {
+    
+	oOption = document.createElement("OPTION");
+	oOption.text = label;
+	oOption.value = keyfield;
+	oOption.selected = selected;
+	oSelect.appendChild( oOption, 0 )
+}		
+function delOptions( oSelect ) {
+	
+	while ( oSelect.length > 0 ){
+		oSelect.remove('');
+	}
+}
+function waitOption( oSelect ) {
+	delOptions( oSelect );
+	newOption( oSelect, 'Carregando, aguarde ...' , '' , false );
+}
+function newDefaultOption( oSelect, cDefault ) {
+	newOption( oSelect, cDefault , '' , false );
+}						
+function loadOptionsData( xmlIsland, controlName, keyFieldName, labelName, value, defaultOption ){
+
+	if ( typeof(value) == 'undefined' ) value = '';
+	
+	var data = xmlIsland,
+		oSelect = document.getElementById(controlName),
+		oOption,
+		aValue = value.split(',');
+    /* Posiciona no inicio */
+    
+    /* Apaga options */
+	delOptions( oSelect );
+	
+	//Cria opção default se for o caso
+	if ( ! defaultOption == '' ){
+		newDefaultOption( oSelect ,defaultOption, false);
+		if ( ! value)
+			oSelect[0].selected = true;
+	}
+
+	var item = xmlIsland.lastChild;
+		item = item.previousSibling;
+	
+	while(item) {
+		keyfield = item.getAttribute(keyFieldName);
+		label = item.getAttribute(labelName);
+		// Cria opção
+		bSelected = false;
+		for ( i = 0 ; i < aValue.length ; ++i ){
+			if ( aValue[i] == keyfield )
+				bSelected = true;
+		}
+		newOption( oSelect, label, keyfield, bSelected );
+
+		item = item.previousSibling;
+		while( item && item.nodeType == 3 ){
+			item = item.previousSibling;
+		}
+	}
+
+}
+
+function loadDataIsland( keyVarName, controlName, sourceName, bAll, defaultOption, keyFieldName, labelName, value){
+	var oXML;
+     
+	// Acha objeto select
+	var oSelect = document.getElementById(controlName);
+    // Monta parametrização do XML
+	var src = sourceName + '?',
+	    akeyVarName = keyVarName.split(',');
+    
+	for ( i = 0 ; i < akeyVarName.length ; i++){
+		var control = document.getElementsByName(akeyVarName[i]);
+		var keyvar = control.item(0).value; 
+		src += akeyVarName[i] + '=' + keyvar + '&';
+	}
+
+	if ( ! bAll ) {
+		if ( keyvar == '' ) {
+			delOptions( oSelect );
+			newDefaultOption( oSelect, defaultOption );
+			return false;
+		}
+	}
+	/* Apaga Options*/
+	waitOption( oSelect )
+
+	if (window.XMLHttpRequest) { 
+		oXML = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		oXML = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	oXML.open("GET", src,true);
+	oXML.onreadystatechange=function() {
+		if(oXML.readyState == 4 && oXML.status == 200) {//números malucos
+			response = oXML.responseXML;
+//			alert(response);
+			loadOptionsData( response.childNodes[0], controlName, keyFieldName, labelName, value, defaultOption );
+		}
+	}
+	oXML.send(null);
+}
+
+
+	
+//Funções especificas
+function Teste(){
+	alert( id_dep.readyState );
+}
+function DinamicSelectdep(){
+	loadDataIsland( 'aux' ,
+					'dep', 
+					'pesquisas/xml/qryXmlDep.cfm', 
+					true, 
+					'Todos ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectdep();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdCpa" valign="top" style="display: none;">
+								<span class="litPrincFiltros">CPAs</span> 
+								
+
+<select name="cpa" id="cpa" size="1" style="text-transform:capitalize" onchange="DinamicSelectbat();DinamicSelectcia();" class="entPrincFiltros">
+<option value="">Todas ...</option><option value="1">cpa/m-1</option><option value="10">cpa/m-10</option><option value="11">cpa/m-11</option><option value="2">cpa/m-2</option><option value="3">cpa/m-3</option><option value="4">cpa/m-4</option><option value="5">cpa/m-5</option><option value="6">cpa/m-6</option><option value="7">cpa/m-7</option><option value="8">cpa/m-8</option><option value="9">cpa/m-9</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_cpa.readyState );
+}
+function DinamicSelectcpa(){
+	loadDataIsland( 'inst' ,
+					'cpa', 
+					'pesquisas/xml/qryXmlCpa.cfm', 
+					true, 
+					'Todas ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectcpa();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdSec" width="170" valign="top">
+								<span class="litPrincFiltros">Seccionais</span><br> 
+								
+
+<select name="sec" id="sec" size="1" style="text-transform:capitalize" onchange="DinamicSelectdel();" class="entPrincFiltros">
+<option value="">Todas ...</option><option value="500000">decap</option><option value="70941">del sec 02ª campinas</option><option value="70300">del.sec.01ª campinas</option><option value="90100">del.sec.adamantina</option><option value="70370">del.sec.americana</option><option value="50100">del.sec.andradina</option><option value="50200">del.sec.aracatuba</option><option value="100100">del.sec.araraquara</option><option value="80100">del.sec.assis</option><option value="120100">del.sec.avare</option><option value="100200">del.sec.barretos</option><option value="60100">del.sec.bauru</option><option value="220100">del.sec.bebedouro</option><option value="120200">del.sec.botucatu</option><option value="70100">del.sec.branganca paulista</option><option value="280400">del.sec.carapicuiba</option><option value="70200">del.sec.casa branca</option><option value="110100">del.sec.catanduva</option><option value="10100">del.sec.centro - sp</option><option value="130100">del.sec.cruzeiro</option><option value="280300">del.sec.diadema</option><option value="90400">del.sec.dracena</option><option value="110600">del.sec.fernandopolis</option><option value="100300">del.sec.franca</option><option value="280500">del.sec.franco da rocha</option><option value="130200">del.sec.guaratingueta</option><option value="30200">del.sec.guarulhos</option><option value="40400">del.sec.itanhaem</option><option value="120300">del.sec.itapetininga</option><option value="120400">del.sec.itapeva</option><option value="500070">del.sec.itaquera - sp</option><option value="130500">del.sec.jacarei</option><option value="310100">del.sec.jacupiranga</option><option value="110200">del.sec.jales</option><option value="60200">del.sec.jau</option><option value="70400">del.sec.jundiai</option><option value="20200">del.sec.leste - sp</option><option value="70800">del.sec.limeira</option><option value="60300">del.sec.lins</option><option value="80200">del.sec.marilia</option><option value="30300">del.sec.mogi das cruzes</option><option value="70900">del.sec.mogi-guacu</option><option value="20100">del.sec.norte - sp</option><option value="300100">del.sec.novo horizonte</option><option value="10300">del.sec.oeste - sp</option><option value="30400">del.sec.osasco</option><option value="80300">del.sec.ourinhos</option><option value="70500">del.sec.piracicaba</option><option value="90200">del.sec.presidente prudente</option><option value="90300">del.sec.presidente venceslau</option><option value="40100">del.sec.registro</option><option value="100400">del.sec.ribeirao preto</option><option value="70600">del.sec.rio claro</option><option value="70700">del.sec.s joao da boa vista</option><option value="280100">del.sec.s.bernardo do campo</option><option value="100500">del.sec.s.carlos</option><option value="100460">del.sec.s.joaquim da barra</option><option value="110400">del.sec.s.jose do rio preto</option><option value="130300">del.sec.s.jose dos campos</option><option value="40300">del.sec.s.sebastiao</option><option value="280200">del.sec.santo andre</option><option value="40200">del.sec.santos</option><option value="500080">del.sec.sao mateus - sp</option><option value="100900">del.sec.sertaozinho</option><option value="120500">del.sec.sorocaba</option><option value="10210">del.sec.sto amaro - sp</option><option value="10200">del.sec.sul - sp</option><option value="270100">del.sec.taboao da serra</option><option value="130400">del.sec.taubate</option><option value="80400">del.sec.tupa</option><option value="110500">del.sec.votuporanga</option><option value="999998">delegacia eletronica</option><option value="900000">delegacia geral de policia</option><option value="210000">denarc - depto inv. sobre narcóticos</option><option value="900801">dep.prot.cidadania plantao</option><option value="140606">detran</option><option value="140100">div.capturas polinter</option><option value="140600">div.crimes transito</option><option value="200100">div.homicidios - dhpp</option><option value="900840">div.inv.crimes c/administracao</option><option value="180400">div.inv.crimes c/fazenda</option><option value="900830">div.inv.infr.c/meio amb.trabalho</option><option value="900820">div.inv.infr.c/saude publica</option><option value="900810">div.invest.sob.infracoes c/ consumidor</option><option value="900440">div.pol.porto/aero/prot.turis-decade</option><option value="200010">div.prot.pessoa - dhpp</option><option value="500002">dosat del org sind ac tra</option><option value="801015">p.m.cpa/m-1</option><option value="801014">p.m.cpa/m-10</option><option value="801012">p.m.cpa/m-11</option><option value="801013">p.m.cpa/m-2</option><option value="801016">p.m.cpa/m-3</option><option value="801010">p.m.cpa/m-4</option><option value="801017">p.m.cpa/m-5</option><option value="801011">p.m.cpa/m-9</option><option value="170410">polícia militar integrada</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_sec.readyState );
+}
+function DinamicSelectsec(){
+	loadDataIsland( 'dep,aux' ,
+					'sec', 
+					'pesquisas/xml/qryXmlSec.cfm', 
+					true, 
+					'Todas ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectsec();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdBat" valign="top" style="display: none;">
+								<span class="litPrincFiltros">Batalhões</span><br> 
+								
+
+<select name="bat" id="bat" size="1" style="text-transform:capitalize" onchange="DinamicSelectcia();" class="entPrincFiltros">
+<option value="">Todos ...</option><option value="1">01º bpm/m</option><option value="2">02º bpm/m</option><option value="3">03º bpm/m</option><option value="4">04º bpm/m</option><option value="5">05º bpm/m</option><option value="6">06º bpm/m</option><option value="7">07º bpm/m</option><option value="8">08º bpm/m</option><option value="9">09º bpm/m</option><option value="10">10º bpm/m</option><option value="11">11º bpm/m</option><option value="12">12º bpm/m</option><option value="13">13º bpm/m</option><option value="14">14º bpm/m</option><option value="15">15º bpm/m</option><option value="16">16º bpm/m</option><option value="17">17º bpm/m</option><option value="18">18º bpm/m</option><option value="19">19º bpm/m</option><option value="20">20º bpm/m</option><option value="21">21º bpm/m</option><option value="22">22º bpm/m</option><option value="23">23º bpm/m</option><option value="24">24º bpm/m</option><option value="25">25º bpm/m</option><option value="26">26º bpm/m</option><option value="27">27º bpm/m</option><option value="28">28º bpm/m</option><option value="29">29º bpm/m</option><option value="30">30º bpm/m</option><option value="31">31º bpm/m</option><option value="32">32º bpm/m</option><option value="33">33º bpm/m</option><option value="35">35º bpm/m</option><option value="36">36º bpm/m</option><option value="37">37º bpm/m</option><option value="38">38º bpm/m</option><option value="39">39º bpm/m</option><option value="40">40º bpm/m</option><option value="41">41º bpm/m</option><option value="42">42º bpm/m</option><option value="43">43º bpm/m</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_bat.readyState );
+}
+function DinamicSelectbat(){
+	loadDataIsland( 'cpa' ,
+					'bat', 
+					'pesquisas/xml/qryXmlBat.cfm', 
+					true, 
+					'Todos ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectbat();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdDel" width="170" valign="top">
+								<span class="litPrincFiltros">Distritos</span>
+								
+
+<select name="del" id="del" size="4" style="text-transform:capitalize" onchange="" class="entPrincFiltros" multiple="">
+<option value="">Todos ...</option><option value="30331">01 d.p. ferraz vasconcelos</option><option value="60129">01 d.p. lencois paulista</option><option value="70005">01ª del. sec. campinas -  shpp</option><option value="70003">01ª del. sec. campinas - sarc</option><option value="70004">01ª del. sec. campinas - sepam</option><option value="70428">01° dp - cabreuva</option><option value="70417">01° dp - itatiba</option><option value="100222">01º d.p. barretos</option><option value="100321">01º d.p. franca</option><option value="100511">01º d.p. sao carlos</option><option value="100103">01º d.p.araraquara</option><option value="90121">01º dp - adamantina</option><option value="70344">01º dp - americana</option><option value="70119">01º dp - amparo</option><option value="50113">01º dp - andradina</option><option value="50203">01º dp - aracatuba</option><option value="70816">01º dp - araras</option><option value="80117">01º dp - assis</option><option value="70123">01º dp - atibaia</option><option value="120109">01º dp - avare</option><option value="40417">01º dp - barra do turvo</option><option value="30441">01º dp - barueri</option><option value="60105">01º dp - bauru</option><option value="50231">01º dp - birigui</option><option value="120214">01º dp - botucatu</option><option value="70116">01º dp - braganca paulista</option><option value="30615">01º dp - caieiras</option><option value="70430">01º dp - cajamar</option><option value="70301">01º dp - campinas</option><option value="100438">01º dp - campos do jordao</option><option value="120419">01º dp - capao bonito</option><option value="40312">01º dp - caraguatatuba</option><option value="30427">01º dp - carapicuiba</option><option value="110114">01º dp - catanduva</option><option value="30423">01º dp - cotia</option><option value="130109">01º dp - cruzeiro</option><option value="40228">01º dp - cubatao</option><option value="30122">01º dp - diadema</option><option value="90411">01º dp - dracena</option><option value="30426">01º dp - embu</option><option value="70716">01º dp - espirito sto do pinha</option><option value="110612">01º dp - fernandopolis</option><option value="80225">01º dp - garca</option><option value="130207">01º dp - guaratingueta</option><option value="40219">01º dp - guaruja</option><option value="30206">01º dp - guarulhos</option><option value="70358">01º dp - hortolandia</option><option value="40113">01º dp - iguape</option><option value="70351">01º dp - indaiatuba</option><option value="40401">01º dp - itanhaem</option><option value="30425">01º dp - itapecerica  da serra</option><option value="120314">01º dp - itapetininga</option><option value="120415">01º dp - itapeva</option><option value="70904">01º dp - itapira</option><option value="30500">01º dp - itaquaquecetuba</option><option value="120431">01º dp - itarare</option><option value="120526">01º dp - itu</option><option value="40124">01º dp - jacupiranga</option><option value="110227">01º dp - jales</option><option value="70406">01º dp - jundiai</option><option value="70822">01º dp - leme</option><option value="70810">01º dp - limeira</option><option value="60312">01º dp - lins</option><option value="130211">01º dp - lorena</option><option value="30228">01º dp - mairipora</option><option value="30124">01º dp - maua</option><option value="110443">01º dp - mirassol</option><option value="70220">01º dp - mococa</option><option value="30306">01º dp - mogi das cruzes</option><option value="70341">01º dp - mogi mirim</option><option value="70901">01º dp - mogi-guacu</option><option value="40409">01º dp - mongagua</option><option value="30411">01º dp - osasco</option><option value="90113">01º dp - osvaldo cruz</option><option value="80318">01º dp - ourinhos</option><option value="80123">01º dp - paraguacu paulista</option><option value="50301">01º dp - penapolis</option><option value="40407">01º dp - peruibe</option><option value="130412">01º dp - pindamonhangaba  </option><option value="70517">01º dp - piracicaba</option><option value="330104">01º dp - piraju</option><option value="70814">01º dp - pirassununga</option><option value="40225">01º dp - praia grande</option><option value="90316">01º dp - presidente epitacio</option><option value="90213">01º dp - presidente prudente</option><option value="90312">01º dp - presidente venceslau</option><option value="40115">01º dp - registro</option><option value="100417">01º dp - ribeirao preto</option><option value="70609">01º dp - rio claro</option><option value="90342">01º dp - rosana</option><option value="80326">01º dp - s.cruz do rio pardo</option><option value="110426">01º dp - s.jose do rio preto</option><option value="130310">01º dp - s.jose dos campos</option><option value="40305">01º dp - s.sebastiao</option><option value="120529">01º dp - salto</option><option value="110704">01º dp - santa fe do sul</option><option value="30102">01º dp - santo andre</option><option value="40211">01º dp - santos</option><option value="30109">01º dp - sao bernardo do campo</option><option value="30113">01º dp - sao caetano sul</option><option value="70709">01º dp - sao joao da boa vista</option><option value="120222">01º dp - sao manuel</option><option value="40284">01º dp - sao.vicente</option><option value="10101">01º dp - se</option><option value="120518">01º dp - sorocaba</option><option value="70331">01º dp - sta barbara d oeste</option><option value="70340">01º dp - sumare</option><option value="30320">01º dp - suzano</option><option value="30614">01º dp - taboao da serra</option><option value="120317">01º dp - tatui</option><option value="80413">01º dp - tupa</option><option value="70354">01º dp - valinhos</option><option value="70427">01º dp - varzea paulista</option><option value="120530">01º dp - votorantim</option><option value="110523">01º dp - votuporanga</option><option value="130409">01º dp -taubate</option><option value="100326">01º dp batatais</option><option value="220101">01º dp bebedouro</option><option value="100233">01º dp guaira</option><option value="100328">01º dp ituverava</option><option value="100601">01º dp jaboticabal</option><option value="130321">01º dp jacarei</option><option value="100134">01º dp matão</option><option value="110438">01º dp olimpia</option><option value="100521">01º dp porto ferreira</option><option value="100464">01º dp sao joaquim da barra</option><option value="70367">02ª del.def.mul. campinas</option><option value="100104">02º d.p. araraquara</option><option value="100223">02º d.p. barretos</option><option value="100322">02º d.p. franca</option><option value="100512">02º d.p. sao carlos</option><option value="90122">02º dp - adamantina</option><option value="10007">02º dp - aerop/tur-congonhas</option><option value="70345">02º dp - americana</option><option value="70120">02º dp - amparo</option><option value="50114">02º dp - andradina</option><option value="50204">02º dp - aracatuba</option><option value="70817">02º dp - araras</option><option value="80118">02º dp - assis</option><option value="70125">02º dp - atibaia</option><option value="120110">02º dp - avare</option><option value="30609">02º dp - barueri</option><option value="60106">02º dp - bauru</option><option value="50236">02º dp - birigui</option><option value="10102">02º dp - bom retiro</option><option value="120215">02º dp - botucatu</option><option value="70117">02º dp - braganca paulista</option><option value="70302">02º dp - campinas</option><option value="40313">02º dp - caraguatatuba</option><option value="30432">02º dp - carapicuiba</option><option value="110115">02º dp - catanduva</option><option value="30424">02º dp - cotia</option><option value="130110">02º dp - cruzeiro</option><option value="40229">02º dp - cubatao</option><option value="30123">02º dp - diadema</option><option value="90412">02º dp - dracena</option><option value="110613">02º dp - fernandopolis</option><option value="130208">02º dp - guaratingueta</option><option value="40233">02º dp - guaruja</option><option value="30207">02º dp - guarulhos</option><option value="700359">02º dp - hortolandia</option><option value="40402">02º dp - itanhaem</option><option value="120315">02º dp - itapetininga</option><option value="120416">02º dp - itapeva</option><option value="70915">02º dp - itapira</option><option value="120527">02º dp - itu</option><option value="130322">02º dp - jacarei</option><option value="310105">02º dp - jacupiranga</option><option value="110228">02º dp - jales</option><option value="70407">02º dp - jundiai</option><option value="70823">02º dp - leme</option><option value="70811">02º dp - limeira</option><option value="60313">02º dp - lins</option><option value="130212">02º dp - lorena </option><option value="30125">02º dp - maua</option><option value="30307">02º dp - mogi das cruzes</option><option value="70905">02º dp - mogi mirim</option><option value="70902">02º dp - mogi-guacu</option><option value="40415">02º dp - mongagua</option><option value="30412">02º dp - osasco</option><option value="80319">02º dp - ourinhos</option><option value="130413">02º dp - pindamonhangaba </option><option value="70518">02º dp - piracicaba</option><option value="70815">02º dp - pirassununga</option><option value="40412">02º dp - praia grande</option><option value="90214">02º dp - presidente prudente</option><option value="90313">02º dp - presidente venceslau</option><option value="40116">02º dp - registro</option><option value="100418">02º dp - ribeirao preto</option><option value="70610">02º dp - rio claro</option><option value="110427">02º dp - s.jose do rio preto</option><option value="130311">02º dp - s.jose dos campos</option><option value="40306">02º dp - s.sebastiao</option><option value="120551">02º dp - salto</option><option value="30103">02º dp - santo andre</option><option value="40212">02º dp - santos</option><option value="30110">02º dp - sao bernardo do campo</option><option value="30114">02º dp - sao caetano sul</option><option value="70710">02º dp - sao joao da boa vista</option><option value="40285">02º dp - sao vicente</option><option value="120519">02º dp - sorocaba</option><option value="70332">02º dp - sta barbara d oeste</option><option value="70328">02º dp - sumare</option><option value="30321">02º dp - suzano</option><option value="30616">02º dp - taboao da serra</option><option value="130410">02º dp - taubate</option><option value="80414">02º dp - tupa</option><option value="120533">02º dp - votorantim</option><option value="110524">02º dp - votuporanga</option><option value="120318">02º dp -tatui</option><option value="220102">02º dp bebedouro</option><option value="100602">02º dp jaboticabal</option><option value="100465">02º dp sao joaquim da barra</option><option value="100224">03º d.p. barretos</option><option value="100324">03º d.p. franca</option><option value="100514">03º d.p. sao carlos</option><option value="100122">03º d.p.araraquara</option><option value="90123">03º dp - adamantina</option><option value="70346">03º dp - americana</option><option value="50222">03º dp - aracatuba</option><option value="80119">03º dp - assis</option><option value="70128">03º dp - atibaia</option><option value="120123">03º dp - avare</option><option value="60117">03º dp - bauru</option><option value="120216">03º dp - botucatu</option><option value="70118">03º dp - braganca paulista</option><option value="70303">03º dp - campinas</option><option value="10103">03º dp - campos eliseos</option><option value="30433">03º dp - carapicuiba</option><option value="110117">03º dp - catanduva</option><option value="130116">03º dp - cruzeiro</option><option value="40231">03º dp - cubatao</option><option value="30127">03º dp - diadema</option><option value="130209">03º dp - guaratingueta</option><option value="30208">03º dp - guarulhos</option><option value="40403">03º dp - itanhaem</option><option value="120316">03º dp - itapetininga</option><option value="120418">03º dp - itapeva</option><option value="120528">03º dp - itu</option><option value="130501">03º dp - jacarei</option><option value="70408">03º dp - jundiai</option><option value="70812">03º dp - limeira</option><option value="60318">03º dp - lins</option><option value="30130">03º dp - maua</option><option value="30311">03º dp - mogi das cruzes</option><option value="70908">03º dp - mogi mirim</option><option value="70903">03º dp - mogi-guacu</option><option value="30413">03º dp - osasco</option><option value="80320">03º dp - ourinhos</option><option value="130426">03º dp - pindamonhangaba </option><option value="70519">03º dp - piracicaba</option><option value="70824">03º dp - pirassununga</option><option value="40414">03º dp - praia grande</option><option value="90221">03º dp - presidente prudente</option><option value="100419">03º dp - ribeirao preto</option><option value="70611">03º dp - rio claro</option><option value="110428">03º dp - s.jose do rio preto</option><option value="130312">03º dp - s.jose dos campos</option><option value="40317">03º dp - s.sebastiao</option><option value="30104">03º dp - santo andre</option><option value="40213">03º dp - santos</option><option value="30111">03º dp - sao bernardo do campo</option><option value="30132">03º dp - sao caetano sul</option><option value="70712">03º dp - sao joao da boa vista</option><option value="40286">03º dp - sao vicente</option><option value="120520">03º dp - sorocaba</option><option value="70540">03º dp - sta barbara d oeste</option><option value="70329">03º dp - sumare</option><option value="130417">03º dp - taubate</option><option value="80415">03º dp - tupa</option><option value="120544">03º dp - votorantim</option><option value="110530">03º dp - votuporanga</option><option value="220103">03º dp bebedouro</option><option value="100135">04º d.p. araraquara</option><option value="100325">04º d.p. franca</option><option value="100517">04º d.p. sao carlos</option><option value="70339">04º dp - aerop tur-viracopos</option><option value="70350">04º dp - americana</option><option value="50230">04º dp - aracatuba</option><option value="80124">04º dp - assis</option><option value="60124">04º dp - bauru</option><option value="120224">04º dp - botucatu</option><option value="70304">04º dp - campinas</option><option value="110118">04º dp - catanduva</option><option value="10104">04º dp - consolacao</option><option value="30129">04º dp - diadema</option><option value="30212">04º dp - guarulhos</option><option value="120325">04º dp - itapetininga</option><option value="120432">04º dp - itapeva</option><option value="120542">04º dp - itu</option><option value="130506">04º dp - jacarei</option><option value="70413">04º dp - jundiai</option><option value="70813">04º dp - limeira</option><option value="80222">04º dp - marilia</option><option value="280206">04º dp - maua</option><option value="30313">04º dp - mogi das cruzes</option><option value="30417">04º dp - osasco</option><option value="70527">04º dp - piracicaba</option><option value="90223">04º dp - presidente prudente</option><option value="100420">04º dp - ribeirao preto</option><option value="110431">04º dp - s.jose do rio preto</option><option value="130313">04º dp - s.jose dos campos</option><option value="40318">04º dp - s.sebastiao </option><option value="30105">04º dp - santo andre</option><option value="40214">04º dp - santos</option><option value="30119">04º dp - sao bernardo do campo</option><option value="120521">04º dp - sorocaba</option><option value="70352">04º dp - sumare</option><option value="130418">04º dp - taubate</option><option value="100327">05º d.p. franca</option><option value="100518">05º d.p.sao carlos</option><option value="10105">05º dp - aclimacao</option><option value="70305">05º dp - campinas</option><option value="30215">05º dp - guarulhos</option><option value="130507">05º dp - jacarei</option><option value="70419">05º dp - jundiai</option><option value="80223">05º dp - marilia</option><option value="30418">05º dp - osasco</option><option value="70528">05º dp - piracicaba</option><option value="90224">05º dp - presidente prudente</option><option value="100429">05º dp - ribeirao preto</option><option value="110433">05º dp - s.jose do rio preto</option><option value="130315">05º dp - s.jose dos campos</option><option value="30106">05º dp - santo andre</option><option value="40215">05º dp - santos</option><option value="30121">05º dp - sao bernardo do campo</option><option value="120522">05º dp - sorocaba</option><option value="70353">05º dp - sumare</option><option value="100335">06º d.p. franca</option><option value="10106">06º dp - cambuci</option><option value="70306">06º dp - campinas</option><option value="30216">06º dp - guarulhos</option><option value="70421">06º dp - jundiai</option><option value="30419">06º dp - osasco</option><option value="70541">06º dp - piracicaba</option><option value="90231">06º dp - presidente prudente</option><option value="100430">06º dp - ribeirao preto</option><option value="110436">06º dp - s.jose do rio preto</option><option value="130324">06º dp - s.jose dos campos</option><option value="30107">06º dp - santo andre</option><option value="30126">06º dp - sao bernardo do campo</option><option value="120523">06º dp - sorocaba</option><option value="70325">07º dp - campinas</option><option value="30217">07º dp - guarulhos</option><option value="70424">07º dp - jundiai</option><option value="10307">07º dp - lapa</option><option value="30429">07º dp - osasco</option><option value="70546">07º dp - piracicaba</option><option value="100432">07º dp - ribeirao preto</option><option value="110437">07º dp - s.jose do rio preto</option><option value="130325">07º dp - s.jose dos campos</option><option value="40232">07º dp - santos</option><option value="30135">07º dp - sao bernardo do campo</option><option value="120525">07º dp - sorocaba</option><option value="10108">08º dp - bras</option><option value="70326">08º dp - campinas</option><option value="30218">08º dp - guarulhos</option><option value="30435">08º dp - osasco</option><option value="100446">08º dp - ribeirao preto</option><option value="130326">08º dp - s.jose dos campos</option><option value="30138">08º dp - sao bernardo do campo</option><option value="120535">08º dp - sorocaba</option><option value="70327">09º dp - campinas</option><option value="20109">09º dp - carandiru</option><option value="30221">09º dp - guarulhos</option><option value="30436">09º dp - osasco</option><option value="120536">09º dp - sorocaba</option><option value="10373">100º dp - jardim herculano</option><option value="10374">101º dp - jardim imbuias</option><option value="10375">102º dp - socorro            </option><option value="20301">103º dp - cohabii/itaquera</option><option value="70337">10º dp - campinas</option><option value="30440">10º dp - osasco</option><option value="20210">10º dp - penha de franca</option><option value="120539">10º dp - sorocaba</option><option value="70338">11º dp - campinas</option><option value="10211">11º dp - santo amaro</option><option value="120548">11º dp - sorocaba</option><option value="70342">12º dp - campinas</option><option value="10112">12º dp - pari</option><option value="70920">13º dp - campinas</option><option value="20113">13º dp - casa verde</option><option value="10314">14º dp - pinheiros </option><option value="10315">15º dp - indianopolis</option><option value="10216">16º dp - vila clementino</option><option value="10217">17º dp - ipiranga</option><option value="20218">18º dp - alto da mooca</option><option value="20119">19º dp - vila maria</option><option value="60216">1º dp - jau</option><option value="80213">1º dp - marilia</option><option value="20120">20º dp - agua fria</option><option value="20221">21º dp - vila matilde</option><option value="20222">22º dp - sao miguel paulista</option><option value="10323">23º dp - perdizes</option><option value="20224">24º dp - ermelino matarazzo</option><option value="10225">25º dp - parelheiros</option><option value="10226">26º dp - sacoma</option><option value="10330">27º dp - ibirapuera</option><option value="20128">28º dp - freguesia do o</option><option value="10229">29º dp - vila prudente</option><option value="60217">2º dp - jau</option><option value="80214">2º dp - marilia</option><option value="20230">30º dp - tatuape</option><option value="20231">31º dp - vila carrao</option><option value="20232">32º dp - itaquera</option><option value="10333">33º dp - pirituba</option><option value="10338">34º dp - morumbi</option><option value="10235">35º dp - jabaquara</option><option value="10236">36º dp - vila mariana</option><option value="10241">37º dp - campo limpo</option><option value="20138">38º dp - vila amalia</option><option value="20139">39º dp - vila gustavo</option><option value="60218">3º dp - jau</option><option value="80216">3º dp - marilia</option><option value="20140">40º dp - vila sta maria</option><option value="20241">41º dp - vila rica</option><option value="20242">42º dp - parque s. lucas</option><option value="10243">43º dp - cidade ademar</option><option value="20244">44º dp - guaianazes</option><option value="20145">45º dp - v. brasilandia</option><option value="10346">46º dp - perus</option><option value="10247">47º dp - capao redondo</option><option value="10248">48º dp - cidade dutra</option><option value="20249">49º dp - sao mateus</option><option value="60225">4º dp - jau</option><option value="20250">50º dp - itaim paulista</option><option value="10351">51º dp - rio pequeno</option><option value="10308">52º dp - parque s.jorge</option><option value="10353">53º dp - parque do carmo</option><option value="10354">54º dp - cidade tiradentes</option><option value="10309">55º dp - parque s.rafael</option><option value="10310">56º dp - vila alpina</option><option value="10359">57º dp - parque da mooca</option><option value="10311">58º dp - vila formosa</option><option value="10312">59º dp - jardim dos ipes</option><option value="10325">62º dp - jardim popular</option><option value="10326">63º dp - vila jacui</option><option value="10328">64º dp - cidade ae carvalho</option><option value="10360">65º dp - artur alvim</option><option value="10329">66º dp - jardim aricanduva</option><option value="10355">67º dp - jardim robru</option><option value="10331">68º dp - lageado</option><option value="10362">69º dp - teotonio vilela</option><option value="10361">70º dp - vila ema</option><option value="10335">72º dp - vila penteado</option><option value="10336">73º dp - jacana</option><option value="10337">74º dp - parada taipas</option><option value="10339">75º dp - jardim arpoador</option><option value="10341">77º dp - santa cecilia</option><option value="10342">78º dp - jardins</option><option value="10344">80º dp - vila joaniza</option><option value="10345">81º dp - belem</option><option value="10363">83º dp - parque bristol</option><option value="10349">85º dp - jardim mirna</option><option value="10352">87º dp - v. p. barreto</option><option value="10356">89º dp - jardim taboao</option><option value="10365">90º dp - pq. novo mundo</option><option value="10357">91º dp - ceasa</option><option value="10366">92º dp - p. sto antonio</option><option value="10367">93º dp - jaguare</option><option value="10358">95º dp - heliopolis</option><option value="10369">96º dp - moncoes</option><option value="10370">97º dp - americanopolis</option><option value="10371">98º dp - jardim miriam</option><option value="10372">99º dp - campo grande</option><option value="30213">aeroporto guarulhos</option><option value="10207">central de flagrantes 2ªsec</option><option value="10214">central de flagrantes 6ªsec ii</option><option value="10391">central flagrantes 3ªsec 1</option><option value="10392">central flagrantes 3ªsec 2</option><option value="40436">central pol. jud. jacupiranga</option><option value="804229">central pol.jud. tupa</option><option value="100919">central pol.jud.rib.preto</option><option value="70363">del. prot idoso campinas</option><option value="80524">del.def.mul. s.parnaiba</option><option value="30325">del.def.mul. suzano</option><option value="40230">del.def.mul.s.vicente</option><option value="30644">del.def.mulher itapevi</option><option value="30437">del.inv.m.amb.osasco</option><option value="110401">del.pol.adolfo</option><option value="70115">del.pol.amparo</option><option value="110201">del.pol.aparecida d oeste</option><option value="70805">del.pol.araras</option><option value="30201">del.pol.aruja</option><option value="70102">del.pol.atibaia</option><option value="40111">del.pol.barra do turvo</option><option value="30401">del.pol.barueri</option><option value="80401">del.pol.bastos</option><option value="100323">del.pol.batatais</option><option value="40204">del.pol.bertioga</option><option value="50209">del.pol.birigui</option><option value="30301">del.pol.biritiba mirim</option><option value="70414">del.pol.cabreuva</option><option value="30202">del.pol.caieiras</option><option value="70401">del.pol.cajamar</option><option value="120324">del.pol.campina monte alegre</option><option value="130415">del.pol.campos do jordao</option><option value="100106">del.pol.candido rodrigues</option><option value="120414">del.pol.capao bonito</option><option value="70504">del.pol.capivari</option><option value="40301">del.pol.caraguatatuba</option><option value="70203">del.pol.casa branca</option><option value="100203">del.pol.colina</option><option value="100204">del.pol.colômbia</option><option value="30403">del.pol.cotia</option><option value="40202">del.pol.cubatao</option><option value="30404">del.pol.embu</option><option value="30405">del.pol.embu-guacu</option><option value="30302">del.pol.ferraz de vasconcelos</option><option value="30203">del.pol.francisco morato</option><option value="30204">del.pol.franco da rocha</option><option value="80204">del.pol.garca</option><option value="100205">del.pol.guaira</option><option value="100219">del.pol.guaraci</option><option value="30303">del.pol.guararema</option><option value="40203">del.pol.guaruja</option><option value="70357">del.pol.hortolandia</option><option value="100121">del.pol.ibitinga</option><option value="40103">del.pol.iguape</option><option value="50111">del.pol.ilha solteira</option><option value="70312">del.pol.indaiatuba</option><option value="30406">del.pol.itapecerica serra</option><option value="30407">del.pol.itapevi</option><option value="70313">del.pol.itapira</option><option value="120424">del.pol.itapirapua pta</option><option value="100110">del.pol.itapolis</option><option value="30304">del.pol.itaquaquecetuba</option><option value="120409">del.pol.itarare</option><option value="70403">del.pol.itatiba</option><option value="120507">del.pol.itu</option><option value="100308">del.pol.ituverava</option><option value="100435">del.pol.jaboticabal</option><option value="30408">del.pol.jandira</option><option value="110321">del.pol.jose bonifacio</option><option value="130105">del.pol.lavrinhas</option><option value="130204">del.pol.lorena</option><option value="30210">del.pol.mairipora</option><option value="110205">del.pol.marinopolis</option><option value="100111">del.pol.matão</option><option value="110413">del.pol.mirassol</option><option value="70207">del.pol.mococa</option><option value="30305">del.pol.mogi das cruzes</option><option value="70316">del.pol.mogi mirim</option><option value="40207">del.pol.mongagua</option><option value="100436">del.pol.monte alto</option><option value="110310">del.pol.monte aprazivel</option><option value="110107">del.pol.novo horizonte</option><option value="100221">del.pol.olimpia</option><option value="100415">del.pol.orlandia</option><option value="90112">del.pol.osvaldo cruz</option><option value="50217">del.pol.penapolis</option><option value="50109">del.pol.pereira barreto</option><option value="40208">del.pol.peruibe</option><option value="130405">del.pol.pindamonhangaba </option><option value="70516">del.pol.piracicaba</option><option value="120118">del.pol.piraju</option><option value="70808">del.pol.pirassununga</option><option value="110314">del.pol.planalto</option><option value="100915">del.pol.plantão guaira</option><option value="110715">del.pol.plantão olimpia</option><option value="80508">del.pol.plantão paraguaçu pta</option><option value="70025">del.pol.plantão paulinia</option><option value="50310">del.pol.plantão penapolis</option><option value="70020">del.pol.plantão vinhedo</option><option value="900441">del.pol.porto de santos</option><option value="100506">del.pol.porto ferreira</option><option value="100916">del.pol.pq do peão barretos</option><option value="40209">del.pol.praia grande</option><option value="90305">del.pol.presidente epitacio</option><option value="90215">del.pol.racharia</option><option value="90341">del.pol.rosana</option><option value="80313">del.pol.s cruz do rio pardo</option><option value="70214">del.pol.s.jose do rio pardo</option><option value="40217">del.pol.s.vicente</option><option value="120512">del.pol.salto</option><option value="110212">del.pol.santa fe do sul</option><option value="30415">del.pol.santana parnaiba</option><option value="30112">del.pol.sao caetano sul</option><option value="120211">del.pol.sao manuel</option><option value="120514">del.pol.sao roque</option><option value="70112">del.pol.serra negra</option><option value="100428">del.pol.sertaozinho</option><option value="70322">del.pol.sumare</option><option value="30309">del.pol.suzano</option><option value="100119">del.pol.taquaritinga</option><option value="120310">del.pol.tatui</option><option value="100214">del.pol.terra roxa</option><option value="40304">del.pol.ubatuba</option><option value="70323">del.pol.valinhos</option><option value="130125">del.pol.vargem</option><option value="70708">del.pol.vargem grande do sul</option><option value="70411">del.pol.varzea paulista</option><option value="70333">del.pol.vinhedo</option><option value="120517">del.pol.votorantim</option><option value="70941">del.sec. 2ª campinas</option><option value="70942">del.sec. 2ª campinas-plantão</option><option value="10300">del.sec.3ª oeste</option><option value="280500">del.sec.franco da rocha</option><option value="40400">del.sec.itanhaem</option><option value="310100">del.sec.jacupiranga</option><option value="110200">del.sec.jales</option><option value="40100">del.sec.registro</option><option value="999998">delegacia eletronica</option><option value="70701">dpm-aguai</option><option value="70702">dpm-aguas da prata            </option><option value="70101">dpm-aguas de lindoia</option><option value="120107">dpm-aguas de s.barbara</option><option value="70501">dpm-aguas de s.pedro</option><option value="60101">dpm-agudos</option><option value="120323">dpm-alambari</option><option value="90201">dpm-alfredo marcondes</option><option value="100217">dpm-altair</option><option value="100401">dpm-altinopolis</option><option value="50201">dpm-alto alegre</option><option value="120531">dpm-aluminio</option><option value="110501">dpm-alvares florence</option><option value="90202">dpm-alvares machado</option><option value="80201">dpm-alvaro de carvalho</option><option value="80202">dpm-alvinlandia</option><option value="100101">dpm-americo brasiliense</option><option value="110502">dpm-americo de campos</option><option value="70601">dpm-analandia</option><option value="120301">dpm-angatuba</option><option value="120201">dpm-anhembi</option><option value="90203">dpm-anhumas</option><option value="130201">dpm-aparecida</option><option value="120401">dpm-apiai </option><option value="120545">dpm-aracariguama</option><option value="120501">dpm-aracoiaba da serra</option><option value="100301">dpm-aramina</option><option value="120101">dpm-arandu</option><option value="130113">dpm-arapei </option><option value="80404">dpm-arco iris</option><option value="60120">dpm-arealva</option><option value="130101">dpm-areias</option><option value="120202">dpm-areiopolis</option><option value="110101">dpm-ariranha</option><option value="70309">dpm-artur nogueira</option><option value="110223">dpm-aspasia</option><option value="50227">dpm-auriflama</option><option value="60102">dpm-avai</option><option value="50205">dpm-avanhandava</option><option value="110403">dpm-bady bassit</option><option value="60103">dpm-balbinos</option><option value="110319">dpm-balsamo</option><option value="130102">dpm-bananal</option><option value="120114">dpm-barao de antonina</option><option value="50206">dpm-barbosa</option><option value="60202">dpm-bariri</option><option value="60203">dpm-barra bonita</option><option value="100402">dpm-barrinha</option><option value="50207">dpm-bento de abreu</option><option value="80301">dpm-bernardino de campos</option><option value="50208">dpm-bilac</option><option value="100120">dpm-boa esperanca do sul</option><option value="60204">dpm-bocaina</option><option value="120203">dpm-bofete</option><option value="120312">dpm-boituva</option><option value="120422">dpm-bom sucesso itarare</option><option value="80409">dpm-bora</option><option value="60205">dpm-boraceia</option><option value="100105">dpm-borborema</option><option value="60126">dpm-borebi</option><option value="50210">dpm-brauna</option><option value="50243">dpm-brejo alegre</option><option value="100404">dpm-brodowski</option><option value="70613">dpm-brotas</option><option value="120404">dpm-buri</option><option value="50228">dpm-buritama</option><option value="100302">dpm-buritizal</option><option value="60107">dpm-cabralia paulista</option><option value="130323">dpm-cacapava</option><option value="130210">dpm-cachoeira paulista</option><option value="70219">dpm-caconde</option><option value="60301">dpm-cafelandia</option><option value="90204">dpm-caiabu</option><option value="90301">dpm-caiua</option><option value="310101">dpm-cajati</option><option value="100218">dpm-cajobi</option><option value="100405">dpm-cajuru</option><option value="70402">dpm-campo limpo paulista</option><option value="80103">dpm-campos novos paulista</option><option value="40101">dpm-cananeia</option><option value="130220">dpm-canas</option><option value="80104">dpm-candido mota</option><option value="80323">dpm-canitar</option><option value="120311">dpm-capela do alto</option><option value="110503">dpm-cardoso</option><option value="100406">dpm-cassia dos coqueiros</option><option value="50102">dpm-castilho</option><option value="110103">dpm-catigua</option><option value="110406">dpm-cedral</option><option value="120103">dpm-cerqueira cesar</option><option value="120313">dpm-cerquilho</option><option value="120303">dpm-cesario lange</option><option value="70505">dpm-charqueada</option><option value="80302">dpm-chavantes</option><option value="50211">dpm-clementina</option><option value="70801">dpm-conchal</option><option value="120206">dpm-conchas</option><option value="70806">dpm-cordeiropolis</option><option value="50212">dpm-coroados</option><option value="120104">dpm-coronel macedo</option><option value="70603">dpm-corumbatai</option><option value="70311">dpm-cosmopolis </option><option value="110504">dpm-cosmorama</option><option value="100407">dpm-cravinhos</option><option value="100303">dpm-cristais paulista</option><option value="100805">dpm-cruz da esperanca</option><option value="80105">dpm-cruzalia</option><option value="130202">dpm-cunha</option><option value="100503">dpm-descalvado</option><option value="110224">dpm-dirce reis</option><option value="70703">dpm-divinolandia</option><option value="100107">dpm-dobrada</option><option value="60206">dpm-dois corregos</option><option value="110202">dpm-dolcinopolis</option><option value="100504">dpm-dourado</option><option value="60108">dpm-duartina</option><option value="100408">dpm-dumont</option><option value="80217">dpm-echapora</option><option value="40102">dpm-eldorado</option><option value="70508">dpm-elias fausto</option><option value="110122">dpm-elisiario</option><option value="100230">dpm-embaúba</option><option value="90227">dpm-emilianopolis</option><option value="70910">dpm-engenheiro coelho</option><option value="80324">dpm-espirito s. do turvo</option><option value="70704">dpm-espirito sto do pinhal</option><option value="70911">dpm-estiva gerbi</option><option value="110601">dpm-estrela d oeste</option><option value="90205">dpm-estrela do norte</option><option value="90309">dpm-euclides da cunha pta</option><option value="120120">dpm-fatura</option><option value="100108">dpm-fernando prestes</option><option value="80206">dpm-fernao</option><option value="90103">dpm-flora rica</option><option value="110516">dpm-floreal</option><option value="90104">dpm-florida paulista</option><option value="80107">dpm-florinia</option><option value="50213">dpm-gabriel monteiro</option><option value="80203">dpm-galia</option><option value="50223">dpm-gastao vidigal</option><option value="100109">dpm-gaviao peixoto</option><option value="50229">dpm-general salgado</option><option value="60302">dpm-getulina</option><option value="50214">dpm-glicerio</option><option value="60303">dpm-guaicara</option><option value="60304">dpm-guaimbe</option><option value="110407">dpm-guapiacu</option><option value="120413">dpm-guapiara</option><option value="100305">dpm-guara</option><option value="50103">dpm-guaracai</option><option value="110603">dpm-guarani d oeste</option><option value="60305">dpm-guaranta</option><option value="50215">dpm-guararapes</option><option value="120305">dpm-guarei</option><option value="100434">dpm-guariba</option><option value="100441">dpm-guatapara</option><option value="50224">dpm-guzolandia</option><option value="80402">dpm-herculandia</option><option value="70912">dpm-holambra</option><option value="60121">dpm-iacanga</option><option value="80403">dpm-iacri</option><option value="120117">dpm-iaras</option><option value="100505">dpm-ibate</option><option value="110434">dpm-ibira</option><option value="80108">dpm-ibirarema</option><option value="120505">dpm-ibiuna</option><option value="110409">dpm-icem</option><option value="90206">dpm-iepe</option><option value="60209">dpm-igaracu do tiete</option><option value="100306">dpm-igarapava</option><option value="130316">dpm-igarata</option><option value="40118">dpm-ilha comprida</option><option value="50104">dpm-ilha itapura</option><option value="40302">dpm-ilhabela</option><option value="90207">dpm-indiana</option><option value="110604">dpm-indiapora</option><option value="90105">dpm-inubia paulista</option><option value="80304">dpm-ipaussu</option><option value="120506">dpm-ipero</option><option value="70604">dpm-ipeuna</option><option value="110410">dpm-ipigua</option><option value="120405">dpm-iporanga</option><option value="100409">dpm-ipua</option><option value="70802">dpm-iracemapolis</option><option value="110105">dpm-irapua</option><option value="90106">dpm-irapuru</option><option value="120406">dpm-itabera</option><option value="120105">dpm-itai</option><option value="110106">dpm-itajobi</option><option value="60210">dpm-itaju</option><option value="120423">dpm-itaoca</option><option value="120116">dpm-itaporanga</option><option value="60211">dpm-itapui</option><option value="40112">dpm-itariri</option><option value="120207">dpm-itatinga</option><option value="70605">dpm-itirapina</option><option value="100307">dpm-itirapua</option><option value="70206">dpm-itobi</option><option value="70404">dpm-itupeva</option><option value="100206">dpm-jaborandi</option><option value="110320">dpm-jaci</option><option value="70314">dpm-jaguariuna</option><option value="130317">dpm-jambeiro</option><option value="100410">dpm-jardinopolis</option><option value="70415">dpm-jarinu</option><option value="100309">dpm-jeriquara</option><option value="70103">dpm-jesus dos perdoes </option><option value="70106">dpm-joanopolis </option><option value="80410">dpm-joao ramalho</option><option value="80218">dpm-julio mesquita</option><option value="120503">dpm-jumirim</option><option value="90402">dpm-junqueiropolis</option><option value="40105">dpm-juquia</option><option value="30409">dpm-juquitiba</option><option value="130403">dpm-lagoinha</option><option value="120208">dpm-laranjal paulista</option><option value="50105">dpm-lavinia</option><option value="60109">dpm-lencois paulista</option><option value="70107">dpm-lindoia</option><option value="50237">dpm-lourdes</option><option value="70409">dpm-louveira</option><option value="90108">dpm-lucelia</option><option value="60110">dpm-lucianopolis</option><option value="100411">dpm-luis antonio</option><option value="80209">dpm-lupercio</option><option value="80110">dpm-lutecia</option><option value="50216">dpm-luziania</option><option value="60122">dpm-macatuba</option><option value="110517">dpm-macaubal</option><option value="110605">dpm-macedonia</option><option value="110518">dpm-magda</option><option value="120508">dpm-mairinque</option><option value="120115">dpm-manduri</option><option value="90302">dpm-maraba paulista</option><option value="80112">dpm-maracai</option><option value="300102">dpm-marapoama</option><option value="90109">dpm-mariapolis</option><option value="90208">dpm-martinopolis</option><option value="110412">dpm-mendonca</option><option value="50110">dpm-mennucci</option><option value="110606">dpm-meridiano</option><option value="110225">dpm-mesopolis</option><option value="100310">dpm-miguelopolis</option><option value="60214">dpm-mineiros do tiete</option><option value="110607">dpm-mira estrela</option><option value="40106">dpm-miracatu</option><option value="50106">dpm-mirandopolis</option><option value="90303">dpm-mirante paranapanema</option><option value="110414">dpm-mirassolandia</option><option value="70514">dpm-mombuca</option><option value="110519">dpm-moncoes</option><option value="70114">dpm-monte alegre do sul</option><option value="100208">dpm-monte azul pta</option><option value="90403">dpm-monte castelo</option><option value="70330">dpm-monte mor</option><option value="130303">dpm-monteiro lobato</option><option value="100412">dpm-morro agudo</option><option value="70410">dpm-morungaba</option><option value="100130">dpm-motuca</option><option value="50107">dpm-muritinga do sul</option><option value="90232">dpm-nantes</option><option value="90209">dpm-narandiba</option><option value="130404">dpm-natividade da serra</option><option value="70108">dpm-nazare paulista</option><option value="110322">dpm-neves paulista</option><option value="110520">dpm-nhandeara</option><option value="110312">dpm-nipoa</option><option value="110416">dpm-nova alianca</option><option value="120425">dpm-nova campina</option><option value="110702">dpm-nova cannaa paulista</option><option value="50244">dpm-nova castilho</option><option value="100113">dpm-nova europa</option><option value="110417">dpm-nova granada</option><option value="90404">dpm-nova guataporanga</option><option value="50108">dpm-nova independencia</option><option value="50225">dpm-nova luzitania</option><option value="70318">dpm-nova odessa</option><option value="110123">dpm-novais</option><option value="100413">dpm-nuporanga</option><option value="80211">dpm-ocaucu</option><option value="80306">dpm-oleo</option><option value="110419">dpm-onda verde</option><option value="80212">dpm-oriente</option><option value="110420">dpm-orindiuva</option><option value="80219">dpm-oscar bressane</option><option value="90405">dpm-ouro verde</option><option value="110619">dpm-ouroeste</option><option value="90114">dpm-pacaembu</option><option value="110421">dpm-palestina</option><option value="110109">dpm-palmares paulista</option><option value="110206">dpm-palmeira d oeste</option><option value="80116">dpm-palmital</option><option value="90406">dpm-panorama</option><option value="130304">dpm-paraibuna</option><option value="110116">dpm-paraiso</option><option value="120106">dpm-paranapanema</option><option value="110207">dpm-paranapua</option><option value="80411">dpm-parapua</option><option value="120209">dpm-pardinho</option><option value="40107">dpm-pariquera-acu</option><option value="110527">dpm-parisi</option><option value="100311">dpm-patrocinio paulista</option><option value="90407">dpm-pauliceia</option><option value="70319">dpm-paulinia</option><option value="60113">dpm-paulistania</option><option value="110422">dpm-paulo de faria</option><option value="60123">dpm-pederneiras</option><option value="70109">dpm-pedra bela</option><option value="110608">dpm-pedranopolis</option><option value="100312">dpm-pedregulho</option><option value="70320">dpm-pedreira</option><option value="80125">dpm-pedrinhas paulista</option><option value="40108">dpm-pedro de toledo</option><option value="120210">dpm-pereiras</option><option value="50218">dpm-piacatu</option><option value="120509">dpm-piedade</option><option value="120510">dpm-pilar do sul</option><option value="110108">dpm-pindorama</option><option value="70110">dpm-pinhalzinho</option><option value="90304">dpm-piquerobi</option><option value="130205">dpm-piquete</option><option value="70111">dpm-piracaia</option><option value="60111">dpm-pirajui</option><option value="100210">dpm-pirangi</option><option value="30414">dpm-pirapora b. jesus</option><option value="90210">dpm-pirapozinho</option><option value="60112">dpm-piratininga</option><option value="100437">dpm-pitangueiras</option><option value="80114">dpm-platina</option><option value="30308">dpm-poa</option><option value="110315">dpm-poloni</option><option value="80220">dpm-pompeia</option><option value="60310">dpm-pongai</option><option value="100414">dpm-pontal</option><option value="110226">dpm-pontalinda</option><option value="110512">dpm-pontes gestal</option><option value="110609">dpm-populina</option><option value="120213">dpm-porangaba</option><option value="120511">dpm-porto feliz</option><option value="130214">dpm-potim</option><option value="110423">dpm-potirendaba</option><option value="90107">dpm-pracinha</option><option value="100433">dpm-pradopolis</option><option value="120205">dpm-pratania</option><option value="60114">dpm-presidente alves</option><option value="90211">dpm-presidente bernardes</option><option value="60308">dpm-promissao</option><option value="120504">dpm-quadra</option><option value="80412">dpm-quata</option><option value="80405">dpm-queiroz</option><option value="130106">dpm-queluz</option><option value="80406">dpm-quintana</option><option value="70520">dpm-rafard</option><option value="130406">dpm-redencao da serra</option><option value="90216">dpm-regente feijo</option><option value="60115">dpm-reginopolis</option><option value="100313">dpm-restinga</option><option value="120410">dpm-ribeira</option><option value="100507">dpm-ribeirao bonito</option><option value="120411">dpm-ribeirao branco</option><option value="100314">dpm-ribeirao corrente</option><option value="80309">dpm-ribeirao do sul</option><option value="90325">dpm-ribeirao dos indios</option><option value="120426">dpm-ribeirao grande</option><option value="30117">dpm-ribeirao pires</option><option value="100315">dpm-rifaina</option><option value="100115">dpm-rincao</option><option value="80408">dpm-rinopolis</option><option value="70522">dpm-rio das pedras</option><option value="30118">dpm-rio grande da serra</option><option value="110521">dpm-riolandia</option><option value="120412">dpm-riversul</option><option value="130206">dpm-roseira</option><option value="50219">dpm-rubiacea</option><option value="110209">dpm-rubineia</option><option value="130407">dpm-s luis do paraitinga</option><option value="100423">dpm-s. antonio da alegria</option><option value="110215">dpm-s. francisco</option><option value="50239">dpm-s.joao de iracema</option><option value="90409">dpm-s.joao do pau d alho</option><option value="110610">dpm-s.joao duas pontes</option><option value="100316">dpm-s.jose da bela vista</option><option value="70526">dpm-s.pedro</option><option value="80311">dpm-s.pedro do turvo</option><option value="100422">dpm-s.rosa de viterbo</option><option value="70707">dpm-s.sebastiao da grama</option><option value="100425">dpm-s.simao</option><option value="60309">dpm-sabino</option><option value="90119">dpm-sagres</option><option value="110110">dpm-sales</option><option value="100421">dpm-sales oliveira</option><option value="130305">dpm-salesopolis</option><option value="90120">dpm-salmourao</option><option value="70511">dpm-saltinho</option><option value="120513">dpm-salto de pirapora</option><option value="80310">dpm-salto grande</option><option value="90217">dpm-sandovalina</option><option value="110111">dpm-santa adelia</option><option value="130306">dpm-santa branca</option><option value="100116">dpm-santa ernestina</option><option value="70608">dpm-santa gertrudes</option><option value="30211">dpm-santa isabel</option><option value="100117">dpm-santa lucia</option><option value="90408">dpm-santa mercedes</option><option value="110213">dpm-santa rita d oeste</option><option value="110203">dpm-santa salete</option><option value="110214">dpm-santana da ponte pensa</option><option value="90307">dpm-santo anastacio</option><option value="70321">dpm-santo antonio de posse</option><option value="90218">dpm-santo expedito</option><option value="50220">dpm-santopolis do aguapei </option><option value="130107">dpm-sao jose do barreiro</option><option value="270103">dpm-sao lourenco serra</option><option value="120308">dpm-sao miguel arcanjo</option><option value="120309">dpm-sarapui</option><option value="120111">dpm-sarutaia</option><option value="110522">dpm-sebastianopolis sul</option><option value="100426">dpm-serra azul</option><option value="100427">dpm-serrana</option><option value="40110">dpm-sete barras</option><option value="100220">dpm-severinia</option><option value="130108">dpm-silveiras</option><option value="70113">dpm-socorro</option><option value="110211">dpm-sta  clara d oeste</option><option value="110210">dpm-sta albertina</option><option value="70803">dpm-sta cruz da conceicao</option><option value="70210">dpm-sta cruz das palmeiras</option><option value="70525">dpm-sta maria da serra</option><option value="100513">dpm-sta rita passa quatro</option><option value="50238">dpm-sto antonio aracangua</option><option value="130414">dpm-sto antonio do pinhal</option><option value="70705">dpm-sto antonio jardim</option><option value="50119">dpm-suzanopolis</option><option value="130416">dpm-são bento do sapucai</option><option value="110112">dpm-tabapua</option><option value="100118">dpm-tabatinga</option><option value="90219">dpm-taciba</option><option value="120112">dpm-taguai</option><option value="100212">dpm-taiacu</option><option value="100213">dpm-taiuva</option><option value="70216">dpm-tambau</option><option value="110435">dpm-tanabi</option><option value="120516">dpm-tapirai</option><option value="70217">dpm-tapiratiba</option><option value="220109">dpm-taquaral</option><option value="120108">dpm-taquarituba</option><option value="120427">dpm-taquarivai</option><option value="90220">dpm-tarabai</option><option value="80126">dpm-taruma</option><option value="120113">dpm-tejupa</option><option value="90308">dpm-teodoro sampaio</option><option value="120212">dpm-tiete</option><option value="80316">dpm-timburi</option><option value="120220">dpm-torre de pedra</option><option value="70612">dpm-torrinha</option><option value="100502">dpm-trabiju</option><option value="130411">dpm-tremenbe</option><option value="110217">dpm-tres fronteiras</option><option value="130124">dpm-tuiuti</option><option value="90410">dpm-tupi paulista</option><option value="50226">dpm-turiuba</option><option value="110611">dpm-turmalina</option><option value="110324">dpm-ubarana</option><option value="60118">dpm-ubirajara</option><option value="110430">dpm-uchoa</option><option value="110318">dpm-uniao paulista</option><option value="110219">dpm-urania</option><option value="60311">dpm-uru</option><option value="110113">dpm-urupes</option><option value="110514">dpm-valentim gentil</option><option value="50221">dpm-valparaiso</option><option value="30420">dpm-vargem grande pta</option><option value="80215">dpm-vera cruz</option><option value="100215">dpm-viradouro</option><option value="100216">dpm-vista alegre do alto</option><option value="110216">dpm-vitoria brasil</option><option value="110325">dpm-zacarias</option><option value="30209">nucleo de roubo de cargas</option><option value="70010">plantão - 01 dp campinas</option><option value="70946">plantão - 01º d.p. jundiai</option><option value="70014">plantão - 04 dp campinas</option><option value="70015">plantão - 05 dp campinas</option><option value="70017">plantão - 09 dp campinas</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_del.readyState );
+}
+function DinamicSelectdel(){
+	loadDataIsland( 'dep,sec,aux' ,
+					'del', 
+					'pesquisas/xml/qryXmlDel.cfm', 
+					true, 
+					'Todos ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectdel();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr>
+							<td id="tdCia" valign="top" style="display: none;">
+								<span class="litPrincFiltros">Cias</span><br> 
+								
+
+<select name="cia" id="cia" size="4" style="text-transform:capitalize" onchange="" class="entPrincFiltros" multiple="">
+<option value="">Todos ...</option><option value="146">1ª cia do 01º bpm/m</option><option value="99">1ª cia do 02º bpm/m</option><option value="101">1ª cia do 03º bpm/m</option><option value="67">1ª cia do 04º bpm/m</option><option value="60">1ª cia do 05º bpm/m</option><option value="29">1ª cia do 06º bpm/m</option><option value="59">1ª cia do 07º bpm/m</option><option value="79">1ª cia do 08º bpm/m</option><option value="61">1ª cia do 09º bpm/m</option><option value="27">1ª cia do 10º bpm/m</option><option value="55">1ª cia do 11º bpm/m</option><option value="152">1ª cia do 12º bpm/m</option><option value="52">1ª cia do 13º bpm/m</option><option value="46">1ª cia do 14º bpm/m</option><option value="38">1ª cia do 15º bpm/m</option><option value="110">1ª cia do 16º bpm/m</option><option value="21">1ª cia do 17º bpm/m</option><option value="63">1ª cia do 18º bpm/m</option><option value="90">1ª cia do 19º bpm/m</option><option value="15">1ª cia do 20º bpm/m</option><option value="76">1ª cia do 21º bpm/m</option><option value="85">1ª cia do 22º bpm/m</option><option value="68">1ª cia do 23º bpm/m</option><option value="26">1ª cia do 24º bpm/m</option><option value="12">1ª cia do 25º bpm/m</option><option value="5">1ª cia do 26º bpm/m</option><option value="114">1ª cia do 27º bpm/m</option><option value="126">1ª cia do 28º bpm/m</option><option value="128">1ª cia do 29º bpm/m</option><option value="36">1ª cia do 30º bpm/m</option><option value="19">1ª cia do 31º bpm/m</option><option value="24">1ª cia do 32º bpm/m</option><option value="9">1ª cia do 33º bpm/m</option><option value="25">1ª cia do 35º bpm/m</option><option value="11">1ª cia do 36º bpm/m</option><option value="111">1ª cia do 37º bpm/m</option><option value="124">1ª cia do 38º bpm/m</option><option value="96">1ª cia do 39º bpm/m</option><option value="50">1ª cia do 41º bpm/m</option><option value="45">1ª cia do 42º bpm/m</option><option value="136">1ª cia do 43º bpm/m</option><option value="32">1ª e 3ª cia do 40º bpm/m</option><option value="145">2ª cia do 01º bpm/m</option><option value="141">2ª cia do 02º bpm/m</option><option value="119">2ª cia do 03º bpm/m</option><option value="104">2ª cia do 04º bpm/m</option><option value="62">2ª cia do 05º bpm/m</option><option value="30">2ª cia do 06º bpm/m</option><option value="53">2ª cia do 07º bpm/m</option><option value="80">2ª cia do 08º bpm/m</option><option value="150">2ª cia do 09º bpm/m</option><option value="49">2ª cia do 10º bpm/m</option><option value="56">2ª cia do 11º bpm/m</option><option value="74">2ª cia do 12º bpm/m</option><option value="58">2ª cia do 13º bpm/m</option><option value="47">2ª cia do 14º bpm/m</option><option value="39">2ª cia do 15º bpm/m</option><option value="108">2ª cia do 16º bpm/m</option><option value="22">2ª cia do 17º bpm/m</option><option value="64">2ª cia do 18º bpm/m</option><option value="93">2ª cia do 19º bpm/m</option><option value="16">2ª cia do 20º bpm/m</option><option value="78">2ª cia do 21º bpm/m</option><option value="115">2ª cia do 22º bpm/m</option><option value="70">2ª cia do 23º bpm/m</option><option value="3">2ª cia do 24º bpm/m</option><option value="13">2ª cia do 25º bpm/m</option><option value="18">2ª cia do 26º bpm/m</option><option value="112">2ª cia do 27º bpm/m</option><option value="92">2ª cia do 28º bpm/m</option><option value="131">2ª cia do 29º bpm/m</option><option value="28">2ª cia do 30º bpm/m</option><option value="42">2ª cia do 32º bpm/m</option><option value="10">2ª cia do 33º bpm/m</option><option value="20">2ª cia do 35º bpm/m</option><option value="2">2ª cia do 36º bpm/m</option><option value="147">2ª cia do 37º bpm/m</option><option value="91">2ª cia do 38º bpm/m</option><option value="98">2ª cia do 39º bpm/m</option><option value="33">2ª cia do 40º bpm/m</option><option value="35">2ª cia do 41º bpm/m</option><option value="44">2ª cia do 42º bpm/m</option><option value="149">2ª cia do 43º bpm/m</option><option value="1">2ª e 4ª cia do 31º bpm/m</option><option value="87">3ª cia do 01º bpm/m</option><option value="133">3ª cia do 02º bpm/m</option><option value="75">3ª cia do 03º bpm/m</option><option value="103">3ª cia do 04º bpm/m</option><option value="65">3ª cia do 05º bpm/m</option><option value="31">3ª cia do 06º bpm/m</option><option value="54">3ª cia do 07º bpm/m</option><option value="134">3ª cia do 08º bpm/m</option><option value="138">3ª cia do 09º bpm/m</option><option value="95">3ª cia do 11º bpm/m</option><option value="72">3ª cia do 12º bpm/m</option><option value="57">3ª cia do 13º bpm/m</option><option value="48">3ª cia do 14º bpm/m</option><option value="40">3ª cia do 15º bpm/m</option><option value="106">3ª cia do 16º bpm/m</option><option value="23">3ª cia do 17º bpm/m</option><option value="66">3ª cia do 18º bpm/m</option><option value="122">3ª cia do 19º bpm/m</option><option value="7">3ª cia do 20º bpm/m</option><option value="121">3ª cia do 21º bpm/m</option><option value="86">3ª cia do 22º bpm/m</option><option value="69">3ª cia do 23º bpm/m</option><option value="4">3ª cia do 24º bpm/m</option><option value="17">3ª cia do 26º bpm/m</option><option value="113">3ª cia do 27º bpm/m</option><option value="125">3ª cia do 28º bpm/m</option><option value="130">3ª cia do 29º bpm/m</option><option value="37">3ª cia do 30º bpm/m</option><option value="41">3ª cia do 31º bpm/m</option><option value="43">3ª cia do 32º bpm/m</option><option value="14">3ª cia do 33º bpm/m</option><option value="144">3ª cia do 37º bpm/m</option><option value="123">3ª cia do 38º bpm/m</option><option value="97">3ª cia do 39º bpm/m</option><option value="34">3ª cia do 41º bpm/m</option><option value="137">3ª cia do 43º bpm/m</option><option value="100">4ª cia do 01º bpm/m</option><option value="132">4ª cia do 02º bpm/m</option><option value="116">4ª cia do 03º bpm/m</option><option value="102">4ª cia do 04º bpm/m</option><option value="142">4ª cia do 05º bpm/m</option><option value="84">4ª cia do 08º bpm/m</option><option value="139">4ª cia do 09º bpm/m</option><option value="51">4ª cia do 11º bpm/m</option><option value="94">4ª cia do 12º bpm/m</option><option value="107">4ª cia do 16º bpm/m</option><option value="140">4ª cia do 18º bpm/m</option><option value="8">4ª cia do 20º bpm/m</option><option value="120">4ª cia do 21º bpm/m</option><option value="88">4ª cia do 22º bpm/m</option><option value="6">4ª cia do 26º bpm/m</option><option value="151">4ª cia do 27º bpm/m</option><option value="129">4ª cia do 29º bpm/m</option><option value="143">4ª cia do 37º bpm/m</option><option value="127">4ª cia do 39º bpm/m</option><option value="118">5ª cia do 03º bpm/m</option><option value="71">5ª cia do 04º bpm/m</option><option value="135">5ª cia do 05º bpm/m</option><option value="77">5ª cia do 08º bpm/m</option><option value="73">5ª cia do 12º bpm/m</option><option value="105">5ª cia do 16º bpm/m</option><option value="83">5ª cia do 21º bpm/m</option><option value="89">5ª cia do 22º bpm/m</option><option value="148">5ª cia do 27º bpm/m</option><option value="117">6ª cia do 03º bpm/m</option><option value="81">6ª cia do 08º bpm/m</option><option value="109">6ª cia do 16º bpm/m</option><option value="82">6ª cia do 21º bpm/m</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_cia.readyState );
+}
+function DinamicSelectcia(){
+	loadDataIsland( 'cpa,bat' ,
+					'cia', 
+					'pesquisas/xml/qryXmlCia.cfm', 
+					true, 
+					'Todos ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectcia();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdCidade" width="170" valign="top" style="display: none;">
+								<span class="litPrincFiltros">Município</span> 
+								
+
+<select name="cidade" id="cidade" size="1" style="text-transform:capitalize" onchange="DinamicSelectlayer();" class="entPrincFiltros">
+<option value="">Escolha...</option><option value="7057">santo andre              </option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_cidade.readyState );
+}
+function DinamicSelectcidade(){
+	loadDataIsland( 'aux' ,
+					'cidade', 
+					'pesquisas/xml/qryXmlCidade.cfm', 
+					false, 
+					'Escolha...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectcidade();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdVisao" width="170" valign="top" style="display: none;">
+								<span class="litPrincFiltros">Visão</span> 
+								
+
+<select name="layer" id="layer" size="1" style="text-transform:capitalize" onchange="DinamicSelectarea();" class="entPrincFiltros">
+<option value="">Escolha...</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_layer.readyState );
+}
+function DinamicSelectlayer(){
+	loadDataIsland( 'cidade' ,
+					'layer', 
+					'pesquisas/xml/qryXmlLayer.cfm', 
+					false, 
+					'Escolha...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectlayer();
+
+</script>
+
+
+							</td>
+						</tr>
+						<tr> 
+							<td id="tdArea" width="170" valign="top" style="display: none;">
+								<span class="litPrincFiltros">Area</span> 
+								
+
+<select name="area" id="area" size="4" style="text-transform:capitalize" onchange="" class="entPrincFiltros" multiple="">
+<option value="">Todas...</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_area.readyState );
+}
+function DinamicSelectarea(){
+	loadDataIsland( 'layer' ,
+					'area', 
+					'pesquisas/xml/qryXmlAreas.cfm', 
+					false, 
+					'Todas...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectarea();
+
+</script>
+
+
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+				<td width="10" rowspan="3"></td>
+				<td width="4" rowspan="3" background="./pagina2-pesquisa_files/ponto_vertical.gif"></td>
+				<td width="10" rowspan="3"></td>
+				<td colspan="2" rowspan="3" align="left" valign="top" class="litPrinc"> 
+					<table border="0" cellpadding="0" cellspacing="0" align="left">
+						<tbody><tr> 
+							<td width="170">
+								<br>
+								<br>
+								<span class="litPrincFiltros">Agrupamentos de Naturezas </span> 
+								<div align="left"> 
+									
+
+<select name="agnatu" id="agnatu" size="4" style="text-transform:capitalize" onchange="pesquisa.natuLst.value = sel2lst( pesquisa.agnatu ); DinamicSelectnatu();" class="entPrincFiltros2" multiple="">
+<option value="">Todas ...</option><option value="22">ato infracional</option><option value="19">contravenção penal</option><option value="7">crimes com armas de fogo</option><option value="17">estupro</option><option value="6">extorsão mediante sequestro</option><option value="14">furto - outros</option><option value="13">furto de carga</option><option value="12">furto de veiculo</option><option value="2">homicidio culposo</option><option value="1">homicidio doloso</option><option value="24">homicídio tentado</option><option value="5">latrocínio</option><option value="25">latrocínio tentado</option><option value="4">lesão corporal culposa</option><option value="3">lesão corporal dolosa</option><option value="21">ocorrencias não criminais</option><option value="20">outros crimes</option><option value="23">outros crimes tentados</option><option value="11">roubo - outros</option><option value="10">roubo a coletivo</option><option value="9">roubo de carga</option><option value="8">roubo de veículo</option><option value="15">trafico de entorpecente</option><option value="16">uso de entorpecente</option><option value="18">veículo localizado</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_agnatu.readyState );
+}
+function DinamicSelectagnatu(){
+	loadDataIsland( 'inst' ,
+					'agnatu', 
+					'pesquisas/xml/qryXmlNatu.cfm', 
+					true, 
+					'Todas ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectagnatu();
+
+</script>
+
+
+								</div>
+								<input type="Hidden" name="natuLst">
+							</td>
+						</tr>
+						
+						<tr> 
+						   <td id="natDet">
+						      <span class="litPrincFiltros">Naturezas</span>
+							  <br> 
+								
+
+<select name="natu" id="natu" size="4" style="text-transform:capitalize" onchange="" class="entPrincFiltros2" multiple="">
+<option value="">Todas ...</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_natu.readyState );
+}
+function DinamicSelectnatu(){
+	loadDataIsland( 'natuLst' ,
+					'natu', 
+					'pesquisas/xml/qryXmlDetNatu.cfm', 
+					false, 
+					'Todas ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectnatu();
+
+</script>
+
+
+						   </td>
+						</tr>
+						<tr> 
+							<td id="tdLoc">
+								<span class="litPrincFiltros">Tipos de Local</span>
+								<br> 
+								
+
+<select name="local" id="local" size="4" style="text-transform:capitalize" onchange="" class="entPrincFiltros2" multiple="">
+<option value="">Todos ...</option><option value="1">aeroporto</option><option value="2">area abandonada/terreno</option><option value="3">area de recreação</option><option value="4">asilo para idosos</option><option value="5">banca de jornal</option><option value="6">banco/casa de cambio</option><option value="30">bar</option><option value="7">biblioteca</option><option value="31">boate</option><option value="50">carro forte</option><option value="8">centro religioso</option><option value="9">consultorio medico/dentista</option><option value="38">defronte residencia da vitima</option><option value="10">elevador/escada/rolante</option><option value="11">escola publica/particular</option><option value="41">escritorio de advocacia</option><option value="12">estabelecimento comercial</option><option value="36">estacao de metro</option><option value="34">estacao ferroviaria</option><option value="35">estacao rodoviaria</option><option value="13">estacionamento</option><option value="14">estadio esportivo</option><option value="15">fabrica/industria</option><option value="28">fazenda/sitio</option><option value="16">hospital/predio de saude</option><option value="17">hotel/motel</option><option value="33">lanchonete</option><option value="42">nao informado</option><option value="39">outros</option><option value="32">pedagio</option><option value="18">plataforma</option><option value="19">posto de gasolina</option><option value="20">predio do governo</option><option value="21">residencia</option><option value="37">rodovia</option><option value="27">salao de beleza</option><option value="29">semaforo</option><option value="22">terminal de trem/metro/onibus</option><option value="23">transporte coletivo</option><option value="40">tunel</option><option value="24">veiculo comercial</option><option value="25">veiculo particular</option><option value="26">via publica-rua/av./vila/praca</option></select>
+
+<script language="JavaScript">
+
+//Funções especificas
+function Teste(){
+	alert( id_local.readyState );
+}
+function DinamicSelectlocal(){
+	loadDataIsland( 'inst' ,
+					'local', 
+					'pesquisas/xml/qryXmlLocal.cfm', 
+					true, 
+					'Todos ...', 
+					'codigo', 
+					'nome', 
+					''
+					 );
+}
+
+	// Carrega combo se for o caso
+
+DinamicSelectlocal();
+
+</script>
+
+
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+				<td width="10" rowspan="3"></td>
+				<td width="4" rowspan="3" background="./pagina2-pesquisa_files/ponto_vertical.gif"></td>
+			</tr>
+			<tr> 
+				<td colspan="7" align="left" valign="top" bgcolor="#FFFFFF"> 
+					<table width="200" border="0" cellpadding="0" cellspacing="0">
+						<tbody><tr> 
+							<td height="101" valign="top"> 
+								<table border="0" cellpadding="0" cellspacing="0" bordercolor="#e8e8e8">
+									<tbody><tr> 
+										<td height="20"></td>
+									</tr>
+									<tr> 
+										<td width="28" height="83" rowspan="2"> 
+											
+										</td>
+										<td width="96" valign="top" class="litPrinc" colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Período</td>
+									</tr>
+									<tr> 
+										<td width="182" valign="top"> 
+											<table width="87%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#e8e8e8">
+												<tbody><tr> 
+													<td height="87" valign="top"> 
+														<table id="periodo" width="100%" height="90" border="0" cellpadding="0" cellspacing="0" align="center">
+															<tbody><tr> 
+																<td width="1%" height="33">&nbsp;</td>
+																<td width="65%" class="litPrincSenhaMail">
+																	Data Inicial
+																	<br> 
+																	<input name="dtIni" type="text" value="01/01/1980" maxlength="10" id="dtIni" class="entPrincFiltrosPeriodo" size="10" maskpattern="		/		/				" position="-1"> 
+																	<script language="JavaScript">
+																		InitializeMaskEdit( "dtIni", "$d$d/$d$d/$d$d$d$d");
+
+																	</script>
+																	<a href="http://www.infocrim.ssp.sp.gov.br/seguro/Calendar%20Control" onclick="JavaScript:window.open(&#39;pesquisas/calendar.html?form=pesquisa&amp;field=dtIni&amp;format=S&amp;offset=0&amp;txtcolor=Black&amp;hdrcolor=Orange&#39;,&#39;cal&#39;,&#39;noresize,width=225,height=160,top=270,left=300&#39;);return false">
+																	<img src="./pagina2-pesquisa_files/calen.gif" width="14" height="14" alt="" border="0" align="absbottom"></a>
+																</td>
+															<td width="35%" class="litPrincSenhaMail"><div align="center"><span class="litPrinclaranjaSemBold">Hora</span><br>
+																<input name="hrIni" type="text" value="00:00" maxlength="5" id="hrIni" notab="true" class="entPrincFiltrosPeriodoData" maskpattern="		:		" position="-1">
+
+																<script language="JavaScript">
+	     																InitializeMaskEdit( "hrIni", "$d$d:$d$d");
+																</script>
+															</div></td>
+														</tr>
+														<tr> 
+															<td>&nbsp;</td>
+																<td rowspan="2" class="litPrincSenhaMail">
+																	
+																	Data Final 
+																	<input name="dtFim" type="text" value="13/06/2019" maxlength="10" id="dtFim" class="entPrincFiltrosPeriodo" size="10" maskpattern="		/		/				" position="-1">
+																	<script language="JavaScript">
+																		InitializeMaskEdit( "dtFim", "$d$d/$d$d/$d$d$d$d");
+																	</script>
+																	<a href="http://www.infocrim.ssp.sp.gov.br/seguro/Calendar%20Control" onclick="JavaScript:window.open(&#39;pesquisas/calendar.html?form=pesquisa&amp;field=dtFim&amp;format=S&amp;offset=0&amp;txtcolor=Black&amp;hdrcolor=Orange&#39;,&#39;cal&#39;,&#39;noresize,width=225,height=160,top=270,left=300&#39;);return false">
+																	<img src="./pagina2-pesquisa_files/calen.gif" width="14" height="14" alt="" border="0" align="absbottom"></a>
+																</td>
+																<td rowspan="2" class="litPrinclaranjaSemBold">
+																	<div align="center">Hora<br>
+																	<input name="hrFim" type="text" value="23:59" maxlength="5" id="hrFim" notab="true" class="entPrincFiltrosPeriodoData" maskpattern="		:		" position="-1">
+																<script language="JavaScript">
+	     																InitializeMaskEdit( "hrFim", "$d$d:$d$d");
+																</script>
+																	</div>
+																</td>
+															</tr>
+															<tr> 
+																<td>&nbsp;</td>
+															</tr>
+															<tr> 
+																<td>&nbsp;</td>
+																<td colspan="2">
+																	<input name="hrFaixa" type="checkbox" id="hrFaixa" value="S"> 
+																	<span class="litPrinclaranjaSemBold"> Faixa De Hora</span>
+																</td>
+															</tr>
+														</tbody></table>
+													</td>
+												</tr>
+											</tbody></table>
+										</td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+						
+						<tr> 
+							<td>
+								<table width="188" border="0" cellpadding="0" cellspacing="0">
+									<tbody><tr> 
+										<td valign="bottom"> 
+											<div align="right">
+												<a id="submit" href="pagina3-dados.html">
+													<img src="./pagina2-pesquisa_files/flecha1.gif" borde="0" id="enviar">
+												</a>
+											</div>
+										</td>
+									</tr>
+								</tbody></table>
+							</td>
+			            </tr>
+		            </tbody></table>
+				</td>
+			</tr>
+		</tbody></table>
+		<table width="620" border="0" cellspacing="0" cellpadding="0">
+			<tbody><tr> 
+				<td height="5"></td>
+				<td width="5" height="5" rowspan="2"><img src="./pagina2-pesquisa_files/final_pontilhado.gif" width="5" height="5" align="bottom"></td>
+			</tr>
+			<tr> 
+				<td width="626" height="2" background="./pagina2-pesquisa_files/ponto_vertical.gif"></td>
+			</tr>
+		</tbody></table>
+	</td>
+</tr>
+
+
+</tbody></table>
+
+<table width="760" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td>
+		<div style="FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ff3300; LINE-HEIGHT: normal; FONT-FAMILY: Verdana, Arial, sans-serif" align="right" id="aguarde"></div>
+		</td>
+	</tr>
+</tbody></table>
+
+<script language="JavaScript" type="text/javascript">
+var pesquisa = document.getElementsByName('pesquisa')[0];
+var elabora = document.getElementById('elabora');
+function hide(obj){
+	obj.style.display = 'none';
+}
+function show(obj){
+	obj.style.display = '';
+}
+function isVisible(obj){
+	return obj.style.display == '';
+}
+function mudaInst(){
+	if ( pesquisa.inst.value == '1'){
+		// Pode ser pesquisa por elaboração
+		elabora.disabled = false;
+		// liga civil
+		show(document.getElementById('tdDep'));
+		show(document.getElementById('tdSec'));
+		show(document.getElementById('tdDel'));
+		// desliga militar
+		hide(document.getElementById('tdCpa'));
+		hide(document.getElementById('tdCia'));
+		hide(document.getElementById('tdBat'));
+		//desliga cidade
+		hide(document.getElementById('tdCidade'));
+		hide(document.getElementById('tdVisao'));
+  		hide(document.getElementById('tdArea'));
+	} else if ( pesquisa.inst.value == '2'){
+		// Só por circuncrição
+		pesquisa.circuns[0].checked = true;
+		elabora.disabled = true;
+		// liga militar
+		show(document.getElementById('tdCpa'));
+		show(document.getElementById('tdCia'));
+		show(document.getElementById('tdBat'));
+		// desliga civil
+		hide(document.getElementById('tdDep'));
+		hide(document.getElementById('tdSec'));
+		hide(document.getElementById('tdDel'));
+		//desliga cidade
+		hide(document.getElementById('tdCidade'));
+		hide(document.getElementById('tdVisao'));
+  		hide(tdArea);
+	} else {
+		// Só por circuncrição
+		pesquisa.circuns[0].checked = true;
+		elabora.disabled = true;
+		// liga prefeitura
+		show(document.getElementById('tdCidade'));
+		show(document.getElementById('tdVisao'));
+  		show(document.getElementById('tdArea'));
+		// desliga civil
+		hide(document.getElementById('tdDep'));
+		hide(document.getElementById('tdSec'));
+		hide(document.getElementById('tdDel'));
+		// desliga militar
+		hide(document.getElementById('tdCpa'));
+		hide(document.getElementById('tdCia'));
+		hide(document.getElementById('tdBat'));
+	}
+	return true;
+}
+/*
+function mudaNatDet(){
+	if( isVisible(natDet) ){
+		hide(natDet);
+		pesquisa.icoNatDet.src = 'img/icone_mais.gif';
+	}else{
+		show(natDet);
+		pesquisa.icoNatDet.src = 'img/icone_menos.gif';
+	}
+}
+function mudaLoc(){
+	if( isVisible(tdLoc) ){
+		hide(tdLoc);
+		pesquisa.icoLoc.src = 'img/icone_mais.gif';
+	}else{
+		show(tdLoc);
+		pesquisa.icoLoc.src = 'img/icone_menos.gif';
+	}
+}
+*/
+/*
+function mudaPeriodo(){
+	// Habilita quadro de datas
+	periodo.disabled = false; // Desabilita tablela
+	pesquisa.dtIni.disabled = false;
+	pesquisa.dtFim.disabled = false;
+	pesquisa.hrIni.disabled = false;
+	pesquisa.hrFim.disabled = false;
+	pesquisa.hrFaixa.disabled = false;
+	// Desabilita quadro de frequencia
+	frequencia.disabled = true; // Desabilita tablela
+	pesquisa.freq.disabled = true;
+	pesquisa.freqVal.disabled = true;
+	return true;
+}
+function mudaFrequencia(){
+	// Habilita quadro de frequencia
+	frequencia.disabled = false; // Desabilita tablela
+	pesquisa.freq.disabled = false;
+	pesquisa.freqVal.disabled = false;
+	// Desabilita quadro de datas
+	periodo.disabled = true; // Desabilita tablela
+	pesquisa.dtIni.disabled = true;
+	pesquisa.dtFim.disabled = true;
+	pesquisa.hrIni.disabled = true;
+	pesquisa.hrFim.disabled = true;
+	pesquisa.hrFaixa.disabled = true;
+	return true;
+}
+*/
+function hideApresentacao(){
+	hide(document.getElementById('envolvido'));
+	hide(document.getElementById('logradouro'));
+	hide(document.getElementById('ordem'));
+	hide(document.getElementById('objetos'));
+	hide(document.getElementById('amostragem'));
+	hide(document.getElementById('natureza'));
+	hide(document.getElementById('palavras'));
+	hide(document.getElementById('mapa'));
+}
+function zeraCampos(){
+   // compartilhado
+   pesquisa.ordem.value = "";
+
+   // ocorrencia
+   pesquisa.bo_num.value = "";
+   pesquisa.bo_ano.value = "";
+   
+   // logradouro
+   pesquisa.logra.value = "";
+   
+   //Detalhe de natureza
+   pesquisa.DetNatu.checked = false;
+}
+function mudaApresentacao(){
+	elabora.disabled = true;
+	hideApresentacao();
+	switch (pesquisa.apres.value){
+		case 'pes.ocorrencia' : 
+			elabora.disabled = false;
+			zeraCampos();
+			show(document.getElementById('ordem'));
+			break;
+		case 'pes.natureza' : 
+			zeraCampos();
+			show(document.getElementById('natureza'));
+			show(document.getElementById('amostragem'));
+			break;
+		case 'pes.logradouro' : 
+			zeraCampos();
+			show(document.getElementById('logradouro'));
+			show(document.getElementById('amostragem'));
+			break;
+		case 'pes.envolvido' : 
+			zeraCampos();
+			show(document.getElementById('envolvido'));
+			break;
+		case 'pes.objeto' : 
+			zeraCampos();
+			show(document.getElementById('objetos'));
+			show(amostragem);
+			break;
+		case 'pes.historico' : 
+			zeraCampos();
+			show(document.getElementById('palavras'));
+			break;
+		case 'pes.mapa' : 
+			zeraCampos();
+			show(document.getElementById('mapa'));
+			break;
+	}
+}
+function init(){
+	mudaApresentacao();
+//	mudaNatDet();
+//	mudaLoc();
+	mudaInst();
+//	mudaPeriodo();
+}
+//Validações
+lError = false;
+cMsgAlert = '';
+function hError( fmMain, oInput, cInput, cMsg ){
+	lError = true;
+	cMsgAlert +=  cMsg + '\n';
+	return true;
+}
+function Errors(){
+	if ( lError ) {
+		// Mostra errors
+		alert(cMsgAlert);
+		//Reseta validações
+		lError = false;
+		cMsgAlert = '';
+		return true;
+	}
+	else
+		return false;
+}
+function isEmpty( str ){
+	return str.length == 0
+}
+function isFilled( field , msg ){
+	if ( isEmpty( field.value ) ){
+		hError(null,null,null,msg);
+	}
+}
+function Trim( str ){
+	return str.replace(/^\s+|\s+$/g,"");
+}
+
+function WordCount( str ) {
+	var cleanedStr = Trim( str );
+	var splitString = cleanedStr.split(" ");
+	var word_count = splitString.length ;
+	return word_count;
+}
+
+function resultado(){
+
+	_CF_checkpesquisa(pesquisa);
+	if( pesquisa.apres.value == 'pes.envolvido' ){
+		if( isEmpty(pesquisa.nome.value) ){
+			hError(null,null,null,'Nome obrigatório!');
+		} else if( Trim( pesquisa.nome.value ).substr(0,1) == '%' ){
+			hError(null,null,null,'Não é permitido o uso do "%" no início do nome a pesquisar!');
+		} else if( WordCount( pesquisa.nome.value ) < 2 ) {
+			hError(null,null,null,'Nome tem que possuir no mínimo 2 palavras!');
+		}
+	}
+	
+	if( !( pesquisa.apres.value == 'pes.ocorrencia' && ! isEmpty(pesquisa.bo_ano.value) ) ){
+	   isFilled(pesquisa.dtIni,'Data inícial obrigatória!');
+	   isFilled(pesquisa.hrIni,'Hora inícial obrigatória!');
+	   isFilled(pesquisa.dtFim,'Data final obrigatória!');
+	   isFilled(pesquisa.hrFim,'Hora final obrigatória!');
+	}
+	
+	if( pesquisa.inst.value == '3' ) {
+	    if ( pesquisa.cidade.value == '' )
+			hError(null,null,null,'Escolha um município!' );
+	    if ( pesquisa.layer.value == '' )
+			hError(null,null,null,'Escolha uma visão!' );
+	}
+	
+	if ( ! Errors() ) {
+		
+	  window.openCenterCustom('pesquisas/aguarde.cfm');
+	  pesquisa.target = window.oWin.name;
+      pesquisa.submit();
+	}
+}
+function focaProximo(str, maxlen, proximo){
+	if( str.value.length == maxlen )
+		document.all(proximo).focus();
+}
+
+init();
+</script>
+<script>
+function sel2lst( oSel ){
+	var cLst = '';
+	
+	for ( i = 0 ; i < oSel.length ; i++){
+		var oOpt = oSel.item(i);
+		if ( oOpt.selected )
+			if ( cLst == '' )
+				cLst += oOpt.value ;
+			else
+				cLst += ',' + oOpt.value;
+	}
+
+	return cLst;
+} 
+</script>
+
+
+ </a><div id="icpbravoaccess_loaded"></div></body></html>

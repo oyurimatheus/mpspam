@@ -1,0 +1,94 @@
+function adicionarVara() {
+  $('#adic_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_adicionar').attr('disabled','disabled');
+  var nome = $('form[name=form_vara_adicionar] [name=nome]').val();
+  var comarca_id = $('form[name=form_vara_adicionar] [name=comarca_id]').val();
+  var entidade_juiz_id = $('form[name=form_vara_adicionar] [name=entidade_juiz_id]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './varas/varaExecutar.cfm',
+    data: {
+      'exec': 'adicionarVara',
+      'nome': escape(nome),
+      'comarca_id': escape(comarca_id),
+      'entidade_juiz_id': escape(entidade_juiz_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('varas/varasVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_adicionar').removeAttr('disabled');
+      $('#adic_loading').html('');
+    }
+  });
+}
+
+function atualizarVara() {
+  $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_atualizar').attr('disabled','disabled');
+  var vara_juiz_id = $('form[name=form_vara_atualizar] [name=vara_juiz_id]').val();
+  var nome = $('form[name=form_vara_atualizar] [name=nome]').val();
+  var comarca_id = $('form[name=form_vara_atualizar] [name=comarca_id]').val();
+  var entidade_juiz_id = $('form[name=form_vara_atualizar] [name=entidade_juiz_id]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './varas/varaExecutar.cfm',
+    data: {
+      'exec': 'atualizarVara',
+      'vara_juiz_id': escape(vara_juiz_id),
+      'nome': escape(nome),
+      'comarca_id': escape(comarca_id),
+      'entidade_juiz_id': escape(entidade_juiz_id)
+
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('varas/varasVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_atualizar').removeAttr('disabled');
+      $('#atua_loading').html('');
+    }
+  });
+}
+
+function excluirVara() {
+  var confirma=confirm('Tem certeza que deseja excluir essa Vara?');
+  if(confirma){
+    $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+    $('#btn_atualizar').attr('disabled','disabled');
+    var vara_juiz_id = $('form[name=form_vara_atualizar] [name=vara_juiz_id]').val();
+
+    $.ajax({
+      type: 'POST',
+      url: './varas/varaExecutar.cfm',
+      data: {
+        'exec': 'excluirVara',
+        'vara_juiz_id': escape(vara_juiz_id)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            montarURL('varas/varasVisualizar');
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+        $('#btn_atualizar').removeAttr('disabled');
+        $('#atua_loading').html('');
+      }
+    });
+  }
+}

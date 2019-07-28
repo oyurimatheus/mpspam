@@ -1,0 +1,86 @@
+﻿function NotifyDesktop(title, message, callback) 
+{
+    if (!Notification) {
+        console.log('Desktop notifications not available in your browser.'); 
+        return;
+    }
+
+    if (Notification.permission !== "granted") Notification.requestPermission();
+    else {
+        var regex = /<br\s*[\/]?>/gi;
+
+        var notification = new Notification(title, {
+            icon:'/Content/Images/img-logo.png',
+            body: message.replace(regex, "\n"),
+        });
+
+        if (callback != null)
+        {
+            // Remove the notification from Notification Center when clicked.
+            notification.onclick = function (e) {
+                callback(e);    
+            };
+        }
+
+        // Callback function when the notification is closed.
+        notification.onclose = function () {
+            console.log('Notification closed');
+        };
+    }
+}
+
+function NotifyModal(title, message, callback)
+{
+    var modal = $('#popupComunicado');
+
+    modal.find('#modal-title').html(title);
+    modal.find('.modal-body').html(message);
+
+    if (callback != null)
+    {
+        modal.unbind('hidden.bs.modal');
+        modal.on('hidden.bs.modal', callback);
+    }
+
+    modal.modal('show');
+}
+
+function VerificarComunicados(habilitarTimer)
+{
+    $.post('/Servicos/Mensagens/VerificarComunicados', function(r) {
+        if (r.Retorno)
+        {
+            var comunicadoData = new Date(parseInt(r.Comunicado.Data.substr(6)));
+            var comunicadoTitulo = 'Comunicado Importante - ' + $.datepicker.formatDate("dd/mm/yy", comunicadoData);
+            var comunicadoMensagem = r.Comunicado.Mensagem;
+            var comunicadoCallback = function (e) {
+                //Checks if callback event is triggered by a human.
+                if (e.isTrusted || e.isTrigger)
+                {
+                    $.post('/Servicos/Mensagens/RegistrarVisualizacao', { IDComunicado: r.Comunicado.Id }, function () {
+                        VerificarComunicados(habilitarTimer);
+                    });
+                }
+            };
+
+            NotifyModal(comunicadoTitulo, comunicadoMensagem, comunicadoCallback);
+            NotifyDesktop(comunicadoTitulo, comunicadoMensagem, comunicadoCallback);
+        }
+        else if (habilitarTimer) setTimeout(function() { VerificarComunicados(habilitarTimer); }, 60000);
+    });
+}
+
+function LerMaisTarde()
+{
+    $.post('/Servicos/Mensagens/VerificarComunicados', function(r) {
+        if (r.Retorno)
+        {          
+            $.post('/Servicos/Mensagens/LerMaisTarde', { IDComunicado: r.Comunicado.Id }, function () {  
+            });
+        }
+        else if (habilitarTimer) setTimeout(function() { VerificarComunicados(habilitarTimer); }, 60000);
+    });
+}
+
+
+

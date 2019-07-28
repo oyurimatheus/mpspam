@@ -1,0 +1,100 @@
+function buscarRegistros() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_pesquisar').attr('disabled','disabled');
+  var tipo_registro = getRadio('form_busca','tipo_registro');
+  var numero_processo = $('form[name=form_busca] [name=numero_processo]').val();
+  var vara_juiz_id = $('form[name=form_busca] [name=vara_juiz_id]').val();
+  var uf = $('form[name=form_busca] [name=uf]').val();
+  var cidade_id = $('form[name=form_busca] [name=cidade_id]').val();
+  var cartorio_id = $('form[name=form_busca] [name=cartorio_id]').val();
+  var nome_registrado = $('form[name=form_busca] [name=nome_registrado]').val();
+  var nome_pai = $('form[name=form_busca] [name=nome_pai]').val();
+  var nome_mae = $('form[name=form_busca] [name=nome_mae]').val();
+  var data_ocorrido_ini = $('form[name=form_busca] [name=data_ocorrido_ini]').val();
+  var data_ocorrido_fim = $('form[name=form_busca] [name=data_ocorrido_fim]').val();
+  var data_registro_ini = $('form[name=form_busca] [name=data_registro_ini]').val();
+  var data_registro_fim = $('form[name=form_busca] [name=data_registro_fim]').val();
+  var num_livro = $('form[name=form_busca] [name=num_livro]').val();
+  var num_folha = $('form[name=form_busca] [name=num_folha]').val();
+  var num_registro = $('form[name=form_busca] [name=num_registro]').val();
+  var outra_vara = $('form[name=form_busca] [name=outra_vara]').val();
+  var cpf_registrado = $('form[name=form_busca] [name=cpf_registrado]').val();
+  var flag_conjuge = getRadio('form_busca','flag_conjuge');
+
+  // definir sistema de busca (elastic, oracle)
+  var array_es = ['N,TN', 'C,TC', 'O,TO', 'E', 'I', 'A', 'U'];
+  if ($.inArray(tipo_registro, array_es) > -1) {
+    var url = './central/buscaExecutarES.cfm'
+  } else {
+    var url = './central/buscaExecutar.cfm'
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: {
+      'exec': 'buscarRegistros',
+      'tipo_registro': escape(tipo_registro),
+      'numero_processo': escape(numero_processo),
+      'vara_juiz_id': escape(vara_juiz_id),
+      'uf': escape(uf),
+      'cidade_id': escape(cidade_id),
+      'cartorio_id': escape(cartorio_id),
+      'nome_registrado': escape(nome_registrado),
+      'nome_pai': escape(nome_pai),
+      'nome_mae': escape(nome_mae),
+      'data_ocorrido_ini': escape(data_ocorrido_ini),
+      'data_ocorrido_fim': escape(data_ocorrido_fim),
+      'data_registro_ini': escape(data_registro_ini),
+      'data_registro_fim': escape(data_registro_fim),
+      'num_livro': escape(num_livro),
+      'num_folha': escape(num_folha),
+      'num_registro': escape(num_registro),
+      'outra_vara': escape(outra_vara),
+      'cpf_registrado': escape(cpf_registrado),
+      'flag_conjuge': escape(flag_conjuge)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#pesq_registros').html(obj.html);
+          break;
+        case 2:
+          $('#pesq_registros').html(obj.html);
+          alert(obj.erro_msg);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_pesquisar').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+}
+
+function tirarNomePaiMae(){
+  $(function(){
+    $('#nome_pai').hide();
+    $('#nome_mae').hide();
+  });
+}
+
+function habilitarNomePaiMae(){
+  $(function(){
+    $('#nome_pai').show();
+    $('#nome_mae').show();
+  });
+}
+
+function tirarConjuge(){
+  $(function(){
+    $('#nome_conjuge').hide();
+  });
+}
+
+function habilitarConjuge(){
+  $(function(){
+    $('#nome_conjuge').show();
+  });
+}

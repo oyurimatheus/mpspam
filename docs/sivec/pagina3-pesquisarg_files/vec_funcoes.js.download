@@ -1,0 +1,1060 @@
+var paginaAnterior;
+function getKeycode(event) {
+	return event.keyCode;
+}
+
+
+function isdigit (obj) {
+	$(obj).mask('999999#');
+}
+function maskDt(obj) {
+	$(obj).mask("99/99/9999");
+}
+
+function seta_valor_tipo_selecionado(tipo) {
+	document.forms[0].tipo.value = tipo;
+}
+//Função que faz auto tabulação dos campos
+var isNN = (navigator.appName.indexOf("Netscape")!=-1);
+function autoTab(input,len, e) {
+	var keyCode = (isNN) ? e.which : e.keyCode;
+	var filter = (isNN) ? [0,8,9] : [0,8,9,16,17,18,37,38,39,40,46];
+	if(input.value.length >= len && !containsElement(filter,keyCode)) {
+		input.value = input.value.slice(0, len);
+	}
+
+	function containsElement(arr, ele) {
+		var found = false, index = 0;
+		while(!found && index < arr.length) {
+			if(arr[index] == ele) {
+				found = true;
+			} else {
+				index++;
+			}
+		}
+		return found;
+	}
+
+	function getIndex(input) {
+		var index = -1, i = 0, found = false;
+		while (i < input.form.length && index == -1) {
+			if (input.form[i] == input) {
+				index = i;
+			} else {
+				i++;
+			}
+		}
+		return index;
+	}
+	return true;
+}
+
+function MM_goToURL() { //v3.0
+  var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
+  for (i=0; i<(args.length-1); i+=2) eval(args[i]+".location='"+args[i+1]+"'");
+}
+/*
+*/
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+	window.open(theURL,winName,features);
+}
+//
+// Retorna false se o campo estiver vazio.
+// field - Qualquer campo que tenha uma propriedade value do tipo string.
+//
+function validateEmptyField(field) {
+    return !(trim(field.value) == "");
+}
+
+/*
+This function removes all leading and tralining spaces from a string.
+Returns null if invalid arguments were passed.
+This function depends on the functions trimLeft & trimRight.
+*/
+function trim(str) {
+    var resultStr = "";
+
+    resultStr = trimLeft(str);
+    resultStr = trimRight(resultStr);
+
+    return resultStr;
+}
+
+/*
+This function removes all leading spaces from a string.
+Returns null if invalid arguments were passed.
+*/
+function trimLeft(str) {
+    var resultStr = "";
+    var i = len = 0;
+    //Return immediately if an invalid value was passed in
+    if (str + "" == "undefined" || str == null)
+        return null;
+    //Make sure the argument is a string
+    str += "";
+    if (str.length == 0) {
+        resultStr = "";
+    } else {
+        //Loop through string starting at the beginning as long as there are spaces.
+        //len = str.length - 1;
+        len = str.length;
+        while ((i <= len) && (str.charAt(i) == " ")) {
+            i++;
+        }
+        /*
+        When the loop is done, we're sitting at the first non-space char, so
+        return that char plus the remaining chars of the string.
+        */
+        resultStr = str.substring(i, len);
+    }
+    return resultStr;
+}
+function maskDtext(obj) {
+	var txt;
+	txt = obj.value;
+	if ((txt != '') && ((event.keyCode) != 47)) {
+		if (!((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97))) {
+			if (txt.length == 3) {
+				txt=txt.substring(0,3)+'.';
+				obj.value=txt;
+			}
+		
+		} else { 
+			event.returnValue = false;
+		}
+	}
+}
+
+
+/*
+Returns null if invalid arguments were passed.
+This function removes all trailing spaces from a string.
+*/
+function trimRight(str) {
+    var resultStr = "";
+    var i = 0;
+    //Return immediately if an invalid value was passed in
+    if (str + "" == "undefined" || str == null) {
+        return null;
+    }
+    //Make sure the argument is a string
+    str += "";
+    if (str.length == 0) {
+        resultStr = "";
+    } else {
+        //Loop through string starting at the end as long as there are spaces.
+        i = str.length - 1;
+        while ((i >= 0) && (str.charAt(i) == " ")) {
+            i--;
+        }
+        /*
+        When the loop is done, we're sitting at the last non-space char,
+        so return that char plus all previous chars of the string.
+        */
+        resultStr = str.substring(0, i + 1);
+    }
+    return resultStr;   
+}
+
+
+//
+//	Função de validação de Email
+//
+function emailCheck (emailStr) {
+
+	var checkTLD=1;
+	var knownDomsPat=/^(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum)$/;
+	var emailPat=/^(.+)@(.+)$/;
+	var specialChars="\\(\\)><@,;:\\\\\\\"\\.\\[\\]";
+	var validChars="\[^\\s" + specialChars + "\]";
+	var quotedUser="(\"[^\"]*\")";
+	var ipDomainPat=/^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/;
+	var atom=validChars + '+';
+	var word="(" + atom + "|" + quotedUser + ")";
+	var userPat=new RegExp("^" + word + "(\\." + word + ")*$");
+	var domainPat=new RegExp("^" + atom + "(\\." + atom +")*$");
+	var matchArray=emailStr.match(emailPat);
+	
+	if (matchArray==null) {
+		alert("Email inválido (verifique caracteres '@' e '.').");
+	  	return false;
+	}
+	var user=matchArray[1];
+	var domain=matchArray[2];
+	
+	// Start by checking that only basic ASCII characters are in the strings (0-127).
+	
+	for (i=0; i<user.length; i++) {
+	  if (user.charCodeAt(i)>127) {
+	    alert("Email com caracteres não permitidos.");
+	    return false;
+	  }
+	}
+	
+	for (i=0; i<domain.length; i++) {
+		if (domain.charCodeAt(i)>127) {
+			alert("Email com caracteres não permitidos.");
+			return false;
+		}
+	}
+	
+	// See if "user" is valid 
+	
+	if (user.match(userPat)==null) {
+		// user is not valid
+		alert("Email com username inválido.");
+		return false;
+	}
+	
+	var IPArray=domain.match(ipDomainPat);
+	if (IPArray!=null) {
+	
+		// this is an IP address
+		for (var i=1;i<=4;i++) {
+			if (IPArray[i]>255) {
+				alert("Endereço IP de destino inválido.");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	// Domain is symbolic name.  Check if it's valid.
+	 
+	var atomPat=new RegExp("^" + atom + "$");
+	var domArr=domain.split(".");
+	var len=domArr.length;
+	for (i=0;i<len;i++) {
+		if (domArr[i].search(atomPat)==-1) {
+			alert("Email com caracteres não permitidos.");
+			return false;
+		}
+	}
+	
+	if (checkTLD && domArr[domArr.length-1].length!=2 && domArr[domArr.length-1].search(knownDomsPat)==-1) {
+		alert("Formato de email inválido.");
+		return false;
+	}
+	
+	// Make sure there's a host name preceding the domain.
+	
+	if (len<2) {
+		alert("Formato de email inválido.");
+		return false;
+	}
+	
+	// If we've gotten this far, everything's valid!
+	return true;
+
+} // Fim de Função de validação de Email
+
+// Funcao para setar automaticamente a action de um form 
+//para telas de cadastro - Passar o nome da action 
+
+function submete_form(acao) {
+
+	document.forms[0].action = acao;
+	document.forms[0].submit();
+}
+
+function submete_form_links(acao) {
+	document.forms[0].action = acao;
+	document.forms[0].submit();
+}
+
+function submete_form_linkspe(acao) {
+
+	document.linkspe.action = acao;
+	document.linkspe.submit();
+}
+function apresentarFA(rg) {
+
+	showPopWin('pesq_pf_antecedentes.do?numRg='+rg+'&flagPopup=0&tipoPesq=0', 670, 680, null);
+}
+function janelacentralizada(pagina, nomedajanela, w, h) {
+
+ var winl = (screen.width - w) / 2;
+ var wint = (screen.height - h) / 2;
+ winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',status=no,scrollbars=yes,resizable=no,menubar=no'
+ win = window.open(pagina, nomedajanela, winprops)
+ if (parseInt(navigator.appVersion) >= 4) { 
+         win.window.focus(); 
+     }
+}
+
+function checkAll(field)
+{
+	if (field == null)
+	{
+		return;
+	}
+	else
+	{
+		if (field.length == null)
+		{
+			//existe apenas uma opção, não é array
+			if (!field.disabled)
+			{
+				field.checked = true ;
+			}			
+		}
+		else
+		{
+			//é array
+			for (i = 0; i < field.length; i++)
+			{
+				if (!field[i].disabled)
+				{
+					field[i].checked = true ;
+				}
+			}
+		}
+	}
+}
+
+function uncheckAll(field)
+{
+	if (field == null)
+	{
+		return;
+	}
+	else
+	{
+		if (field.length == null)
+		{
+			//existe apenas uma opção, não é array
+			if (!field.disabled)
+			{
+				field.checked = false ;
+			}			
+		}
+		else
+		{
+			//é array
+			for (i = 0; i < field.length; i++)
+			{
+				if (!field[i].disabled)
+				{
+					field[i].checked = false ;
+				}
+			}
+		}
+	}
+}
+
+function verifyAllChecked(field)
+{
+	var count = 0;
+	for (i = 0; i < field.length; i++)
+	{
+		if ( !field[i].disabled )
+		{
+			if (!field[i].checked)
+			{
+				//existe um campo habilitado não checado
+				return false;
+			}
+			else
+			{
+				//o campo está habilitado e checado
+				count = count + 1;
+			}
+		}
+	}
+	if (count == 0)
+	{
+		//não existe nenhum campo habilitado checado
+		return false;
+	}
+	//todos os campos habilitados estão checados
+	return true;
+}
+
+function disableCheckBoxesGroup(group)
+{
+	for (i = 0; i < group.length;i++)
+	{
+		group[i].disabled = true;
+	}
+}
+function enableCheckBoxesGroup(group)
+{
+	for (i = 0; i < group.length;i++)
+	{
+		group[i].disabled = false;
+	}
+}
+
+function uncheckCheckBoxesGroup(group)
+{
+	for (i = 0; i < group.length;i++)
+	{
+		group[i].checked = false;
+	}
+}
+
+function montaLinkPesquisaPf(){
+  if(document.forms[0].numRg != null && document.forms[0].origem != null){
+  	document.forms[0].action = 'pesq_pf.do?numRg='+document.forms[0].numRg.value + '&origem=' + document.forms[0].origem.value;     
+  	document.forms[0].submit() ;
+  }
+  else if(document.forms[0].numRg != null){
+  	document.forms[0].action = 'pesq_pf.do?numRg='+document.forms[0].numRg.value;     
+  	document.forms[0].submit() ;
+  }  
+}
+
+function montaLinkPesquisaDetalhePf(){
+  if(document.getElementById("numRg").value != null && document.forms[0].origem != null){
+  	document.forms[0].action = 'pesq_pf.do?valorPesq='+document.getElementById("numRg").value + '&tipoPesq=1' + '&origem=' + document.forms[0].origem.value;     
+  	document.forms[0].submit() ;
+  }
+  else if(document.forms[0].numRg != null){
+  	document.forms[0].action = 'pesq_pf.do?valorPesq='+document.getElementById("numRg").value  + '&tipoPesq=1';     
+  	document.forms[0].submit() ;
+  }  
+}
+
+//mantis 2876
+function linkPesquisaDetalhePf(rg){
+	  if(rg != null && document.forms[0].origem != null){
+	  	document.forms[0].action = 'pesq_pf.do?valorPesq='+rg + '&tipoPesq=1' + '&origem=' + document.forms[0].origem.value;     
+	  	document.forms[0].submit() ;
+	  }
+	  else if(rg != null){
+	  	document.forms[0].action = 'pesq_pf.do?valorPesq='+rg  + '&tipoPesq=1';     
+	  	document.forms[0].submit() ;
+	  }  
+	}
+
+
+
+function linkApresentarUltimoCalculo() {
+	document.linkspe.action = "ultimo_calculo_apresentar.do?codigoProcessoExecucao="+document.linkspe.codProcessoExecucao.value+"&flagPesquisa=01";
+	document.linkspe.submit();
+}
+
+function linkApresentarUltimoCalculo_comercial() {
+	document.linkspe.action = "ultimo_calculo_comercial_apresentar.do?codigoProcessoExecucao="+document.linkspe.codProcessoExecucao.value;
+	document.linkspe.submit();
+}
+
+function voltarCalcularBeneficios(numProcExec)
+{
+	document.forms[0].action = "beneficio_calcular_apresentar.do?numeroProcessoExecucao="+numProcExec;
+	document.forms[0].submit();
+}
+
+function voltarCalcularComercial(numProcExec)
+{
+	document.forms[0].action = "comercial_entrada.do?numeroProcessoExecucao="+numProcExec;
+	document.forms[0].submit();
+}
+
+/**
+ * Restringe o preenchimento de objetos TEXTFIELD e TEXTAREA até um limite 
+ * específico
+ * @param field O campo a ser limitado
+ * @param countfield O campo auxiliar que será utilizado para exibir a contagem
+ * @param maxlimit O limite máximo de preenchimento
+ *
+ */
+function textCounter(field, countfield, maxlimit) {
+	if (field.value.length > maxlimit) {
+		field.value = field.value.substring(0, maxlimit);
+	} else  {
+		countfield.value = maxlimit - field.value.length;
+	}
+}
+
+/**
+ * Restringe o preenchimento de objetos TEXTFIELD e TEXTAREA até um limite 
+ * específico para Justificativa
+ * @param field O campo a ser limitado
+ * @param countfield O campo auxiliar que será utilizado para exibir a contagem
+ * @param maxlimit O limite máximo de preenchimento
+ *
+ */
+function textCounterJustificativa(field, countfield, maxlimit) {
+	if (field.value.length > maxlimit) {
+		field.value = field.value.substring(0, maxlimit);
+	} else  {
+		countfield.value = maxlimit - field.value.length;
+	}
+}
+
+
+/**
+ * Verifica se uma data é maior que a Data Atual
+ * @param data A data a ser verificada. Formato dd/MM/yyyy
+ */ 
+function isDataMaiorDataAtual(data) {
+	if (data.length < 10) return true;
+	var dataHoje = new Date()
+	var ds = data.split("/");
+	var dataComparar = Date.parse(ds[2] + "/" + ds[1] + "/" + ds[0]);
+	return dataComparar > dataHoje.getTime();
+}
+
+function isDataMaiorIgualDataAtual(data) {
+	if (data.length < 10) return true;
+	var dataHoje = new Date()
+	var ds = data.split("/");
+	var dataComparar = new Date(parseInt(ds[2]), (parseInt(ds[1])-1), parseInt(ds[0]), 24,0,0);
+	return dataComparar >= dataHoje.getTime();
+}
+
+/**
+ * Define o conteúdo HTML de um objeto DIV
+ * @param idObjeto ID do objeto DIV
+ * @param texto Texto que substituirá o conteúdo HTML do objeto DIV
+ */
+function setInnerHTML(idObjeto, texto) {
+	$('#'+idObjeto).html(texto);
+}
+
+/**
+ * Foca um determinado objeto (campo) contido em um formulário
+ * @param formulario O nome do Formulário que contém o objeto (campo)
+ * @param campo O nome do objeto (campo) a ser focado
+ */
+function focarCampo(formulario, campo) {
+	document.forms[formulario].elements[campo].focus();
+}
+
+/**
+ * Define valor vazio para um determinado objeto (campo) TEXTFIELD contido em um 
+ * formulário 
+ * @param formulario O nome do Formulário que contém o objeto (campo)
+ * @param campo O nome do objeto (campo) a ser definido valor vazio
+ */
+function resetTextfield(formulario, campo) {
+	document.forms[formulario].elements[campo].value = "";
+}
+
+/**
+ * Comparar duas datas.
+ *
+ * @param _data1 Data no formato dd/mm/aaaa
+ * @param _data2 Data no formato dd/mm/aaaa
+ * @return Retornos:
+ * -1 quando _data1 é MENOR que _data2
+ *  0 quando _data1 é IGUAL a _data2
+ *  1 quando _data1 é MAIOR que _data2
+ *
+ */
+function compararDatas(_data1, _data2) {
+	var ds1 = _data1.split("/");
+	var ds2 = _data2.split("/");
+	var data1 = new Date(ds1[2],ds1[1],ds1[0]);
+	var data2 = new Date(ds2[2],ds2[1],ds2[0]);
+	if (data1.getTime() > data2.getTime()) {
+		return 1;
+	} else if (data1.getTime() == data2.getTime()) {
+		return 0;
+	} else {
+		return -1;
+	}
+}
+
+function isDigitMoney(evento) {
+	var strCheck = '0123456789,';
+	var key = '';
+	var whichCode = (window.Event) ? evento.which : evento.keyCode;
+	if (whichCode == 13) return true;  // Enter
+	key = String.fromCharCode(whichCode);  // Get key value from key code
+	if (strCheck.indexOf(key) == -1) return false;  // Not a valid key
+}
+
+
+var dtCh= "/";
+var minYear=1900;
+var maxYear=2999;
+
+/**
+ * Função privada (não utilizar em JSP).
+ */
+function isInteger(s){
+	var i;
+    for (i = 0; i < s.length; i++){   
+        var c = s.charAt(i);
+        if (((c < "0") || (c > "9"))) return false;
+    }
+    return true;
+}
+
+/**
+ * Função privada (não utilizar em JSP).
+ */
+function stripCharsInBag(s, bag){
+	var i;
+    var returnString = "";
+    for (i = 0; i < s.length; i++){   
+        var c = s.charAt(i);
+        if (bag.indexOf(c) == -1) returnString += c;
+    }
+    return returnString;
+}
+
+/**
+ * Função privada (não utilizar em JSP).
+ */
+function daysInFebruary (year){
+    return (((year % 4 == 0) && ( (!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28 );
+}
+
+/**
+ * Função privada (não utilizar em JSP).
+ */
+function DaysArray(n) {
+	for (var i = 1; i <= n; i++) {
+		this[i] = 31
+		if (i==4 || i==6 || i==9 || i==11) {this[i] = 30}
+		if (i==2) {this[i] = 29}
+   } 
+   return this
+}
+
+/**
+ * Validar uma data
+ *
+ * @param dtStr Deve estar no format dd/mm/yyyy
+ * Exemplo:
+ *
+ * <input type="text" name="minhaData" onKeyUp="isDate(this.value)">
+ */
+function isDate(dtStr) {
+
+	if (dtStr.length == 10) {
+		var daysInMonth = DaysArray(12);
+		var pos1=dtStr.indexOf(dtCh);
+		var pos2=dtStr.indexOf(dtCh,pos1+1);
+		var strDay=dtStr.substring(0,pos1);
+		var strMonth=dtStr.substring(pos1+1,pos2);
+		var strYear=dtStr.substring(pos2+1);
+		strYr=strYear
+		if (strDay.charAt(0)=="0" && strDay.length>1) {
+			strDay=strDay.substring(1);
+		}
+		if (strMonth.charAt(0)=="0" && strMonth.length>1) {
+			strMonth=strMonth.substring(1);
+		}
+		for (var i = 1; i <= 3; i++) {
+			if (strYr.charAt(0)=="0" && strYr.length>1) {
+				strYr=strYr.substring(1);
+			}
+		}
+		month=parseInt(strMonth);
+		day=parseInt(strDay);
+		year=parseInt(strYr);
+		if (pos1==-1 || pos2==-1){
+			alert("O formato da data deve ser: dd/mm/yyyy");
+			return false;
+		}
+		if (strMonth.length<1 || month<1 || month>12){
+			//alert("Entre com um mês válido");
+			alert("Entre com uma data válida");
+			return false;
+		}
+		if (strDay.length<1 || day<1 || day>31 || (month==2 && day>daysInFebruary(year)) || day > daysInMonth[month]){
+			//alert("Entre com um dia válido");
+			alert("Entre com uma data válida");
+			return false;
+		}
+		if (strYear.length != 4 || year==0 || year<minYear || year>maxYear){
+			//alert("Entre com um ano entre "+minYear+" e "+maxYear);
+			alert("Entre com uma data válida");
+			return false;
+		}
+		if (dtStr.indexOf(dtCh,pos2+1)!=-1 || isInteger(stripCharsInBag(dtStr, dtCh))==false){
+			alert("Entre com uma data válida");
+			return false;
+		}
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Validar uma data e não dá mensagem de erro
+ *
+ * @param dtStr Deve estar no format dd/mm/yyyy
+ * Exemplo:
+ *
+ * <input type="text" name="minhaData" onKeyUp="isDate(this.value)">
+ */
+function isValidDate(dtStr) {
+
+	if (dtStr.length == 10) {
+		var daysInMonth = DaysArray(12);
+		var pos1=dtStr.indexOf(dtCh);
+		var pos2=dtStr.indexOf(dtCh,pos1+1);
+		var strDay=dtStr.substring(0,pos1);
+		var strMonth=dtStr.substring(pos1+1,pos2);
+		var strYear=dtStr.substring(pos2+1);
+		strYr=strYear
+		if (strDay.charAt(0)=="0" && strDay.length>1) {
+			strDay=strDay.substring(1);
+		}
+		if (strMonth.charAt(0)=="0" && strMonth.length>1) {
+			strMonth=strMonth.substring(1);
+		}
+		for (var i = 1; i <= 3; i++) {
+			if (strYr.charAt(0)=="0" && strYr.length>1) {
+				strYr=strYr.substring(1);
+			}
+		}
+		month=parseInt(strMonth);
+		day=parseInt(strDay);
+		year=parseInt(strYr);
+		if (pos1==-1 || pos2==-1){
+			return false;
+		}
+		if (strMonth.length<1 || month<1 || month>12){
+			return false;
+		}
+		if (strDay.length<1 || day<1 || day>31 || (month==2 && day>daysInFebruary(year)) || day > daysInMonth[month]){
+			return false;
+		}
+		if (strYear.length != 4 || year==0 || year<minYear || year>maxYear){
+			return false;
+		}
+		if (dtStr.indexOf(dtCh,pos2+1)!=-1 || isInteger(stripCharsInBag(dtStr, dtCh))==false){
+			return false;
+		}
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+function validarRG(campo) {
+	var mensagem = "Informe o Numero do Rg";
+	if (campo.value == "") {
+		alert(mensagem);
+		campo.focus();
+		return false;
+	} else if (parseInt(campo.value) == 0) {
+		alert(mensagem);
+		campo.value = "";
+		campo.focus();
+		return false;
+	}
+}
+
+function validarLogin() {
+	
+	var mensagem = "";
+	if ($('#nomeusuario').val() == "") {
+		mensagem += "Favor informar o Usuário\n";
+	}
+	if ($("#senhausuario").val() == "") {
+		mensagem += "<br>Favor informar a Senha";
+	}
+	if (mensagem != "") {
+		$("<div class=\"text-center\" title=\"Atenção!\"><br>" + mensagem + "</br></div>").dialog({
+      		width: 450,
+            modal: true,
+            buttons: {
+	          	"Ok": function() {
+	           		$(this).dialog("close");
+        		}
+ 			}
+		});	
+		
+		$("#Acessar").prop("disabled", false);
+		return false;
+	}else{		
+		$("#Acessar").prop("disabled", true);
+	}
+	return true;
+}	
+
+function impedirDataMaiorQueHoje(value){
+	
+	if(value=="") return true;
+	
+	if(!isDate(value)){
+		return false;
+	}
+			
+	if(isDataMaiorDataAtual(value)){
+		alert("A data deve ser menor ou igual a data atual");
+		return false;
+	}
+	
+	return true;
+	
+}
+
+function campoObrigatorio(value){
+	if(value=="") {
+		alert("Campo obrigatório");
+		return false;	
+	}
+	return true;
+}
+
+function replaceAll(string, token, newtoken) {
+	while (string.indexOf(token) != -1) {
+ 		string = string.replace(token, newtoken);
+	}
+	return string;
+}
+
+/*
+	Função helper para tratar os checkbox
+*/
+function markAllCheckboxChecked(field){
+	
+	if(field.length == null){
+		if (!field.disabled) {
+			field.checked = true;
+		}
+	}
+	else{
+		for(i = 0; i < field.length; i++){
+			if (!field[i].disabled) {
+				field[i].checked = true;
+			}
+		}
+	}
+}
+
+/*
+	Função helper para tratar os checkbox
+*/
+function markAllCheckboxUnchecked(field){
+	if(field.length == null){
+		field.checked = false;
+	}
+	else{
+		for(i = 0; i < field.length; i++){
+			field[i].checked = false;
+		}
+	}
+}
+
+function isAllCheckboxChecked(field){
+	var ret = true;
+	if(field.length == null){
+		if(field.checked == false){
+			ret = false;
+		}
+	}
+	else{
+		for(i = 0; i < field.length; i++){
+			if(field[i].checked == false){
+				ret = false;
+			}
+		}
+	}
+}
+
+/*
+	Função que habilita o botão para gerar relatório de P.S.C
+*/
+function ExibirRelatorioPscPdf() {
+		
+		document.forms[0].action = "detracaoPSC.do?&numProcExecucao="
+								   +$('#numProcExecucao').val()
+								   +'&codExecucao='+$('#codExecucao').val();					  
+		showPopWin(document.forms[0].action,670, 680);
+	return false;
+}
+
+function verificaInput(id, maskSizeNumber) {
+	$("#"+id+"").mask(maskSizeNumber, {reverse: true});
+}
+
+function submete_Vara(){
+	var idValorPesq = $("#idValorPesq").val();
+	
+	if(idValorPesq.length == '' ){
+		$('#idValorPesq').addClass('ui-state-error');
+		$("<div class=\"text-center\"><br>Favor selecionar a SubVara !</div>").dialog({
+			width: 450,
+			modal: true,
+			buttons: {
+			"Ok": function() {
+				$(this).dialog("close");
+			}
+			}
+		});
+		return false;
+	}
+	else{
+		$('#varaForm').prop('action','salvarSubVara.do')
+		$('#varaForm').submit();
+	}
+}
+
+function habilitarBotaoPesquisar(){
+	$("#pesquisar").prop("disabled", false);
+}
+
+function desabilitarBotaoPesquisar(){		
+	$("#pesquisar").prop("disabled", true);		
+}
+
+function pesquisarQualificacao() {
+	var buscaVec = $("#idNumeroPesquisa").val();
+	
+	if (buscaVec == ''){
+		$('#idNumeroPesquisa').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Atualizar Qualificação !\"><br>Favor informar um Nº Controle VEC ! </div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+				habilitarBotaoPesquisar();
+				$('#idNumeroPesquisa').removeClass('ui-state-error');
+		    	$(this).dialog("close");
+				}
+	 		}
+		}).addClass('ui-state-error ui-corner-all');
+		return false;
+    } else {
+		$('#form1').prop('action','buscar_por_rgprocesso.do')
+		$('#form1').submit();
+
+	}
+}
+
+function confirma_exclusao(){
+	var observacao = $("#idCampoObservacao").val();
+	
+	if (observacao == ''){
+		$('#idCampoObservacao').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Excluir Execução!\"><br>O campo Observação é obrigatório e não foi preenchido!</div>").dialog({
+	        width: 450,
+	        modal: true,
+	        buttons: {
+		    	"Ok": function() {
+				$('#idCampoObservacao').removeClass('ui-state-error');
+		    	$(this).dialog("close");
+				}
+	 		}
+		}).addClass('ui-state-error ui-corner-all');
+		return false;
+    } else {
+		$('#excluir_execucao').prop('action','exe_excluir_confirma.do')
+		$('#excluir_execucao').submit();
+	}
+}
+
+
+/*
+ * Início funções INPUTs padrão BNMP 2.0 
+ */
+
+/*
+ * Função responsável por aplicar a máscara no inputs das telas 
+ * de Inclusão e Alteração de Incidentes Penais.
+ */
+function aplicarMascaraInputIncPenais(){
+	//Pattern Regex para BNMP 2.0
+	var pattern = {
+		'translation':{
+			//Ex: 12
+			A: {pattern: /^[1-9]/} ,
+			//Ex: 123B
+			T: {pattern: /[0-9]*[A-Z]{0,1}$/},
+			//Ex: 12 ou UN
+			P: {pattern: /^[0-9]$|^[un]$|^[UN]$/},
+			//Ex: I,II,XVII
+			I: {pattern: /(^(?=.)M{0,4}[,]{0,1}(CM|CD|D?C{0,3})[,]{0,1}(XC|XL|L?X{0,3})[,]{0,1}(IX|IV|V?I{0,3})[,]{0,1}$)|(^(?=.)m{0,4}[,]{0,1}(cm|cd|d?c{0,3})[,]{0,1}(xc|xl|l?x{0,3})[,]{0,1}(ix|iv|v?i{0,3})[,]{0,1}$)/},
+			//Ex: a,b,c
+			L: {pattern: /(?=.)[,a-zA-Z]/}
+		},
+	};
+	$('.input-up').keyup(function(){
+	    this.value = this.value.toUpperCase();
+	});
+	$('.input-lower').keyup(function(){
+	    this.value = this.value.toLowerCase();
+	});
+	$('input[name=ocorrencias]').mask('A9', pattern);
+	$('input[name=artigo]').mask('ATTT', pattern);
+	$('input[name=paragrafo]').mask('PP', pattern);
+	$('input[name=inciso]').mask('IIIIIIIIIIIIIII', pattern);
+	$('input[name=alinea]').mask('SLLLLLLLLLLLLLL', pattern);
+	$('.input-number').mask('AAAAAAAAAA', pattern);
+}
+
+
+/*
+ * Função responsável por verificar se o valor do input da tela
+ * é igual ao objeto java passado por parâmetro, ambos passado por argumento.
+ */
+function isInputValueIgualObjetoJava(inputName, valorJava){
+	if($('input[name=' + inputName + ']').val() != valorJava){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+/*
+ * Função responsável por verificar se os valores dos inputsBNMPMap
+ * passado por argumento, são iguais aos inputs populados 
+ * anteriormente na tela.
+ */
+function verificarSeInputsValueSaoIguaisJava(inputsBNMPMap){
+	var exiteInputDiferente = false;
+	inputsBNMPMap.forEach(function(value, key) {
+	  	$('input[name=' + key + ']').removeClass('ui-state-error');
+
+	  	if(isInputValueIgualObjetoJava(key, value)){
+	  		$('input[name=' + key + ']').addClass('ui-state-error');
+			exiteInputDiferente = true;
+		}
+	}, inputsBNMPMap);
+	
+	return exiteInputDiferente;
+}
+
+/*
+ * Função responsável por exibir uma mensagem de alerta para o usuário.
+ */
+function exibirMensagemAlertaInputsDiferentes(){
+	$("<div class=\"textotab2 text-center\" "
+			+ "title=\"Atenção!\"><br>Favor informar corretamente os campos "
+			+ "obrigatórios devido as exigências do CNJ.</div>").dialog({
+			width: 450,
+			modal: true,
+			buttons: {
+				"Ok": function() {					
+				$(this).dialog("close");
+				}
+			}
+	}).addClass('ui-state-error ui-corner-all');
+}
+(function(window) {
+
+	  if (document.referrer != null && document.referrer !== "") {
+		  paginaAnterior = document.referrer;
+	  }
+	  
+	  if (typeof history.pushState === "function") {
+		  history.pushState("jibberish", null, null);
+	        window.onpopstate = function () {
+	            history.pushState('newjibberish', null, null);           
+	        };
+	    }
+	    else {
+	        var ignoreHashChange = true;
+	        window.onhashchange = function () {
+	            if (!ignoreHashChange) {
+	                ignoreHashChange = true;
+	                window.location.hash = Math.random();                
+	            }
+	            else {
+	                ignoreHashChange = false;   
+	            }
+	        };
+	    }
+	}(window)); 
+

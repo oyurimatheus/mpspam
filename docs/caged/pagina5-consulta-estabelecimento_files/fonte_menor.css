@@ -1,0 +1,63 @@
+
+body, td, th
+{
+	font-size:12px;
+}
+	
+.cl_002,
+.cl_003,
+.cl_023 {
+	font-size: 150%;
+	}
+	
+h1.h1TituloPrincipal
+{
+	font-size:14px;
+}
+
+p.pVoltar
+{
+	font-size: 10px;
+}
+
+div.observacao
+{
+	font-size: 10px;
+}
+
+input
+{
+	font-size: 12px;
+}
+
+input
+{
+	font-size: 12px;
+}
+
+textarea {
+	font-size: 12px; 
+}
+
+option {
+	font-size: 12px; 
+}
+
+legend 
+{
+	font-size: 12px; 
+}
+
+div#cabecalho div#titulo_projeto 
+{
+	font-size: 20px;
+}
+
+div#cabecalho div#data_atual {	
+	font-size: 10px;
+}
+
+div#rodape 
+{
+	font-size: 10px;
+}

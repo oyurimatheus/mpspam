@@ -1,0 +1,3035 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta -->
+<html style="" class=" no-ie8compat json audio multiplebgs cssgradients supports mediaqueries fontface cssanimations bgrepeatround bgrepeatspace backgroundsize bgsizecover borderimage borderradius boxshadow cssfilters flexbox cssmask shapes csstransforms csstransforms3d csstransitions textshadow"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	
+    Oficio Eletrônico - Cartórios - Consulta CPF/CNPJ
+
+</title>
+    <!-- You can use .htaccess and remove these lines to avoid edge case issues. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- Mobile viewport optimized -->
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><link href="https://novo.oficioeletronico.com.br/favicon.ico" rel="shortcut icon" type="image/x-icon"><link href="https://novo.oficioeletronico.com.br/favicon.ico" rel="icon" type="image/ico">
+    <!--link href="/Content/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" /-->
+    <link href="./pagina5-escolha-regiao_files/reset.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/jquery-block-ui.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/jquery-ui.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/bootstrap-theme.min.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/datepicker.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/colorbox.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/print.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/style_tablesorter.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/style.css" rel="stylesheet" type="text/css"><link href="./pagina5-escolha-regiao_files/bootstrap4_utilities.css" rel="stylesheet" type="text/css">
+    <!--link href="/Content/css/awesome-bootstrap-checkbox.css" rel="stylesheet" type="text/css" /-->
+
+    <script async="" src="./pagina5-escolha-regiao_files/analytics.js.download"></script><script src="./pagina5-escolha-regiao_files/jquery-1.9.1.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.unobtrusive-ajax.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery-ui-1.10.3.custom.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery-ui.min.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.blockUI.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery-migrate-1.2.1.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.mask.min.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.maskMoney.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.validate.min.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.formatCurrency-1.4.0.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.form.min.js.download" type="text/javascript"></script>
+    <!--src="/Scripts/jquery-latest.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.metadata.js" type="text/javascript"></script-->
+    <script src="./pagina5-escolha-regiao_files/jquery.tablesorter.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.tablesorter.min.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jquery.colorbox-min.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/Site.Master.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/Site.BaixaBradesco.js.download" type="text/javascript"></script>
+
+    <script src="./pagina5-escolha-regiao_files/modernizr-custom.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/bootstrap.min.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/jasny-bootstrap.min.js.download" type="text/javascript"></script>
+
+    <script src="./pagina5-escolha-regiao_files/Site.Html5.Notifier.js.download" type="text/javascript"></script>
+
+    <script src="./pagina5-escolha-regiao_files/MicrosoftAjax.js.download" type="text/javascript"></script>
+    <script src="./pagina5-escolha-regiao_files/MicrosoftMvcAjax.js.download" type="text/javascript"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            VerificarComunicados(true);
+            VerificarSessaoUsuario();
+
+            $(function () {
+                $("#btnOKComunicado").click(function () {
+
+                    var modal = $('#popupComunicadoMSG');
+ 
+                    modal.find('.modal-body').html("Para ler o comunicado novamente, acessar na parte superior do site em Comunicados.");
+
+                    modal.modal('show');
+                    
+                });
+            });
+
+            $("#lboxModalPopup").colorbox({ inline: true, width: "450px", opacity: 0.5 });
+            SetTimerManutencao();
+        });
+
+        function SetTimerManutencao() {
+            $.ajax({
+                type: 'POST',
+                url: '../../Manutencao/VerificaAlerta.aspx?i=0',
+                success: function (r) {
+
+                    if (r.indexOf('ok;') != -1) {
+                        var intervalo = r.split(';')[1];
+                        if (intervalo != '') {
+                            var i = Number(intervalo);
+                            if (i > 0) {
+                                VerificaAlertaManutencao();
+
+                                setInterval(function () {
+                                    VerificaAlertaManutencao();
+                                }, i);
+                            }
+                        }
+                    }
+                },
+                async: false
+            });
+        }
+
+        function VerificaAlertaManutencao()
+        {
+            var mens = '';
+            $.ajax({
+                type: 'POST',
+                url: '../../Manutencao/VerificaAlerta.aspx/',
+                success: function (r) {
+                    if (r.indexOf('ok;') != -1) {
+                        mens = r.split(';')[1];
+                        if (mens != '') {
+                            $("#divModalPopup").html(mens);
+                            $("#lboxModalPopup").click();
+                        }
+                    }
+                },
+                async: false
+            });
+        }
+    </script>
+
+    
+    
+    <script src="https://novo.oficioeletronico.com.br/Scripts/Site.VM.Loader.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            CreatePopups();
+
+			 
+                var text = $("#txt");
+                text.height(text[0].scrollHeight - 50);
+            
+
+            $("#filterDocumento").onlyNumbers();
+            $("#filterTipo").change(function() {
+                var tipoPessoa = parseInt($("#filterTipo").val());
+                $("#filterDocumento").val("");
+                switch (tipoPessoa)
+                {
+                    case 1:
+                        $("#filterDocumento").attr("maxlength", 11);
+                        break;
+                    case 2:
+                        $("#filterDocumento").attr("maxlength", 14);
+                        break;
+                }
+            });
+        });
+
+        function Pesquisar() {
+            var tipoPessoa = $("#filterTipo").val();
+            var documento = $("#filterDocumento").val();
+
+            if (tipoPessoa == 1 && !ValidaCPF(documento)) { alert("O CPF informado não é válido! Verifique por gentileza."); return; }
+            else if (tipoPessoa == 2 && !ValidaCNPJ(documento)) { alert("O CNPJ informado não é válido! Verifique por gentileza."); return; }
+
+            LoadPage('/Cartorios/BDLight/Consulta',
+                [['etapaConsulta',3],
+                 ['listaCidades', $("#filterCidades").val()], ['tipoPessoa', tipoPessoa], ['documento', documento]]);
+        }
+    </script>
+
+
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-83307124-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+</head>
+<body>
+    <nav id="offcanvas" class="navmenu navmenu-default navmenu-fixed-left offcanvas canvas-slid" role="navigation">
+        <ul>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">Política de Privacidade</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">SOBRE</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">MATERIAL DE APOIO</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">FALE CONOSCO</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Home/Disconnect">
+                Desconectar</a></li>
+        </ul>
+    </nav>
+    <div id="pesquisa-dados">
+        <div class="relative-position">
+            <a href="javascript:void(0)" class="close-bar"><i class="fa fa-times"></i></a>
+        </div>
+        <div id="dados-content">
+
+        </div>
+        <div class="alert-message" style="display:none;">
+        </div>
+        <div class="loading-form hide-load">
+            <img src="./pagina5-escolha-regiao_files/loading.svg" alt="">
+        </div>
+    </div>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                        <div class="logo-oficio-interno">
+                            <a href="https://novo.oficioeletronico.com.br/">
+                                <img src="./pagina5-escolha-regiao_files/img-logo-oficio-interno.png" alt="">
+                            </a>
+                        </div>
+                        <button class="c-hamburguer c-hamburguer-htla pull-right visible-xs" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+                            <span>toggle menu</span>
+                        </button>
+                    </div>
+                    <div class="col-md-9 pull-right visible-md visible-lg">
+                        <div class="logo-registradores-interno">
+                            <a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#">
+                                <img src="./pagina5-escolha-regiao_files/img-logo-registradores-white.png" alt="">
+                            </a>
+                        </div>
+                        <div class="logout-icon">
+                            <a title="Encerrar sessão" href="https://novo.oficioeletronico.com.br/Home/Disconnect">
+                                <i></i>
+                            </a>
+                        </div>
+                        <div class="home-icon">
+                            <a title="Ir para a Home" href="https://novo.oficioeletronico.com.br/">
+                                <i></i>
+                            </a>
+                        </div>
+                        
+                        <div class="message-status">
+                            
+                            <a title="Ver mensagens" href="https://novo.oficioeletronico.com.br/Servicos/Mensagens" id="info-messages" class="info-top-messages alert-txt">
+                                3  mensagens não lidas
+                                <i class="letter-icon"></i></a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--http://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/-->
+        <nav class="main-nav">
+            <div class="container" id="menu">
+                
+
+<ul>
+    
+    <li id="liInstituicoes" class="submenu first"><a href="https://novo.oficioeletronico.com.br/">Instituições</a> 
+        <div class="submenu-wrap item-0">
+        <ul class="menu">
+    
+            <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Instituicoes/Consultas&#39;,[[&#39;modulo&#39;,&#39;consultasrelatorios&#39;]]);">Consultas/Relatórios</a></li>
+    
+            <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Instituicoes/Matriculas&#39;,[[&#39;modulo&#39;,&#39;matriculaonlineInstituicoes&#39;]]);">Matrícula Online</a></li>
+    
+            <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Instituicoes/Solicitacoes/Solicitacao&#39;,[[&#39;modulo&#39;,&#39;instituicoessolicitacoes&#39;]]);">Solicitações</a></li>
+    
+        </ul>
+        </div>
+    </li>
+    
+    <li id="liServicos" class="submenu"><a href="https://novo.oficioeletronico.com.br/">Serviços</a> 
+        <div class="submenu-wrap item-1">
+        <ul class="menu">
+    
+            <li><a href="javascript:void(0);" onclick="OpenMenuPopup(&#39;/Servicos/AssinadorDigital?modulo=assinadordigital&#39;)">Assinador Digital</a></li>
+    
+            <li><a href="javascript:void(0);" onclick="LoadPage(&#39;/Servicos/Mensagens&#39;,[[&#39;modulo&#39;,&#39;sistemademensagens&#39;]]);">Mensagens</a></li>
+    
+        </ul>
+        </div>
+    </li>
+    
+    <!--li class="submenu" style="display:none;"><a href="/Home/About">Informa&#231;&#245;es</a>
+        <ul class="menu">
+            <li><a href="/">Pedidos</a></li>
+            <li><a href="/">Relat&#243;rios</a></li>
+        </ul>
+    </li-->
+</ul>
+            </div>
+        </nav>
+    </header>
+    <section class="main-section">
+        <div class="container">
+            <div class="page">
+                <div id="logindisplay">
+                    <div id="sessiondisplay">
+                         
+        E-CPF: <b>ANTONIO TORRES COUTINHO</b> - 21455308005
+    </div>
+                </div>
+                <div id="main">
+                    
+    <div class="bread-crumb">
+        <span>Você está em: </span>
+        <ul>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta">Cartórios</a></li>
+            <li><a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta">Consulta CPF/CNPJ</a></li>
+        </ul>
+    </div>
+    <div class="header-form">
+        <p>
+            Consulta CPF/CNPJ</p>
+        <a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta" class="info-icon"><i class="fa fa-question"></i></a>
+    </div>
+    <div class="form-default">
+        <div class="form-group">
+            <span class="noFilter"><strong>Tipo de Pesquisa:</strong>&nbsp;Pessoa</span>
+        </div>
+        <div class="contentEditor consulta-bdlight-holder grid-12">
+            
+<style type="text/css">
+        textarea#txt
+        {
+            resize: none;  
+            height: 0px;             
+            color: #003466;
+           
+        }
+    </style>
+<script type="text/javascript">
+
+    function Indicadores(){
+
+        var vCidades = "";
+        $("input[name=chkCidades]:checked").each(function () {
+            vCidades += $(this).val() + ",";
+        });
+        vCidades = vCidades.length > 0 ? vCidades.substr(0, vCidades.length - 1) : "";
+
+        $.ajax({
+            type: "POST",                    
+            url: "ConsultaIndicador", 
+            data: {listaCidades: vCidades },
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                var objdata = $.parseJSON(data.d); 
+
+                $("#dataTables-example tr").remove(); 
+
+                $("#dataTables-example").append(
+                        "<tr><td>" + data.Table1[0][0] + "</td><td>" + data.Table1[0][1]  + "</td>" +                    
+                        "</tr>");
+
+                $("#Indicadores").show();
+
+            },
+            error: function () {
+                alert("Error while Showing update data");
+            }
+        });
+    }
+
+
+    var checkedAll = false;
+    function SelecionarTudo() {
+        if (!checkedAll) { checkedAll = true; $('.selector input[type=checkbox]').attr('checked', true); }
+        else { checkedAll = false; $('.selector input[type=checkbox]').removeAttr("checked"); }
+    }
+
+    function Prosseguir() {
+        var vCidades = "";
+        $("input[name=chkCidades]:checked").each(function () {
+            vCidades += $(this).val() + ",";
+        });
+        vCidades = vCidades.length > 0 ? vCidades.substr(0, vCidades.length - 1) : "";
+
+        LoadPage('pagina6-escolha-cartorios.html', 
+            [['etapaConsulta',2],['listaCidades', vCidades]]);
+    }
+
+    function Habilitar(){
+        if ($('#chkHabilitar').is(':checked'))
+        {
+            $("#Prosseguir").prop('disabled', false);
+        }
+        else
+        {
+            $("#Prosseguir").prop('disabled', true);
+        }
+    }
+
+</script>
+<label class="subTitle">
+    <div class="col-xs-12">
+        Escolha as cidades onde deseja fazer a solicitação:</div>
+</label>
+<div class="list-wrap">
+    <div class="col-xs-12">
+        <div class="selector scroll-200">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                        Estado: São Paulo
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="18">
+                        </td>
+                        <td class="title">
+                            Adamantina
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="453">
+                        </td>
+                        <td class="title">
+                            Aguaí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="455">
+                        </td>
+                        <td class="title">
+                            Águas de Lindóia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="19">
+                        </td>
+                        <td class="title">
+                            Agudos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="22">
+                        </td>
+                        <td class="title">
+                            Altinópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="23">
+                        </td>
+                        <td class="title">
+                            Americana
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="24">
+                        </td>
+                        <td class="title">
+                            Amparo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="25">
+                        </td>
+                        <td class="title">
+                            Andradina
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="26">
+                        </td>
+                        <td class="title">
+                            Angatuba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="27">
+                        </td>
+                        <td class="title">
+                            Aparecida
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="28">
+                        </td>
+                        <td class="title">
+                            Apiaí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="13">
+                        </td>
+                        <td class="title">
+                            Araçatuba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="29">
+                        </td>
+                        <td class="title">
+                            Araraquara
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="30">
+                        </td>
+                        <td class="title">
+                            Araras
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="32">
+                        </td>
+                        <td class="title">
+                            Assis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="33">
+                        </td>
+                        <td class="title">
+                            Atibaia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="34">
+                        </td>
+                        <td class="title">
+                            Auriflama
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="35">
+                        </td>
+                        <td class="title">
+                            Avaré
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="36">
+                        </td>
+                        <td class="title">
+                            Bananal
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="37">
+                        </td>
+                        <td class="title">
+                            Bariri
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="38">
+                        </td>
+                        <td class="title">
+                            Barra Bonita
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="39">
+                        </td>
+                        <td class="title">
+                            Barretos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="16">
+                        </td>
+                        <td class="title">
+                            Barueri
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="40">
+                        </td>
+                        <td class="title">
+                            Batatais
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="41">
+                        </td>
+                        <td class="title">
+                            Bauru
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="42">
+                        </td>
+                        <td class="title">
+                            Bebedouro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="44">
+                        </td>
+                        <td class="title">
+                            Bilac
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="45">
+                        </td>
+                        <td class="title">
+                            Birigui
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="503">
+                        </td>
+                        <td class="title">
+                            Boituva
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="508">
+                        </td>
+                        <td class="title">
+                            Borborema
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="48">
+                        </td>
+                        <td class="title">
+                            Botucatu
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="49">
+                        </td>
+                        <td class="title">
+                            Bragança Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="511">
+                        </td>
+                        <td class="title">
+                            Brodowski
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="51">
+                        </td>
+                        <td class="title">
+                            Brotas
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="52">
+                        </td>
+                        <td class="title">
+                            Buritama
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="515">
+                        </td>
+                        <td class="title">
+                            Cabreúva
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="54">
+                        </td>
+                        <td class="title">
+                            Caçapava
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="55">
+                        </td>
+                        <td class="title">
+                            Cachoeira Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="57">
+                        </td>
+                        <td class="title">
+                            Caconde
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="58">
+                        </td>
+                        <td class="title">
+                            Cafelândia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="59">
+                        </td>
+                        <td class="title">
+                            Cajuru
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="60">
+                        </td>
+                        <td class="title">
+                            Campinas
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="61">
+                        </td>
+                        <td class="title">
+                            Campos Do Jordão
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="62">
+                        </td>
+                        <td class="title">
+                            Cananéia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="63">
+                        </td>
+                        <td class="title">
+                            Cândido Mota
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="64">
+                        </td>
+                        <td class="title">
+                            Capão Bonito
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="65">
+                        </td>
+                        <td class="title">
+                            Capivari
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="66">
+                        </td>
+                        <td class="title">
+                            Caraguatatuba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="528">
+                        </td>
+                        <td class="title">
+                            Carapicuíba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="68">
+                        </td>
+                        <td class="title">
+                            Cardoso
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="69">
+                        </td>
+                        <td class="title">
+                            Casa Branca
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="70">
+                        </td>
+                        <td class="title">
+                            Catanduva
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="71">
+                        </td>
+                        <td class="title">
+                            Cerqueira César
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="533">
+                        </td>
+                        <td class="title">
+                            Cerquilho
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="536">
+                        </td>
+                        <td class="title">
+                            Chavantes
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="538">
+                        </td>
+                        <td class="title">
+                            Colina
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="75">
+                        </td>
+                        <td class="title">
+                            Conchas
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="541">
+                        </td>
+                        <td class="title">
+                            Cordeirópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="545">
+                        </td>
+                        <td class="title">
+                            Cosmópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="78">
+                        </td>
+                        <td class="title">
+                            Cotia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="79">
+                        </td>
+                        <td class="title">
+                            Cravinhos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="80">
+                        </td>
+                        <td class="title">
+                            Cruzeiro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="81">
+                        </td>
+                        <td class="title">
+                            Cubatão
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="82">
+                        </td>
+                        <td class="title">
+                            Cunha
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="83">
+                        </td>
+                        <td class="title">
+                            Descalvado
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="14">
+                        </td>
+                        <td class="title">
+                            Diadema
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="85">
+                        </td>
+                        <td class="title">
+                            Dois Córregos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="86">
+                        </td>
+                        <td class="title">
+                            Dracena
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="87">
+                        </td>
+                        <td class="title">
+                            Duartina
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="88">
+                        </td>
+                        <td class="title">
+                            Eldorado
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="559">
+                        </td>
+                        <td class="title">
+                            Embu das Artes
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="90">
+                        </td>
+                        <td class="title">
+                            Espírito Santo Do Pinhal
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="91">
+                        </td>
+                        <td class="title">
+                            Estrela D Oeste
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="92">
+                        </td>
+                        <td class="title">
+                            Fartura
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="93">
+                        </td>
+                        <td class="title">
+                            Fernandópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="94">
+                        </td>
+                        <td class="title">
+                            Franca
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="573">
+                        </td>
+                        <td class="title">
+                            Francisco Morato
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="96">
+                        </td>
+                        <td class="title">
+                            Franco Da Rocha
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="575">
+                        </td>
+                        <td class="title">
+                            Gália
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="98">
+                        </td>
+                        <td class="title">
+                            Garça
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="99">
+                        </td>
+                        <td class="title">
+                            General Salgado
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="100">
+                        </td>
+                        <td class="title">
+                            Getulina
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="101">
+                        </td>
+                        <td class="title">
+                            Guaíra
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="582">
+                        </td>
+                        <td class="title">
+                            Guará
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="103">
+                        </td>
+                        <td class="title">
+                            Guararapes
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="104">
+                        </td>
+                        <td class="title">
+                            Guaratinguetá
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="105">
+                        </td>
+                        <td class="title">
+                            Guariba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="106">
+                        </td>
+                        <td class="title">
+                            Guarujá
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="107">
+                        </td>
+                        <td class="title">
+                            Guarulhos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="108">
+                        </td>
+                        <td class="title">
+                            Ibitinga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="109">
+                        </td>
+                        <td class="title">
+                            Ibiúna
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="110">
+                        </td>
+                        <td class="title">
+                            Igarapava
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="111">
+                        </td>
+                        <td class="title">
+                            Iguape
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="605">
+                        </td>
+                        <td class="title">
+                            Ilha Solteira
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="113">
+                        </td>
+                        <td class="title">
+                            Indaiatuba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="610">
+                        </td>
+                        <td class="title">
+                            Ipaussu
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="614">
+                        </td>
+                        <td class="title">
+                            Ipuã
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="619">
+                        </td>
+                        <td class="title">
+                            Itaí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="117">
+                        </td>
+                        <td class="title">
+                            Itanhaém
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="118">
+                        </td>
+                        <td class="title">
+                            Itapecerica Da Serra
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="119">
+                        </td>
+                        <td class="title">
+                            Itapetininga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="120">
+                        </td>
+                        <td class="title">
+                            Itapeva
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="623">
+                        </td>
+                        <td class="title">
+                            Itapevi
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="122">
+                        </td>
+                        <td class="title">
+                            Itapira
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="123">
+                        </td>
+                        <td class="title">
+                            Itápolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="124">
+                        </td>
+                        <td class="title">
+                            Itaporanga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="125">
+                        </td>
+                        <td class="title">
+                            Itaquaquecetuba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="126">
+                        </td>
+                        <td class="title">
+                            Itararé
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="127">
+                        </td>
+                        <td class="title">
+                            Itatiba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="128">
+                        </td>
+                        <td class="title">
+                            Itú
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="129">
+                        </td>
+                        <td class="title">
+                            Ituverava
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="130">
+                        </td>
+                        <td class="title">
+                            Jaboticabal
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="131">
+                        </td>
+                        <td class="title">
+                            Jacareí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="132">
+                        </td>
+                        <td class="title">
+                            Jacupiranga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="635">
+                        </td>
+                        <td class="title">
+                            Jaguariúna
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="134">
+                        </td>
+                        <td class="title">
+                            Jales
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="294">
+                        </td>
+                        <td class="title">
+                            jardinópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="135">
+                        </td>
+                        <td class="title">
+                            Jaú
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="136">
+                        </td>
+                        <td class="title">
+                            José Bonifácio
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="137">
+                        </td>
+                        <td class="title">
+                            Jundiaí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="643">
+                        </td>
+                        <td class="title">
+                            Junqueirópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="292">
+                        </td>
+                        <td class="title">
+                            Juquiá
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="138">
+                        </td>
+                        <td class="title">
+                            Laranjal Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="139">
+                        </td>
+                        <td class="title">
+                            Leme
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="140">
+                        </td>
+                        <td class="title">
+                            Lençóis Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="141">
+                        </td>
+                        <td class="title">
+                            Limeira
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="142">
+                        </td>
+                        <td class="title">
+                            Lins
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="143">
+                        </td>
+                        <td class="title">
+                            Lorena
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="144">
+                        </td>
+                        <td class="title">
+                            Lucélia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="656">
+                        </td>
+                        <td class="title">
+                            Macatuba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="660">
+                        </td>
+                        <td class="title">
+                            Mairinque
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="147">
+                        </td>
+                        <td class="title">
+                            Mairiporã
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="663">
+                        </td>
+                        <td class="title">
+                            Maracaí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="149">
+                        </td>
+                        <td class="title">
+                            Marília
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="150">
+                        </td>
+                        <td class="title">
+                            Martinópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="151">
+                        </td>
+                        <td class="title">
+                            Matão
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="152">
+                        </td>
+                        <td class="title">
+                            Mauá
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="153">
+                        </td>
+                        <td class="title">
+                            Miguelópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="154">
+                        </td>
+                        <td class="title">
+                            Miracatu
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="155">
+                        </td>
+                        <td class="title">
+                            Mirandópolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="156">
+                        </td>
+                        <td class="title">
+                            Mirante do Paranapanema
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="157">
+                        </td>
+                        <td class="title">
+                            Mirassol
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="158">
+                        </td>
+                        <td class="title">
+                            Mococa
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="159">
+                        </td>
+                        <td class="title">
+                            Mogi Das Cruzes
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="160">
+                        </td>
+                        <td class="title">
+                            Mogi Guaçú
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="161">
+                        </td>
+                        <td class="title">
+                            Mogi Mirim
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="675">
+                        </td>
+                        <td class="title">
+                            Mongaguá
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="163">
+                        </td>
+                        <td class="title">
+                            Monte Alto
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="164">
+                        </td>
+                        <td class="title">
+                            Monte Aprazível
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="165">
+                        </td>
+                        <td class="title">
+                            Monte Azul Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="678">
+                        </td>
+                        <td class="title">
+                            Monte Mor
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="680">
+                        </td>
+                        <td class="title">
+                            Morro Agudo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="168">
+                        </td>
+                        <td class="title">
+                            Nhandeara
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="169">
+                        </td>
+                        <td class="title">
+                            Nova Granada
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="696">
+                        </td>
+                        <td class="title">
+                            Nova Odessa
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="171">
+                        </td>
+                        <td class="title">
+                            Novo Horizonte
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="172">
+                        </td>
+                        <td class="title">
+                            Nuporanga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="173">
+                        </td>
+                        <td class="title">
+                            Olímpia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="174">
+                        </td>
+                        <td class="title">
+                            Orlândia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="175">
+                        </td>
+                        <td class="title">
+                            Osasco
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="176">
+                        </td>
+                        <td class="title">
+                            Osvaldo Cruz
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="177">
+                        </td>
+                        <td class="title">
+                            Ourinhos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="178">
+                        </td>
+                        <td class="title">
+                            Pacaembu
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="179">
+                        </td>
+                        <td class="title">
+                            Palestina
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="180">
+                        </td>
+                        <td class="title">
+                            Palmeira D Oeste
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="181">
+                        </td>
+                        <td class="title">
+                            Palmital
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="706">
+                        </td>
+                        <td class="title">
+                            Panorama
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="183">
+                        </td>
+                        <td class="title">
+                            Paraguaçu Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="184">
+                        </td>
+                        <td class="title">
+                            Paraibuna
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="186">
+                        </td>
+                        <td class="title">
+                            Patrocínio Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="187">
+                        </td>
+                        <td class="title">
+                            Paulo De Faria
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="188">
+                        </td>
+                        <td class="title">
+                            Pederneiras
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="189">
+                        </td>
+                        <td class="title">
+                            Pedregulho
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="190">
+                        </td>
+                        <td class="title">
+                            Pedreira
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="191">
+                        </td>
+                        <td class="title">
+                            Penápolis
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="192">
+                        </td>
+                        <td class="title">
+                            Pereira Barreto
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="193">
+                        </td>
+                        <td class="title">
+                            Peruíbe
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="194">
+                        </td>
+                        <td class="title">
+                            Piedade
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="303">
+                        </td>
+                        <td class="title">
+                            Pilar do Sul
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="196">
+                        </td>
+                        <td class="title">
+                            Pindamonhangaba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="198">
+                        </td>
+                        <td class="title">
+                            Piracaia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="199">
+                        </td>
+                        <td class="title">
+                            Piracicaba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="200">
+                        </td>
+                        <td class="title">
+                            Piraju
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="201">
+                        </td>
+                        <td class="title">
+                            Pirajuí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="310">
+                        </td>
+                        <td class="title">
+                            Pirapozinho
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="203">
+                        </td>
+                        <td class="title">
+                            Pirassununga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="204">
+                        </td>
+                        <td class="title">
+                            Piratininga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="205">
+                        </td>
+                        <td class="title">
+                            Pitangueiras
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="17">
+                        </td>
+                        <td class="title">
+                            Poá
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="206">
+                        </td>
+                        <td class="title">
+                            Pompéia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="315">
+                        </td>
+                        <td class="title">
+                            Pontal
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="319">
+                        </td>
+                        <td class="title">
+                            Porangaba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="209">
+                        </td>
+                        <td class="title">
+                            Porto Feliz
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="210">
+                        </td>
+                        <td class="title">
+                            Porto Ferreira
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="321">
+                        </td>
+                        <td class="title">
+                            Potirendaba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="212">
+                        </td>
+                        <td class="title">
+                            Praia Grande
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="213">
+                        </td>
+                        <td class="title">
+                            Presidente Bernardes
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="214">
+                        </td>
+                        <td class="title">
+                            Presidente Epitácio
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="215">
+                        </td>
+                        <td class="title">
+                            Presidente Prudente
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="216">
+                        </td>
+                        <td class="title">
+                            Presidente Venceslau
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="217">
+                        </td>
+                        <td class="title">
+                            Promissão
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="218">
+                        </td>
+                        <td class="title">
+                            Quatá
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="219">
+                        </td>
+                        <td class="title">
+                            Queluz
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="220">
+                        </td>
+                        <td class="title">
+                            Rancharia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="221">
+                        </td>
+                        <td class="title">
+                            Regente Feijó
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="222">
+                        </td>
+                        <td class="title">
+                            Registro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="223">
+                        </td>
+                        <td class="title">
+                            Ribeirão Bonito
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="224">
+                        </td>
+                        <td class="title">
+                            Ribeirão Pires
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="9">
+                        </td>
+                        <td class="title">
+                            Ribeirão Preto
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="226">
+                        </td>
+                        <td class="title">
+                            Rio Claro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="342">
+                        </td>
+                        <td class="title">
+                            Rosana
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="228">
+                        </td>
+                        <td class="title">
+                            Salto
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="229">
+                        </td>
+                        <td class="title">
+                            Santa Adélia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="231">
+                        </td>
+                        <td class="title">
+                            Santa Bárbara Doeste
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="232">
+                        </td>
+                        <td class="title">
+                            Santa Branca
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="234">
+                        </td>
+                        <td class="title">
+                            Santa Cruz das Palmeiras
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="233">
+                        </td>
+                        <td class="title">
+                            Santa Cruz do Rio Pardo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="235">
+                        </td>
+                        <td class="title">
+                            Santa Fé do Sul
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="236">
+                        </td>
+                        <td class="title">
+                            Santa Isabel
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="237">
+                        </td>
+                        <td class="title">
+                            Santa Rita do Passa Quatro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="238">
+                        </td>
+                        <td class="title">
+                            Santa Rosa de Viterbo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="242">
+                        </td>
+                        <td class="title">
+                            Santo Anastácio
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="243">
+                        </td>
+                        <td class="title">
+                            Santo André
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="2">
+                        </td>
+                        <td class="title">
+                            Santos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="246">
+                        </td>
+                        <td class="title">
+                            São Bento do Sapucaí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="245">
+                        </td>
+                        <td class="title">
+                            São Bernardo do Campo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="247">
+                        </td>
+                        <td class="title">
+                            São Caetano do Sul
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="256">
+                        </td>
+                        <td class="title">
+                            São Carlos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="248">
+                        </td>
+                        <td class="title">
+                            São João da Boa Vista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="249">
+                        </td>
+                        <td class="title">
+                            São Joaquim da Barra
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="251">
+                        </td>
+                        <td class="title">
+                            São José do Rio Pardo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="252">
+                        </td>
+                        <td class="title">
+                            São José do Rio Preto
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="250">
+                        </td>
+                        <td class="title">
+                            São José dos Campos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="253">
+                        </td>
+                        <td class="title">
+                            São Luís do Paraitinga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="257">
+                        </td>
+                        <td class="title">
+                            São Manuel
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="381">
+                        </td>
+                        <td class="title">
+                            São Miguel Arcanjo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="1">
+                        </td>
+                        <td class="title">
+                            São Paulo - Capital
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="258">
+                        </td>
+                        <td class="title">
+                            São Pedro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="259">
+                        </td>
+                        <td class="title">
+                            São Roque
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="255">
+                        </td>
+                        <td class="title">
+                            São Sebastião
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="260">
+                        </td>
+                        <td class="title">
+                            São Simão
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="261">
+                        </td>
+                        <td class="title">
+                            São Vicente
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="263">
+                        </td>
+                        <td class="title">
+                            Serra Negra
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="389">
+                        </td>
+                        <td class="title">
+                            Serrana
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="264">
+                        </td>
+                        <td class="title">
+                            Sertãozinho
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="265">
+                        </td>
+                        <td class="title">
+                            Socorro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="266">
+                        </td>
+                        <td class="title">
+                            Sorocaba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="267">
+                        </td>
+                        <td class="title">
+                            Sumaré
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="268">
+                        </td>
+                        <td class="title">
+                            Suzano
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="397">
+                        </td>
+                        <td class="title">
+                            Taboão da Serra
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="270">
+                        </td>
+                        <td class="title">
+                            Tambaú
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="271">
+                        </td>
+                        <td class="title">
+                            Tanabi
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="272">
+                        </td>
+                        <td class="title">
+                            Taquaritinga
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="273">
+                        </td>
+                        <td class="title">
+                            Taquarituba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="274">
+                        </td>
+                        <td class="title">
+                            Tatuí
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="275">
+                        </td>
+                        <td class="title">
+                            Taubaté
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="276">
+                        </td>
+                        <td class="title">
+                            Teodoro Sampaio
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="277">
+                        </td>
+                        <td class="title">
+                            Tietê
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="412">
+                        </td>
+                        <td class="title">
+                            Tremembé
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="278">
+                        </td>
+                        <td class="title">
+                            Tupã
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="279">
+                        </td>
+                        <td class="title">
+                            Tupi Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="280">
+                        </td>
+                        <td class="title">
+                            Ubatuba
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="421">
+                        </td>
+                        <td class="title">
+                            Urânia
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="283">
+                        </td>
+                        <td class="title">
+                            Urupês
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="284">
+                        </td>
+                        <td class="title">
+                            Valinhos
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="285">
+                        </td>
+                        <td class="title">
+                            Valparaíso
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="286">
+                        </td>
+                        <td class="title">
+                            Vargem Grande Do Sul
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="426">
+                        </td>
+                        <td class="title">
+                            Várzea Paulista
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="428">
+                        </td>
+                        <td class="title">
+                            Vinhedo
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="289">
+                        </td>
+                        <td class="title">
+                            Viradouro
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="430">
+                        </td>
+                        <td class="title">
+                            Votorantim
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="check">
+                            <input name="chkCidades" type="checkbox" value="291">
+                        </td>
+                        <td class="title">
+                            Votuporanga
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="selectorAll">
+            <div class="checkbox">
+                <input type="checkbox" onclick="SelecionarTudo();">
+                <label>
+                    Selecionar todos
+                </label>
+            </div>
+        </div>
+        
+         
+              
+            <div id="dvMensagem">       
+                <textarea id="txt" disabled="disable" readonly="" rows="1" style="font-weight: bold; min-height: 0px; overflow: hidden; border: 0px; background-color: rgb(251, 251, 251); height: 76px;">					A consulta abrange as ocorrências registradas a partir de 1º de Janeiro de 1976 e não aponta eventuais títulos contraditórios em tramitação na serventia com relação aos documentos consultados. 
+				</textarea>
+            <br>            
+            <label class="subTitle">
+                        <input id="chkHabilitar" type="checkbox" onclick="Habilitar();">
+                Li, e estou ciente.
+            </label>
+            </div>
+        
+
+
+        <div id="Indicadores" style="display: none">
+            <table id="dataTables-example" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dataTables-example_info">
+                <thead>
+                    <tr role="row">
+
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12">
+  
+    <button id="Prosseguir" type="button" onclick="location.href='pagina6-escolha-cartorios.html';" class="pull-right" disabled="disabled">
+        Prosseguir</button>
+ 
+</div>
+
+        </div>
+    </div>
+
+                </div>
+            </div>
+            <div id="boxes">
+                <div id="popupComunicado" class="modal fade" tabindex="-1" role="dialog">
+	                <div class="modal-dialog modal-sm">
+		                <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="./pagina5-escolha-regiao_files/img-logo-oficio-interno.png" alt="">
+				                <span id="modal-title"></span>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                    <span aria-hidden="true">×</span>
+                                </button>
+			                </div>
+			                <div class="modal-body">
+			                </div>
+		                </div>
+	                </div>
+                </div>
+                <div id="popupComunicadoMSG" class="modal fade" tabindex="-1" role="dialog">
+	                <div class="modal-dialog modal-sm">
+		                <div class="modal-content">
+			                <div class="modal-header mybck">
+                                <img src="./pagina5-escolha-regiao_files/img-logo-oficio-interno.png" alt="">
+				                <span id="Span1"></span>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                    <span aria-hidden="true">×</span>
+                                </button>
+			                </div>
+			                <div class="modal-body">
+			                </div>
+                            <div class="modal-footer">
+                                <input type="button" value="OK" data-dismiss="modal" class="btn default-btn" onclick="">
+                                
+                            </div>
+		                </div>
+	                </div>
+                </div>
+                
+    <div id="popupVermelhos" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Pesquisa - Cartórios Sem Ocorrências
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="contentPopup">
+                        <div class="form-default">
+                            <div class="form-default">
+                                <p>
+                                    Não foram encontradas ocorrências nos cartórios abaixo:</p>
+                            </div>
+                        </div>
+                        <div id="divCartorios" class="form-default">
+                            <div class="form-default">
+                                <p id="pCartorios" style="margin-bottom: 10px;">
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+        </div>
+
+        <div class="side-call-button">
+            <div class="relative-position">
+                <a href="javascript:void(0)" class="title">Precisa de ajuda ?</a>
+            </div>
+            <div class="side-call-wrap">
+                <p>
+                    Estamos aqui para te ajudar !
+                </p>
+                <ul>
+                    <li id="chat-popup-acess">
+                        <a href="javascript: void open(&#39;http://chat.movidesk.com/ChatWidget/Index/E58B7603783C401F9B2A9BCDF9875A66&#39;,&#39;Chat&#39;,&#39;height=385,width=460&#39;)">
+                        <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                            Chat 
+                        </a>
+                     </li>                 
+                     <li>
+                        <a href="https://novo.oficioeletronico.com.br/Home/ContatoArisp" class="link-side-access">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        E-mail 
+                        </a>
+                    </li>
+                </ul>
+                <a href="javascript:void(0)" class="close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+    </section>
+    <footer>
+        <div id="contact">
+            <p>Av. Paulista, 1776 – 15º andar –Bela Vista, São Paulo – SP – CEP 01310-921. - Telefone : (11) 4130-7979</p>
+            <p>
+                E-mail: servicedesk@registradores.org.br |
+                Horário de Atendimento - 2ª a 6ª feira, das 8:30h às 17:00h
+            </p>
+        </div>
+        <div class="container">
+            <div id="logos-footer" class="text-center">
+                <div>
+                    <div class="highlights-logos">
+                       
+                        <div>
+                            <a href="http://arisp.com.br/" target="_blank" class="logo-arisp"></a>
+                        </div>
+                        <div>
+                            <a href="http://registradores.org.br/" target="_blank" class="logo-registradores-footer">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="http://cnj.jus.br/" target="_blank" class="logo-cnj"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="copyright-wrap">
+        <div class="container">
+            <small class="padlock-icon">V 1.5.0</small>
+            <p>
+                Copyright © 2002-2019
+                Todos os direitos reservados</p>
+            <a href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta">Política de privacidade</a>
+        </div>
+    </div>
+
+    <div style=" display: none;"><div id="divModalPopup" class="colbox" style="padding: 10px; background: #fff;"></div></div>
+    <a id="lboxModalPopup" href="https://novo.oficioeletronico.com.br/Cartorios/BDLight/Consulta#divModalPopup" style="display: none;" class="cboxElement"></a>
+
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button type="button" id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>

@@ -1,0 +1,553 @@
+/*
+	***************************************************************************
+                       	HISTÓRICO DE REVISÕES
+	***************************************************************************
+	DATA				USUÁRIO						ISSUE/UC/SM
+	***************************************************************************
+	05/03/2015		 	Adelmo Erick dos Santos		UC288/SM162
+	11/09/2015		 	Marcus Vieira        		UC511
+	***************************************************************************
+*/
+
+/*
+ * Aplicacao SIM
+ * 
+ * http://www.magnasistemas.com.br/
+ * 
+ * Copyright (c) 2012 Magna Sistemas Consultoria
+ * 
+ * 
+ * Revision: $Id: global.js,v 1.5 2012/10/18 13:34:41 Administrator Exp $
+ */
+
+//MANDA PARA O CONTEXTO HOME DA APLICACAO
+function gotoHome() {
+	document.location.href = "/sim";
+}
+
+// FUNCAO PARA MOSTRAR O AJAX_STATUS
+function showAjaxStatus(flag) {
+	var theDiv = document.getElementById("ajaxStatus_start");
+	var pnBlock = document.getElementById("pnBlock");
+
+	if (flag == true) {
+		theDiv.style.display = 'block';
+		pnBlock.style.display = 'block';
+	} else {
+		theDiv.style.display = 'none';
+		pnBlock.style.display = 'none';
+	}
+
+}
+
+/*
+ * CONFIRMACAO DE EXCLUSAO DE REGISTRO
+ */
+function confirmDelete() {
+	if (confirm("Confirma a Exclusão do Registro?")) {
+		return true;
+	}
+	return false;
+}
+
+/*
+ * FORMATA UM VALOR COM DETERMINADA MASCARA
+ */
+function formatar(src, mask) {
+	var i = src.value.length;
+	var saida = mask.substring(0, 1);
+	var texto = mask.substring(i);
+	if (texto.substring(0, 1) != saida) {
+		src.value += texto.substring(0, 1);
+	}
+}
+
+/*
+ * VERIFICA SE FOI DIGITADO UM NUMERO
+ */
+function numero(e) {
+	if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+		return false;
+	}
+}
+
+
+/*
+ * Remove os caracteres que sejam diferentes de letras e números e transforma
+ * o conteúdo em caixa alta.
+ */
+function onKeyupNumeroAITPrefeitura(e) {
+	formatarLetrasNumerosUppercase(e);	
+}
+
+/*
+ * Remove os caracteres que sejam diferentes de letras e números e transforma
+ * o conteúdo em caixa alta.
+ */
+function onKeyupNumeroAITDetran(e) {
+	formatarLetrasNumerosUppercase(e);	
+}
+
+/*
+ * Remove os caracteres que sejam diferentes de letras e números e transforma
+ * o conteúdo em caixa alta.
+ */
+function onKeyupPlacaVeiculo(e) {
+	formatarLetrasNumerosUppercase(e);	
+}
+
+/*
+ * Remove os caracteres que sejam diferentes de letras e números e transforma
+ * o conteúdo em caixa alta.
+ */
+function formatarLetrasNumerosUppercase(e) {
+	e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g,"").toUpperCase();
+}
+
+
+/*
+ * VERIFICA SE FOI DIGITADO NUMERO OU BARRA
+ */
+function numeroBarra(e) {
+	if (e.which != 8 && e.which != 0 && (e.which < 47 || e.which > 57)) {
+		return false;
+	}
+}
+
+/*
+ * VERIFICA SE FOI DIGITADO NUMERO, TRAÇO(-) OU PONTO E VIGULA(;)
+ */
+function numeroTracoPontoVirgula(e) {
+	if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 59 && e.which != 45) {
+		return false;
+	}
+}
+
+
+// JavaScript Document
+function MM_swapImgRestore() { // v3.0
+	var i, x, a = document.MM_sr;
+	for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++)
+		x.src = x.oSrc;
+}
+function MM_preloadImages() { // v3.0
+	var d = document;
+	if (d.images) {
+		if (!d.MM_p)
+			d.MM_p = new Array();
+		var i, j = d.MM_p.length, a = MM_preloadImages.arguments;
+		for (i = 0; i < a.length; i++)
+			if (a[i].indexOf("#") != 0) {
+				d.MM_p[j] = new Image;
+				d.MM_p[j++].src = a[i];
+			}
+	}
+}
+
+function MM_findObj(n, d) { // v4.01
+	var p, i, x;
+	if (!d)
+		d = document;
+	if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+		d = parent.frames[n.substring(p + 1)].document;
+		n = n.substring(0, p);
+	}
+	if (!(x = d[n]) && d.all)
+		x = d.all[n];
+	for (i = 0; !x && i < d.forms.length; i++)
+		x = d.forms[i][n];
+	for (i = 0; !x && d.layers && i < d.layers.length; i++)
+		x = MM_findObj(n, d.layers[i].document);
+	if (!x && d.getElementById)
+		x = d.getElementById(n);
+	return x;
+}
+
+function MM_swapImage() { // v3.0
+	var i, j = 0, x, a = MM_swapImage.arguments;
+	document.MM_sr = new Array;
+	for (i = 0; i < (a.length - 2); i += 3)
+		if ((x = MM_findObj(a[i])) != null) {
+			document.MM_sr[j++] = x;
+			if (!x.oSrc)
+				x.oSrc = x.src;
+			x.src = a[i + 2];
+		}
+}
+
+function uploadRealizado(campo) {
+	//Id do componente p:fileUpload
+	var nodesTable = window.document.getElementById(campo);
+	//Arquivos que foram escolhidos, mas aguardam upload
+	var items = nodesTable.children[1].children[1].children[0].children;
+	if (items.length > 0) {
+		msg.renderMessage({summary:'O arquivo selecionado não foi anexado, efetue o upload ou remova.', severity: 0});
+		return false;
+	}
+	return true;
+}
+
+//FUNCAO PARA IMPRIMIR O REPORT
+function printReport(url) {
+	if (url.indexOf("PDF")!=-1) {
+		openWindow(url);
+	} else {
+		openLocation(url);
+	}
+}
+
+//FUNCAO PARA ABRIR UMA JANELA POPUP
+function openWindow(url) {
+	window.open(url,'_blank','width=600,height=300,,resizable=yes,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
+}
+
+//FUNCAO PARA ABRIR UMA URL
+function openLocation(url) {
+	window.location=url;
+}
+
+
+/**
+ * Atualiza o conteúdo do campo formatado com hora(HH:mm) quando
+ * é pressionada uma tecla.
+ * 
+ * @param src - campo que será atualizado.
+ * @param event - evento que foi executado.
+ * 
+ * @returns true para continuar o processamento do pressionamento da tecla.
+ */
+function onKeyDownMaskInputTimeHHmm(src, event) {
+	var code = event.which || event.keyCode;
+	if(code == 8 || code == 46) {
+		var pos = getCaretPosition(src);
+		if (pos < src.value.length) {
+			if ((code == 8 && pos-1 <= src.value.lastIndexOf(':')) ||
+				(code == 46 && pos <= src.value.lastIndexOf(':'))) {
+				var selection = getInputSelection(src);
+				src.value = src.value.substring(0, pos);
+				setInputSelection(src, selection.start, selection.end);
+			}
+		} 
+	} else if (isNumberEventKey(event)) {
+		var selection = getInputSelection(src);
+		if (selection.end - selection.start > 1) {
+			src.value = src.value.substring(0, selection.end);
+			setInputSelection(src, selection.start, selection.end);
+		} 
+	}
+	return true;
+}
+
+/**
+ * Atualiza o conteúdo do campo formatado com hora(HH:mm) quando é tecla 
+ * é liberada.
+ * 
+ * @param src  - campo que será atualizado.
+  * @param e - evento que foi executado.
+ * 
+ * @returns true para confirmar o evento e false para cancelar.
+ */
+function onKeyUpMaskInputTimeHHmm(src, event) {
+	var code = event.which || event.keyCode;
+	
+	//Foi pressionado a tecla '<delete>' ou '<backspace>'
+	if(code == 8 || code == 46) {
+		return true;
+	}
+	
+	var valorFormatado = '';
+	var res = src.value.split(":");
+	
+	if (res.length == 0) {
+		return true;
+	} else {
+		var sobra = '';
+		if (res[0].length < 2) {
+			valorFormatado = res[0];
+		} else if (res[0].length == 2) {
+			valorFormatado = res[0] + ':';
+		} else if (res[0].length > 2) {
+			valorFormatado = res[0].substring(0, 2) + ':';
+			sobra = res[0].substring(2);
+		}
+		
+		if (res.length > 1) {
+			sobra = '';
+			var seg = res[1];
+		
+			if (seg.length <= 2) {
+				valorFormatado += seg;
+			} else if (seg.length > 2) {
+				valorFormatado += seg.substring(0, 2);
+			}
+		} else {
+			valorFormatado += sobra;
+		}
+	}
+	
+	if (src.value != valorFormatado) {
+		var pos = getCaretPosition(src);
+		src.value = valorFormatado;
+		setCaretPosition(src, ++pos);
+	}
+
+	//Foi pressionado a tecla '/'
+	if(code == 92) {
+		return false;
+	}
+	return true; 
+}
+
+/**
+ * Atualiza o conteúdo do campo formatado com data quando
+ * é pressionada uma tecla.
+ * 
+ * @param src - campo que será atualizado.
+ * @param event - evento que foi executado.
+ * 
+ * @returns true para continuar o processamento do pressionamento da tecla.
+ */
+function onKeyDownMaskInputDateDDMMYYYY(src, event) {
+	var code = event.which || event.keyCode;
+	if(code == 8 || code == 46) {
+		var pos = getCaretPosition(src);
+		if (pos < src.value.length) {
+			if ((code == 8 && pos-1 <= src.value.lastIndexOf('/')) ||
+				(code == 46 && pos <= src.value.lastIndexOf('/'))) {
+				var selection = getInputSelection(src);
+				src.value = src.value.substring(0, pos);
+				setInputSelection(src, selection.start, selection.end);
+			}
+		} 
+	} else if (isNumberEventKey(event)) {
+		var selection = getInputSelection(src);
+		if (selection.end - selection.start > 1) {
+			src.value = src.value.substring(0, selection.end);
+			setInputSelection(src, selection.start, selection.end);
+		} 
+	}
+	return true;
+}
+
+/**
+ * Atualiza o conteúdo do campo formatado com data quando  é tecla 
+ * é liberada.
+ * 
+ * @param src  - campo que será atualizado.
+  * @param e - evento que foi executado.
+ * 
+ * @returns true para confirmar o evento e false para cancelar.
+ */
+function onKeyUpMaskInputDateDDMMYYYY(src, event) {
+	var code = event.which || event.keyCode;
+	
+	//Foi pressionado a tecla '<delete>' ou '<backspace>'
+	if(code == 8 || code == 46) {
+		return true;
+	}
+	
+	var valorFormatado = '';
+	var res = src.value.split("/");
+	
+	if (res.length == 0) {
+		return true;
+	} else {
+		var sobra = '';
+		if (res[0].length < 2) {
+			valorFormatado = res[0];
+		} else if (res[0].length == 2) {
+			valorFormatado = res[0] + '/';
+		} else if (res[0].length > 2) {
+			valorFormatado = res[0].substring(0, 2) + '/';
+			sobra = res[0].substring(2);
+		}
+		
+		if (res.length > 1) {
+			sobra = '';
+			var seg = res[1];
+		
+			if (seg.length < 2) {
+				valorFormatado += seg;
+			} else if (seg.length == 2) {
+				valorFormatado += seg + '/';
+			} else if (seg.length > 2) {
+				valorFormatado += seg.substring(0, 2) + '/';
+				sobra = seg.substring(2);
+			}
+			if (res.length > 2) {
+				var seg = res[2];
+			
+				if (seg.length <= 4) {
+					valorFormatado += seg;
+				} else {
+					valorFormatado += seg.substring(0, 4);
+				}
+			} else {
+				valorFormatado += sobra;
+			}
+		} else {
+			valorFormatado += sobra;
+		}
+	}
+	
+	if (src.value != valorFormatado) {
+		var pos = getCaretPosition(src);
+		src.value = valorFormatado;
+		setCaretPosition(src, ++pos);
+	}
+
+	//Foi pressionado a tecla '/'
+	if(code == 92) {
+		return false;
+	}
+	return true; 
+}
+
+/**
+ * Altera o intervalo de seleção de um texto.
+ * 
+ * @param input - componente de entrada de texto.
+ * @param startPos - posição inicial da seleção.
+ * @param endPos - posição final da seleção.
+ */
+function setInputSelection(input, startPos, endPos) {
+	if (input.setSelectionRange) {
+		input.focus();
+		input.setSelectionRange(startPos, endPos);
+	} else if (input.createTextRange) {
+		var range = input.createTextRange();
+		range.collapse(true);
+		range.moveEnd('character', endPos);
+		range.moveStart('character', startPos);
+		range.select();
+	}
+}
+
+/**
+ * Obtém a posição do cursor.
+ * 
+ * @param ctrl - componente de entrada de texto.
+ * 
+ * @returns posição do cursor.
+ */
+function getCaretPosition(ctrl) {
+	var caretPos = 0;
+	
+	// Standard.
+	if (ctrl.selectionStart || ctrl.selectionStart == 0) {
+		caretPos = ctrl.selectionStart;
+		
+	// Legacy IE
+	} else if (document.selection) {
+		ctrl.focus ();
+		var Sel = document.selection.createRange ();
+		Sel.moveStart ('character', -ctrl.value.length);
+		caretPos = Sel.text.length;
+	}
+	
+	return caretPos;
+}
+
+/**
+ * Altera a posição do cursor.
+ * 
+ * @param ctrl - componente de entrada de texto.
+ * @param pos - posição do cursor.
+ */
+function setCaretPosition(ctrl, pos) {
+	if (ctrl.setSelectionRange) {
+		ctrl.focus();
+		ctrl.setSelectionRange(pos, pos);
+	} else if (ctrl.createTextRange) {
+		var range = ctrl.createTextRange();
+		range.collapse(true);
+		range.moveEnd('character', pos);
+		range.moveStart('character', pos);
+		range.select();
+	}
+}
+
+/**
+ * Remove os caracteres de tabulações.
+ * 
+ * @param input - input a ser tratado.
+ */
+function substituirTabulacoesPorEspaco(input) {
+	var i = 0;
+	var str = input.value;
+	while ((i = str.indexOf("\t", i)) != -1) {
+		str = str.replace("\t", "        ");
+	}
+	input.value = str;
+}
+
+/**
+ * Obtém o intervalo de seleção de um texto.
+ * 
+ * @param input - componente de entrada de texto.
+ * @param startPos - posição inicial da seleção.
+ * @param endPos - posição final da seleção.
+ * 
+ * @return {Object} reference Object with 2 properties (start and end) 
+ * 		with the identifier of the location of the cursor and selected text.
+**/
+function getInputSelection(el) {
+	var start = 0;
+	var end = 0;
+	
+	if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
+		start = el.selectionStart;
+		end = el.selectionEnd;
+	} else {
+		var range = document.selection.createRange();
+
+		if (range && range.parentElement() == el) {
+			var len = el.value.length;
+		    var normalizedValue = el.value.replace(/\r\n/g, "\n");
+		
+		    // Create a working TextRange that lives only in the input
+		    var textInputRange = el.createTextRange();
+		    textInputRange.moveToBookmark(range.getBookmark());
+		
+		    // Check if the start and end of the selection are at the very end
+		    // of the input, since moveStart/moveEnd doesn't return what we want
+		    // in those cases
+		    var endRange = el.createTextRange();
+		    endRange.collapse(false);
+		
+		    if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+		        start = end = len;
+		    } else {
+		        start = -textInputRange.moveStart("character", -len);
+		        start += normalizedValue.slice(0, start).split("\n").length - 1;
+		
+		        if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+		            end = len;
+		        } else {
+		            end = -textInputRange.moveEnd("character", -len);
+		            end += normalizedValue.slice(0, end).split("\n").length - 1;
+		        }
+		    }
+		}
+	}
+
+	return {
+		start: start,
+		end: end
+	};
+}
+
+/**
+ * Verifica se a tecla pressionada foi numérica.
+ * 
+ * @param evt - evendo de pressionamento da tecla.
+ * 
+ * @returns true se for numérica e false caso contrário.
+ */
+function isNumberEventKey(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode;
+	if ((charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105)) {
+		return true;
+	}
+	return false;
+}

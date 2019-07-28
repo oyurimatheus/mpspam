@@ -1,0 +1,74 @@
+
+body, td, th
+{
+	font-size:14px;
+}
+
+/*	
+.cl_002,
+.cl_003,
+.cl_023 {
+	font-size: 130%;
+	}
+	
+div#sub_area {
+	font-weight:bold;
+	}
+
+div#box_drts_conteudo form,
+div.cl_052 form {
+	margin-bottom:14px;
+	}
+*/
+	
+h1.h1TituloPrincipal
+{
+	font-size:16px;
+}
+
+p.pVoltar
+{
+	font-size: 12px;
+}
+
+div.observacao
+{
+	font-size: 12px;
+}
+
+input
+{
+	font-size: 14px;
+}
+
+input
+{
+	font-size: 14px;
+}
+
+textarea {
+	font-size: 14px; 
+}
+
+option {
+	font-size: 14px; 
+}
+
+legend 
+{
+	font-size: 14px; 
+}
+
+div#cabecalho div#titulo_projeto 
+{
+	font-size: 22px;
+}
+
+div#cabecalho div#data_atual {	
+	font-size: 12px;
+}
+
+div#rodape 
+{
+	font-size: 12px;
+}

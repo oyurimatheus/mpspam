@@ -1,0 +1,72 @@
+﻿var progressTimer = null,
+    progressbar = null,
+    progressLabel = null,
+    matriculasTotal = 0,
+    progressoMatriculas = 100,
+    pdfFileName = '',
+    idCartorio = 0,
+    idMatricula = 0;
+
+function VisualizarMatricula(_idCartorio, _numeroMatricula, showOptions) {
+    ShowLoading();
+    DestroyLoading();
+	//window.open('pagina11-escritura.pdf', '_blank', 'width=900,height=500,left=15,top=15');
+
+    window.open('pagina10-visualizar-matriculas.htm');
+}
+
+function progress(completed) {
+    var val = progressbar.progressbar("value") || 0;
+    if (completed == true) progressbar.progressbar("value", 100);
+    else progressbar.progressbar("value", val + progressoMatriculas);
+}
+
+function GerarPDFVM(controller, idMatricula, idCartorio, pagina) {
+    if (pagina == 0) {
+        $('#popupAcaoMatricula').modal('hide');
+        $.blockUI({ message: 'Aguarde enquanto o sistema gera o PDF da matrícula solicitada. Esse processo pode demorar vários minutos caso o documento seja muito extenso.<div id="progressbar"><div class="progress-label">Carregando matrícula...</div></div>' });
+        progressLabel = $(".progress-label");
+        progressbar = $("#progressbar").progressbar({
+            value: false,
+            change: function () {
+                progressLabel.text("Carregando página " + Math.floor(eval(progressbar.progressbar("value")) / progressoMatriculas) +
+                            "/" + matriculasTotal + "...");
+            },
+            complete: function () {
+                progressLabel.text("PDF da matrícula gerado!");
+            }
+        });
+    }
+
+    $.post("/" + controller + "/GerarPDFVM", {
+        matricula: idMatricula,
+        cartorio: idCartorio,
+        indice: pagina
+    }, function (response) {
+        if (response.indexOf('OK;') > -1 || response.indexOf('Progresso;') > -1) {
+            if (response.indexOf('OK;') > -1) {
+                progress(true);
+                setTimeout(function () { $.unblockUI(); }, 500);
+                pdfFileName = response.split(';')[1];
+                DownloadPDFMatricula(pdfFileName);
+            }
+            else if (response.indexOf('Progresso;') > -1) {
+                var indice = eval(response.split(';')[1]);
+                if (indice == 0) {
+                    matriculasTotal = eval(response.split(';')[2]);
+                    progressoMatriculas = 100 / matriculasTotal;
+                }
+                progress();
+                indice += 1;
+                GerarPDFVM(controller, idMatricula, idCartorio, indice);
+            }
+        } else {
+            $.unblockUI();
+            alert(response);
+        }
+    });
+}
+
+function DownloadPDFMatricula(pdfFileName) {
+    LoadPage('/Matriculas/DownloadPDFMatricula?pdfFileName=' + pdfFileName);
+}

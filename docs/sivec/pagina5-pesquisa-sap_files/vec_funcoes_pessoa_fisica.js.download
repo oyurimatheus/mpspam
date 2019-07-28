@@ -1,0 +1,207 @@
+function muda(op) {
+	if (op == 1) {
+		document.forms[0].action = "pfisica.view";
+		document.forms[0].submit();
+	}
+}
+
+function controla(op) {
+	if (op == 0) {
+		document.PesquisarPessoaFisicaForm.action = "pfisica.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+	if (op == 1) {
+		document.PesquisarPessoaFisicaForm.action = "pfisica.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+	if (op == 2) {
+		document.PesquisarPessoaFisicaForm.action = "pfisica.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+	if (op == 3) {
+		document.PesquisarPessoaFisicaForm.action = "pfisica.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+	if (op == 4) {
+		document.PesquisarPessoaFisicaForm.action = "pfisica.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+	if (op == 5) {
+		document.PesquisarPessoaFisicaForm.action = "pfisica.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+	if (op == 6) {
+		document.PesquisarPessoaFisicaForm.action = "pfisica_rg.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}	
+}
+
+function ConsultaDetalhe(numRg) {
+	document.forms[0].action = "pesq_pf_detalhes.do?numRgPrincipal=" + numRg;
+	document.forms[0].submit();
+}
+
+function Voltar(lista, numRg) {
+	if(document.PesquisarPessoaFisicaForm.lista.value == 'N') {
+		document.PesquisarPessoaFisicaForm.action = "pfisica.view";
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+	else {
+		document.PesquisarPessoaFisicaForm.action = "pesq_pf.do?numRg=" + document.PesquisarPessoaFisicaForm.numRg.value;
+		document.PesquisarPessoaFisicaForm.submit();
+	}
+}
+
+function pesquisarPorRG() {
+	return validarRG(document.PesquisarPessoaFisicaForm.valorPesq);
+}
+
+function submete_sap() {
+	if((document.forms[0].valorPesq.value == null)||(document.forms[0].valorPesq.value == "")){
+		$("<div class=\"text-center\" title=\"Matrícula SAP!\"><br>Favor informar o número da Matrícula SAP para a pesquisa!</div>").dialog({
+    		width: 450,
+            modal: true,
+            buttons: {
+    	    	"Ok": function() {
+    	    		$(this).dialog("close");
+    				}
+    	 		}
+       	 	});	
+		return false;
+	}
+	else{
+		desabilitar('procurar');
+		document.forms[0].submit();
+		return true;
+	}
+}
+
+function submete_rg() {
+	if((document.forms[0].idValorPesq.value == null)||(document.forms[0].idValorPesq.value == "")) {
+		$('#idValorPesq').addClass('ui-state-error');
+		$("<div class=\"text-center\" title=\"Número do RG!\"><br>Favor informar o número do RG para a pesquisa!</div>").dialog({
+			width: 450, modal: true, buttons: {
+				"Ok": function() {
+					$(this).dialog("close");
+					$("#idValorPesq").focus();
+				}
+			}
+		});
+		return false;
+	}
+	else{
+		desabilitar('procurar');
+		document.forms[0].submit();
+		return true;
+	}
+}
+
+function voltar(paramJsp) {
+	if (paramJsp == "rg") {
+		document.forms[0].action = "pesq_pf.do";
+	}
+	else if (paramJsp == "nome") {
+		document.forms[0].action = "pfisica_fonetica.view";
+	}
+	else if (paramJsp == "sap") {
+		document.forms[0].action = "pfisica_matricula_sap.view";
+	}
+	document.forms[0].submit();
+}
+
+function selecionaPai() {
+	$("#pai").prop('disabled', false);			
+	$("[name='mae']").prop('checked', false);
+	$("[name='alcunha']").prop('checked', false);
+	$("#mae").prop('disabled', true);
+	$("#alcunha").prop('disabled', true);
+	$("#mae").val("");
+	$("#alcunha").val("");
+	$("#ano").val("");
+	$('#nomePesq').removeClass('ui-state-error');
+	$('#pai').removeClass('ui-state-error');
+	$('#mae').removeClass('ui-state-error');
+	$('#alcunha').removeClass('ui-state-error');
+}
+
+function selecionaMae() {
+	$("#mae").prop('disabled', false);			
+	$("[name='pai']").prop('checked', false);
+	$("[name='alcunha']").prop('checked', false);
+	$("#pai").prop('disabled', true);
+	$("#alcunha").prop('disabled', true);
+	$("#pai").val("");
+	$("#alcunha").val("");
+	$('#nomePesq').removeClass('ui-state-error');
+	$('#pai').removeClass('ui-state-error');
+	$('#mae').removeClass('ui-state-error');
+	$('#alcunha').removeClass('ui-state-error');
+}
+
+function selecionaAlcunha() {
+	$("#alcunha").prop('disabled', false);			
+	$("[name='pai']").prop('checked', false);
+	$("[name='mae']").prop('checked', false);
+	$("#pai").prop('disabled', true);
+	$("#mae").prop('disabled', true);
+	$("#mae").val("");
+	$("#pai").val("");
+	$("#ano").val("");
+	$('#nomePesq').removeClass('ui-state-error');
+	$('#pai').removeClass('ui-state-error');
+	$('#mae').removeClass('ui-state-error');
+	$('#alcunha').removeClass('ui-state-error');
+}
+
+function limpaCampos() {
+	$('#idNomePesq').removeClass('ui-state-error');
+	$('#pai').removeClass('ui-state-error');
+	$('#mae').removeClass('ui-state-error');
+	$('#alcunha').removeClass('ui-state-error');
+}
+
+function pesquisa_por_nome() {
+	if($('#idNomePesq').val() == "") {
+		$('#idNomePesq').addClass('ui-state-error');
+		$("<div class=\"textotab2 text-center\" title=\"Pesquisa por Réu!\"><br>Favor informar o nome para efetuar a pesquisa!  </div>").dialog({
+			width: 450, modal: true, buttons: {
+				"Ok": function() {
+					$(this).dialog("close");
+				}
+			}
+		}).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else {
+		desabilitar('procura');
+		document.forms[0].action = "pesq_pf_fonetica.do";
+		document.forms[0].submit();
+	}
+}
+
+function pesquisa_por_opcoes() {
+	var nome = $('#idNomePesq').val();
+	var pai = $("#pai").val();
+	var mae = $("#mae").val();
+	var alcunha = $('#alcunha').val();
+	if(nome == "" && pai == "" && mae == "" && alcunha == "") {
+		$('#idNomePesq').addClass('ui-state-error');
+		$('#pai').addClass('ui-state-error');
+		$('#mae').addClass('ui-state-error');
+		$('#alcunha').addClass('ui-state-error');
+		
+		$("<div class=\"textotab2 text-center\" title=\"Pesquisa por Réu!\"><br>Favor informar os campos obrigatórios para efetuar a pesquisa!</div>").dialog({
+			width: 450, modal: true, buttons: {
+				"Ok": function() {
+					$(this).dialog("close");
+				}
+			}
+		}).addClass('ui-state-error ui-corner-all');
+		return false;
+	}
+	else {
+		desabilitar('procura');
+		document.forms[0].action = "pesq_pf_fonetica.do";
+		document.forms[0].submit();
+	}
+}

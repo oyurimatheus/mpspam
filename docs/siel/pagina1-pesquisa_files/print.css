@@ -1,0 +1,62 @@
+body { background:none;}
+.canvas {width:776px; margin:0 auto 0 auto; position:relative; z-index:5 }
+.canvasRodape {width:776px; margin:0 auto 0 auto; position:relative; }
+.logout {display:none;}
+
+/* topo */
+
+.topo { display:none;}
+.menuPrincipal { display:none;}
+
+.cartolaTitulo {
+	background:transparent no-repeat scroll 0%;
+	height:32px;
+	position:relative;
+	width:770px;
+	border-bottom:1px solid #ccc;
+	margin:0 0 5px 0;
+	display:none;
+}
+.cartolaTitulo h2 { margin:0; bottom:0; color: black !important;}
+
+.bt_impressao {display:none;}
+
+.breadCrumbs { display:none;}
+
+.conteudo {width:770px; float:left;}
+.conteudo .miolo { width:770px; float:left; margin:10px 0 0 0; color:#666666; padding:0;}
+.conteudo .mioloInterna { width:750px; float:left; margin:10px 0 0 0; color:#666666; padding:0; }
+
+table.lista td, div.apps table.lista td {
+	text-align:justify;
+	line-height:14px;
+}
+table.lista td br, div.apps table.lista td br {
+	margin-bottom:8px;
+}
+
+/*.rodapeCima { background:#EBEBC8; height:auto; margin-top:5px;}*/
+.rodapeCima { display:none;}
+.rodapeCima .menuRodape { display:none; }
+.rodapeBaixo {display:none;}
+
+.textoRodape { width:400px; color:#777; position:relative; top:0px; left:auto;}
+
+
+div.apps h2 {
+	margin:0;
+}
+
+
+#header_print {
+	border:1px solid #666666;
+	margin-bottom:8px;
+	display:table;
+}
+#header_print td {
+	font-size:14px;
+	font-weight:bold;
+	padding:3px;
+	text-transform:uppercase;
+	text-align:center;
+}

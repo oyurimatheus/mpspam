@@ -1,0 +1,107 @@
+function buscarMandados() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_pesquisar').attr('disabled','disabled');
+  var parte = $('form[name=form_pesq_mandados] [name=parte]').val();
+  var tipo_documento = $('form[name=form_pesq_mandados] [name=tipo_documento]').val();
+  var status = $('form[name=form_pesq_mandados] [name=status]').val();
+  var num_processo = $('form[name=form_pesq_mandados] [name=num_processo]').val();
+  var data_envio_ini = $('form[name=form_pesq_mandados] [name=data_envio_ini]').val();
+  var data_envio_fim = $('form[name=form_pesq_mandados] [name=data_envio_fim]').val();
+
+
+  $.ajax({
+    type: 'POST',
+    url: './mandado/mandadoExecutar.cfm',
+    data: {
+      'exec': 'buscarMandados',
+      'parte': escape(parte),
+      'tipo_documento': escape(tipo_documento),
+      'status': escape(status),
+      'num_processo': escape(num_processo),
+      'data_envio_ini': escape(data_envio_ini),
+      'data_envio_fim': escape(data_envio_fim)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#pesq_mandados').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_pesquisar').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+  $('body').on("ajaxStop",function(){
+    var ex = document.getElementById('mandados');
+    if (!$.fn.DataTable.fnIsDataTable(ex)){
+      $('#mandados').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+        "sScrollX": "100%",
+        "bScrollCollapse": true
+      });
+    }
+  });
+}
+
+function excluirDocumentoMandado() {
+  var confirma=confirm('Tem certeza que deseja excluir esse Documento?');
+  if(confirma){
+    $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+    var doc_juiz_id = $('form[name=form_mandado_rejeitado] [name=doc_juiz_id]').val();
+
+    $.ajax({
+      type: 'POST',
+      url: './mandado/mandadoExecutar.cfm',
+      data: {
+        'exec': 'excluirDocumentoMandado',
+        'doc_juiz_id': escape(doc_juiz_id)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            montarURL('mandado/mandadosRejeitadosDetalhar/params/doc_juiz_id/' + doc_juiz_id);
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+        $('#atua_loading').html('');
+      }
+    });
+  }
+}
+
+function arquivarMandado(doc_juiz_id) {
+  var confirma=confirm('Tem certeza que deseja arquivar esse Mandado?');
+  if(confirma){
+    var doc_juiz_id = doc_juiz_id;
+
+    $.ajax({
+      type: 'POST',
+      url: './mandado/mandadoExecutar.cfm',
+      data: {
+        'exec': 'arquivarMandado',
+        'doc_juiz_id': escape(doc_juiz_id)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            montarURL('includes/inicioVisualizar');
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+      }
+    });
+  }
+}
+
+
+
+
+

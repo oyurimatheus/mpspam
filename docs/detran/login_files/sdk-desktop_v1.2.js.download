@@ -1,0 +1,1241 @@
+/* SDK Desktop Javascript API  */
+
+/*
+ Theme: sweetAlert 
+ Description: Javascript API for SDK Desktop
+ Version: 1.0.6
+ Author: dazevedo
+ Needs: Jquery 3.1.1 (low-level functions); sweetAlert (User-interaction functions)
+ */
+
+/* ------------------------------------------ */
+/*             TABLE OF CONTENTS
+ /* ------------------------------------------ */
+/*   00 - Variables and Constants    - 34  */
+/*   01 - High Level Functions       - 49  */
+/*   1.1 - Generic Functions         - 51  */
+/*   1.2 - Challenge-Response        - 140 */
+/*   1.3 - Signing & Encrypting      - 205 */
+/*   1.4 - Token Services            - 433 */
+/*   02 - Low Level Functions        - 551 */
+/*   03 - User Interaction Functions - 668 */
+
+/* ------------------------------------------ */
+/*                 IMPORTANT
+ /* ------------------------------------------ */
+
+/* Since many problems now occur on the client side,
+ * it is recommended to send the error back to the server,
+ * to keep a error log.
+ * 
+ * The function sdkDesktop.sendErrorToServer (Line 656, Low Level Functions)
+ * should be modified to send it to the server. */
+
+/*   00 - Variables and Constants     */
+
+var sdkDesktop = {
+
+	warningAlertHeader : "Atenção:", //alertWarning header
+	successAlertHeader : "Sucesso:", //alertSuccess header
+	errorAlertHeader : "Erro:", //alertError header
+	infoAlertHeader : "Info:", //alertInfo header
+	errorMessageVerify : "Verifique se o SDK-Desktop está funcionando.",
+	errorMessageVerifyHttps : "Verifique se o SDK-Desktop está funcionando.",
+	errorMessageCpf : "CPF do certificado digital não é o mesmo fornecido no login.",
+	failure401 : "Failure (HTTP 401).",
+	parameters : {},
+	fileParameters : [],
+	tokenPresent : false,
+	signatureDestination : "",
+
+	/* 01 - High Level Functions */
+
+	/* 1.1 - Generic functions */
+
+	/**
+	 * This function will check if sdk-desktop is running. callback function
+	 * will receive a json like this: {alive : true}
+	 * 
+	 * In case of failure, sdkDesktop.alertError will be called.
+	 * 
+	 * @param {function}
+	 *            callbackSuccess - callback function in case of success.
+	 */
+	checkStarted : function(callbackSuccess) {
+		
+		if(location.protocol == 'https:'){
+			sdkDesktop
+			.sdkDesktopGenericCallHttps(
+					"alive",
+					3000,
+					callbackSuccess,
+					function() {
+						sdkDesktop
+								.alertError(sdkDesktop.errorMessageVerifyHttps);
+					});
+		}else{
+			sdkDesktop
+			.sdkDesktopGenericCall(
+					"alive",
+					3000,
+					function(){
+						sdkDesktop
+						.sdkDesktopGenericCallHttps(
+								"alive",
+								3000,
+								callbackSuccess,
+								function() {
+									sdkDesktop
+											.alertError(sdkDesktop.errorMessageVerifyHttps);
+								});
+					},
+					function() {
+						sdkDesktop
+								.alertError(sdkDesktop.errorMessageVerify);
+					});
+		}
+
+		
+	},
+
+	
+	/**
+	 * This function will show the configuration screen to the user. Will update
+	 * the configuration and call sdkDesktop.alertSuccess.
+	 * 
+	 * In case of failure, will call sdkDesktop.alertError and
+	 * sdkDesktop.sendErrorToServer.
+	 * 
+	 */
+	showConfig : function(callback) {
+		sdkDesktop.sdkDesktopGenericCallHttps(
+			"config",
+			5000000,
+			callback,
+			function(err) {
+				sdkDesktop
+						.alertError("Não foi possível salvar as configurações.<br />"
+								+ sdkDesktop.errorMessageVerifyHttps);
+				sdkDesktop.sendErrorToServer("config", null, err);
+			});
+	},
+
+	/**
+	 * This function shall be used to set-up the parameters used by most
+	 * functions.
+	 * 
+	 * the parameters must be a Javascript object like: { "key" : "value",
+	 * "booleanKey" : true, "integerKey": 2 [...] }
+	 * 
+	 * Must be set before calling the high-level function.
+	 * 
+	 * @param {object}
+	 *            params - parameters passed to sdk-desktop.
+	 * 
+	 */
+	setParameters : function(params) {
+		sdkDesktop.parameters = params;
+	},
+	
+	/**
+	 * This function shall be used to set-up the file parameters for signature/encryption
+	 * 
+	 * the parameters must be a Javascript array object like: [ { "key" : "value", ...}, {...}, ... ]
+	 * 
+	 * Must be set before calling the high-level functions.
+	 * 
+	 * @param {object}
+	 *            params - parameters passed to sdk-desktop.
+	 * 
+	 */
+	setFileParameters : function(params) {
+		sdkDesktop.fileParameters = params;
+	},
+
+	/* 1.2 - Challenge-response */
+
+	/**
+	 * This will call sdk-desktop requesting a response to a given challenge
+	 * (the challenge must be in the parameters previously set.
+	 * 
+	 * The callback function will receive a JSON with the following: {"response" :
+	 * "Base 64 encoded response" "certificate" : "Base 64 encoded signer
+	 * certificate"}
+	 * 
+	 * In case of failure, will call sdkDesktop.alertError and
+	 * sdkDesktop.sendErrorToServer.
+	 * 
+	 * @param {function}
+	 *            callbackSuccess - callback function.
+	 * 
+	 */
+	generateResponse : function(callbackSuccess) {
+		sdkDesktop
+				.sdkDesktopGenericCallHttps(
+						"challenge",
+						5000000,
+						function(response) {
+							callbackSuccess(response);
+						},
+						function(error) {
+							json = JSON.parse(error);
+							
+							var str = json.failure.causes[1].message.replace("<br />", "");
+							
+							sdkDesktop.alertError(str);
+							sdkDesktop.sendErrorToServer("challenge", null, error);
+						});
+	},
+
+	/**
+	 * This will call sdk-desktop requesting the user list of mac addresses.
+	 * 
+	 * The callback function will receive a JSON with the following:
+	 * {"macAddressList" : "HEX encoded list of addresses separated by ';' " }
+	 * 
+	 * In case of failure, will call sdkDesktop.alertError and
+	 * sdkDesktop.sendErrorToServer.
+	 * 
+	 * @param {function}
+	 *            callbackSuccess - callback function.
+	 * 
+	 */
+	loadMacAddress : function(callbackSuccess) {
+		sdkDesktop
+				.sdkDesktopGenericCallHttps(
+						"loadMacAdd",
+						5000000,
+						function(response) {
+							callbackSuccess(response);
+						},
+						function(err) {
+							sdkDesktop
+									.alertError("Não foi possível carregar o MacAddress da máquina.<br />"
+											+ sdkDesktop.errorMessageVerifyHttps);
+							sdkDesktop.sendErrorToServer("loadMacAdd", null,
+									err);
+						});
+	},
+
+	/* 1.3 - Signing & Encrypting functions */
+
+	/**
+	 * When the signature is made locally, you must set the location it should
+	 * be saved.
+	 * 
+	 * @param {string}
+	 *            path destination
+	 */
+	setSignatureDestination : function(destination) {
+		sdkDesktop.signatureDestination = destination;
+	},
+
+	/**
+	 * Calls graphic interface so the user can add files to be signed
+	 * 
+	 * @param {function}
+	 *            callback function
+	 * 
+	 */
+	addDocument : function(callbackSuccess) {
+		sdkDesktop.callSignService("addContentFile", callbackSuccess);
+	},
+
+	/**
+	 * Should be called before starting any signature process, to remove any
+	 * document or content that was added but not signed.
+	 */
+	removeAllContents : function(callback) {
+		sdkDesktop.callSignService("removeAllContents", callback);
+	},
+
+	/**
+	 * Signs and saves the file locally.
+	 * 
+	 * Should be called <b>AFTER</b> setSignatureDestination
+	 * 
+	 */
+	signAndSave : function(callbackFunction) {
+		
+		var numOfFiles = sdkDesktop.parameters.numberOfFilesToSign || 0;
+		for(file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked){
+				numOfFiles++;
+			}
+		}
+		
+		if(numOfFiles === 0){
+			sdkDesktop.alertWarning("Nenhum arquivo para assinar.");
+			return;
+		}
+		
+		var i= 0;
+		for(var file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked === true){
+				
+				for(var param in sdkDesktop.fileParameters[file] ){
+					if(param !== "checked"){
+						sdkDesktop.parameters[param + '.' + i] = sdkDesktop.fileParameters[file][param];
+					}
+				}
+				i++;
+			}
+		}
+		
+		sdkDesktop.callSignService(
+				"signAndSave",
+				function(resp) {
+					if (callbackFunction) {
+						callbackFunction(resp);
+					} else {
+						sdkDesktop.alertSuccess("Documentos assinados com sucesso");
+					}
+				});
+	},
+	
+	/**
+	 * Signs some content and returns the signature to the callback function
+	 * 
+	 * @param {String} content - Content to be signed
+	 * @param {function} callback - callback function
+	 *
+	 */
+	signPureContent : function(content, callbackFunction){
+		sdkDesktop.callSignService(
+				"pureContent&content=" + content,
+				function(resp) {
+					if (callbackFunction) {
+						callbackFunction(resp);
+					} else {
+						console.log(resp);
+						sdkDesktop.alertWarning("Conteudo assinado, mas nada feito com a assinatura.");
+					}
+				});
+	},
+	
+	/**
+	 * Signs only one file and returns the signature on JSON
+	 * 
+	 * @param {number} index - file index on parameters
+	 * @param {function} callback - callback function
+	 */
+	getEncodedContent : function(index, callbackFunction){
+		
+		var numOfFiles = sdkDesktop.parameters.numberOfFilesToSign || 0;
+		for(file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked){
+				numOfFiles++;
+			}
+		}
+		
+		if(numOfFiles === 0){
+			sdkDesktop.alertWarning("Nenhum arquivo para assinar.");
+			return;
+		}
+		
+		var i= 0;
+		for(var file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked === true){
+				
+				for(var param in sdkDesktop.fileParameters[file] ){
+					if(param !== "checked"){
+						sdkDesktop.parameters[param + '.' + i] = sdkDesktop.fileParameters[file][param];
+					}
+				}
+				i++;
+			}
+		}
+		
+		sdkDesktop.callSignService(
+				"getEncodedContent&index=" + index,
+				function(resp) {
+					if (callbackFunction) {
+						callbackFunction(resp);
+					} else {
+						console.log(resp);
+						sdkDesktop.alertWarning("Documento assinado, mas nada feito com a assinatura.");
+					}
+				});
+	},
+
+	/**
+	 * This will check/uncheck a single document to be signed.
+	 * 
+	 * Will call sdkDesktop.alertSuccess in case of success.
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 * @param {number}
+	 *            index - 0-based position of the document to be signed.
+	 * @param {boolean}
+	 *            checked - true in case of checking the document, false
+	 *            otherwise.
+	 */
+	markDocument : function(index, checked) {
+		sdkDesktop.fileParameters[index].checked = checked;
+	},
+
+	/**
+	 * This will request sdk-desktop to mark all documents to be signed.
+	 * 
+	 * The callback function will receive a JSON response as:
+	 * {"allDocumentsSigned" : true}
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 * @param {function}
+	 *            callback - callback function
+	 * 
+	 */
+	markAllDocuments : function(callback) {
+		var i;
+		for(i = 0; i < sdkDesktop.fileParameters.length; i++){
+			sdkDesktop.markDocument(i, true);
+		}
+		callback();
+	},
+
+	/**
+	 * This will request sdk-desktop to mark, sign and send all documents.
+	 * 
+	 * Will call sdkDesktop.alertSuccess when succeeded.
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 */
+	markSignAndSendAllDocuments : function(callbackSuccess) {
+		sdkDesktop.markAllDocuments(function() {
+			sdkDesktop.signAndSendDocuments(callbackSuccess);
+		});
+	},
+
+	/**
+	 * This will request sdk-desktop to sign and send all marked documents.
+	 * 
+	 * Will call sdkDesktop.alertSuccess when succeeded.
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 */
+	signAndSendDocuments : function(callbackFunction, callbackError) {
+		
+		var numOfFiles = sdkDesktop.parameters.numberOfFilesToSign || 0;
+		for(file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked){
+				numOfFiles++;
+			}
+		}
+		
+		if(numOfFiles === 0){
+			sdkDesktop.alertWarning("Nenhum arquivo para assinar.");
+			return;
+		}
+		
+		var i= 0;
+		for(var file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked === true){
+				
+				for(var param in sdkDesktop.fileParameters[file] ){
+					if(param !== "checked"){
+						sdkDesktop.parameters[param + '.' + i] = sdkDesktop.fileParameters[file][param];
+					}
+				}
+				i++;
+			}
+		}
+		
+		sdkDesktop.callSignService(
+				"signAndSend",
+				function(resp) {
+					if (callbackFunction) {
+						callbackFunction(resp);
+					} else {
+						sdkDesktop
+								.alertSuccess("Documentos assinados e enviados com sucesso");
+					}
+				},
+				callbackError);
+	},
+
+	signHashOnly : function(callbackFunction, callbackError) {
+		
+		var numOfFiles = sdkDesktop.parameters.numberOfFilesToSign || 0;
+		for(file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked){
+				numOfFiles++;
+			}
+		}
+		
+		if(numOfFiles === 0){
+			sdkDesktop.alertWarning(messages.warningNoFileTosign);
+			return;
+		}
+		
+		var i= 0;
+		for(var file in sdkDesktop.fileParameters){
+			if(sdkDesktop.fileParameters[file].checked === true){
+				
+				for(var param in sdkDesktop.fileParameters[file] ){
+					if(param !== "checked"){
+						sdkDesktop.parameters[param + '.' + i] = sdkDesktop.fileParameters[file][param];
+					}
+				}
+				i++;
+			}
+		}
+		
+		sdkDesktop.callSignService(
+				"signHashOnly",
+				function(resp) {
+					if (callbackFunction) {
+						callbackFunction(resp);
+					} else {
+						sdkDesktop
+								.alertSuccess(messages.successSignSendDocuments);
+					}
+				},
+				callbackError);
+	},
+	
+	
+	
+	
+	/**
+	 * This will request sdk-desktop to sign, encrypt and send all marked
+	 * documents.
+	 * 
+	 * Will call sdkDesktop.alertSuccess when succeeded.
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 */
+	signEncryptAndSendDocuments : function(callbackFunction) {
+		sdkDesktop.callSignService(
+				"setSignDocumentTrue",
+				function() {
+					sdkDesktop.callSignService(
+							"setEncryptDocumentTrue",
+							function() {
+								sdkDesktop.callSignService(
+										"signAndSendMarkedDocuments",
+										function(resp) {
+											if (callbackFunction) {
+												callbackFunction(resp);
+											} else {
+												sdkDesktop
+														.alertSuccess("Documentos assinados, encriptados e enviados com sucesso");
+											}
+										});
+							});
+				});
+	},
+
+	/**
+	 * This will request sdk-desktop to encrypt and send all marked documents.
+	 * 
+	 * Will call sdkDesktop.alertSuccess when succeeded.
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 */
+	encryptAndSendDocuments : function(callbackFunction) {
+		sdkDesktop.callSignService(
+				"setSignDocumentFalse",
+				function() {
+					sdkDesktop.callSignService(
+							"setEncryptDocumentTrue",
+							function() {
+								sdkDesktop.callSignService(
+										"signAndSendMarkedDocuments",
+										function(resp) {
+											if (callbackFunction) {
+												callbackFunction(resp);
+											} else {
+												sdkDesktop
+														.alertSuccess("Documentos encriptados e enviados com sucesso");
+											}
+										});
+							});
+				});
+	},
+
+	/**
+	 * This is a generic function to call signature/encryption-related services.
+	 * 
+	 * @param {string}
+	 *            service - service parameter in URL.
+	 * @param {function}
+	 *            callbackFunction - callback function in case of success.
+	 * 
+	 */
+	callSignService : function(service, callbackFunction, callbackError) {
+		sdkDesktop
+				.sdkDesktopGenericCallHttps(
+						"sign",
+						5000000,
+						callbackFunction,
+						function (err) {
+							if (callbackError) {
+								callbackError(err);
+							} else {
+								json = JSON.parse(err);
+								sdkDesktop.alertError(json.failure.causes[1].message + ".");
+								sdkDesktop.sendErrorToServer("sign", service, err);
+							}	
+						}, service);
+	},
+
+	/* 1.4 - Token Services functions */
+
+	/**
+	 * This will request the token ATR to sdk-desktop
+	 * 
+	 * The callback function will receive a JSON response as: {"ATR" : "Token
+	 * ATR"}
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 * @param {function}
+	 *            callbackFunction - callback function
+	 * 
+	 */
+	getTokenInfo : function(callbackFunction) {
+		sdkDesktop
+				.sdkDesktopGenericCallHttps(
+						"tokenServices",
+						5000000,
+						callbackFunction,
+						function(err) {
+							sdkDesktop
+									.alertError("Não foi possível obter as informações do Token.<br /> Verifique se ele está conectado. <br />"
+											+ sdkDesktop.errorMessageVerifyHttps);
+							sdkDesktop.sendErrorToServer("sign",
+									"getTokenInfo", err);
+						}, "getTokenInfo");
+	},
+
+	/**
+	 * This will request sdk-desktop to check if there is a token present
+	 * 
+	 * The callback function will receive a JSON response as: {"token" :
+	 * true/false}
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 * @param {function}
+	 *            callbackFunction - callback function
+	 * 
+	 */
+	isTokenPresent : function(callbackFunction) {
+		sdkDesktop
+				.sdkDesktopGenericCallHttps(
+						"tokenServices",
+						5000000,
+						callbackFunction,
+						function(err) {
+							sdkDesktop
+									.alertError("Não foi possível verificar se o Token está presente. <br />"
+											+ sdkDesktop.errorMessageVerifyHttps);
+							sdkDesktop.sendErrorToServer("sign",
+									"isTokenPresent", err);
+						}, "isTokenPresent");
+	},
+
+	/**
+	 * This will request a new pkcs10 Certificate to sdk-desktop
+	 * 
+	 * The callback function will receive a JSON response as: {"pkcs10" :
+	 * "Base-64 encoded certificate" "canceled" : true/false}
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 * @param {function}
+	 *            callbackFunction - callback function
+	 * 
+	 */
+	createNewCertificate : function(callbackFunction) {
+		sdkDesktop
+				.sdkDesktopGenericCallHttps(
+						"tokenServices",
+						5000000,
+						callbackFunction,
+						function(error) {
+							json = JSON.parse(error);
+							sdkDesktop.alertError(json.failure.causes[1].message + ".");
+							sdkDesktop.sendErrorToServer("sign",
+									"createNewCertificate", error);
+						}, "createNewCertificate");
+	},
+
+	/**
+	 * This will request sdk-desktop to install a new certificate.
+	 * 
+	 * The callback function will receive a JSON response as: {"installed" :
+	 * true/false "canceled" : true/false "pkcs12Path" : "Certificate path (if
+	 * not token)"}
+	 * 
+	 * Will call sdkDesktop.alertError and sdkDesktop.sendErrorToServer in case
+	 * of failure.
+	 * 
+	 * @param {function}
+	 *            callbackFunction - callback function.
+	 * 
+	 */
+	installCert : function(callbackFunction) {
+		sdkDesktop
+				.sdkDesktopGenericCallHttps(
+						"tokenServices",
+						5000000,
+						callbackFunction,
+						function(err) {
+							sdkDesktop.alertError(sdkDesktop.errorMessageVerifyHttps);
+							sdkDesktop.sendErrorToServer("sign", "installCert", err);
+						}, "installCert");
+	},
+
+	/* 02 - Low Level Functions */
+
+	/**
+	 * @deprecated Deve se usar somente conexÃµes seguras (HTTPS). Use
+	 *             sdkDesktop.sdkDesktopGenericCallHttps.
+	 * 
+	 * This will call sdk-desktop (no handler or service in specific).
+	 * 
+	 * @param {string}
+	 *            handler - handler to be called. Ex.: "alive", "challenge"...
+	 * @param {number}
+	 *            timeInMilis - max timeout to response.
+	 * @param {function}
+	 *            callbackSuccess - callback function on success.
+	 * @param {function}
+	 *            callbackError - callback function on failure.
+	 * @param {string}
+	 *            service - service to be used with handler. Ex.: handler =
+	 *            "tokenServices", service = "getATR".
+	 * 
+	 */
+	sdkDesktopGenericCall : function(handler, timeInMilis, callbackSuccess,
+			callbackError, service) {
+		$.ajax({
+			url : "http://localhost:8585/" + handler + "/?service=" + service,
+			type : "POST",
+			cache : false,
+			timeout : timeInMilis, /* Timeout in ms */
+			data : sdkDesktop.parameters,
+			success : function(result) {
+				if (callbackSuccess) {
+					callbackSuccess(JSON.stringify(result));
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				if (callbackError) {
+					if (jqXHR.responseText) {
+						callbackError(JSON.parse(JSON
+								.stringify(jqXHR.responseText)));
+					} else {
+						callbackError();
+					}
+				}
+			}
+		});
+	},
+
+	/**
+	 * This will call sdk-desktop (no handler or service in specific).
+	 * 
+	 * @param {string}
+	 *            handler - handler to be called. Ex.: "alive", "challenge"...
+	 * @param {number}
+	 *            timeInMilis - max timeout to response.
+	 * @param {function}
+	 *            callbackSuccess - callback function on success.
+	 * @param {function}
+	 *            callbackError - callback function on failure.
+	 * @param {string}
+	 *            service - service to be used with handler. Ex.: handler =
+	 *            "tokenServices", service = "getATR".
+	 * 
+	 */
+	sdkDesktopGenericCallHttps : function(handler, timeInMilis,
+			callbackSuccess, callbackError, service) {
+		$.ajax({
+			url : "https://localhost:8686/" + handler + "/?service=" + service,
+			type : "POST",
+			cache : false,
+			timeout : timeInMilis, /* Timeout in ms */
+			data : sdkDesktop.parameters,
+			success : function(result) {
+				if (callbackSuccess) {
+					callbackSuccess(JSON.stringify(result));
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				if (callbackError) {
+					if (jqXHR.responseText) {
+						callbackError(JSON.parse(JSON
+								.stringify(jqXHR.responseText)));
+					} else {
+						callbackError();
+					}
+				}
+			}
+		});
+	},
+
+	/**
+	 * In case of client-side error, it should be sent to the server for logging
+	 * purposes.
+	 * 
+	 * TODO: update the server URL and remove commented code.
+	 * 
+	 * @param {string}
+	 *            handler - handler that was called. Ex.: "alive",
+	 *            "challenge"...
+	 * @param {string}
+	 *            service - service that was used with handler. Ex.: handler =
+	 *            "tokenServices", service = "getATR".
+	 * @param {object}
+	 *            error - JSON error response
+	 * 
+	 */
+	sendErrorToServer : function(handler, service, error) {
+		json = JSON.parse(error);
+//		json.Failure.handler = handler
+//		json.Failure.service = service;
+		console.log(JSON.stringify(json));
+		/*
+		 * You should send your errors back to the server. $.ajax({ url :
+		 * "http://yourwebsite.com/something/error/add/", cache : false, timeout :
+		 * 5000, Timeout in ms dataType : "jsonp", data : error });
+		 */
+	},
+
+	/* 03 - User Interaction Functions */
+
+	/**
+	 * Will prompt the user with the given message. Best layout for success
+	 * messages. Uses sweetAlert for a better user experience.
+	 * 
+	 * @param {string}
+	 *            message - message to be prompted
+	 * 
+	 */
+	alertSuccess : function(message) {
+		swal({
+			title : sdkDesktop.successAlertHeader,
+			text : message,
+			type : "success",
+			html : true
+		});
+	},
+
+	/**
+	 * Will prompt the user with the given message. Best layout for failure
+	 * messages. Uses sweetAlert for a better user experience.
+	 * 
+	 * @param {string}
+	 *            message - message to be prompted
+	 * 
+	 */
+	alertError : function(message) {
+		swal({
+			title : sdkDesktop.errorAlertHeader,
+			text : message,
+			type : "error",
+			html : true
+		});
+	},
+
+	/**
+	 * Will prompt the user with the given message. Best layout for warning
+	 * messages. Uses sweetAlert for a better user experience.
+	 * 
+	 * @param {string}
+	 *            message - message to be prompted
+	 * 
+	 */
+	alertWarning : function(message) {
+		swal({
+			title : sdkDesktop.warningAlertHeader,
+			text : message,
+			type : "warning",
+			html : true
+		});
+	},
+
+	/**
+	 * Will prompt the user with the given message. Best layout for info
+	 * messages. Uses sweetAlert for a better user experience.
+	 * 
+	 * @param {string}
+	 *            message - message to be prompted
+	 * 
+	 */
+	alertInfo : function(message) {
+		swal({
+			title : sdkDesktop.infoAlertHeader,
+			text : message,
+			type : "info",
+			html : true
+		});
+	},
+	
+	checkVersion: function(minVersion){
+		sdkDesktop.checkStarted(
+				function(resp){
+					var json = JSON.parse(resp);
+					var version = json.version;	
+					if(!version){
+						version = "1.0.6";
+					}
+					version    = sdkDesktop.breakVersionNumber(version);
+					minVersion = sdkDesktop.breakVersionNumber(minVersion);
+					
+					for (i in minVersion) {
+						if(version[i] < minVersion[i]){
+							sdkDesktop.alertError("OperaÃ§Ã£o nÃ£o suportada. Atualize sua versÃ£o do SDK-Desktop.");
+						}
+					}
+				}
+		);
+	},
+	
+	breakVersionNumber: function(version){
+		var strings = version.split(".");
+		return strings.map(Number);
+	}
+};
+
+/* ---------------------------------------------- */
+/*   Sobrescrita de métodos para utilizacao SIM
+ /* --------------------------------------------- */
+
+/**
+ * Método sobrescrito para exibição de warnings.
+ * 
+ * @param {string}
+ *		message - mensagem de exibição.
+ * 
+ */
+sdkDesktop.alertWarning = function(message) {
+	showMessage(message, "warn");
+};
+
+/**
+ * Método sobrescrito para exibição de sucesso.
+ * 
+ * @param {string}
+ *		message - mensagem de exibição.
+ * 
+ */
+sdkDesktop.alertSuccess = function(message) {
+	showMessage(message, "info");
+};
+
+/**
+ * Método sobrescrito para exibição de erros.
+ * 
+ * @param {string}
+ *		message - mensagem de exibição.
+ * 
+ */
+sdkDesktop.alertError = function(message) {
+	showMessage(message, "error");
+};
+
+/**
+ * Método sobrescrito para exibição de informações.
+ * 
+ * @param {string}
+ *		message - mensagem de exibição.
+ * 
+ */
+sdkDesktop.alertInfo = function(message) {
+	showMessage(message, "info");
+};
+
+
+function showMessage(message, severity) {
+	msg.renderMessage({
+		"summary" : message,
+		"severity" : severity
+	});
+};
+
+/**
+ * Método sobrescrito para geração de desafio.
+ * 
+ */
+sdkDesktop.generateResponse = function(callbackSuccess, callbackError) {
+	sdkDesktop
+			.sdkDesktopGenericCallHttps(
+					"challenge",
+					5000000,
+					function(response) {
+						callbackSuccess(response);
+					},
+					function(error) {
+						callbackError(error);
+					});
+};
+
+/**
+ * Método sobrescrito para verificação do SDK-Desktop.
+ * 
+ */
+sdkDesktop.checkStarted = function(callbackSuccess, callbackError) {
+	if(location.protocol == 'https:'){
+		sdkDesktop
+		.sdkDesktopGenericCallHttps(
+				"alive",
+				3000,
+				callbackSuccess,
+				callbackError);
+	}else{
+		sdkDesktop
+		.sdkDesktopGenericCall(
+				"alive",
+				3000,
+				function(){
+					sdkDesktop
+					.sdkDesktopGenericCallHttps(
+							"alive",
+							3000,
+							callbackSuccess,
+							callbackError);
+				},
+				callbackError);
+	}
+};
+
+
+/**
+ * Método responsável pela assinatura documentos.
+ * 
+ */
+function assinarHash(xhr, status, args, callbackSave) {
+	
+	if (args.validationFailed) {
+		return;
+	}
+	
+	if (args.paramArquivo == null) {
+		return;
+	}
+	
+	showLoading(true);
+	
+	var parameters =  {"jspServer" : args.hostAddr + "assinaturaHashArquivo",
+			   		   "encodedFileParam" : "ENCDATA",
+			   		   "encodedFileCount" : "QTYDATA",
+			   		   "encodedFileId" : "IDDATA",
+			   		   "colCount" : "1",
+			   		   "colName.0" : "Arquivo",
+			   		   "colName.0" : "Arquivo",
+			   		   "colAlias.0" : "$arquivo",
+			   		   "detachedSignature" : "true",
+			   		   "checkLibs" : "true",
+			   		   "generateLog" : "true",
+			   		   "digestAlgorithm" : "SHA256",
+			   		   "sendPartialDocuments" : "true",
+			   		   "tokenOnly" : true,
+			   		   "cookie" : "JSESSIONID!" + args.sessionID };
+	sdkDesktop.setParameters(parameters);
+	
+	json = JSON.parse(args.paramArquivo);
+	var fileParameters = [];
+	for(var i = 0; i < json.length; i++) {
+		fileParameters.push({"Arquivo" : json[i] + ".pdf",
+							 "url" : args.hostAddr + "geraHashArquivoAssinatura?idOcorrencia=" + json[i] + "&signingAlgorithm=SHA256WithRSA",
+							 "checked" : true
+							});
+	}
+	sdkDesktop.setFileParameters(fileParameters);
+	
+
+	sdkDesktop.checkStarted(
+	
+			sdkDesktop.signHashOnly(function completeAssinatura(resp) {
+										var json = JSON.parse(resp);
+										if (json.markedDocumentsSigned) {
+											callbackSave();
+											showLoading(false);
+										}
+										},
+										function showError(resp) {
+											json = JSON.parse(resp);
+											var message = "Erro inesperado."; //json.failure.causes[1].message + ".";
+											if (message == sdkDesktop.failure401) {
+												message = sdkDesktop.errorMessageCpf;
+											}
+											sdkDesktop.alertError(message);
+											showLoading(false);
+										}
+	),														 
+	function() {
+				sdkDesktop.alertError(sdkDesktop.errorMessageVerifyHttps);
+				showLoading(false);
+				});	
+};
+
+
+/**
+ * Método responsável pela assinatura de documentos.
+ * 
+ */
+function assinarDocumentos(xhr, status, args, callbackEscape, callbackSave) {
+	
+	if (args.validationFailed) {
+		return;
+	}
+	
+	
+	if (!args.usaAssinaturaDigital) {
+		callbackEscape(xhr, status, args);
+		return;
+	}
+	
+	if (args.paramArquivo == null) {
+		return;
+	}
+	
+	showLoading(true);
+	
+	configurarAssinaturaDigitalPDF(args);
+	
+	sdkDesktop.checkStarted(
+	
+			sdkDesktop.signAndSendDocuments(function completeAssinatura(resp) {
+										var json = JSON.parse(resp);
+										if (json.markedDocumentsSigned) {
+											callbackSave();
+											showLoading(false);
+										}
+									},
+									function showError(resp) {
+										json = JSON.parse(resp);
+										var message = json.failure.causes[1].message + ".";
+										if (message == sdkDesktop.failure401) {
+											message = sdkDesktop.errorMessageCpf;
+										}
+										sdkDesktop.alertError(message);
+										showLoading(false);
+									}
+	),														 
+	function() {
+				sdkDesktop.alertError(sdkDesktop.errorMessageVerifyHttps);
+				showLoading(false);
+			});	
+	
+	
+	
+};
+
+/**
+ * Método responsável pela configuração dos parâmetros de assinatura.
+ * 
+ */
+function configurarParametrosPDF(args) {
+	var parameters =  {"viewGui" : "false",
+					   "mode" : "1",
+					   "separate_jvm" : "true",
+					   "userid" : "sdk-web",
+					   "serverURL" : args.hostAddr + "verificarAssinatura",
+					   "autoCommit" : "true",
+					   "colCount" : "1",
+					   "encodedFileParam" : "ENCDATA",
+					   "encodedFileCount" : "QTYDATA",
+					   "encodedFileId" : "IDDATA",
+					   "recipientNameParam" : "RECIPIENT_NAME",
+					   "config.type" : "local",
+					   "colName.0" : "Arquivo",
+					   "colAlias.0" : "$arquivo",
+					   "colName.2" : "ID",
+					   "colAlias.2" : "$idArq",
+					   "globalField.0" : "sessionID!j0t4qtbaj1",
+					   "globalField.1" : "UseCase!RecArqRemessaTab",
+					   "globalField.2" : "command!EnviarProtocoloAssinado",
+					   "detachedSignature" : "true",
+					   "signFunction" : "true",
+					   "encryptFunction" : "false",
+					   "checkLibs" : "true",
+					   "generateLog" : "true",
+					   "digestAlgorithm" : "SHA256",
+					   "signingAlgorithm" : "SHA256WithRSA",
+					   "policyURL" : args.hostAddr + "dwnlPolicy?fileName=AdobePdf.der",
+					   "policyURLInSignature" : args.hostAddr + "dwnlPolicy?fileName=AdobePdf.der",
+					   "usePolicy" : "true",
+					   "envelopeType" : "pades",
+					   "sendPartialDocuments" : "true",
+					   "sendMode" : "Multipart",
+					   "globalField.0" : "usePolicy!true",
+					   "globalField.1" : "policy!AdobePdf.der",
+					   "tokenOnly" : true,
+			   		   "cookie" : "JSESSIONID!" + args.sessionID  };
+	sdkDesktop.setParameters(parameters);
+};
+
+/**
+ * Método responsável pela configuração dos arquivos de assinatura.
+ * 
+ */
+function configurarArquivosParaAssinaturaDigitalPDF(hostAddr, paramArquivo) {
+	if (paramArquivo == null) {
+		return;
+	}
+	json = JSON.parse(paramArquivo);
+	var fileParameters = [];
+	for(var i = 0; i < json.length; i++) {
+		fileParameters.push({"Arquivo" : json[i],
+							 "url" : hostAddr + "dwnlArquivoAssinatura?fileName!" + json[i],
+							 "checked" : true
+							});
+	}
+	sdkDesktop.setFileParameters(fileParameters);
+};
+
+/**
+ * Método responsável pela configuração dos parâmetros e arquivos de assinatura.
+ * 
+ */
+function configurarAssinaturaDigitalPDF(args) {
+	if (args.paramArquivo == null) {
+		return;
+	}
+	configurarParametrosPDF(args);
+	configurarArquivosParaAssinaturaDigitalPDF(args.hostAddr, args.paramArquivo);
+}
+
+/**
+ * Método que exibe o loading da página.
+ * 
+ */
+function showLoading(flag) {
+	var theDiv = document.getElementById("loading_cert_start");
+	var pnBlock = document.getElementById("pnLoadBlock");
+
+	if (flag == true) {
+		if (theDiv) {
+			theDiv.style.display = 'block';
+		}
+		if (pnBlock) {
+			pnBlock.style.display = 'block';
+		}
+	} else {
+		if (theDiv) {
+			theDiv.style.display = 'none';
+		}
+		if (pnBlock) {
+			pnBlock.style.display = 'none';
+		}
+	}
+}

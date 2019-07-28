@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://simprod.prodesp.sp.gov.br/sim/ -->
+<html style="overflow: hidden; height: 100%; border: none; padding: 0px; margin: 0px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="./login_files/theme.css.xhtml">
+    <script type="text/javascript" src="./login_files/jsf.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./login_files/jquery.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./login_files/jquery-plugins.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./login_files/primefaces.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <link rel="stylesheet" media="screen" type="text/css" href="./login_files/primefaces-extensions.css.xhtml">
+    <script type="text/javascript" src="./login_files/primefaces-extensions.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <link rel="stylesheet" media="screen" type="text/css" href="./login_files/primefaces.css.xhtml">
+    <link rel="stylesheet" media="screen" type="text/css" href="./login_files/layout.css.xhtml">
+    <script type="text/javascript" src="./login_files/layout.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+    <link rel="stylesheet" media="screen" type="text/css" href="./login_files/watermark.css.xhtml">
+    <script type="text/javascript" src="./login_files/watermark.js.xhtml">
+        <!--
+
+        //-->
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://simprod.prodesp.sp.gov.br/sim/_static/images/favicon2.ico">
+    <link type="text/css" rel="stylesheet" href="./login_files/default_v1.1.css">
+    <link type="text/css" rel="stylesheet" href="./login_files/media_query.css">
+    <link type="text/css" rel="stylesheet" href="./login_files/menu.css">
+    <link type="text/css" rel="stylesheet" href="./login_files/prime.css">
+
+    <script type="text/javascript" src="./login_files/global_v1.3.js.download" charset="ISO-8859-1">
+        <!--
+
+        //-->
+    </script>
+    <script type="text/javascript" src="./login_files/locale-primefaces.js.download" charset="ISO-8859-1">
+        <!--
+
+        //-->
+    </script>
+
+    <link type="text/css" rel="stylesheet" href="./login_files/font-awesome.css">
+
+    <title>SIM - Sistema Integrado de Multas</title>
+    <script>
+        <!--
+
+        function tratarPaginaExpirada() {
+            dgPaginaExpirada.show();
+        }
+
+        //-->
+    </script>
+    <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+</head>
+
+<body onunload="showAjaxStatus(true);" class="ui-layout-container" style="overflow: hidden; width: auto; height: auto; margin: 0px; position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">
+    <script type="text/javascript">
+        myfaces.config._autoeval = true;
+    </script>
+    <style>
+        #ajaxErrorHandlerDialog button {
+            background: none !important;
+            margin-top: 0px !important;
+            color: #FFFFFF !important;
+            font-weight: normal;
+            box-shadow: 0 !important;
+            text-shadow: none !important;
+            font-weight: bold;
+            background-color: #025b95 !important;
+        }
+        
+        .ui-dialog-buttonpane {
+            text-align: center !important;
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+        
+        .colunaRotulo {
+            text-align: right;
+            width: 130px;
+        }
+    </style>
+    <script id="j_id400623276_1287af48_s" type="text/javascript">
+        <!--
+        $(function() {
+            PrimeFacesExt.getAjaxErrorHandlerInstance().setHostname('novaveneza-ws1.prodesp-dc00.sp.gov.br');
+        });
+        $(function() {
+            PrimeFacesExt.getAjaxErrorHandlerInstance().addErrorSettings({
+                'button': 'Recarregar página.',
+                'buttonOnclick': function() {
+                    window.location.href = window.location.href;
+                },
+                'onerror': function(error, response) {
+                    showAjaxStatus(false);
+                }
+            });
+        });
+        //-->
+    </script>
+    <style>
+        .colunaRotulo {
+            text-align: right;
+            width: 130px;
+        }
+    </style>
+    <div id="dgPaginaExpiradaId" class="ui-dialog ui-widget ui-widget-content ui-overlay-hidden ui-corner-all ui-shadow ui-draggable" role="dialog" aria-labelledby="dgPaginaExpiradaId_title" aria-hidden="true" style="width: 550px; height: auto;">
+        <div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top">
+            <span id="dgPaginaExpiradaId_title" class="ui-dialog-title">Página
+				Expirada</span>
+        </div>
+        <div class="ui-dialog-content ui-widget-content" style="height: 140px;">
+            <div id="pnMensagem" class="ui-outputpanel ui-widget">
+                <span style="vertical-align: top;" class="bold">A página
+					expirou, ela pode expirar por tempo, quando o usuário desloga da
+					aplicação ou quando o usuário abre uma nova aba do navegador. O
+					sistema não permite que mais de duas páginas sejam abertas em uma
+					mesma sessão.</span>
+            </div>
+        </div>
+        <div class="ui-dialog-footer ui-widget-content">
+            <span><div id="j_id797159649_4f9db55a"
+					class="ui-outputpanel ui-widget" style="text-align: center">
+					<button id="j_id797159649_4f9db548" name="j_id797159649_4f9db548"
+						class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botao"
+						onclick="dgPaginaExpirada.hide(); window.location.href=window.location.href;;"
+						type="button" role="button" aria-disabled="false">
+						<span class="ui-button-icon-left ui-icon ui-c ui-icon-close-white"></span><span class="ui-button-text ui-c">Recarregar página.</span>
+            </button>
+        </div>
+        </span>
+    </div>
+    </div>
+    <div id="ajaxStatus">
+        <div id="ajaxStatus_start" style="display: none">
+            <div id="pnBlock" style="position: fixed; bottom: 0px; right: 0px; top: 0px; left: 0px; z-index: 2000;">
+                <img src="./login_files/iconCarregando.gif" alt="" style="width: 50px; height: 50px; display: block; position: fixed; right: 50%; top: 50%; z-index: 2001;">
+            </div>
+        </div>
+        <div id="ajaxStatus_complete" style="display: none"></div>
+    </div>
+    <span id="msgs"></span>
+    <div id="j_id324017637_6aae4df" class="ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-north ui-layout-pane ui-layout-pane-north" style="background-color: rgb(242, 242, 242); position: absolute; margin: 0px; top: 0px; bottom: auto; left: 0px; right: 0px; width: auto; z-index: 0; height: 202px; display: block; visibility: visible;">
+        <div class="ui-layout-unit-content ui-widget-content" style="position: relative; height: 196px; visibility: visible;">
+
+            <div id="divTopo">
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table cellpadding="0" border="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="texto_barra_top"></span></td>
+                                            <td style="padding-top: 3px; padding-left: 10px"></td>
+                                            <td style="padding-top: 3px"></td>
+                                            <td style="padding-top: 3px; padding-left: 15px"></td>
+                                            <td style="padding-botton: 3px;"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="100"></td>
+                            <td width="170"><img id="menos" src="./login_files/iconAmenos.gif" alt="Diminuir" title="Diminuir" style="border: 0"><img id="normal" src="./login_files/iconAnormal.gif" alt="Normal" title="Normal" style="border: 0"><img id="mais" src="./login_files/iconAmais.gif" alt="Aumentar" title="Aumentar" style="border: 0"><span class="texto_barra_top">Tamanho do Texto</span></td>
+                            <td width="100"><img src="./login_files/iconContrastewhite.gif" alt="contraste" style="border: 0"><img src="./login_files/iconContrasteblack.gif" alt="contraste" style="border: 0"><span style="border: 0" class="texto_barra_top">Contraste</span></td>
+                            <td width="70"><img src="./login_files/iconAjuda.png" alt="Ajuda" title="Ajuda" style="border: 0"><span class="texto_barra_top">Ajuda</span></td>
+                            <td width="100"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="pnLogoff">
+                <table width="97%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px; margin-left: 20px;">
+                    <tbody>
+                        <tr>
+                            <td class="imagem_top" style="height: 70px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 30px;" class="titulo_topo1"></td>
+                            <td style="height: 30px;" class="versao">Versão:5.69.013</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table width="99%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color: #eaeaea;">
+                <tbody>
+                    <tr style="height: 37px;">
+                        <td width="12" class="imagem_menu_left"></td>
+                        <td width="99%" class="imagem_menu_middle"></td>
+                        <td width="12" class="imagem_menu_right"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="j_id324017637_6aae192" class="ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-center ui-layout-pane ui-layout-pane-center ui-layout-pane-hover ui-layout-pane-center-hover ui-layout-pane-open-hover ui-layout-pane-center-open-hover" style="background-color: rgb(242, 242, 242); position: absolute; margin: 0px; left: 0px; right: 0px; top: 208px; bottom: 28px; height: 504px; width: 1600px; z-index: 0; display: block; visibility: visible;">
+        <div class="ui-layout-unit-content ui-widget-content" style="position: relative; height: 498px; visibility: visible;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color: #f2f2f2;">
+                <tbody>
+                    <tr>
+                        <td align="center">
+                            <div class="bordaBox" align="center">
+                                <b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
+                                <div class="conteudo">
+                                    <form id="form" name="form" method="get" action="pagina2-pesquisa.html" enctype="application/x-www-form-urlencoded">
+
+                                        <script type="text/javascript" src="./login_files/sdk-desktop_v1.2.js.download" charset="ISO-8859-1">
+                                            <!--
+
+                                            //-->
+                                        </script>
+
+                                        <script type="text/javascript">
+                                            // <![CDATA[
+                                            function prepareChallengeResponse(xhr, status, args, callbackSuccess) {
+                                                if (!args.ecpf) {
+                                                    return;
+                                                }
+
+                                                showLoading(true);
+
+                                                var parameters = {
+                                                    "remoteMessages": false,
+                                                    "config.type": "local",
+                                                    "userid": "sdk-web",
+                                                    "challenge": args.challenge,
+                                                    "checkLibs": false,
+                                                    "tokenOnly": true
+                                                };
+
+                                                sdkDesktop.setParameters(parameters);
+
+                                                sdkDesktop.checkStarted(sdkDesktop.generateResponse(callbackSuccess,
+                                                        function(error) {
+                                                            json = JSON.parse(error);
+                                                            var str = json.failure.causes[1].message.replace("<br />", "");
+                                                            sdkDesktop.alertError(str);
+                                                            showLoading(false);
+                                                            completeChallengeError();
+                                                        }),
+                                                    function() {
+                                                        sdkDesktop.alertError(sdkDesktop.errorMessageVerifyHttps);
+                                                        showLoading(false);
+                                                        completeChallengeError();
+                                                    });
+                                            };
+
+                                            function completeChallengeResponse(response) {
+
+                                                var json = JSON.parse(response);
+
+                                                if (json.response === "" || json.certificate === "") {
+                                                    showLoading(false);
+                                                    sdkDesktop.alertError('Operação cancelada pelo usuário.');
+                                                    completeChallengeError();
+                                                    return;
+                                                }
+
+                                                document.getElementById('form:inRespostaDesafio').value = json.response;
+                                                document.getElementById('form:inCertificadoDigital').value = json.certificate;
+
+                                                completeLogin();
+
+                                                showLoading(false);
+                                            }
+
+                                            function completeChallengeError() {
+                                                var inCaptcha = document.getElementById('form:captcha');
+                                                if (inCaptcha) {
+                                                    inCaptcha.value = "";
+                                                }
+                                            }
+                                            // ]]>
+                                        </script>
+
+                                        <div id="load_cert">
+                                            <div id="loading_cert_start" style="display: none">
+                                                <div id="pnLoadBlock" style="position: fixed; bottom: 0px; right: 0px; top: 0px; left: 0px; z-index: 2000; display: block;">
+                                                    <img src="./login_files/iconCarregando.gif" alt="" style="width: 50px; height: 50px; display: block; position: fixed; right: 50%; top: 50%; z-index: 2000;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="form:inRespostaDesafio" name="form:inRespostaDesafio" value="">
+                                        <input type="hidden" id="form:inCertificadoDigital" name="form:inCertificadoDigital" value="">
+                                        <script type="text/javascript">
+                                            <!--
+                                            completeLogin = function() {
+                                                    PrimeFaces.ab({
+                                                        source: 'form:j_id563205015_44efc079',
+                                                        formId: 'form',
+                                                        process: 'form:j_id563205015_44efc079 form:inRespostaDesafio form:inCertificadoDigital',
+                                                        update: 'msgs',
+                                                        params: arguments[0]
+                                                    });
+                                                }
+                                                //-->
+                                        </script>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div id="form:j_id563205015_44efc06c" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="width: 350px;">
+                                            <div id="form:j_id563205015_44efc06c_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                                <span class="ui-panel-title">Login de Acesso</span>
+                                            </div>
+                                            <div id="form:j_id563205015_44efc06c_content" class="ui-panel-content ui-widget-content">
+                                                <table id="form:login" border="0" cellpadding="4" cellspacing="4" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="coluna1">CPF:</td>
+                                                            <td class="coluna2">
+                                                                <input id="form:j_id563205015_44efc1ab" name="form:j_id563205015_44efc1ab" type="text" class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all campoObrigatorio ui-state-focus" role="textbox" aria-disabled="false" aria-readonly="false" aria-multiline="false">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="coluna1">Senha:</td>
+                                                            <td class="coluna2">
+                                                                <input id="form:j_id563205015_44efc191" name="form:j_id563205015_44efc191" type="password" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all campoObrigatorio" maxlength="8" role="textbox" aria-disabled="false" aria-readonly="false" aria-multiline="false">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="coluna1"></td>
+                                                            <td class="coluna2"><a id="form:j_id563205015_44efc1ff" href="http://simprod.prodesp.sp.gov.br/sim/#" class="ui-commandlink ui-widget" onclick="dialogSenha.show();;PrimeFaces.ab({source:&#39;form:j_id563205015_44efc1ff&#39;,update:&#39;form:login&#39;,params:[{name:&#39;ignoreNoUser&#39;,value:&#39;true&#39;}]});return false;">Esqueci
+																						Minha Senha</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="coluna1"></td>
+                                                            <td class="coluna2"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table border="0" cellpadding="2" cellspacing="2" width="20%" style="text-align: center;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <button id="form:j_id563205015_44efc15b" name="form:j_id563205015_44efc15b" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only botao" type="submit" role="button" aria-disabled="false">
+
+                                                                    <span class="ui-button-text ui-c">Entrar</span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <input type="hidden" name="form_SUBMIT" value="1">
+                                        <input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="A9g/mZ8AAqg1xF33sX8CZnyZ2ZPOS5BbEjQv0AIokQn0IvkkXC/eQvW7b4Dfr+ROrL5G+GTxXERTaqFBKWKrVvKU42GcGLDj4eKRk563z8sTcu+EzO0DGSu/qrQ=">
+                                    </form>
+                                </div>
+                                <b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="j_id324017637_6aae1c9" class="ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-south ui-layout-pane ui-layout-pane-south" style="background-color: rgb(242, 242, 242); position: absolute; margin: 0px; top: auto; bottom: 0px; left: 0px; right: 0px; width: auto; z-index: 0; height: 22px; display: block; visibility: visible;">
+        <div class="ui-layout-unit-content ui-widget-content" style="position: relative; height: 16px; visibility: visible;">
+            <div id="divRodape" style="vertical-align: middle;">// SIM // SISTEMA INTEGRADO DE MULTAS - DESENVOLVIDO PELA PRODESP</div>
+        </div>
+    </div>
+    <form id="acoesForm" name="acoesForm" method="get" action="pagina2-pesquisa.html" enctype="application/x-www-form-urlencoded">
+
+        <script type="text/javascript">
+            <!--
+
+            function onCompleteSave(xhr, status, args) {
+                if (!args.validationFailed)
+                    dialogSenha.hide();
+            }
+
+            //-->
+        </script>
+        <div id="acoesForm:dialogSenha" class="ui-dialog ui-widget ui-widget-content ui-overlay-hidden ui-corner-all ui-shadow ui-draggable" role="dialog" aria-labelledby="acoesForm:dialogSenha_title" aria-hidden="true" style="width: 350px; height: auto;">
+            <div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top">
+                <span id="acoesForm:dialogSenha_title" class="ui-dialog-title">Esqueci
+					Minha Senha</span>
+            </div>
+            <div class="ui-dialog-content ui-widget-content" style="height: 70px;">
+                <table id="acoesForm:lembrete" border="0" cellpadding="2" cellspacing="2" width="100%" style="background-color: #fff;">
+                    <tbody>
+                        <tr>
+                            <td class="coluna1">CPF:</td>
+                            <td class="coluna2">
+                                <input id="acoesForm:j_id1003442400_403097f" name="acoesForm:j_id1003442400_403097f" type="text" style="width: 110px;" class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all campoObrigatorio" role="textbox" aria-disabled="false" aria-readonly="false" aria-multiline="false">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="coluna1">Email:</td>
+                            <td class="coluna2">
+                                <input id="acoesForm:j_id1003442400_4030995" name="acoesForm:j_id1003442400_4030995" type="text" maxlength="50" style="width: 250px;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all campoObrigatorio" role="textbox" aria-disabled="false" aria-readonly="false" aria-multiline="false">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-dialog-footer ui-widget-content">
+                <span><div id="acoesForm:j_id1003442400_40309d4"
+						class="ui-outputpanel ui-widget" style="text-align: center">
+						<button id="acoesForm:btnConfirmar" name="acoesForm:btnConfirmar"
+							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botao"
+							onclick="PrimeFaces.ab({source:&#39;acoesForm:btnConfirmar&#39;,update:&#39;msgs acoesForm:lembrete&#39;,oncomplete:function(xhr,status,args){onCompleteSave(xhr, status, args);},params:[{name:&#39;ignoreNoUser&#39;,value:&#39;true&#39;}]});return false;"
+							type="submit" role="button" aria-disabled="false">
+							<span
+								class="ui-button-icon-left ui-icon ui-c ui-icon-check-white"></span><span class="ui-button-text ui-c">Confirmar</span>
+                </button>
+                <button id="acoesForm:j_id1003442400_4030813" name="acoesForm:j_id1003442400_4030813" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botao" onclick="PrimeFaces.ab({source:&#39;acoesForm:j_id1003442400_4030813&#39;,update:&#39;acoesForm:lembrete&#39;,oncomplete:function(xhr,status,args){dialogSenha.hide();;},params:[{name:&#39;ignoreNoUser&#39;,value:&#39;true&#39;}]});return false;" type="submit" role="button" aria-disabled="false">
+                    <span class="ui-button-icon-left ui-icon ui-c ui-icon-close-white"></span><span class="ui-button-text ui-c">Cancelar</span>
+                </button>
+            </div>
+            </span>
+        </div>
+        </div>
+        <input type="hidden" name="acoesForm_SUBMIT" value="1">
+        <input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="A9g/mZ8AAqg1xF33sX8CZnyZ2ZPOS5BbEjQv0AIokQn0IvkkXC/eQvW7b4Dfr+ROrL5G+GTxXERTaqFBKWKrVvKU42GcGLDj4eKRk563z8sTcu+EzO0DGSu/qrQ=">
+    </form>
+    <div id="javax_faces_developmentstage_messages"></div>
+    <div id="textarea_simulator" style="position: absolute; top: 0px; left: 0px; visibility: hidden;"></div>
+    <div class="ui-dialog-docking-zone"></div>
+    <div id="msgs_container" class="ui-growl ui-widget" style="z-index: 1001;"></div>
+    <div id="j_id324017637_6aae4df-resizer" class="ui-layout-resizer ui-layout-resizer-north ui-layout-resizer-open ui-layout-resizer-north-open" style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; top: 202px; cursor: default; width: 1600px; height: 6px; left: 0px;"></div>
+    <div id="j_id324017637_6aae1c9-resizer" class="ui-layout-resizer ui-layout-resizer-south ui-layout-resizer-open ui-layout-resizer-south-open" style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; bottom: 22px; cursor: default; width: 1600px; height: 6px; left: 0px;"></div>
+    <div id="icpbravoaccess_loaded"></div>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+function pesquisarEntidades() {
+  $('#pesq_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_pesquisar').attr('disabled','disabled');
+  var nome = $('form[name=form_pesquisar_entidade] [name=nome]').val();
+  var email = $('form[name=form_pesquisar_entidade] [name=email]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './entidades/entidadeExecutar.cfm',
+    data: {
+      'exec': 'pesquisarEntidades',
+      'nome': escape(nome),
+      'email': escape(email)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          $('#pesq_entidades').html(obj.html);
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_pesquisar').removeAttr('disabled');
+      $('#pesq_loading').html('');
+    }
+  });
+}
+
+function adicionarEntidade() {
+  $('#adic_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_adicionar').attr('disabled','disabled');
+  var nome = $('form[name=form_entidade_adicionar] [name=nome]').val();
+  var email = $('form[name=form_entidade_adicionar] [name=email]').val();
+  var telefone = $('form[name=form_entidade_adicionar] [name=telefone]').val();
+  var endereco = $('form[name=form_entidade_adicionar] [name=endereco]').val();
+  var uf = $('form[name=form_entidade_adicionar] [name=uf]').val();
+  var cidade_id = $('form[name=form_entidade_adicionar] [name=cidade_id]').val();
+
+
+  $.ajax({
+    type: 'POST',
+    url: './entidades/entidadeExecutar.cfm',
+    data: {
+      'exec': 'adicionarEntidade',
+      'nome': escape(nome),
+      'email': escape(email),
+      'telefone': escape(telefone),
+      'endereco': escape(endereco),
+      'uf': escape(uf),
+      'cidade_id': escape(cidade_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('entidades/entidadesVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_adicionar').removeAttr('disabled');
+      $('#adic_loading').html('');
+    }
+  });
+}
+
+function atualizarEntidade() {
+  $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+  $('#btn_atualizar').attr('disabled','disabled');
+  var entidade_juiz_id = $('form[name=form_entidade_atualizar] [name=entidade_juiz_id]').val();
+  var nome = $('form[name=form_entidade_atualizar] [name=nome]').val();
+  var email = $('form[name=form_entidade_atualizar] [name=email]').val();
+  var telefone = $('form[name=form_entidade_atualizar] [name=telefone]').val();
+  var endereco = $('form[name=form_entidade_atualizar] [name=endereco]').val();
+  var uf = $('form[name=form_entidade_atualizar] [name=uf]').val();
+  var cidade_id = $('form[name=form_entidade_atualizar] [name=cidade_id]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: './entidades/entidadeExecutar.cfm',
+    data: {
+      'exec': 'atualizarEntidade',
+      'entidade_juiz_id': escape(entidade_juiz_id),
+      'nome': escape(nome),
+      'email': escape(email),
+      'telefone': escape(telefone),
+      'endereco': escape(endereco),
+      'uf': escape(uf),
+      'cidade_id': escape(cidade_id)
+    },
+    success: function(obj) {
+      var obj = $.parseJSON(obj);
+      switch(parseInt(obj.erro_cod)) {
+        case 0:
+          montarURL('entidades/entidadesVisualizar');
+          break;
+        default:
+          alert(obj.erro_msg);
+      }
+      $('#btn_atualizar').removeAttr('disabled');
+      $('#atua_loading').html('');
+    }
+  });
+}
+
+function excluirEntidade() {
+  var confirma=confirm('Tem certeza que deseja excluir essa Entidade?');
+  if(confirma){
+    $('#atua_loading').html('<img src="./imagens/icon_loading_01.gif" />');
+    $('#btn_atualizar').attr('disabled','disabled');
+    var entidade_juiz_id = $('form[name=form_entidade_atualizar] [name=entidade_juiz_id]').val();
+
+    $.ajax({
+      type: 'POST',
+      url: './entidades/entidadeExecutar.cfm',
+      data: {
+        'exec': 'excluirEntidade',
+        'entidade_juiz_id': escape(entidade_juiz_id)
+      },
+      success: function(obj) {
+        var obj = $.parseJSON(obj);
+        switch(parseInt(obj.erro_cod)) {
+          case 0:
+            montarURL('entidades/entidadesVisualizar');
+            break;
+          default:
+            alert(obj.erro_msg);
+        }
+        $('#btn_atualizar').removeAttr('disabled');
+        $('#atua_loading').html('');
+      }
+    });
+  }
+}
