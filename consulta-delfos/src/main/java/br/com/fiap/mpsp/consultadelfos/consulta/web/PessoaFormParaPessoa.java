@@ -5,10 +5,9 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-class PessoaFormParaPessoaConverter {
+class PessoaFormParaPessoa {
 
-    @Override
-    public Pessoa convert(PessoaForm pessoaForm) {
+    public Pessoa converter(PessoaForm pessoaForm) {
         return new Pessoa(pessoaForm.getNome(),
                 pessoaForm.getNomeDaMae(),
                 pessoaForm.getDataDeNascimento(),
