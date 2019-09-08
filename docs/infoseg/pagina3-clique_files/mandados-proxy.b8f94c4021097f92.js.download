@@ -1,1 +1,0 @@
-var MandadosProxy={url:"api/mandados",getMandados:function(a,r,e){return $.ajax(AjaxWrapper.getRequest(MandadosProxy.url,a,r,e))},getMandado:function(a,r){return $.ajax(AjaxWrapper.getRequest(MandadosProxy.url+"/detalhe",a,r))},getMandadosFiltro:function(a,r,e){return $.ajax(AjaxWrapper.getRequest(MandadosProxy.url+"/filtro",a,r,e))}};

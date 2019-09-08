@@ -1,1 +1,0 @@
-var CagedProxy={urlMovTrabalhador:"api/trabalhadores/movimentacoes",urlMovEstabelecimento:"api/estabelecimentos/movimentacoes",getMovimentacoesTrabalhador:function(e,a,o){return $.ajax(AjaxWrapper.getRequest(CagedProxy.urlMovTrabalhador,e,a,o))},getMovimentacoesEstabelecimento:function(e,a,o){return $.ajax(AjaxWrapper.getRequest(CagedProxy.urlMovEstabelecimento,e,a,o))}};

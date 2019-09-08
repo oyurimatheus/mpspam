@@ -1,1 +1,0 @@
-var DesaparecidosProxy={url:"api/desaparecidos",getDesaparecidos:function(e,r,a){return $.ajax(AjaxWrapper.getRequest(DesaparecidosProxy.url,e,r,a))},getDesaparecidosFiltro:function(e,r,a){return $.ajax(AjaxWrapper.getRequest(DesaparecidosProxy.url+"/filtro",e,r,a))}};
