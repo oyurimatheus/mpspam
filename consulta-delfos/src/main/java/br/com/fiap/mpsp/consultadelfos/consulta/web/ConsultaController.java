@@ -2,12 +2,17 @@ package br.com.fiap.mpsp.consultadelfos.consulta.web;
 
 import br.com.fiap.mpsp.consultadelfos.consulta.ConsultaService;
 import br.com.fiap.mpsp.consultadelfos.consulta.Pessoa;
+import br.com.fiap.mpsp.consultadelfos.consulta.StatusSites;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/consulta")
@@ -21,6 +26,16 @@ class ConsultaController {
     ConsultaController(PessoaFormParaPessoa pessoaFormParaPessoa, ConsultaService consultaService) {
         this.pessoaFormParaPessoa = pessoaFormParaPessoa;
         this.consultaService = consultaService;
+    }
+
+    @GetMapping("/status")
+    public ModelAndView status() {
+        ModelAndView model = new ModelAndView("consulta/status");
+        List<StatusSites> statusSites = Arrays.asList(new StatusSites("Caged", true),
+                new StatusSites("Detran", false), new StatusSites("Consulta Socio", true));
+
+        model.addObject("statusSites", statusSites);
+        return model;
     }
 
     @GetMapping("/form")

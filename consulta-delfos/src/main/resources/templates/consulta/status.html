@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Status - Sites</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+<div th:include="./header"></div>
+<div class="container">
+    <h1 class="border-bottom-0 m-3">Status Sites</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Site</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="status : ${statusSites}">
+            <tr>
+                <td th:text="${status.nome}"></td>
+                <td th:if="${status.ativo == true}"><img th:src="@{/img/online.png}"/> Online</td>
+                <td th:if="${status.ativo == false}"><img th:src="@{/img/offline.svg}"/> Offline</td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
