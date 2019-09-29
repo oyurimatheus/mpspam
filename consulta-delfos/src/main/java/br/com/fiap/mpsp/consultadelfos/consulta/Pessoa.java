@@ -1,6 +1,10 @@
 package br.com.fiap.mpsp.consultadelfos.consulta;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -13,8 +17,13 @@ public class Pessoa {
     private UUID id;
     private String nome;
     private String nomeDaMae;
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dataDeNascimento;
     private String cpf;
+    private String cnpj;
+    private String numeroProcesso;
+    private String pis;
 
     /**
      * apenas para uso dos frameworks
@@ -22,12 +31,21 @@ public class Pessoa {
     @Deprecated
     Pessoa() {}
 
-    public Pessoa(String nome, String nomeDaMae, LocalDate dataDeNascimento, String cpf) {
+    public Pessoa(String nome,
+                  String nomeDaMae,
+                  LocalDate dataDeNascimento,
+                  String cpf,
+                  String cnpj,
+                  String numeroProcesso,
+                  String pis) {
         this.id = UUID.randomUUID();
-        this.nome = requireNonNull(nome);
-        this.nomeDaMae = requireNonNull(nomeDaMae);
-        this.dataDeNascimento = requireNonNull(dataDeNascimento);
-        this.cpf = requireNonNull(cpf);
+        this.nome = nome;
+        this.nomeDaMae = nomeDaMae;
+        this.dataDeNascimento = dataDeNascimento;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.numeroProcesso = numeroProcesso;
+        this.pis = pis;
     }
 
     public UUID getId() {
@@ -48,6 +66,18 @@ public class Pessoa {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public String getNumeroProcesso() {
+        return numeroProcesso;
+    }
+
+    public String getPis() {
+        return pis;
     }
 
     @Override

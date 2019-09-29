@@ -51,6 +51,6 @@ class ConsultaController {
         consultaService.consulta(pessoa);
         LOG.info("[CONSULTA][CONTROLLER] Pessoa {} buscada com sucesso, aguardando sistemas", pessoa);
 
-        return "consulta/processa";
+        return "redirect:/consulta/status";
     }
 }

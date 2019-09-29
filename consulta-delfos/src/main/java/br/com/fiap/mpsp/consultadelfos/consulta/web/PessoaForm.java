@@ -2,6 +2,7 @@ package br.com.fiap.mpsp.consultadelfos.consulta.web;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ class PessoaForm {
     @NotBlank
     private String nomeDaMae;
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataDeNascimento;
     @CPF
     private String cpf;
