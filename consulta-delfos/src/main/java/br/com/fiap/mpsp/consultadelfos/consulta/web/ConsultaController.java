@@ -2,6 +2,7 @@ package br.com.fiap.mpsp.consultadelfos.consulta.web;
 
 import br.com.fiap.mpsp.consultadelfos.consulta.ConsultaService;
 import br.com.fiap.mpsp.consultadelfos.consulta.Pessoa;
+import br.com.fiap.mpsp.consultadelfos.consulta.PessoaRepository;
 import br.com.fiap.mpsp.consultadelfos.consulta.StatusSites;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +23,14 @@ class ConsultaController {
 
     private final PessoaFormParaPessoa pessoaFormParaPessoa;
     private final ConsultaService consultaService;
+    private final PessoaRepository pessoaRepository;
 
-    ConsultaController(PessoaFormParaPessoa pessoaFormParaPessoa, ConsultaService consultaService) {
+    ConsultaController(PessoaFormParaPessoa pessoaFormParaPessoa,
+                       ConsultaService consultaService,
+                       PessoaRepository pessoaRepository) {
         this.pessoaFormParaPessoa = pessoaFormParaPessoa;
         this.consultaService = consultaService;
+        this.pessoaRepository = pessoaRepository;
     }
 
     @GetMapping("/status")
@@ -48,6 +53,7 @@ class ConsultaController {
         Pessoa pessoa = pessoaFormParaPessoa.converter(form);
 
         LOG.info("[CONSULTA][CONTROLLER] Buscando pessoa {}", pessoa);
+        pessoaRepository.save(pessoa);
         consultaService.consulta(pessoa);
         LOG.info("[CONSULTA][CONTROLLER] Pessoa {} buscada com sucesso, aguardando sistemas", pessoa);
 

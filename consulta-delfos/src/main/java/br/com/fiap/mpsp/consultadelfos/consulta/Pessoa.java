@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -12,8 +14,10 @@ import java.util.UUID;
 
 import static java.util.Objects.requireNonNull;
 
+@Entity
 public class Pessoa {
 
+    @Id
     private UUID id;
     private String nome;
     private String nomeDaMae;

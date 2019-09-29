@@ -1,4 +1,6 @@
 from selenium import webdriver
+from kafka import KafkaConsumer, KafkaProducer
+import json
 
 
 def crawler(tipo_de_registro, numero_processo, vara):
@@ -64,5 +66,25 @@ def crawler(tipo_de_registro, numero_processo, vara):
 
 
 if __name__ == "__main__":
-    infos = crawler('i', 111222333, 297)
-    print(infos)
+    consumer = KafkaConsumer('consulta',
+                             group_id='arpensp',
+                             bootstrap_servers=['localhost:9092'],
+                             auto_offset_reset='earliest',
+                             value_deserializer=lambda m: json.loads(m.decode('utf8')))
+    for mensagem in consumer:
+        informacoes = mensagem.value
+        print(informacoes)
+
+        id_pedido = informacoes.get('id', '')
+        tipo_de_registro = informacoes.get('tipoDeRegistro', 'i')
+        numero_processo = informacoes.get('numeroProcesso', '')
+        vara = informacoes.get('vara', '297')
+
+        infos = crawler(tipo_de_registro, numero_processo, vara)
+        infos['id'] = id_pedido
+
+        print(infos)
+
+        producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
+                                 value_serializer=lambda m: json.dumps(m).encode('utf8'))
+        producer.send('arpensp', infos)

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatorio</title>
+
+    <script  th:src="@{/bootstrap/js/vanilla-masker.min.js}"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div th:include="./header"></div>
+<div class="container">
+    <h1 class="border-bottom-0 m-3">Relatorio</h1>
+    <hr/>
+
+    <h2 class="border-bottom-0 m-3">Arpensp</h2>
+    <ul class="list-group">
+        <li class="list-group-item">Cartorio: <span th:text="${arpensp.cartorioId}">...</span></li>
+        <li class="list-group-item">Juiz: <span th:text="${arpensp.juizId}">...</span></li>
+        <li class="list-group-item">Tipo de registro: <span th:text="${arpensp.tipoDeRegistro}">...</span></li>
+        <li class="list-group-item">Nome do primeiro registrado: <span th:text="${arpensp.nomeRegistrado1}">...</span></li>
+        <li class="list-group-item">Nome do segundo registrado: <span th:text="${arpensp.nomeRegistrado2}">...</span></li>
+        <li class="list-group-item">Novo nome do primeiro registrado: <span th:text="${arpensp.novoNomeRegistrado1}">...</span></li>
+        <li class="list-group-item">Novo nome do segundo registrado: <span th:text="${arpensp.novoNomeRegistrado2}">...</span></li>
+        <li class="list-group-item">Data do ocorrido: <span th:text="${arpensp.dataOcorrido}">...</span></li>
+        <li class="list-group-item">Data de registro: <span th:text="${arpensp.dataRegistro}">...</span></li>
+        <li class="list-group-item">Livro: <span th:text="${arpensp.numLivro}">...</span></li>
+        <li class="list-group-item">Folha: <span th:text="${arpensp.numFolha}">...</span></li>
+        <li class="list-group-item">Registro: <span th:text="${arpensp.numRegistro}">...</span></li>
+        <li class="list-group-item">Matrícula: <span th:text="${arpensp.matricuca}">...</span></li>
+    </ul>
+
+    <h2 class="border-bottom-0 m-3">Caged</h2>
+    <table>
+        <th:block th:each="caj : ${cajed}">
+            <tr>
+
+            </tr>
+        </th:block>
+    </table>
+
+
+</div>
+
+<script  th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
