@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/consulta")
@@ -53,6 +55,14 @@ class ConsultaController {
         Pessoa pessoa = pessoaFormParaPessoa.converter(form);
 
         LOG.info("[CONSULTA][CONTROLLER] Buscando pessoa {}", pessoa);
+        Optional<Pessoa> existe = pessoaRepository.findByCpf(pessoa.getCpf());
+
+        if(existe.isPresent()) {
+            pessoa.setId(existe.get().getId());
+        } else {
+            pessoa.setId(UUID.randomUUID());
+        }
+
         pessoaRepository.save(pessoa);
         consultaService.consulta(pessoa);
         LOG.info("[CONSULTA][CONTROLLER] Pessoa {} buscada com sucesso, aguardando sistemas", pessoa);

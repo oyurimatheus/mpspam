@@ -42,7 +42,6 @@ public class Pessoa {
                   String cnpj,
                   String numeroProcesso,
                   String pis) {
-        this.id = UUID.randomUUID();
         this.nome = nome;
         this.nomeDaMae = nomeDaMae;
         this.dataDeNascimento = dataDeNascimento;
@@ -54,6 +53,10 @@ public class Pessoa {
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getNome() {

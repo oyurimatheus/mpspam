@@ -11,7 +11,7 @@
 
 <div th:include="./header"></div>
 <div class="container">
-    <h1 class="border-bottom-0 m-3">Relatorio</h1>
+    <h1 class="border-bottom-0 m-3">Relatorio - <span th:text="${pessoa.nome}"></span></h1>
     <hr/>
 
     <h2 class="border-bottom-0 m-3">Arpensp</h2>
@@ -31,15 +31,55 @@
         <li class="list-group-item">Matrícula: <span th:text="${arpensp.matricuca}">...</span></li>
     </ul>
 
+    <h2 class="border-bottom-0 m-3">Cadesp</h2>
+    <ul class="list-group">
+        <li class="list-group-item">Inscrição Estadual: <span th:text="${cadesp.ie}">...</span></li>
+        <li class="list-group-item">Situação: <span th:text="${cadesp.situacao}">...</span></li>
+        <li class="list-group-item">Cnpj: <span th:text="${cadesp.cnpj}">...</span></li>
+        <li class="list-group-item"><span th:text="${cadesp.dataInscricaoEstado}">...</span></li>
+        <li class="list-group-item">Nome Empresarial: <span th:text="${cadesp.nomeEmpresarial}">...</span></li>
+        <li class="list-group-item">Regime estadual: <span th:text="${cadesp.regimeEstadual}">...</span></li>
+        <li class="list-group-item">DRT: <span th:text="${cadesp.drt}">...</span></li>
+        <li class="list-group-item">Posto Fiscal: <span th:text="${cadesp.postoFiscal}">...</span></li>
+        <li class="list-group-item">Data de Inscrição Estadual: <span th:text="${cadesp.dataIe}">...</span></li>
+        <li class="list-group-item">NIRE: <span th:text="${cadesp.nire}">...</span></li>
+        <li class="list-group-item">Situação Cadastral: <span th:text="${cadesp.situacaoCadastral}">...</span></li>
+        <li class="list-group-item">Data inicio da situação: <span th:text="${cadesp.dataInicioSituacao}">...</span></li>
+        <li class="list-group-item">Tipo de unidade: <span th:text="${cadesp.tipoUnidade}">...</span></li>
+        <li class="list-group-item">Formas de atuação: <span th:text="${cadesp.formasAtuacao}">...</span></li>
+    </ul>
     <h2 class="border-bottom-0 m-3">Caged</h2>
-    <table>
-        <th:block th:each="caj : ${cajed}">
-            <tr>
-
-            </tr>
-        </th:block>
-    </table>
-
+    <ul class="list-group">
+        <li class="list-group-item">CNPJ/CEI/CPF: <span th:text="${caged.cnpjCeiCpf}">...</span></li>
+        <li class="list-group-item">Razão Social/Nome: <span th:text="${caged.razaoSocial}">...</span></li>
+        <li class="list-group-item">Logradouro: <span th:text="${caged.logradouro}">...</span></li>
+        <li class="list-group-item">Bairro/Distrito: <span th:text="${caged.bairro}">...</span></li>
+        <li class="list-group-item">Municipio: <span th:text="${caged.municipio}">...</span></li>
+        <li class="list-group-item">Id Municipio: <span th:text="${caged.idMunicipio}">...</span></li>
+        <li class="list-group-item">Nome Municipio: <span th:text="${caged.nomeMunicipio}">...</span></li>
+        <li class="list-group-item">UF: <span th:text="${caged.uf}">...</span></li>
+        <li class="list-group-item">CEP: <span th:text="${caged.cep}">...</span></li>
+        <li class="list-group-item">Nome: <span th:text="${caged.nome}">...</span></li>
+        <li class="list-group-item">Email: <span th:text="${caged.email}">...</span></li>
+        <li class="list-group-item">Telefone: <span th:text="${caged.dddTelefone}">...</span> <span th:text="${caged.numeroTelefone}"></span></li>
+        <li class="list-group-item">CNPJ Raiz: <span th:text="${caged.cnpjRaiz}">...</span></li>
+        <li class="list-group-item">Codigo da Atividade Economica: <span th:text="${caged.codigoAtividadeEconomica}">...</span></li>
+        <li class="list-group-item">Descricao da Atividade Economica: <span th:text="${caged.descricaoAtividadeEconomica}">...</span></li>
+        <li class="list-group-item">Numero de Filiais: <span th:text="${caged.numeroFiliais}">...</span></li>
+        <li class="list-group-item">Numero de Admissões: <span th:text="${caged.numeroAdmissoes}">...</span></li>
+        <li class="list-group-item">Variação Absoluta: <span th:text="${caged.variacaoAbsoluta}">...</span></li>
+        <li class="list-group-item">Total de Vinculos: <span th:text="${caged.totalVinculos}">...</span></li>
+        <li class="list-group-item">Desligamentos: <span th:text="${caged.desligamentos}">...</span></li>
+        <li class="list-group-item">Nome do Trabalhador: <span th:text="${caged.nomeTrabalhador}">...</span></li>
+        <li class="list-group-item">Pis Base: <span th:text="${caged.pisBaseTrabalhador}">...</span></li>
+        <li class="list-group-item">CPF do Trabalhador: <span th:text="${caged.cpfTrabalhador}">...</span></li>
+        <li class="list-group-item">CTPS/Serie: <span th:text="${caged.ctpsTrabalhador}">...</span></li>
+        <li class="list-group-item">Sitiação PIS: <span th:text="${caged.situacaoPisTrabalhador}">...</span></li>
+        <li class="list-group-item">Nacionalidade: <span th:text="${caged.nacionalidadeTrabalhador}">...</span></li>
+        <li class="list-group-item">Grau de Instrução: <span th:text="${caged.grauTrabalhador}">...</span></li>
+        <li class="list-group-item">Pessoa com Deficiencia: <span th:text="${caged.deficienciaTrabalhador}">...</span></li>
+        <li class="list-group-item">Tempo Trabalhado: <span th:text="${caged.tempoTrabalhoTrabalhado}">...</span></li>
+    </ul>
 
 </div>
 
