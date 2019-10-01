@@ -11,6 +11,7 @@ import br.com.fiap.mpsp.consultadelfos.resposta.listener.caged.CagedResposta;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,25 +42,17 @@ public class RelatorioController {
         return "relatorios/form";
     }
 
-    @PostMapping
-    public String relatorio(String cpf, Model model, RedirectAttributes redirectAttributes) {
+    @GetMapping("/{cpf}")
+    public String relatorio(@PathVariable("cpf") String cpf, Model model, RedirectAttributes redirectAttributes) {
         Pessoa pessoa = pessoaRepository.findByCpf(cpf).orElseThrow();
         Optional<ArpenspResposta> arpensp = arpenspRepository.findById(pessoa.getId());
         Optional<CadespResposta> cadesp = cadespRepository.findById(pessoa.getId());
         Optional<CagedResposta> caged = cagedRepository.findById(pessoa.getId());
 
-        if(!arpensp.isPresent()) {
-            redirectAttributes.addFlashAttribute("arpenspError", "Não foi possivel realizar a busca!");
-        }
-
-        if(!cadesp.isPresent()) {
-            redirectAttributes.addFlashAttribute("cadesppError", "Não foi possivel realizar a busca!");
-        }
-
         model.addAttribute("pessoa", pessoa);
-        model.addAttribute("arpensp", arpensp.get());
-        model.addAttribute("cadesp", cadesp.get());
-        model.addAttribute("caged", caged.get());
+        model.addAttribute("arpensp", arpensp.orElse(new ArpenspResposta()));
+        model.addAttribute("cadesp", cadesp.orElse(new CadespResposta()));
+        model.addAttribute("caged", caged.orElse(new CagedResposta()));
 
         return "relatorios/relatorio";
     }

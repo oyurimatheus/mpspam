@@ -7,6 +7,7 @@ import br.com.fiap.mpsp.consultadelfos.consulta.StatusSites;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +52,7 @@ class ConsultaController {
     }
 
     @PostMapping
-    public String consulta(PessoaForm form) {
+    public String consulta(PessoaForm form, Model model) {
         Pessoa pessoa = pessoaFormParaPessoa.converter(form);
 
         LOG.info("[CONSULTA][CONTROLLER] Buscando pessoa {}", pessoa);
@@ -66,7 +67,7 @@ class ConsultaController {
         pessoaRepository.save(pessoa);
         consultaService.consulta(pessoa);
         LOG.info("[CONSULTA][CONTROLLER] Pessoa {} buscada com sucesso, aguardando sistemas", pessoa);
-
-        return "redirect:/consulta/status";
+        model.addAttribute("cpf", pessoa.getCpf());
+        return "consulta/loading";
     }
 }
