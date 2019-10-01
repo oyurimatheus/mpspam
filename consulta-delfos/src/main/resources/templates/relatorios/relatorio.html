@@ -110,6 +110,25 @@
         <li class="list-group-item">Naturalidade: <span th:text="${siel.naturalidade}">...</span></li>
         <li class="list-group-item">Codigo de validaçao: <span th:text="${siel.codValidacao}">...</span> <span th:text="${caged.numeroTelefone}"></span></li>
     </ul>
+
+    <h2 class="border-bottom-0 m-3">Siel</h2>
+    <div th:if="${censec.id == null}" class="alert alert-warning" role="alert">
+        Não foi possivel obter os dados!
+    </div>
+    <ul  th:if="${censec.id != null}" class="list-group">
+        <li class="list-group-item">Carga: <span th:text="${censec.carga}">...</span></li>
+        <li class="list-group-item">Mes da Carga: <span th:text="${censec.mesCarga}">...</span></li>
+        <li class="list-group-item">Ano da Carga: <span th:text="${censec.anoCarga}">...</span></li>
+        <li class="list-group-item">Ato: <span th:text="${censec.ato}">...</span></li>
+        <li class="list-group-item">Data do ato: <span th:text="${censec.dataAto}">...</span></li>
+        <li class="list-group-item">Livro: <span th:text="${censec.livro}">...</span></li>
+        <li class="list-group-item">Livro Compl: <span th:text="${censec.livroCompl}">...</span></li>
+        <li class="list-group-item">Folha: <span th:text="${censec.folha}">...</span></li>
+        <li class="list-group-item">Folha Compl: <span th:text="${censec.folhaCompl}">...</span></li>
+        <li class="list-group-item">UF: <span th:text="${censec.uf}">...</span></li>
+        <li class="list-group-item">Municipio: <span th:text="${censec.municipio}">...</span></li>
+        <li class="list-group-item">Cartorio: <span th:text="${censec.cartorio}">...</span> <span th:text="${caged.numeroTelefone}"></span></li>
+    </ul>
 </div>
 
 <script  th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
