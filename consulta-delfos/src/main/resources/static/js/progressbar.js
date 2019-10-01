@@ -9,7 +9,7 @@ window.onload = function move() {
     function frame() {
         if (width >= 100) {
             clearInterval(id);
-            window.location.assign("http://localhost:8080/relatorios/" + cpf);
+            window.location.assign("http://localhost:8080/relatorios/?cpf=" + cpf);
         } else {
             width++;
             elem.style.width = width + '%';
