@@ -91,6 +91,25 @@
         <li class="list-group-item">Tempo Trabalhado: <span th:text="${caged.tempoTrabalhoTrabalhado}">...</span></li>
     </ul>
 
+
+    <h2 class="border-bottom-0 m-3">Siel</h2>
+    <div th:if="${siel.id == null}" class="alert alert-warning" role="alert">
+        Não foi possivel obter os dados!
+    </div>
+    <ul  th:if="${siel.id != null}" class="list-group">
+        <li class="list-group-item">Nome: <span th:text="${siel.nome}">...</span></li>
+        <li class="list-group-item">Titulo: <span th:text="${siel.titulo}">...</span></li>
+        <li class="list-group-item">Data Nascimento: <span th:text="${siel.dataNascimento}">...</span></li>
+        <li class="list-group-item">Zona: <span th:text="${siel.zona}">...</span></li>
+        <li class="list-group-item">Endereço: <span th:text="${siel.endereco}">...</span></li>
+        <li class="list-group-item">Municipio: <span th:text="${siel.municipio}">...</span></li>
+        <li class="list-group-item">UF: <span th:text="${siel.uf}">...</span></li>
+        <li class="list-group-item">Data Domicilio: <span th:text="${siel.dataDomicilio}">...</span></li>
+        <li class="list-group-item">Nome do pai: <span th:text="${siel.nomePai}">...</span></li>
+        <li class="list-group-item">Nome da mae: <span th:text="${siel.nomeMae}">...</span></li>
+        <li class="list-group-item">Naturalidade: <span th:text="${siel.naturalidade}">...</span></li>
+        <li class="list-group-item">Codigo de validaçao: <span th:text="${siel.codValidacao}">...</span> <span th:text="${caged.numeroTelefone}"></span></li>
+    </ul>
 </div>
 
 <script  th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
