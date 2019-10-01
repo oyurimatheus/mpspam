@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Relatorio</title>
@@ -15,7 +15,11 @@
     <hr/>
 
     <h2 class="border-bottom-0 m-3">Arpensp</h2>
-    <ul class="list-group">
+    <div th:if="${arpensp.id == null}" class="alert alert-warning" role="alert">
+        Não foi possivel obter os dados!
+    </div>
+
+    <ul th:if="${arpensp.id != null}" class="list-group">
         <li class="list-group-item">Cartorio: <span th:text="${arpensp.cartorioId}">...</span></li>
         <li class="list-group-item">Juiz: <span th:text="${arpensp.juizId}">...</span></li>
         <li class="list-group-item">Tipo de registro: <span th:text="${arpensp.tipoDeRegistro}">...</span></li>
@@ -32,7 +36,10 @@
     </ul>
 
     <h2 class="border-bottom-0 m-3">Cadesp</h2>
-    <ul class="list-group">
+    <div th:if="${cadesp.id == null}" class="alert alert-warning" role="alert">
+        Não foi possivel obter os dados!
+    </div>
+    <ul  th:if="${cadesp.id != null}" class="list-group">
         <li class="list-group-item">Inscrição Estadual: <span th:text="${cadesp.ie}">...</span></li>
         <li class="list-group-item">Situação: <span th:text="${cadesp.situacao}">...</span></li>
         <li class="list-group-item">Cnpj: <span th:text="${cadesp.cnpj}">...</span></li>
@@ -49,7 +56,10 @@
         <li class="list-group-item">Formas de atuação: <span th:text="${cadesp.formasAtuacao}">...</span></li>
     </ul>
     <h2 class="border-bottom-0 m-3">Caged</h2>
-    <ul class="list-group">
+    <div th:if="${caged.id == null}" class="alert alert-warning" role="alert">
+        Não foi possivel obter os dados!
+    </div>
+    <ul  th:if="${caged.id != null}" class="list-group">
         <li class="list-group-item">CNPJ/CEI/CPF: <span th:text="${caged.cnpjCeiCpf}">...</span></li>
         <li class="list-group-item">Razão Social/Nome: <span th:text="${caged.razaoSocial}">...</span></li>
         <li class="list-group-item">Logradouro: <span th:text="${caged.logradouro}">...</span></li>
