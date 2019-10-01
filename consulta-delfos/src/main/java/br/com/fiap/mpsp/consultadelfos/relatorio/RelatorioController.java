@@ -10,13 +10,13 @@ import br.com.fiap.mpsp.consultadelfos.resposta.listener.caged.CagedRepository;
 import br.com.fiap.mpsp.consultadelfos.resposta.listener.caged.CagedResposta;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Objects;
 import java.util.Optional;
+
+import static java.util.Objects.isNull;
 
 @Controller
 @RequestMapping("relatorios")
@@ -37,13 +37,18 @@ public class RelatorioController {
         this.cagedRepository = cagedRepository;
     }
 
-    @GetMapping
+    @GetMapping("/pesquisa")
     public String form() {
         return "relatorios/form";
     }
 
-    @GetMapping("/{cpf}")
-    public String relatorio(@PathVariable("cpf") String cpf, Model model, RedirectAttributes redirectAttributes) {
+    @GetMapping
+    public String relatorio(@RequestParam("cpf") String cpf, Model model, RedirectAttributes redirectAttributes) {
+        if(isNull(cpf)) {
+            model.addAttribute("pessoas", pessoaRepository.findAll());
+            return "relatorios/lista";
+        }
+
         Pessoa pessoa = pessoaRepository.findByCpf(cpf).orElseThrow();
         Optional<ArpenspResposta> arpensp = arpenspRepository.findById(pessoa.getId());
         Optional<CadespResposta> cadesp = cadespRepository.findById(pessoa.getId());
