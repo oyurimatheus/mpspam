@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+}
+
+.loading-container {
+  margin-top: 15%;
+}
+
+#progress {
+    width: 50%;
+    background-color: #ddd;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}
+
+#bar {
+    width: 0%;
+    height: 30px;
+    /*background-color: #00EB2B;*/
+    background-color: #0073FF;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    border-radius: 20px;
+}
