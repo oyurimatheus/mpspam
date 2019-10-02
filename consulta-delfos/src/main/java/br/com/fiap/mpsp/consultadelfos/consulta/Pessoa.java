@@ -7,12 +7,10 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Objects;
-import java.util.StringJoiner;
-import java.util.UUID;
-
-import static java.util.Objects.requireNonNull;
+import java.util.*;
 
 @Entity
 public class Pessoa {
@@ -28,6 +26,7 @@ public class Pessoa {
     private String cnpj;
     private String numeroProcesso;
     private String pis;
+    private Calendar dataAtualizacao;
 
     /**
      * apenas para uso dos frameworks
@@ -49,6 +48,7 @@ public class Pessoa {
         this.cnpj = cnpj;
         this.numeroProcesso = numeroProcesso;
         this.pis = pis;
+        setDataAtualizacao();
     }
 
     public UUID getId() {
@@ -85,6 +85,18 @@ public class Pessoa {
 
     public String getPis() {
         return pis;
+    }
+
+
+
+    public String getDataAtualizacao() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = this.dataAtualizacao.getTime();
+        return dateFormat.format(date);
+    }
+
+    private void setDataAtualizacao() {
+       this.dataAtualizacao = Calendar.getInstance();
     }
 
     @Override
