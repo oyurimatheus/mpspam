@@ -141,6 +141,29 @@
         <li class="list-group-item">Quantidade de empresas: <span th:text="${consultaSocio.quantidadeDeEmpresas}">...</span></li>
         <li class="list-group-item">Sócios: <span th:text="${consultaSocio.socios}">...</span></li>
     </ul>
+
+    <h2 class="border-bottom-0 m-3">Jucesp</h2>
+    <div th:if="${jucesp.id == null}" class="alert alert-warning" role="alert">
+        Não foi possivel obter os dados!
+    </div>
+    <ul  th:if="${jucesp.id != null}" class="list-group">
+        <li class="list-group-item">Nome: <span th:text="${jucesp.dataEmissao}">...</span></li>
+        <li class="list-group-item">Primeira sociedade: <span th:text="${jucesp.nomeSocial}">...</span></li>
+        <li class="list-group-item">Capital Social: <span th:text="${jucesp.nireMatriz}">...</span></li>
+        <li class="list-group-item">Quantidade de empresas: <span th:text="${jucesp.tipoEmpresa}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.dataConstituicao}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.inicioAtividade}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.cnpj}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.objeto}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.capital}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.logradouro}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.numero}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.bairro}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.complemento}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.municipio}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.cep}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${jucesp.uf}">...</span></li>
+    </ul>
 </div>
 
 <script  th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
