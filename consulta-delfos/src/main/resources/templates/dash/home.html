@@ -35,7 +35,7 @@
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">C.P.F.</th>
-            <th scope="col">Data de nascimento</th>
+            <th scope="col">Data da ultima atualização</th>
             <th scope="col">Sistemas</th>
         </tr>
         </thead>
@@ -44,8 +44,8 @@
             <tr>
                 <td th:text="${pessoa.nome}">...</td>
                 <td th:text="${pessoa.cpf}">...</td>
-                <td th:text="${pessoa.dataDeNascimento}">...</td>
-                <td><a class="btn btn-info">Consultar</a> <a class="btn btn-warning">Atualizar</a></td>
+                <td th:text="${pessoa.dataAtualizacao}">...</td>
+                <td><a th:href="@{'/relatorios/?cpf=' + ${pessoa.cpf}}" class="btn btn-info">Consultar</a> <a class="btn btn-warning">Atualizar</a></td>
             </tr>
         </th:block>
         </tbody>
