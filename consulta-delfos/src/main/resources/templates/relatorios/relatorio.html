@@ -129,6 +129,18 @@
         <li class="list-group-item">Municipio: <span th:text="${censec.municipio}">...</span></li>
         <li class="list-group-item">Cartorio: <span th:text="${censec.cartorio}">...</span> <span th:text="${caged.numeroTelefone}"></span></li>
     </ul>
+
+    <h2 class="border-bottom-0 m-3">Consulta Sócio</h2>
+    <div th:if="${consultaSocio.id == null}" class="alert alert-warning" role="alert">
+        Não foi possivel obter os dados!
+    </div>
+    <ul  th:if="${consultaSocio.id != null}" class="list-group">
+        <li class="list-group-item">Nome: <span th:text="${consultaSocio.nome}">...</span></li>
+        <li class="list-group-item">Primeira sociedade: <span th:text="${consultaSocio.primeiraSociedade}">...</span></li>
+        <li class="list-group-item">Capital Social: <span th:text="${consultaSocio.capitalSocial}">...</span></li>
+        <li class="list-group-item">Quantidade de empresas: <span th:text="${consultaSocio.quantidadeDeEmpresas}">...</span></li>
+        <li class="list-group-item">Sócios: <span th:text="${consultaSocio.socios}">...</span></li>
+    </ul>
 </div>
 
 <script  th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
