@@ -48,7 +48,7 @@
                 <td th:text="${pessoa.nome}">...</td>
                 <td th:text="${pessoa.cpf}">...</td>
                 <td th:text="${pessoa.dataAtualizacao}">...</td>
-                <td><a th:href="@{'/relatorios/?cpf=' + ${pessoa.cpf}}" class="btn btn-info">Consultar</a> <a class="btn btn-warning">Atualizar</a></td>
+                <td><a th:href="@{'/relatorios/?cpf=' + ${pessoa.cpf}}" class="btn btn-info">Consultar</a> <a th:href="@{'/consulta/' + ${pessoa.id}}" class="btn btn-warning">Atualizar</a></td>
             </tr>
         </th:block>
         </tbody>

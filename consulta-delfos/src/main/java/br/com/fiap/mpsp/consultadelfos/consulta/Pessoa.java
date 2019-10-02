@@ -95,7 +95,7 @@ public class Pessoa {
         return dateFormat.format(date);
     }
 
-    private void setDataAtualizacao() {
+    public void setDataAtualizacao() {
        this.dataAtualizacao = Calendar.getInstance();
     }
 

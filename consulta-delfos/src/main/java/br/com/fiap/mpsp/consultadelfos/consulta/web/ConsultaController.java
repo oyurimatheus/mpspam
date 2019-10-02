@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -69,6 +70,24 @@ class ConsultaController {
         consultaService.consulta(pessoa);
         LOG.info("[CONSULTA][CONTROLLER] Pessoa {} buscada com sucesso, aguardando sistemas", pessoa);
         model.addAttribute("cpf", pessoa.getCpf());
+        return "consulta/loading";
+    }
+
+    @GetMapping("/{id}")
+    public String atualiza(@PathVariable("id") UUID id, Model model) {
+
+        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+
+        if(!pessoa.isPresent()) {
+            model.addAttribute("error", "Pessoa buscada nao existe");
+            return "";
+        }
+
+        pessoa.get().setDataAtualizacao();
+        pessoaRepository.save(pessoa.get());
+        consultaService.consulta(pessoa.get());
+        LOG.info("[CONSULTA][CONTROLLER] Pessoa {} atualizada com sucesso, aguardando sistemas", pessoa);
+        model.addAttribute("cpf", pessoa.get().getCpf());
         return "consulta/loading";
     }
 }
