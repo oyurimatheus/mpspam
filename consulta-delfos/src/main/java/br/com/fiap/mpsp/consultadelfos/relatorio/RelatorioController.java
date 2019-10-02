@@ -12,6 +12,8 @@ import br.com.fiap.mpsp.consultadelfos.resposta.listener.censec.CensecRepository
 import br.com.fiap.mpsp.consultadelfos.resposta.listener.censec.CensecResposta;
 import br.com.fiap.mpsp.consultadelfos.resposta.listener.consultasocio.ConsultaSocioRepository;
 import br.com.fiap.mpsp.consultadelfos.resposta.listener.consultasocio.ConsultaSocioResposta;
+import br.com.fiap.mpsp.consultadelfos.resposta.listener.jucesp.JucespRepository;
+import br.com.fiap.mpsp.consultadelfos.resposta.listener.jucesp.JucespResposta;
 import br.com.fiap.mpsp.consultadelfos.resposta.listener.siel.SielRepository;
 import br.com.fiap.mpsp.consultadelfos.resposta.listener.siel.SielResposta;
 import org.springframework.stereotype.Controller;
@@ -35,6 +37,7 @@ public class RelatorioController {
     private final SielRepository sielRepository;
     private final CensecRepository censecRepository;
     private final ConsultaSocioRepository consultaSocioRepository;
+    private final JucespRepository jucespRepository;
 
     public RelatorioController(PessoaRepository pessoaRepository,
                                ArpenspRepository arpenspRepository,
@@ -42,7 +45,8 @@ public class RelatorioController {
                                CagedRepository cagedRepository,
                                SielRepository sielRepository,
                                CensecRepository censecRepository,
-                               ConsultaSocioRepository consultaSocioRepository) {
+                               ConsultaSocioRepository consultaSocioRepository,
+                               JucespRepository jucespRepository) {
         this.pessoaRepository = pessoaRepository;
         this.arpenspRepository = arpenspRepository;
         this.cadespRepository = cadespRepository;
@@ -50,6 +54,7 @@ public class RelatorioController {
         this.sielRepository = sielRepository;
         this.censecRepository = censecRepository;
         this.consultaSocioRepository = consultaSocioRepository;
+        this.jucespRepository = jucespRepository;
     }
 
     @GetMapping("/pesquisa")
@@ -71,6 +76,7 @@ public class RelatorioController {
         Optional<SielResposta> siel = sielRepository.findById(pessoa.getId());
         Optional<CensecResposta> censec = censecRepository.findById(pessoa.getId());
         Optional<ConsultaSocioResposta> consultaSocio = consultaSocioRepository.findById(pessoa.getId());
+        Optional<JucespResposta> jucesp = jucespRepository.findById(pessoa.getId());
 
         model.addAttribute("pessoa", pessoa);
         model.addAttribute("arpensp", arpensp.orElse(new ArpenspResposta()));
@@ -79,6 +85,7 @@ public class RelatorioController {
         model.addAttribute("siel", siel.orElse(new SielResposta()));
         model.addAttribute("censec", censec.orElse(new CensecResposta()));
         model.addAttribute("consultaSocio", consultaSocio.orElse(new ConsultaSocioResposta()));
+        model.addAttribute("jucesp", jucesp.orElse(new JucespResposta()));
 
         return "relatorios/relatorio";
     }
